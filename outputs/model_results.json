@@ -1,0 +1,172 @@
+{
+  "inputs": {
+    "sites": 3,
+    "consultations_per_site": 12.5,
+    "equipment_cost_per_site": 10000.0,
+    "equipment_life_years": 5.0,
+    "weekly_check_minutes": 10.0,
+    "loaded_staff_cost_per_hour": 85.0,
+    "annual_support_per_site": 300.0,
+    "incremental_video_cost_per_consult": 75.0,
+    "road_share": 0.5555555555555556,
+    "rotary_share": 0.2,
+    "fixed_share": 0.24444444444444444,
+    "road_cost": 4000.0,
+    "rotary_cost": 25000.0,
+    "fixed_cost": 18000.0,
+    "downstream_cost_difference": 4000.0,
+    "family_cost_per_transfer": 1500.0,
+    "usual_transfer_probability": 0.65,
+    "video_transfer_odds_ratio": 0.7,
+    "nep_2026_27": 7418.0,
+    "wtp_per_qaly": 50000.0
+  },
+  "programme": {
+    "consultations": 37.5,
+    "annualised_equipment": 6000.0,
+    "checks": 2210.0,
+    "support": 900.0,
+    "incremental_video_workflow": 2812.5,
+    "cash_continuation": 5922.5,
+    "total_economic": 11922.5
+  },
+  "psa": {
+    "summary": {
+      "iterations": 20000,
+      "mean_net_saving": 38382.90671778229,
+      "median_net_saving": 32882.93246454526,
+      "net_saving_p025": -57738.66188488013,
+      "net_saving_p975": 162706.10038019516,
+      "probability_cost_saving": 0.75425,
+      "mean_societal_net_saving": 44195.03472961683,
+      "mean_avoided_transfers": 2.9173638984226757,
+      "mean_programme_cost": 13786.435750421855,
+      "mean_transfer_cost": 17946.720181210323,
+      "transfer_effect_mean": 0.07775101447185198,
+      "transfer_effect_p025": -0.06504548808637328,
+      "transfer_effect_median": 0.07362725177942675,
+      "transfer_effect_p975": 0.2389991106233192
+    },
+    "histogram": [
+      {
+        "midpoint": -81609.74287111586,
+        "count": 131
+      },
+      {
+        "midpoint": -66385.2870846643,
+        "count": 249
+      },
+      {
+        "midpoint": -51160.83129821274,
+        "count": 486
+      },
+      {
+        "midpoint": -35936.37551176119,
+        "count": 848
+      },
+      {
+        "midpoint": -20711.919725309624,
+        "count": 1415
+      },
+      {
+        "midpoint": -5487.463938858069,
+        "count": 1995
+      },
+      {
+        "midpoint": 9736.99184759349,
+        "count": 2349
+      },
+      {
+        "midpoint": 24961.44763404505,
+        "count": 2394
+      },
+      {
+        "midpoint": 40185.90342049661,
+        "count": 2132
+      },
+      {
+        "midpoint": 55410.35920694817,
+        "count": 2016
+      },
+      {
+        "midpoint": 70634.81499339972,
+        "count": 1584
+      },
+      {
+        "midpoint": 85859.27077985127,
+        "count": 1255
+      },
+      {
+        "midpoint": 101083.72656630282,
+        "count": 896
+      },
+      {
+        "midpoint": 116308.18235275439,
+        "count": 689
+      },
+      {
+        "midpoint": 131532.63813920596,
+        "count": 496
+      },
+      {
+        "midpoint": 146757.0939256575,
+        "count": 339
+      },
+      {
+        "midpoint": 161981.54971210906,
+        "count": 222
+      },
+      {
+        "midpoint": 177206.0054985606,
+        "count": 138
+      },
+      {
+        "midpoint": 192430.46128501216,
+        "count": 105
+      },
+      {
+        "midpoint": 207654.91707146371,
+        "count": 61
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "No effect",
+      "effect": 0,
+      "net": -11922.5,
+      "avoided": 0.0
+    },
+    {
+      "name": "3 pp",
+      "effect": 0.03,
+      "net": 5652.5,
+      "avoided": 1.125
+    },
+    {
+      "name": "5 pp",
+      "effect": 0.05,
+      "net": 17369.166666666668,
+      "avoided": 1.875
+    },
+    {
+      "name": "8 pp",
+      "effect": 0.08,
+      "net": 34944.16666666667,
+      "avoided": 3.0
+    },
+    {
+      "name": "18 pp",
+      "effect": 0.18,
+      "net": 93527.5,
+      "avoided": 6.75
+    },
+    {
+      "name": "26 pp",
+      "effect": 0.26,
+      "net": 140394.16666666666,
+      "avoided": 9.75
+    }
+  ],
+  "weighted_transfer_cost": 15622.222222222223
+}
