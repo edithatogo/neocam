@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 outputs/rendered/
+outputs/memo_render/
+outputs/slides_render/
+outputs/*_montage.png
+outputs/workbook_preview.png
