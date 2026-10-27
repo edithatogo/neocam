@@ -1,0 +1,10 @@
+{
+  "errors": [],
+  "parameters_checked": 27,
+  "public_births": 46711,
+  "raw_public_rows": 72,
+  "aliased_sites": 65,
+  "sources": 15,
+  "studies": 7,
+  "source_validation": "Schema, arithmetic and provenance links checked; estimated inputs remain assumptions"
+}

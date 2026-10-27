@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-10-27T20:30:22.608379+00:00",
+  "profile": "quick",
+  "source_commit_at_execution": "7ad31e211d8fef2ebbfedfe30bc1b867dc47e1ee",
+  "input_fingerprint": "44727a3a90d72fdefec6895598502a98a520c9a565c3f4ab7b83fc179807bf3a",
+  "complete_within_profile": true,
+  "full_local_assurance": false,
+  "release_ready": false,
+  "hosted_assurance": "Not independently verified by this local runner",
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "executable": "/opt/pyvenv/bin/python",
+    "packages": {
+      "numpy": "2.3.5",
+      "polars": null,
+      "pytest": "9.0.2",
+      "coverage": "7.13.3",
+      "ruff": null,
+      "ty": null,
+      "basedpyright": null,
+      "hypothesis": null,
+      "pytest-gremlins": null,
+      "scalene": null,
+      "pip-audit": null,
+      "uv": "0.10.0"
+    }
+  },
+  "receipts": [
+    {
+      "gate": "pytest",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "44727a3a90d72fdefec6895598502a98a520c9a565c3f4ab7b83fc179807bf3a",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "duration_seconds": 20.558715696000036,
+      "log": "verification/v3/quick/pytest.txt",
+      "log_sha256": "cb918cd2fd23791dd24ff8b0fd86fd0ff7e02f3a1c2709bb9edbd90044e0ada9",
+      "reason": ""
+    },
+    {
+      "gate": "inputs",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "44727a3a90d72fdefec6895598502a98a520c9a565c3f4ab7b83fc179807bf3a",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "inputs"
+      ],
+      "duration_seconds": 0.9936255200000232,
+      "log": "verification/v3/quick/inputs.txt",
+      "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
+      "reason": ""
+    },
+    {
+      "gate": "context",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "44727a3a90d72fdefec6895598502a98a520c9a565c3f4ab7b83fc179807bf3a",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "context"
+      ],
+      "duration_seconds": 0.8302219769998374,
+      "log": "verification/v3/quick/context.txt",
+      "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
+      "reason": ""
+    }
+  ],
+  "problems": [],
+  "review": "Author review; not an independent review"
+}

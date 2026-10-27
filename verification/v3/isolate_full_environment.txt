@@ -1,0 +1,16 @@
+........................................................................ [ 28%]
+........................................................................ [ 56%]
+........................................................................ [ 85%]
+......................................                                   [100%]
+============================= slowest 10 durations =============================
+0.97s call     tests/test_assurance_v3.py::test_log_cannot_escape_project
+0.94s call     tests/test_assurance_v3.py::test_deleted_log_rejected
+0.90s call     tests/test_assurance_v3.py::test_negative_duration_rejected
+0.89s call     tests/test_assurance_v3.py::test_exit_69_from_a_program_is_not_automatically_a_missing_tool
+0.87s call     tests/test_quality_integration.py::test_cli_detects_mid_run_change
+0.86s call     tests/test_quality_integration.py::test_explicit_preflight_may_report_unavailable
+0.86s call     tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[1]
+0.86s call     tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[69]
+0.85s call     tests/test_assurance_v3.py::test_extra_failed_gate_rejected
+0.84s call     tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[0]
+254 passed in 18.27s
