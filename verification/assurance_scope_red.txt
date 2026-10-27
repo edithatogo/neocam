@@ -1,0 +1,31 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+____________________ test_model_receipt_is_not_full_release ____________________
+
+    def test_model_receipt_is_not_full_release():
+>       assert not verify.release_assurance_complete([{'gate':'pytest','status':'passed'}], 'model')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'scripts.verify' has no attribute 'release_assurance_complete'
+
+tests/test_assurance_scope.py:5: AttributeError
+___________________ test_release_receipt_requires_all_gates ____________________
+
+    def test_release_receipt_requires_all_gates():
+>       assert not verify.release_assurance_complete([{'gate':'pytest','status':'passed'}], 'release')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'scripts.verify' has no attribute 'release_assurance_complete'
+
+tests/test_assurance_scope.py:8: AttributeError
+________________ test_release_receipt_requires_no_blocked_gate _________________
+
+    def test_release_receipt_requires_no_blocked_gate():
+>       gates=[{'gate':name,'status':'passed'} for name in verify.RELEASE_GATES]
+                                                           ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'scripts.verify' has no attribute 'RELEASE_GATES'
+
+tests/test_assurance_scope.py:11: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_assurance_scope.py::test_model_receipt_is_not_full_release - AttributeError: module 'scripts.verify' has no attribute 'release_assurance_complete'
+FAILED tests/test_assurance_scope.py::test_release_receipt_requires_all_gates - AttributeError: module 'scripts.verify' has no attribute 'release_assurance_complete'
+FAILED tests/test_assurance_scope.py::test_release_receipt_requires_no_blocked_gate - AttributeError: module 'scripts.verify' has no attribute 'RELEASE_GATES'
+3 failed in 0.07s

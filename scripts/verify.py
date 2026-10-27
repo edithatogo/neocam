@@ -16,6 +16,20 @@ sys.path.insert(0,str(ROOT))
 from src.statewide import load_sites, select_sites, Parameters, evaluate, psa
 
 
+RELEASE_GATES = frozenset({
+    'pytest', 'coverage_run', 'coverage_threshold', 'data_context_reproducibility',
+    'ruff', 'generative_hypothesis', 'vulnerability_audit', 'hosted_GitHub_Actions',
+    'latest_dependency_resolution', 'Conductor_working_tree',
+})
+
+
+def release_assurance_complete(gates: list[dict], scope: str) -> bool:
+    """Release assurance needs explicit complete receipts, not a subset of checks."""
+    statuses = {gate['gate']: gate['status'] for gate in gates}
+    return (scope == 'release' and RELEASE_GATES.issubset(statuses)
+            and all(statuses[name] == 'passed' for name in RELEASE_GATES))
+
+
 def command_receipt(name: str, command: list[str], timeout: int = 40) -> dict:
     try:
         result=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,timeout=timeout,check=False)
@@ -88,7 +102,8 @@ def main() -> int:
             for parent in ['src','data','evidence'] for f in sorted((ROOT/parent).glob('*')) if f.is_file()}
     report={'date':'2026-10-27','environment':environment,'gates':gates,'source_sha256':hashes,
             'all_available_gates_pass':not any(g['status']=='failed' for g in gates),
-            'full_release_assurance':all(g['status']=='passed' for g in gates),
+            'full_release_assurance':release_assurance_complete(gates,'model'),
+            'receipt_scope':'model/data gates only; hosted workflow and release require separate receipts',
             'review':'Author self-review; no independent agent reviewer available'}
     (ROOT/'verification/assurance.json').write_text(json.dumps(report,indent=2)+'\n')
     for gate in gates:print(gate['status'].upper(),gate['gate'])

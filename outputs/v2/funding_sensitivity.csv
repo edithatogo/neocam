@@ -1,0 +1,10 @@
+nwau,assumed_qwau_per_nwau,nep,assumed_qep_to_nep_ratio,national_benchmark,hypothetical_queensland_benchmark,status
+1,0.9,7418,0.9,7418,6008.58,sensitivity only; QEP and localisation unverified
+1,0.9,7418,1,7418,6676.2,sensitivity only; QEP and localisation unverified
+1,0.9,7418,1.1,7418,7343.820000000001,sensitivity only; QEP and localisation unverified
+1,1,7418,0.9,7418,6676.2,sensitivity only; QEP and localisation unverified
+1,1,7418,1,7418,7418,sensitivity only; QEP and localisation unverified
+1,1,7418,1.1,7418,8159.800000000001,sensitivity only; QEP and localisation unverified
+1,1.1,7418,0.9,7418,7343.8200000000015,sensitivity only; QEP and localisation unverified
+1,1.1,7418,1,7418,8159.800000000001,sensitivity only; QEP and localisation unverified
+1,1.1,7418,1.1,7418,8975.780000000002,sensitivity only; QEP and localisation unverified

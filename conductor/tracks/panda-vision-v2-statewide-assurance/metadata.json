@@ -10,5 +10,8 @@
     "Conductor submodule working tree not populated",
     "latest dependency installation and hash lock unresolved"
   ],
-  "design_authority": "current user instructions"
+  "design_authority": "current user instructions",
+  "implementation": "locally complete",
+  "release": "blocked",
+  "verification": "75 tests;96% core branch coverage;online gates not executed"
 }

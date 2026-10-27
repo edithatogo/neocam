@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-27",
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "packages": {
+      "numpy": "2.3.5",
+      "pytest": "9.0.2",
+      "coverage": "7.13.3",
+      "ruff": null,
+      "hypothesis": null,
+      "pip-audit": null,
+      "ty": null,
+      "uv": "0.10.0",
+      "python-docx": "1.2.0",
+      "python-pptx": "1.0.2",
+      "matplotlib": "3.10.8"
+    }
+  },
+  "gates": [
+    {
+      "gate": "pytest",
+      "status": "passed",
+      "returncode": 0,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "receipt": "verification/pytest.txt"
+    },
+    {
+      "gate": "coverage_run",
+      "status": "passed",
+      "returncode": 0,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "run",
+        "--branch",
+        "--source=src.statewide",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "receipt": "verification/coverage_run.txt"
+    },
+    {
+      "gate": "coverage_threshold",
+      "status": "passed",
+      "returncode": 0,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "report",
+        "--fail-under=95"
+      ],
+      "receipt": "verification/coverage_threshold.txt"
+    },
+    {
+      "gate": "data_context_reproducibility",
+      "status": "passed",
+      "checks": [
+        "birth counts/aliases",
+        "parameter schema",
+        "source uniqueness/provenance",
+        "Python AST",
+        "immutable action pins",
+        "least privilege",
+        "context entrypoint",
+        "seeded reproducibility"
+      ]
+    },
+    {
+      "gate": "ruff",
+      "status": "blocked",
+      "returncode": 1,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "scripts/run_v2.py",
+        "scripts/verify.py"
+      ],
+      "receipt": "verification/ruff.txt"
+    },
+    {
+      "gate": "generative_hypothesis",
+      "status": "blocked",
+      "returncode": 2,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "quality/property_hypothesis.py",
+        "-q"
+      ],
+      "receipt": "verification/generative_hypothesis.txt"
+    },
+    {
+      "gate": "vulnerability_audit",
+      "status": "blocked",
+      "returncode": 1,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pip_audit",
+        "-r",
+        "requirements-latest.in"
+      ],
+      "receipt": "verification/vulnerability_audit.txt"
+    },
+    {
+      "gate": "typecheck_experimental",
+      "status": "blocked",
+      "returncode": 1,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "ty",
+        "check",
+        "src/statewide.py"
+      ],
+      "receipt": "verification/typecheck_experimental.txt"
+    },
+    {
+      "gate": "hosted_GitHub_Actions",
+      "status": "blocked",
+      "reason": "No hosted run triggered; project has no specified GitHub remote. Local receipt is not hosted CI evidence."
+    },
+    {
+      "gate": "latest_dependency_resolution",
+      "status": "blocked",
+      "reason": "External DNS unavailable; target pins verified remotely, installation/hash-lock resolution not completed."
+    },
+    {
+      "gate": "Conductor_working_tree",
+      "status": "blocked",
+      "evidence": "-137c1e41ff9c1dc75ff277b9582460a0bd8c4768 extensions/conductor"
+    }
+  ],
+  "source_sha256": {
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/panda_model.py": "35ce5f84929cf6fb1ba3470f4c4a0511cc106099915058bb31b6543bdfff987e",
+    "src/statewide.py": "620915dfee9e064435421b20e1785b15a2af173b9482e42536f859c605fbc93f",
+    "data/births_queensland_2022.csv": "13ec6ec2e94d05560aa9562c158b6cf72f64d9c44c4e2ac731c3bfb15a6a6bcc",
+    "data/parameters.json": "9c1e4608532268e537c9b1956451142b5de396e2c46fd0454bace7735716780d",
+    "data/population_totals.json": "b19047b9387f12d742819f6b1428f8687be13737cea73930d8f5d0dde62190ed",
+    "data/site_classification.json": "b959213df5770cd75f3c43ec9cf99f9fcd15d7318910c599b1468e86ce77db0b",
+    "evidence/dependency_targets.json": "e3c1b1033bafc685bd81de623c3a18e4542d5f222d39f0b1e9a720a482f68ec2",
+    "evidence/literature_parameter_map.csv": "88934dee3f527c6b957a88c8fefeb6fb2f0bfe387fd8b7da3246e9c27cacfe7b",
+    "evidence/parameter_register.csv": "bbfdc27525693074301a4035b93600fae1f2269d26ee493394bdd5b144cc02e6",
+    "evidence/search_log.md": "19826313e7453d6098d5965999ccc96b636712241bd325d24b1a7d66e3b10dc5",
+    "evidence/sources.csv": "b33f72cd83b0ebf90f9e9517e9cf1494965239a343e87f5a23d4c3f38f74a7fc",
+    "evidence/transport_mode_comparison.csv": "914da27b83f33422cbbcdc0d94b28635497b7ca5ebca0992a6f2feeba5bf46bc"
+  },
+  "all_available_gates_pass": true,
+  "full_release_assurance": false,
+  "receipt_scope": "model/data gates only; hosted workflow and release require separate receipts",
+  "review": "Author self-review; no independent agent reviewer available"
+}

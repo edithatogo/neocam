@@ -1,0 +1,448 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFF.FF                                            [100%]
+=================================== FAILURES ===================================
+__ test_public_births_reconcile_and_aliases_do_not_double_count_installations __
+
+    def test_public_births_reconcile_and_aliases_do_not_double_count_installations():
+>       m=api(); sites=m.load_sites()
+          ^^^^^
+
+tests/test_v2.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_______________ test_pilot_denominators_and_volume_are_distinct ________________
+
+    def test_pilot_denominators_and_volume_are_distinct():
+>       m=api(); sites=m.select_sites(m.load_sites(),'pilot'); p=m.Parameters()
+          ^^^^^
+
+tests/test_v2.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+________ test_primary_spoke_portfolio_excludes_hubs_and_readiness_sites ________
+
+    def test_primary_spoke_portfolio_excludes_hubs_and_readiness_sites():
+>       m=api(); sites=m.select_sites(m.load_sites(),'spokes')
+          ^^^^^
+
+tests/test_v2.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_______________________ test_unknown_portfolio_rejected ________________________
+
+    def test_unknown_portfolio_rejected():
+>       with pytest.raises(ValueError): api().select_sites(api().load_sites(),'unknown')
+                                        ^^^^^
+
+tests/test_v2.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+__________ test_rebased_cpi_is_not_divided_across_incompatible_bases ___________
+
+    def test_rebased_cpi_is_not_divided_across_incompatible_bases():
+>       m=api(); v=m.index_air_cost()
+          ^^^^^
+
+tests/test_v2.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs0] ___________________
+
+kwargs = {'reliability': -0.1}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs1] ___________________
+
+kwargs = {'marginal_fraction': 1.1}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs2] ___________________
+
+kwargs = {'life_years': 0}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs3] ___________________
+
+kwargs = {'equipment_cost': nan}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs4] ___________________
+
+kwargs = {'odds_ratio': 0}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs5] ___________________
+
+kwargs = {'birth_growth': -1}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs6] ___________________
+
+kwargs = {'case_mix': (0.5, 0.5, 0.5)}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_invalid_inputs_fail_closed[kwargs7] ___________________
+
+kwargs = {'rescue_rate': 1.2}
+
+    @pytest.mark.parametrize('kwargs',[{'reliability':-0.1},{'marginal_fraction':1.1},{'life_years':0},{'equipment_cost':float('nan')},{'odds_ratio':0},{'birth_growth':-1},{'case_mix':(.5,.5,.5)},{'rescue_rate':1.2}])
+    def test_invalid_inputs_fail_closed(kwargs):
+>       with pytest.raises(ValueError): api().Parameters(**kwargs)
+                                        ^^^^^
+
+tests/test_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________ test_no_effect_means_cost_increase_not_invented_savings ____________
+
+    def test_no_effect_means_cost_increase_not_invented_savings():
+>       m=api(); r=m.evaluate(m.select_sites(m.load_sites(),'pilot'),m.Parameters(odds_ratio=1))
+          ^^^^^
+
+tests/test_v2.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+__________ test_failed_video_falls_back_to_phone_not_no_consultation ___________
+
+    def test_failed_video_falls_back_to_phone_not_no_consultation():
+>       m=api(); r=m.evaluate(m.select_sites(m.load_sites(),'pilot'),m.Parameters(reliability=0))
+          ^^^^^
+
+tests/test_v2.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_________ test_critical_cases_are_not_credited_as_avoidable_transfers __________
+
+    def test_critical_cases_are_not_credited_as_avoidable_transfers():
+>       m=api(); r=m.evaluate(m.select_sites(m.load_sites(),'pilot'),m.Parameters(case_mix=(0,0,1)))
+          ^^^^^
+
+tests/test_v2.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+__________________ test_sunk_capital_changes_cost_not_effect ___________________
+
+    def test_sunk_capital_changes_cost_not_effect():
+>       m=api(); s=m.select_sites(m.load_sites(),'pilot'); a=m.evaluate(s,m.Parameters()); b=m.evaluate(s,m.Parameters(include_capital=False))
+          ^^^^^
+
+tests/test_v2.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+____________________ test_delayed_rescue_reduces_net_value _____________________
+
+    def test_delayed_rescue_reduces_net_value():
+>       m=api(); s=m.select_sites(m.load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v2.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_negative_effect_increases_transfers ___________________
+
+    def test_negative_effect_increases_transfers():
+>       m=api(); r=m.evaluate(m.select_sites(m.load_sites(),'pilot'),m.Parameters(odds_ratio=1.3))
+          ^^^^^
+
+tests/test_v2.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________ test_zero_marginal_fraction_is_not_full_allocated_saving ___________
+
+    def test_zero_marginal_fraction_is_not_full_allocated_saving():
+>       m=api(); s=m.select_sites(m.load_sites(),'pilot'); a=m.evaluate(s,m.Parameters(marginal_fraction=0,downstream_delta=0))
+          ^^^^^
+
+tests/test_v2.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+__________ test_qep_missing_remains_none_and_benchmarks_are_separate ___________
+
+    def test_qep_missing_remains_none_and_benchmarks_are_separate():
+>       m=api(); r=m.funding_ledger(nwau=2,qwau=2.1,nep=7418,qep=None)
+          ^^^^^
+
+tests/test_v2.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+________________ test_mchs_year_gate_does_not_claim_2026_parity ________________
+
+    def test_mchs_year_gate_does_not_claim_2026_parity():
+>       m=api(); assert m.mchs_support(2025)=='historical_interface_only'
+          ^^^^^
+
+tests/test_v2.py:99: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_annuity_and_price_zero_rate_limits ____________________
+
+    def test_annuity_and_price_zero_rate_limits():
+>       m=api(); assert m.annuity(10000,5,0)==2000
+          ^^^^^
+
+tests/test_v2.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________________ test_seeded_psa_reproducible_and_signed ____________________
+
+    def test_seeded_psa_reproducible_and_signed():
+>       m=api(); s=m.select_sites(m.load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v2.py:109: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_______ test_shared_draw_doubling_does_not_reduce_systematic_uncertainty _______
+
+    def test_shared_draw_doubling_does_not_reduce_systematic_uncertainty():
+>       m=api(); site=m.select_sites(m.load_sites(),'pilot')[0]
+          ^^^^^
+
+tests/test_v2.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+___________ test_clinical_extension_counts_morbid_survival_and_costs ___________
+
+    def test_clinical_extension_counts_morbid_survival_and_costs():
+>       m=api(); r=m.survival_extension(100,.01,.5,discount=.05)
+          ^^^^^
+
+tests/test_v2.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_______________________ test_empty_portfolio_has_no_cost _______________________
+
+    def test_empty_portfolio_has_no_cost():
+>       m=api(); r=m.evaluate([],m.Parameters())
+          ^^^^^
+
+tests/test_v2.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+_____________ test_posterior_is_not_claimed_for_researcher_priors ______________
+
+    def test_posterior_is_not_claimed_for_researcher_priors():
+>       m=api(); r=m.psa(m.select_sites(m.load_sites(),'pilot'),n=100,seed=9)
+          ^^^^^
+
+tests/test_v2.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import statewide
+E       ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+
+tests/test_v2.py:9: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_v2.py::test_public_births_reconcile_and_aliases_do_not_double_count_installations - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_pilot_denominators_and_volume_are_distinct - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_primary_spoke_portfolio_excludes_hubs_and_readiness_sites - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_unknown_portfolio_rejected - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_rebased_cpi_is_not_divided_across_incompatible_bases - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs0] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs1] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs2] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs3] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs4] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs5] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs6] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_invalid_inputs_fail_closed[kwargs7] - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_no_effect_means_cost_increase_not_invented_savings - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_failed_video_falls_back_to_phone_not_no_consultation - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_critical_cases_are_not_credited_as_avoidable_transfers - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_sunk_capital_changes_cost_not_effect - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_delayed_rescue_reduces_net_value - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_negative_effect_increases_transfers - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_zero_marginal_fraction_is_not_full_allocated_saving - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_qep_missing_remains_none_and_benchmarks_are_separate - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_mchs_year_gate_does_not_claim_2026_parity - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_annuity_and_price_zero_rate_limits - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_seeded_psa_reproducible_and_signed - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_shared_draw_doubling_does_not_reduce_systematic_uncertainty - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_clinical_extension_counts_morbid_survival_and_costs - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_empty_portfolio_has_no_cost - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+FAILED tests/test_v2.py::test_posterior_is_not_claimed_for_researcher_priors - ImportError: cannot import name 'statewide' from 'src' (/mnt/data/work/panda/src/__init__.py)
+28 failed, 1 passed in 0.23s
