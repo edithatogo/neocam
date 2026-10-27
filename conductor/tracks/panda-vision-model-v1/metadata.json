@@ -1,0 +1,13 @@
+{
+  "id": "panda-vision-model-v1",
+  "title": "Panda Vision model-based economic evaluation",
+  "status": "in_progress",
+  "created": "2026-10-27",
+  "vcs": {
+    "branch": "conductor/panda-vision-model-v1",
+    "base_branch": "main",
+    "submodule": "extensions/conductor",
+    "submodule_commit": "137c1e41ff9c1dc75ff277b9582460a0bd8c4768",
+    "checkout_note": "Remote checkout was blocked by sandbox DNS; gitlink and .gitmodules are pinned to the connector-verified commit."
+  }
+}
