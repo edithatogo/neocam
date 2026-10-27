@@ -1,0 +1,6 @@
+# Panda Vision v2 specification
+Build a reproducible preliminary public-data statewide model plus current three-site evaluation. User-authorised scope: evidence-based and reasoned inputs, no structured local estimates or prospective accrual prerequisite; video versus telephone; 10–15/site/year in pilot; $10000/install unverified. Costs, funding, outcomes and evidence quality must remain distinct.
+
+Use 2022 public hospital birth counts, combine co-located birth centres, preserve total46711. Exclude tertiary donor hubs and very-low-volume/emergency sites from primary spoke portfolio; report separate coverage scenarios. ANZNN membership historical, private facilities aggregate only. Shared uncertainty cannot vanish with state scale. Costs use explicit CPI-rebased historical aeromedical anchor and avoidable fractions. Add NWAU/NEP and nullable QWAU/QEP ledgers. Mortality/morbidity structural extension is assumption-based, not proven benefit.
+
+Technical: retain v1 history, clean feature branch, source/parameter manifests, seeded PSA, tests-first, data contracts, CI target matrix and security/lock workflows; distinguish local passed gates from blocked hosted/dependency/submodule work. Do not publish confidential CHHHS materials or raw patient data.

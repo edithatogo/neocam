@@ -1,0 +1,24 @@
+[project]
+name = "panda-vision-evaluation"
+version = "2.0.0"
+description = "Preliminary neonatal video consultation economic model; not a clinical device"
+requires-python = ">=3.13"
+dependencies = ["numpy==2.5.4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --strict-config"
+
+[tool.coverage.run]
+branch = true
+source = ["src.statewide"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E9", "F"]
+
+[tool.ty.environment]
+python-version = "3.13"

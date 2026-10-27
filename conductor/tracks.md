@@ -1,5 +1,3 @@
 # Tracks
-
-| Track | Status | Scope |
-|---|---|---|
-| panda-vision-model-v1 | Complete | Model, PSA, CHHHS memo, CHHHS slide deck and evidence register |
+- [x] panda-vision-model-v1 — delivered with five tests; submodule checkout blocked
+- [ ] panda-vision-v2-statewide-assurance — active; evidence, site model, CI and artifacts

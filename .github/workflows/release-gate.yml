@@ -1,0 +1,19 @@
+name: Private analysis release gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-review:
+    environment: research-release-review
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Refuse automatic public deployment
+        run: |
+          echo "Human evidence/privacy review and green CI run on this exact SHA are required."
+          echo "This workflow does not deploy, publish a clinical service, or disclose CHHHS templates."
+          test -f verification/release-approval.json
+          python -c "import json; d=json.load(open('verification/release-approval.json')); assert d['privacy_approved'] and d['evidence_approved'] and d['hosted_ci_sha'] == '${{ github.sha }}'"

@@ -1,0 +1,9 @@
+{
+  "active_track": "panda-vision-v2-statewide-assurance",
+  "status": "implementing",
+  "evidence_date": "2026-10-27",
+  "decision": "preliminary model not investment approval",
+  "next": "TDD core and data contracts",
+  "runtime": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "network": "external DNS unavailable"
+}
