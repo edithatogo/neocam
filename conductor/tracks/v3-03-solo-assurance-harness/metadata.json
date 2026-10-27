@@ -1,0 +1,58 @@
+{
+  "track_id": "v3-03-solo-assurance-harness",
+  "title": "Use one explicit gate runner for local development and CI",
+  "status": "planned",
+  "created": "2026-10-28",
+  "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
+  "acceptance": "execution_receipts_required",
+  "tasks": [
+    {
+      "id": "v3-03-solo-assurance-harness.01",
+      "title": "Test failure semantics",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.02",
+      "title": "Configure Ruff comprehensively",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.03",
+      "title": "Configure two type checkers",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.04",
+      "title": "Add generative and mutation checks",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.05",
+      "title": "Add profiling and security/prose checks",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.06",
+      "title": "Run a fail-closed unified harness",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.07",
+      "title": "Verify receipts",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-03-solo-assurance-harness.08",
+      "title": "Commit harness evidence",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}

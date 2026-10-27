@@ -1,0 +1,52 @@
+{
+  "track_id": "v3-02-dependencies-and-dataframe-policy",
+  "title": "Refresh direct releases without inflating runtime",
+  "status": "planned",
+  "created": "2026-10-28",
+  "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
+  "acceptance": "execution_receipts_required",
+  "tasks": [
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.01",
+      "title": "Verify latest release targets",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.02",
+      "title": "Declare minimal dependency groups",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.03",
+      "title": "Reject forbidden dependencies",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.04",
+      "title": "Create reproducible lock workflow",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.05",
+      "title": "Resolve and install target stack",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.06",
+      "title": "Verify compatibility",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-02-dependencies-and-dataframe-policy.07",
+      "title": "Commit manifest and policy",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}

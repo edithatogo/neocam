@@ -1,0 +1,52 @@
+{
+  "track_id": "v3-01-input-and-numerical-integrity",
+  "title": "Preserve model scope and harden verified inputs",
+  "status": "planned",
+  "created": "2026-10-28",
+  "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
+  "acceptance": "execution_receipts_required",
+  "tasks": [
+    {
+      "id": "v3-01-input-and-numerical-integrity.01",
+      "title": "Reproduce v2 baseline",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.02",
+      "title": "Freeze assumptions",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.03",
+      "title": "Reproduce integrity failures",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.04",
+      "title": "Repair data and numeric contracts",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.05",
+      "title": "Verify economic regression",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.06",
+      "title": "Audit provenance",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-01-input-and-numerical-integrity.07",
+      "title": "Commit verified repairs",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}

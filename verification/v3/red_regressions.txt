@@ -1,0 +1,287 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+_________________________ test_birth_year_is_preserved _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_birth_year_is_preserved0')
+
+    def test_birth_year_is_preserved(tmp_path: Path) -> None:
+        path = write_births(tmp_path / 'births.csv', [('Atherton', '157', '2023')])
+>       assert load_sites(path)[0].year == 2023
+E       AssertionError: assert 2022 == 2023
+E        +  where 2022 = Site(name='Atherton', births=157, year=2022, group='rural_proxy', geography='regional', pilot=True).year
+
+tests/test_v3_regressions.py:25: AssertionError
+_____________________ test_duplicate_facility_row_rejected _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_duplicate_facility_row_re0')
+
+    def test_duplicate_facility_row_rejected(tmp_path: Path) -> None:
+        path = write_births(tmp_path / 'births.csv', [('Atherton', '157', '2022')] * 2)
+>       with pytest.raises(ValueError, match='duplicate'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:30: Failed
+_______________________ test_mixed_birth_years_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_mixed_birth_years_rejecte0')
+
+    def test_mixed_birth_years_rejected(tmp_path: Path) -> None:
+        path = write_births(tmp_path / 'births.csv', [('Atherton', '157', '2022'), ('Mareeba', '134', '2023')])
+>       with pytest.raises(ValueError, match='year'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:36: Failed
+_________________________ test_blank_facility_rejected _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_blank_facility_rejected0')
+
+    def test_blank_facility_rejected(tmp_path: Path) -> None:
+        path = write_births(tmp_path / 'births.csv', [('', '1', '2022')])
+>       with pytest.raises(ValueError, match='facility'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:42: Failed
+________________________ test_empty_birth_file_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_empty_birth_file_rejected0')
+
+    def test_empty_birth_file_rejected(tmp_path: Path) -> None:
+>       with pytest.raises(ValueError, match='empty'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:47: Failed
+______________________ test_site_rejects_negative_births _______________________
+
+    def test_site_rejects_negative_births() -> None:
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:52: Failed
+_________________ test_boolean_not_accepted_as_monetary_input __________________
+
+    def test_boolean_not_accepted_as_monetary_input() -> None:
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:57: Failed
+______________________ test_capital_flag_must_be_boolean _______________________
+
+    def test_capital_flag_must_be_boolean() -> None:
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v3_regressions.py:62: Failed
+_____________ test_frozen_parameters_do_not_retain_mutable_casemix _____________
+
+    def test_frozen_parameters_do_not_retain_mutable_casemix() -> None:
+        shares = [0.35, 0.5, 0.15]
+        inputs = Parameters(case_mix=shares)
+        shares[0] = 1
+>       assert tuple(inputs.case_mix) == (0.35, 0.5, 0.15)
+E       assert (1, 0.5, 0.15) == (0.35, 0.5, 0.15)
+E         
+E         At index 0 diff: 1 != 0.35
+E         
+E         Full diff:
+E           (
+E         -     0.35,
+E         +     1,
+E               0.5,
+E               0.15,
+E           )
+
+tests/test_v3_regressions.py:70: AssertionError
+__________________ test_annuity_near_zero_discount_is_stable ___________________
+
+    def test_annuity_near_zero_discount_is_stable() -> None:
+>       assert math.isclose(annuity(10000, 5, 1e-18), 2000, rel_tol=1e-12)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v3_regressions.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+capital = 10000, years = 5, rate = 1e-18
+
+    def annuity(capital: float, years: float, rate: float) -> float:
+        if not all(math.isfinite(x) for x in (capital, years, rate)) or years <= 0 or min(capital, rate) < 0:
+            raise ValueError('Invalid annuity input')
+>       return capital / years if rate == 0 else capital * rate / (1 - (1 + rate) ** -years)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: float division by zero
+
+src/statewide.py:144: ZeroDivisionError
+__________________ test_evaluate_near_zero_discount_is_finite __________________
+
+    def test_evaluate_near_zero_discount_is_finite() -> None:
+        site = Site('Test', 100, 2022, 'rural_proxy', 'regional', True)
+        answer = evaluate([site], Parameters(discount=1e-18))
+>       assert math.isfinite(answer['programme_cost'])
+E       assert False
+E        +  where False = <built-in function isfinite>(inf)
+E        +    where <built-in function isfinite> = math.isfinite
+
+tests/test_v3_regressions.py:80: AssertionError
+___________________ test_psa_uses_supplied_attenuated_effect ___________________
+
+    def test_psa_uses_supplied_attenuated_effect() -> None:
+        site = Site('Test', 100, 2022, 'rural_proxy', 'regional', True)
+        a = psa([site], 1000, 7, Parameters(), 'attenuated')
+        b = psa([site], 1000, 7, Parameters(odds_ratio=1), 'attenuated')
+>       assert not np.array_equal(a['draws']['effect_or'], b['draws']['effect_or'])
+E       assert not True
+E        +  where True = <function array_equal at 0x7fd5609d3cf0>(array([0.37942877, 0.68574815, 0.83851647, 1.02637062, 0.6561067 ,\n       1.03620758, 0.69761733, 0.6684304 , 0.863604...01, 0.9850665 , 0.53288811, 0.67405639, 0.8822268 ,\n       0.94689203, 0.60868352, 0.70466267, 0.50455478, 1.35567864]), array([0.37942877, 0.68574815, 0.83851647, 1.02637062, 0.6561067 ,\n       1.03620758, 0.69761733, 0.6684304 , 0.863604...01, 0.9850665 , 0.53288811, 0.67405639, 0.8822268 ,\n       0.94689203, 0.60868352, 0.70466267, 0.50455478, 1.35567864]))
+E        +    where <function array_equal at 0x7fd5609d3cf0> = np.array_equal
+
+tests/test_v3_regressions.py:87: AssertionError
+_____________________ test_psa_iterations_must_be_integer ______________________
+
+    def test_psa_iterations_must_be_integer() -> None:
+        with pytest.raises(ValueError, match='integer'):
+>           psa([], n=2.5)
+
+tests/test_v3_regressions.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/statewide.py:250: in psa
+    x = _base_arrays(p, n)
+        ^^^^^^^^^^^^^^^^^^
+src/statewide.py:164: in _base_arrays
+    values = {k: np.full(n, v, dtype=float) for k, v in asdict(p).items()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+shape = 2.5, fill_value = 10000.0, dtype = <class 'float'>, order = 'C'
+
+    @finalize_array_function_like
+    @set_module('numpy')
+    def full(shape, fill_value, dtype=None, order='C', *, device=None, like=None):
+        """
+        Return a new array of given shape and type, filled with `fill_value`.
+    
+        Parameters
+        ----------
+        shape : int or sequence of ints
+            Shape of the new array, e.g., ``(2, 3)`` or ``2``.
+        fill_value : scalar or array_like
+            Fill value.
+        dtype : data-type, optional
+            The desired data-type for the array  The default, None, means
+             ``np.array(fill_value).dtype``.
+        order : {'C', 'F'}, optional
+            Whether to store multidimensional data in C- or Fortran-contiguous
+            (row- or column-wise) order in memory.
+        device : str, optional
+            The device on which to place the created array. Default: None.
+            For Array-API interoperability only, so must be ``"cpu"`` if passed.
+    
+            .. versionadded:: 2.0.0
+        ${ARRAY_FUNCTION_LIKE}
+    
+            .. versionadded:: 1.20.0
+    
+        Returns
+        -------
+        out : ndarray
+            Array of `fill_value` with the given shape, dtype, and order.
+    
+        See Also
+        --------
+        full_like : Return a new array with shape of input filled with value.
+        empty : Return a new uninitialized array.
+        ones : Return a new array setting values to one.
+        zeros : Return a new array setting values to zero.
+    
+        Examples
+        --------
+        >>> import numpy as np
+        >>> np.full((2, 2), np.inf)
+        array([[inf, inf],
+               [inf, inf]])
+        >>> np.full((2, 2), 10)
+        array([[10, 10],
+               [10, 10]])
+    
+        >>> np.full((2, 2), [1, 2])
+        array([[1, 2],
+               [1, 2]])
+    
+        """
+        if like is not None:
+            return _full_with_like(
+                like, shape, fill_value, dtype=dtype, order=order, device=device
+            )
+    
+        if dtype is None:
+            fill_value = asarray(fill_value)
+            dtype = fill_value.dtype
+>       a = empty(shape, dtype, order, device=device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: expected a sequence of integers or a single integer, got '2.5'
+
+/opt/pyvenv/lib/python3.13/site-packages/numpy/_core/numeric.py:386: TypeError
+_____________ test_conflicting_duplicate_release_receipts_rejected _____________
+
+    def test_conflicting_duplicate_release_receipts_rejected() -> None:
+        gates = [{'gate': name, 'status': 'passed'} for name in RELEASE_GATES]
+        gates.insert(0, {'gate': 'pytest', 'status': 'failed'})
+>       assert not release_assurance_complete(gates, 'release')
+E       AssertionError: assert not True
+E        +  where True = release_assurance_complete([{'gate': 'pytest', 'status': 'failed'}, {'gate': 'pytest', 'status': 'passed'}, {'gate': 'vulnerability_audit', 'stat...tus': 'passed'}, {'gate': 'coverage_threshold', 'status': 'passed'}, {'gate': 'coverage_run', 'status': 'passed'}, ...], 'release')
+
+tests/test_v3_regressions.py:99: AssertionError
+_____________ test_extra_failed_gate_cannot_be_ignored_for_release _____________
+
+    def test_extra_failed_gate_cannot_be_ignored_for_release() -> None:
+        gates = [{'gate': name, 'status': 'passed'} for name in RELEASE_GATES]
+        gates.append({'gate': 'gitleaks', 'status': 'failed'})
+>       assert not release_assurance_complete(gates, 'release')
+E       AssertionError: assert not True
+E        +  where True = release_assurance_complete([{'gate': 'pytest', 'status': 'passed'}, {'gate': 'vulnerability_audit', 'status': 'passed'}, {'gate': 'hosted_GitHub_...': 'passed'}, {'gate': 'coverage_run', 'status': 'passed'}, {'gate': 'generative_hypothesis', 'status': 'passed'}, ...], 'release')
+
+tests/test_v3_regressions.py:105: AssertionError
+=============================== warnings summary ===============================
+tests/test_v3_regressions.py::test_evaluate_near_zero_discount_is_finite
+  /mnt/data/work/panda-vision/src/statewide.py:211: RuntimeWarning: divide by zero encountered in divide
+    annual_capital[positive] = (x['equipment_cost'][positive] * rate[positive]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_v3_regressions.py::test_birth_year_is_preserved - AssertionError: assert 2022 == 2023
+ +  where 2022 = Site(name='Atherton', births=157, year=2022, group='rural_proxy', geography='regional', pilot=True).year
+FAILED tests/test_v3_regressions.py::test_duplicate_facility_row_rejected - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_mixed_birth_years_rejected - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_blank_facility_rejected - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_empty_birth_file_rejected - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_site_rejects_negative_births - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_boolean_not_accepted_as_monetary_input - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_capital_flag_must_be_boolean - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v3_regressions.py::test_frozen_parameters_do_not_retain_mutable_casemix - assert (1, 0.5, 0.15) == (0.35, 0.5, 0.15)
+  
+  At index 0 diff: 1 != 0.35
+  
+  Full diff:
+    (
+  -     0.35,
+  +     1,
+        0.5,
+        0.15,
+    )
+FAILED tests/test_v3_regressions.py::test_annuity_near_zero_discount_is_stable - ZeroDivisionError: float division by zero
+FAILED tests/test_v3_regressions.py::test_evaluate_near_zero_discount_is_finite - assert False
+ +  where False = <built-in function isfinite>(inf)
+ +    where <built-in function isfinite> = math.isfinite
+FAILED tests/test_v3_regressions.py::test_psa_uses_supplied_attenuated_effect - assert not True
+ +  where True = <function array_equal at 0x7fd5609d3cf0>(array([0.37942877, 0.68574815, 0.83851647, 1.02637062, 0.6561067 ,\n       1.03620758, 0.69761733, 0.6684304 , 0.863604...01, 0.9850665 , 0.53288811, 0.67405639, 0.8822268 ,\n       0.94689203, 0.60868352, 0.70466267, 0.50455478, 1.35567864]), array([0.37942877, 0.68574815, 0.83851647, 1.02637062, 0.6561067 ,\n       1.03620758, 0.69761733, 0.6684304 , 0.863604...01, 0.9850665 , 0.53288811, 0.67405639, 0.8822268 ,\n       0.94689203, 0.60868352, 0.70466267, 0.50455478, 1.35567864]))
+ +    where <function array_equal at 0x7fd5609d3cf0> = np.array_equal
+FAILED tests/test_v3_regressions.py::test_psa_iterations_must_be_integer - TypeError: expected a sequence of integers or a single integer, got '2.5'
+FAILED tests/test_v3_regressions.py::test_conflicting_duplicate_release_receipts_rejected - AssertionError: assert not True
+ +  where True = release_assurance_complete([{'gate': 'pytest', 'status': 'failed'}, {'gate': 'pytest', 'status': 'passed'}, {'gate': 'vulnerability_audit', 'stat...tus': 'passed'}, {'gate': 'coverage_threshold', 'status': 'passed'}, {'gate': 'coverage_run', 'status': 'passed'}, ...], 'release')
+FAILED tests/test_v3_regressions.py::test_extra_failed_gate_cannot_be_ignored_for_release - AssertionError: assert not True
+ +  where True = release_assurance_complete([{'gate': 'pytest', 'status': 'passed'}, {'gate': 'vulnerability_audit', 'status': 'passed'}, {'gate': 'hosted_GitHub_...': 'passed'}, {'gate': 'coverage_run', 'status': 'passed'}, {'gate': 'generative_hypothesis', 'status': 'passed'}, ...], 'release')
+15 failed, 1 warning in 0.22s

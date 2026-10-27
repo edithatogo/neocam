@@ -1,0 +1,52 @@
+{
+  "track_id": "v3-04-context-and-ci",
+  "title": "Make single-developer continuation reproducible",
+  "status": "planned",
+  "created": "2026-10-28",
+  "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
+  "acceptance": "execution_receipts_required",
+  "tasks": [
+    {
+      "id": "v3-04-context-and-ci.01",
+      "title": "Unify context entrypoints",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.02",
+      "title": "Maintain decision and uncertainty records",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.03",
+      "title": "Align CI with local gates",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.04",
+      "title": "Guard releases",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.05",
+      "title": "Validate context and workflow structure",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.06",
+      "title": "Attempt submodule materialisation",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-04-context-and-ci.07",
+      "title": "Record handoff",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}

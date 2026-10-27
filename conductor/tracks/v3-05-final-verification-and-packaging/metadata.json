@@ -1,0 +1,40 @@
+{
+  "track_id": "v3-05-final-verification-and-packaging",
+  "title": "Verify refinements without reissuing unsupported economic claims",
+  "status": "planned",
+  "created": "2026-10-28",
+  "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
+  "acceptance": "execution_receipts_required",
+  "tasks": [
+    {
+      "id": "v3-05-final-verification-and-packaging.01",
+      "title": "Run full local tests",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-05-final-verification-and-packaging.02",
+      "title": "Inspect result invariance",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-05-final-verification-and-packaging.03",
+      "title": "Review all changes",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-05-final-verification-and-packaging.04",
+      "title": "Complete track statuses",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "v3-05-final-verification-and-packaging.05",
+      "title": "Package reproducible history",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}
