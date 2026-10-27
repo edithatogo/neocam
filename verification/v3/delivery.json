@@ -1,0 +1,10 @@
+{
+  "source_commit_tested": "5a46a02372b258e203772f3a842a7581d65fcf1b",
+  "zip_crc": "passed",
+  "required_files": "passed",
+  "font_files_in_archive": 0,
+  "bundle_verify": "passed",
+  "final_hash_manifest": "External Panda_Vision_v3_SHA256SUMS.txt; final archives regenerated after this receipt-only commit to avoid self-referential archive hashes.",
+  "submodule_checkout": "Not populated; gitlink and URL retained",
+  "external_tool_acceptance": "Incomplete; see full/receipt.json"
+}
