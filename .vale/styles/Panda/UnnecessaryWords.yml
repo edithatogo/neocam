@@ -1,0 +1,8 @@
+extends: existence
+message: "Consider removing '%s' from technical prose."
+level: warning
+ignorecase: true
+tokens:
+  - 'obviously'
+  - 'it goes without saying'
+  - 'needless to say'

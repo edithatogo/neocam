@@ -1,0 +1,4 @@
+title = "Panda Vision secret scanning"
+[extend]
+useDefault = true
+# No project-wide allowlists. Both the working tree and all Git history are scanned.

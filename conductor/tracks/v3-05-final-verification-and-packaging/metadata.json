@@ -1,7 +1,7 @@
 {
   "track_id": "v3-05-final-verification-and-packaging",
   "title": "Verify refinements without reissuing unsupported economic claims",
-  "status": "planned",
+  "status": "implementation_recorded_acceptance_incomplete",
   "created": "2026-10-28",
   "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "acceptance": "execution_receipts_required",
@@ -9,32 +9,80 @@
     {
       "id": "v3-05-final-verification-and-packaging.01",
       "title": "Run full local tests",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "tests/",
+        "quality/",
+        "src/"
+      ],
+      "command": "python -m quality.cli --profile full",
+      "acceptance": "Ordinary tests, coverage and input/context gates run locally; the overall full profile remains unsuccessful until requested external checks run.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-05-final-verification-and-packaging.02",
       "title": "Inspect result invariance",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/default_output_parity.json"
+      ],
+      "files": [
+        "data/",
+        "evidence/",
+        "verification/v3/default_output_parity.json"
+      ],
+      "command": "python -m quality.checks inputs",
+      "acceptance": "Protected input hashes and numerical baseline parity checked after repairs; no new economic artifacts or parameters.",
+      "blocker": null
     },
     {
       "id": "v3-05-final-verification-and-packaging.03",
       "title": "Review all changes",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/review.md"
+      ],
+      "files": [
+        "verification/v3/review.md"
+      ],
+      "command": "git diff --check",
+      "acceptance": "Author self-review found and repaired unsafe URL/digest categorisation, missing resolver pin and host-dependent test assumptions. No independent review claimed.",
+      "blocker": null
     },
     {
       "id": "v3-05-final-verification-and-packaging.04",
       "title": "Complete track statuses",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "conductor/tracks.md"
+      ],
+      "files": [
+        "conductor/tracks/v3-*/",
+        "conductor/current-state.json"
+      ],
+      "command": "python -m quality.checks context",
+      "acceptance": "Every task carries exact files/command/acceptance evidence and separates implementation from external acceptance.",
+      "blocker": null
     },
     {
       "id": "v3-05-final-verification-and-packaging.05",
       "title": "Package reproducible history",
-      "status": "pending",
-      "evidence": []
+      "status": "delivery_verification_recorded_separately",
+      "evidence": [
+        "verification/v3/delivery.json"
+      ],
+      "files": [
+        "Panda_Vision_project_v3.zip",
+        "Panda_Vision_project_v3.bundle",
+        "verification/v3/delivery.json"
+      ],
+      "command": "git bundle verify /mnt/data/Panda_Vision_project_v3.bundle",
+      "acceptance": "Deliver the committed source, readout, gate logs and full Git history; validate ZIP CRC, bundle and SHA256 manifest. No remote push.",
+      "blocker": null
     }
-  ]
+  ],
+  "updated": "2026-10-28"
 }

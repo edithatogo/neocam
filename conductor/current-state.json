@@ -1,33 +1,26 @@
 {
-  "active_track": "panda-vision-v2-statewide-assurance",
-  "status": "implemented_locally_release_blocked",
-  "evidence_date": "2026-10-27",
-  "branch": "conductor/panda-vision-v2-statewide-assurance",
-  "completed": [
-    "75 tests",
-    "96% v2 branch coverage",
-    "historical births roster and state portfolios",
-    "58 scenarios and 108 clinical-frontier combinations",
-    "shared-uncertainty PSA20k per effect structure",
-    "dual NWAU/QWAU ledger with missing QEP retained",
-    "modern SHA-pinned workflow configuration",
-    "workbook,2-page CHHHS memo,12-slide deck,9-page supplement"
+  "version": 3,
+  "updated_on": "2026-10-28",
+  "branch": "conductor/panda-vision-v3-assurance",
+  "active_track": "v3-02-dependencies-and-dataframe-policy",
+  "active_tracks": [
+    "v3-01-input-and-numerical-integrity",
+    "v3-02-dependencies-and-dataframe-policy",
+    "v3-03-solo-assurance-harness",
+    "v3-04-context-and-ci",
+    "v3-05-final-verification-and-packaging"
   ],
-  "blocked": [
-    "online latest dependency resolution",
-    "hosted Actions and newer Python matrix",
-    "Ruff/Hypothesis/ty/pip-audit execution",
-    "Conductor working-tree population"
-  ],
-  "unresolved_evidence": [
-    "current QEP/local weights",
-    "current complete site capability/private denominators",
-    "route-specific neonatal dispatch/marginal costs",
-    "mchs2026 parity",
-    "long-term clinical outcome effects"
-  ],
-  "next": "Run connected release gates and replace estimates opportunistically; structured clinical elicitation is not required",
-  "verification": "verification/assurance.json",
-  "runtime": "Python3.13.5 NumPy2.3.5 pytest9.0.2 coverage7.13.3",
-  "release_claim": false
+  "release_ready": false,
+  "status": "Scoped engineering repairs and harness implemented; external-tool/full CI acceptance remains incomplete",
+  "next_command": "uv lock --upgrade",
+  "full_command": "uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full",
+  "scope": "No new economic parameters/features; no remote publication",
+  "conductor_checkout": "gitlink retained; not populated",
+  "next_action": "On a connected authorised checkout, resolve and review the real lock; frozen-install the pinned stack, populate Conductor and run the full harness. Fix real diagnostics without broad suppressions.",
+  "verification_receipt": "verification/v3/full/receipt.json",
+  "input_audit": "verification/v3/input_audit.json",
+  "result_parity": "verification/v3/default_output_parity.json",
+  "review": "Author self-review, not independent",
+  "remote_push": "Not performed",
+  "clinical_or_economic_features_added": false
 }

@@ -1,7 +1,7 @@
 {
   "track_id": "v3-03-solo-assurance-harness",
   "title": "Use one explicit gate runner for local development and CI",
-  "status": "planned",
+  "status": "implementation_recorded_acceptance_incomplete",
   "created": "2026-10-28",
   "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "acceptance": "execution_receipts_required",
@@ -9,50 +9,128 @@
     {
       "id": "v3-03-solo-assurance-harness.01",
       "title": "Test failure semantics",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/red_exit69.txt"
+      ],
+      "files": [
+        "quality/assurance.py",
+        "tests/test_assurance_v3.py"
+      ],
+      "command": "python -m pytest -q tests/test_assurance_v3.py",
+      "acceptance": "Distinct failed/blocked semantics; subprocess failures cannot hide as missing tools; timeouts fail; designated prerequisites alone may use exit 69.",
+      "blocker": null
     },
     {
       "id": "v3-03-solo-assurance-harness.02",
       "title": "Configure Ruff comprehensively",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "pyproject.toml",
+        "tests/test_toolchain_contracts.py"
+      ],
+      "command": "python -m ruff check src scripts quality tests && python -m ruff format --check src scripts quality tests",
+      "acceptance": "ALL + preview, formatter/docstring formatting, safe fixes only, two formatter-conflict exemptions and test-local assertions/literals. Real diagnostics not available.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-03-solo-assurance-harness.03",
       "title": "Configure two type checkers",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "pyproject.toml",
+        "quality/cli.py"
+      ],
+      "command": "python -m ty check && python -m basedpyright",
+      "acceptance": "ty all-errors and basedpyright all-rules; no broad ignores or generated baseline. First real run may require annotation/refactor repairs.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-03-solo-assurance-harness.04",
       "title": "Add generative and mutation checks",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "quality/hypothesis_properties.py",
+        "quality/checks.py",
+        "pyproject.toml"
+      ],
+      "command": "python -m pytest tests quality/hypothesis_properties.py --gremlins --gremlin-workers=2 --gremlin-clear-cache --gremlin-report=json --strict-pardons",
+      "acceptance": "Eight generative properties and five mutation operators configured; independent JSON score gate rejects zero mutants, inconsistent counts, errors, timeouts and pardons. No mutation score claimed.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-03-solo-assurance-harness.05",
       "title": "Add profiling and security/prose checks",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/native_install_attempt.txt"
+      ],
+      "files": [
+        "quality/profile_workload.py",
+        "quality/bootstrap.py",
+        ".gitleaks.toml",
+        ".vale.ini",
+        ".vale/styles/Panda/"
+      ],
+      "command": "python -m quality.cli --profile full",
+      "acceptance": "Fixed existing PSA CPU/memory workload; pinned native binary hashes and versions; history/tree secret scans; local prose rules; audit/SBOM. Integrity failures tested, tool executions blocked.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-03-solo-assurance-harness.06",
       "title": "Run a fail-closed unified harness",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "quality/cli.py",
+        "scripts/verify.py",
+        "tests/test_quality_integration.py"
+      ],
+      "command": "python -m quality.cli --profile full",
+      "acceptance": "One local/CI entrypoint; quick is never full; all gates attempted; missing prerequisites return nonzero rather than a fabricated release pass.",
+      "blocker": null
     },
     {
       "id": "v3-03-solo-assurance-harness.07",
       "title": "Verify receipts",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/green_all.txt"
+      ],
+      "files": [
+        "quality/assurance.py",
+        "tests/test_assurance_v3.py"
+      ],
+      "command": "python -m pytest -q tests/test_assurance_v3.py tests/test_quality_integration.py",
+      "acceptance": "Commands, exits, durations, source/input hashes and log digests bound; stale, duplicate, extra-failed or tampered receipts rejected. These are audit records, not cryptographic attestations.",
+      "blocker": null
     },
     {
       "id": "v3-03-solo-assurance-harness.08",
       "title": "Commit harness evidence",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/review.md"
+      ],
+      "files": [
+        "verification/v3/",
+        "conductor/current-state.json"
+      ],
+      "command": "git log --oneline 4be33ea..HEAD",
+      "acceptance": "Actual local gate receipts and blockers committed. Author self-review is distinguished from independent and hosted assurance.",
+      "blocker": null
     }
-  ]
+  ],
+  "updated": "2026-10-28"
 }

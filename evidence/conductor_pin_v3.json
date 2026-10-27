@@ -1,0 +1,8 @@
+{
+  "checked_on": "2026-10-28",
+  "repository": "edithatogo/conductor-next",
+  "branch": "main",
+  "sha": "137c1e41ff9c1dc75ff277b9582460a0bd8c4768",
+  "source": "https://api.github.com/repos/edithatogo/conductor-next/git/ref/heads/main",
+  "checkout_status": "blocked; see verification/v3/submodule_attempt.txt"
+}

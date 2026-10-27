@@ -13,7 +13,8 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'outputs/v2'; FIG=OUT/'figures'; FIG.mkdir(exist_ok=True)
 r=json.loads((OUT/'results_v2.json').read_text())
 def rows(path):
-    return list(csv.DictReader(open(ROOT/path,encoding='utf-8')))
+    with (ROOT/path).open(encoding='utf-8', newline='') as stream:
+        return list(csv.DictReader(stream))
 def money(x): return f'${x:,.0f}' if x>=0 else f'–${abs(x):,.0f}'
 # Independent, auditable plots; no embellishment or simulated observed data.
 for key,title in [('pilot','Three-site pilot'),('spokes','33-site public-spoke scenario')]:

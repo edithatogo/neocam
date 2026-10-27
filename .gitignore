@@ -13,3 +13,14 @@ outputs/v2/Panda_Vision_CHHHS_presentation_v2/
 outputs/v2/*contact*.png
 outputs/v2/slides_final_*.png
 outputs/v2/workbook_preview.png
+.venv/
+.tools/
+.uv-cache/
+.ruff_cache/
+.hypothesis/
+.gremlins_cache/
+coverage/
+coverage.json
+coverage.xml
+htmlcov/
+.basedpyright/

@@ -1,7 +1,7 @@
 {
   "track_id": "v3-04-context-and-ci",
   "title": "Make single-developer continuation reproducible",
-  "status": "planned",
+  "status": "implementation_recorded_acceptance_incomplete",
   "created": "2026-10-28",
   "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "acceptance": "execution_receipts_required",
@@ -9,44 +9,112 @@
     {
       "id": "v3-04-context-and-ci.01",
       "title": "Unify context entrypoints",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/quick/receipt.json"
+      ],
+      "files": [
+        "AGENTS.md",
+        "GEMINI.md",
+        "conductor/runbook.md",
+        "README.md"
+      ],
+      "command": "python -m quality.checks context",
+      "acceptance": "Small entrypoints point to one runbook; read current state plus active track rather than loading historical reports.",
+      "blocker": null
     },
     {
       "id": "v3-04-context-and-ci.02",
       "title": "Maintain decision and uncertainty records",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "conductor/decisions-v3.md"
+      ],
+      "files": [
+        "conductor/decisions-v3.md",
+        "conductor/current-state.json"
+      ],
+      "command": "python -m quality.checks context",
+      "acceptance": "Record scope, Polars interpretation, uncertainty, source trust, latest-target versus installed status and all remaining blockers.",
+      "blocker": null
     },
     {
       "id": "v3-04-context-and-ci.03",
       "title": "Align CI with local gates",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        ".github/workflows/ci.yml",
+        "quality/cli.py"
+      ],
+      "command": "python -m pytest -q tests/test_toolchain_contracts.py",
+      "acceptance": "Same local gates, frozen environments, read-only permissions, full Git history, SHA-pinned Actions and bounded artifact retention. Hosted execution remains unverified.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-04-context-and-ci.04",
       "title": "Guard releases",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/green_all.txt"
+      ],
+      "files": [
+        ".github/workflows/release-gate.yml",
+        "scripts/verify.py"
+      ],
+      "command": "python -m pytest -q tests/test_assurance_scope.py tests/test_assurance_v3.py",
+      "acceptance": "No bypass flag, automatic publication or partial-pass promotion. Release workflow calls the same CI and deliberately does not deploy.",
+      "blocker": null
     },
     {
       "id": "v3-04-context-and-ci.05",
       "title": "Validate context and workflow structure",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/quick/receipt.json"
+      ],
+      "files": [
+        "quality/checks.py",
+        "tests/test_quality_integration.py",
+        ".github/dependabot.yml"
+      ],
+      "command": "python -m quality.checks context",
+      "acceptance": "Context paths/action pins and unsafe bypasses checked; dependency updates are explicit reviewable PRs, not silent auto-merge.",
+      "blocker": null
     },
     {
       "id": "v3-04-context-and-ci.06",
       "title": "Attempt submodule materialisation",
-      "status": "pending",
-      "evidence": []
+      "status": "blocked",
+      "evidence": [
+        "verification/v3/submodule_attempt.txt"
+      ],
+      "files": [
+        ".gitmodules",
+        "extensions/conductor"
+      ],
+      "command": "git submodule update --init --recursive",
+      "acceptance": "Current upstream main rechecked and matches the existing pin. The actual checkout attempt failed on github.com DNS; no Conductor CLI run is claimed.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-04-context-and-ci.07",
       "title": "Record handoff",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "conductor/current-state.json"
+      ],
+      "files": [
+        "conductor/tracks.md",
+        "conductor/current-state.json",
+        "conductor/runbook.md"
+      ],
+      "command": "python -m quality.checks context",
+      "acceptance": "Handoff identifies the connected dependency-install acceptance task; authoring, economic validity and hosted execution remain separate.",
+      "blocker": null
     }
-  ]
+  ],
+  "updated": "2026-10-28"
 }

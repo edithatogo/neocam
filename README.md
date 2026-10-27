@@ -1,34 +1,39 @@
-# Panda Vision: preliminary economic evaluation v2
+# Panda Vision evaluation — v3 engineering assurance
 
-Current deliverables are in `outputs/v2/`. Earlier v1 outputs/history are preserved but superseded.
+This branch refines the existing model and verification workflow. It does not add economic parameters, clinical features or a new modelling framework. Numerical and evidence assumptions remain those of v2; earlier rendered economic deliverables remain in `outputs/v2/`.
 
-## Decision and evidence boundary
-Video-supported versus telephone-supported neonatal consultation. No prospective recruitment or structured expert elicitation is required. The local pilot forecast is 10–15 consultations **per site** annually. The 2022 Queensland births roster is historical; current site capability and private-site detail are not certified. All clinical effects, geographic priors and marginal resource assumptions remain labelled.
+## Start here
 
-## Run the numerical model
-The available environment tested Python 3.13.5, NumPy 2.3.5, pytest 9.0.2 and coverage 7.13.3. `requirements-tested-snapshot.txt` records it. `requirements-latest.in` specifies independently checked newer targets but is **not a resolved transitive lock**.
+Read `AGENTS.md`, then [the single-developer runbook](conductor/runbook.md), [current state](conductor/current-state.json) and [tracks](conductor/tracks.md). The runbook owns environment setup and acceptance commands; do not maintain competing copies of those instructions.
 
-```sh
-python -m pytest -q
-python scripts/verify.py
-python scripts/run_v2.py
+```bash
+python -m quality.cli --profile quick
 ```
 
-Change `data/parameters.json` to change the model. Model run output preserves parameter/source hashes. The Excel workbook recalculates the deterministic pilot; its state and PSA tabs are snapshots requiring a Python rerun.
+The quick profile runs the ordinary test suite and input/context checks. It never implies full assurance. The full profile also requires Ruff, ty, basedpyright, Hypothesis, pytest-gremlins, Scalene, Gitleaks, Vale, exact installed dependency versions, a reviewed hash lock, security audit/SBOM, Polars reconciliation and the actual pinned Conductor checkout.
 
-## Authoring
-`build_reports_v2.py` generates figures and DOCX using matplotlib/python-docx. `build_workbook_v2.py` uses the provided artifact_tool authoring environment, not an ordinary open-source pip dependency. `build_slides_v2.js` uses PptxGenJS and the host's slide QA helpers. Numerical model execution is independent of these authoring utilities. Document regeneration requires these authoring capabilities and the supplied corporate assets. The rendered outputs are supplied; no claim of standalone artifact rendering in CI is made.
+## What is verified
 
-## Assurance
-75 local tests passed; v2 model branch-inclusive coverage 96%. Data/source contracts and fixed-seed reproducibility passed. A regression gate prevents partial model receipts from being labelled full release assurance. Official GitHub Actions are SHA-pinned with read-only permissions, Python matrix, lint/property/coverage/audit stages and a non-publishing release gate.
+`verification/v3/` contains the baseline, deliberately failing regression tests, subsequent passing tests, coverage, source-input hashes, model-output parity and actual command receipts. The numerical repairs address ignored PSA odds-ratio overrides, lost birth-year metadata, malformed input acceptance and near-zero discount instability.
 
-**Blocked/unexecuted:** latest dependency resolution, Ruff/Hypothesis/ty/pip-audit, hosted Actions, newer Python matrix, and actual Conductor submodule checkout. Network DNS prevented installation. See `verification/assurance.json`, failure receipts and `outputs/v2/Panda_Vision_verification_v2.md`. No GitHub remote deployment or production-readiness claim.
+All 27 parameter values and nine protected data/evidence files remain unchanged. Five default deterministic portfolios and pilot/statewide-spoke 20,000-draw PSA cohorts match the baseline within the declared floating-point tolerance. The source register is reconciled, not converted into proof of assumed clinical effects or local costs.
 
-## Context and submodule
-Start with `AGENTS.md` and `conductor/current-state.json`. The Conductor gitlink is pinned, but its working tree is absent. In a connected authorised checkout:
+## What is not verified
 
-```sh
-git submodule update --init --recursive
-```
+The environment cannot download the declared newer packages or native tools. No real `uv.lock` has been generated. Requested external linter, type, generative, mutation, profiler, security and prose checks remain unexecuted, and full assurance intentionally returns nonzero. Configuration is not a passing tool result; a first connected run may expose diagnostics requiring repair. Hosted GitHub Actions and the Python-version matrix have not run.
 
-Retain the exact pin until deliberately reviewed. Do not publish CHHHS corporate templates or internal material through an automatic workflow. Clinical software, device approval and procurement are outside this model's authority.
+The available host uses Python 3.13.5, NumPy 2.3.5, pytest 9.0.2 and coverage 7.13.3. The target stack and primary source links are in `evidence/dependency_targets_v3.json`. Do not claim these targets are installed or compatible until frozen-install and full receipts verify them.
+
+## Small model, explicit boundaries
+
+NumPy remains the numerical dependency. The small source tables use standard-library CSV; Polars is the only permitted DataFrame library, provided as a tabular verification extra. Direct imports and resolved project dependencies are checked for pandas/xarray. Their absence from a future resolved environment cannot be certified before the real lock exists. Do not import the pandas-backed portions of an external library to bypass this policy.
+
+`python scripts/run_v2.py` reruns the existing economic analyses. Excel deterministic formula cells recalculate locally; statewide/PSA tabs are snapshots requiring a model rerun. The 2022 birth roster is historical; current facility capability, geographic transport mix, clinical effects, current QEP and marginal retrieval costs retain their documented limitations.
+
+## Historical report generation
+
+The prior report builders use the supplied corporate templates and a host authoring environment: matplotlib/python-docx, artifact_tool, and PptxGenJS/slide helpers. These are not dependencies of the model or new assurance environment. This engineering pass has not rebuilt or certified that authoring stack. Preserve the supplied v2 Word/PDF/Excel/PowerPoint outputs rather than implying they were newly rendered.
+
+## Git and privacy
+
+The branch is `conductor/panda-vision-v3-assurance`. The Conductor submodule gitlink is pinned, but its working-tree checkout remains blocked by DNS. A gitlink alone is not an installed Conductor runtime. No repository was created, pushed or published. The release workflow verifies only; it does not deploy or publish corporate templates, internal papers or patient information.

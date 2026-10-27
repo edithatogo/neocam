@@ -1,15 +1,16 @@
-name: Model and evidence assurance
+name: Model and full developer assurance
 on:
   pull_request:
   push:
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 concurrency:
-  group: assurance-${{ github.workflow }}-${{ github.ref }}
+  group: panda-assurance-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  verified-model:
+  model-matrix:
     strategy:
       fail-fast: false
       matrix:
@@ -20,48 +21,58 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          submodules: false
+          fetch-depth: 0
+          submodules: true
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: ${{ matrix.python }}
-      - name: Resolve direct pins to an auditable per-run hash lock
+      - name: Install pinned resolver and frozen reviewed dependencies
         run: |
-          python -m pip install uv==0.13.5
-          uv pip compile requirements-latest.in --generate-hashes --output-file requirements-resolved.txt
-          uv pip sync --system --require-hashes requirements-resolved.txt
-      - name: Lint model and analysis entrypoint
-        run: ruff check src scripts/run_v2.py scripts/verify.py
-      - name: Tests and core branch coverage
-        run: |
-          coverage run --branch --source=src.statewide -m pytest -q
-          coverage report --fail-under=95
-          coverage xml -o verification/coverage.xml
-      - name: Generative property tests
-        run: python -m pytest quality/property_hypothesis.py -q
-      - name: Data, context, reproducibility and artifact contract
-        run: python scripts/verify.py --ci
-      - name: Vulnerability audit and SBOM
-        run: pip-audit -r requirements-resolved.txt -f cyclonedx-json -o verification/dependency-sbom.json
-      - name: Preserve verification receipts, never confidential templates
+          python -m pip install uv==0.13.6
+          test -f uv.lock
+          uv sync --frozen --group test
+      - name: Same quick model checks as local development
+        run: uv run --frozen --group test python -m quality.cli --profile quick
+      - name: Preserve scoped receipts
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: verification-python-${{ matrix.python }}
-          path: |
-            verification/
-            requirements-resolved.txt
-          retention-days: 30
+          name: model-${{ matrix.python }}-${{ github.sha }}
+          path: verification/v3/quick/
           if-no-files-found: error
-  conductor-checkout:
+          retention-days: 14
+  full-assurance:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
           submodules: true
-      - name: Verify exact submodule commit and working tree
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.15'
+      - name: Install complete frozen toolchain
         run: |
-          test -f extensions/conductor/README.md
-          test "$(git -C extensions/conductor rev-parse HEAD)" = 137c1e41ff9c1dc75ff277b9582460a0bd8c4768
-          git submodule status
+          python -m pip install uv==0.13.6
+          test -f uv.lock
+          uv sync --frozen --group assurance --extra tabular
+          uv run --frozen --group assurance --extra tabular python -m quality.bootstrap
+      - name: Run exactly the local full gate set
+        run: uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full
+      - name: Preserve evidence including failures; never private clinical templates
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: full-assurance-${{ github.sha }}
+          path: |
+            verification/v3/full/
+            verification/v3/scalene.json
+            verification/v3/gitleaks-*.json
+            verification/v3/pip-audit.json
+            verification/v3/sbom.json
+            coverage/gremlins/
+            uv.lock
+          if-no-files-found: error
+          retention-days: 14

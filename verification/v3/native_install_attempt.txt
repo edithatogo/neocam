@@ -1,0 +1,4 @@
+BLOCKED gitleaks: <urlopen error [Errno -3] Temporary failure in name resolution>
+BLOCKED vale: <urlopen error [Errno -3] Temporary failure in name resolution>
+
+exit_code=69

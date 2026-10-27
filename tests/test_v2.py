@@ -131,7 +131,8 @@ def test_clinical_extension_counts_morbid_survival_and_costs():
 def test_published_effect_is_not_independent_replication_in_evidence_map():
     import csv
     from pathlib import Path
-    data=list(csv.DictReader((Path(__file__).parents[1]/'evidence/literature_parameter_map.csv').open()))
+    with (Path(__file__).parents[1]/'evidence/literature_parameter_map.csv').open(encoding='utf-8', newline='') as stream:
+        data=list(csv.DictReader(stream))
     assert len(data)==7
     assert 'double-count' in next(r for r in data if r['study_id']=='THAO2022')['limitations']
 

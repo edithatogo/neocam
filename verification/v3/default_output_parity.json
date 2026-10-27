@@ -1,4 +1,5 @@
 {
+  "base_commit": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "model_fields": 27,
   "same_parameters": true,
   "tolerance": {
@@ -67,5 +68,16 @@
       "births_2022": 0
     }
   },
-  "pilot_and_spokes_20000_draw_psa": "matched"
+  "pilot_and_spokes_20000_draw_psa": {
+    "pilot": {
+      "draws": 20000,
+      "seed": 20261027,
+      "all_arrays_and_summary_fields_match": true
+    },
+    "spokes": {
+      "draws": 20000,
+      "seed": 20261027,
+      "all_arrays_and_summary_fields_match": true
+    }
+  }
 }

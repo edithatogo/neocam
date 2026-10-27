@@ -156,3 +156,19 @@ def test_current_input_register_complete():
     assert report['parameters_checked'] == 27
     assert report['public_births'] == 46711
     assert report['source_validation'] != 'all inputs empirically verified'
+
+
+def test_exit_69_from_a_program_is_not_automatically_a_missing_tool(tmp_path):
+    receipt = run_gate(Gate('probe', (sys.executable, '-c', 'raise SystemExit(69)')), tmp_path, 'abc', tmp_path / 'logs')
+    assert receipt.status == 'failed'
+
+
+@pytest.mark.parametrize('kwargs', [{'name':'../unsafe','command':('x',)}, {'name':'ok','command':()}, {'name':'ok','command':('x',),'timeout':0}])
+def test_invalid_gate_spec_rejected(kwargs):
+    with pytest.raises(ValueError):
+        Gate(**kwargs)
+
+
+def test_external_log_directory_rejected(tmp_path):
+    with pytest.raises(ValueError):
+        run_gate(Gate('probe', (sys.executable,'-c','print(1)')),tmp_path,'abc',tmp_path.parent/'outside-logs')

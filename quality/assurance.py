@@ -26,6 +26,7 @@ class Gate:
     command: tuple[str, ...]
     timeout: float = 60
     module: str | None = None
+    allow_unavailable: bool = False
 
     def __post_init__(self) -> None:
         """Reject unsafe log names and invalid command/timeout definitions."""
@@ -81,7 +82,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
             returncode = result.returncode
             output = result.stdout + result.stderr
             # EX_UNAVAILABLE is used only by our explicit preflight check scripts.
-            status = 'passed' if returncode == 0 else 'blocked' if returncode == 69 else 'failed'
+            status = 'passed' if returncode == 0 else 'blocked' if returncode == 69 and gate.allow_unavailable else 'failed'
             if returncode != 0:
                 reason = f'Command exited {returncode}'
         except FileNotFoundError as error:

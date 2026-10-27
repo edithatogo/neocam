@@ -1,0 +1,21 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_exit_69_from_a_program_is_not_automatically_a_missing_tool ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_exit_69_from_a_program_is0')
+
+    def test_exit_69_from_a_program_is_not_automatically_a_missing_tool(tmp_path):
+        receipt = run_gate(Gate('probe', (sys.executable, '-c', 'raise SystemExit(69)')), tmp_path, 'abc', tmp_path / 'logs')
+>       assert receipt.status == 'failed'
+E       AssertionError: assert 'blocked' == 'failed'
+E         
+E         - failed
+E         + blocked
+
+tests/test_assurance_v3.py:163: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_assurance_v3.py::test_exit_69_from_a_program_is_not_automatically_a_missing_tool - AssertionError: assert 'blocked' == 'failed'
+  
+  - failed
+  + blocked
+1 failed in 0.88s

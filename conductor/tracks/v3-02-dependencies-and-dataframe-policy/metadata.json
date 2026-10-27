@@ -1,7 +1,7 @@
 {
   "track_id": "v3-02-dependencies-and-dataframe-policy",
   "title": "Refresh direct releases without inflating runtime",
-  "status": "planned",
+  "status": "implementation_recorded_acceptance_incomplete",
   "created": "2026-10-28",
   "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "acceptance": "execution_receipts_required",
@@ -9,44 +9,111 @@
     {
       "id": "v3-02-dependencies-and-dataframe-policy.01",
       "title": "Verify latest release targets",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "evidence/dependency_targets_v3.json"
+      ],
+      "files": [
+        "evidence/dependency_targets_v3.json",
+        "quality/native-tools.json"
+      ],
+      "command": "python -m pytest -q tests/test_toolchain_contracts.py",
+      "acceptance": "Primary registry/release records checked; latest located release targets are not installed-version claims.",
+      "blocker": null
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.02",
       "title": "Declare minimal dependency groups",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/green_toolchain.txt"
+      ],
+      "files": [
+        "pyproject.toml",
+        "conductor/tech-stack.md"
+      ],
+      "command": "python -m pytest -q tests/test_toolchain_contracts.py",
+      "acceptance": "One numerical dependency, a Polars tabular extra, and explicit test/assurance groups. Resolver pin is enforced too.",
+      "blocker": null
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.03",
       "title": "Reject forbidden dependencies",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/green_all.txt"
+      ],
+      "files": [
+        "quality/contracts.py",
+        "quality/polars_probe.py"
+      ],
+      "command": "python -m pytest -q tests/test_assurance_v3.py tests/test_contract_adversaries.py",
+      "acceptance": "AST import checks and resolved-graph policy reject pandas/xarray; real Polars reconciliation is a separate unavailable gate.",
+      "blocker": null
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.04",
       "title": "Create reproducible lock workflow",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented_verification_blocked",
+      "evidence": [
+        "verification/v3/lock_resolution_attempt.txt"
+      ],
+      "files": [
+        "pyproject.toml",
+        ".github/workflows/ci.yml",
+        "quality/contracts.py"
+      ],
+      "command": "python -m quality.checks lock",
+      "acceptance": "Frozen lock workflow implemented; missing/empty/unhashed/banned-package graphs are rejected. Actual transitive lock is absent.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.05",
       "title": "Resolve and install target stack",
-      "status": "pending",
-      "evidence": []
+      "status": "blocked",
+      "evidence": [
+        "verification/v3/lock_resolution_attempt.txt"
+      ],
+      "files": [
+        "uv.lock",
+        ".venv/",
+        ".tools/bin/"
+      ],
+      "command": "uv lock --upgrade && uv sync --frozen --group assurance --extra tabular",
+      "acceptance": "Actual package resolution attempted and failed on PyPI DNS. Native downloads similarly failed. No lock or installed environment fabricated.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.06",
       "title": "Verify compatibility",
-      "status": "pending",
-      "evidence": []
+      "status": "blocked",
+      "evidence": [
+        "verification/v3/full/receipt.json"
+      ],
+      "files": [
+        "quality/checks.py",
+        ".github/workflows/ci.yml"
+      ],
+      "command": "uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full",
+      "acceptance": "Full installed compatibility and Python 3.13\u20133.15 hosted matrix still require a connected run.",
+      "blocker": "External DNS/tool installation or hosted execution is unavailable"
     },
     {
       "id": "v3-02-dependencies-and-dataframe-policy.07",
       "title": "Commit manifest and policy",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/review.md"
+      ],
+      "files": [
+        "pyproject.toml",
+        "evidence/dependency_targets_v3.json",
+        "conductor/runbook.md"
+      ],
+      "command": "git diff --check",
+      "acceptance": "Manifest/policy and a reproducible connection-enabled handoff are implemented; no silent fallback to older releases.",
+      "blocker": null
     }
-  ]
+  ],
+  "updated": "2026-10-28"
 }

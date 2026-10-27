@@ -1,0 +1,23 @@
+.........F                                                               [100%]
+=================================== FAILURES ===================================
+_____________ test_every_python_release_target_has_an_enforced_pin _____________
+
+    def test_every_python_release_target_has_an_enforced_pin():
+        cfg = config()
+        declarations = cfg['project']['dependencies'] + cfg['project']['optional-dependencies']['tabular']
+        declarations += cfg['dependency-groups']['test']
+        declarations += [item for item in cfg['dependency-groups']['assurance'] if isinstance(item, str)]
+        pins = dict(item.split('==', 1) for item in declarations)
+        targets = json.loads((ROOT / 'evidence/dependency_targets_v3.json').read_text())['packages']
+        for target in targets:
+>           assert pins.get(target['name']) == target['target_version']
+E           AssertionError: assert None == '0.13.6'
+E            +  where None = <built-in method get of dict object at 0x7fccce4ec4c0>('uv')
+E            +    where <built-in method get of dict object at 0x7fccce4ec4c0> = {'basedpyright': '1.40.2', 'coverage': '7.17.0', 'hypothesis': '6.170.12', 'numpy': '2.5.4', ...}.get
+
+tests/test_toolchain_contracts.py:102: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_toolchain_contracts.py::test_every_python_release_target_has_an_enforced_pin - AssertionError: assert None == '0.13.6'
+ +  where None = <built-in method get of dict object at 0x7fccce4ec4c0>('uv')
+ +    where <built-in method get of dict object at 0x7fccce4ec4c0> = {'basedpyright': '1.40.2', 'coverage': '7.17.0', 'hypothesis': '6.170.12', 'numpy': '2.5.4', ...}.get
+1 failed, 9 passed in 0.08s

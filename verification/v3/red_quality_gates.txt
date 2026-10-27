@@ -1,0 +1,358 @@
+FFFFFFFFFFFFFFFFF                                                        [100%]
+=================================== FAILURES ===================================
+___________________________ test_mutation_target_met ___________________________
+
+    def test_mutation_target_met():
+>       assert mutation_errors(mutation_report()) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 90.0, 'survived': 10, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data0] ______________
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 80.0, 'survived': 20, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 80.0, 'survived': 20, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data1] ______________
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 0.0, 'survived': 0, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 0.0, 'survived': 0, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data2] ______________
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 90.0, 'survived': 9, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 90.0, 'survived': 9, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data3] ______________
+
+data = {'summary': {'error': 1, 'pardoned': 0, 'percentage': 90.0, 'survived': 9, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 1, 'pardoned': 0, 'percentage': 90.0, 'survived': 9, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data4] ______________
+
+data = {'summary': {'error': 0, 'pardoned': 1, 'percentage': 90.0, 'survived': 9, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 1, 'percentage': 90.0, 'survived': 9, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data5] ______________
+
+data = {}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data6] ______________
+
+data = {'summary': {'percentage': 100}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'percentage': 100}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+______________ test_unreliable_mutation_result_cannot_pass[data7] ______________
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': -100.0, 'survived': 0, ...}}
+
+    @pytest.mark.parametrize('data', [mutation_report(80,20), mutation_report(0,0),
+        mutation_report(90,9,1), mutation_report(90,9,0,1), mutation_report(90,9,0,0,1),
+        {}, {'summary': {'percentage': 100}}, mutation_report(-1, 0)])
+    def test_unreliable_mutation_result_cannot_pass(data):
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': -100.0, 'survived': 0, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+__________________ test_lying_mutation_percentage_cannot_pass __________________
+
+    def test_lying_mutation_percentage_cannot_pass():
+        data=mutation_report(10,90)
+        data['summary']['percentage']=100
+>       assert mutation_errors(data)
+               ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'summary': {'error': 0, 'pardoned': 0, 'percentage': 100, 'survived': 90, ...}}
+
+    def mutation_errors(data):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/checks.py:3: NotImplementedError
+_________________ test_all_requested_tool_gates_are_mandatory __________________
+
+    def test_all_requested_tool_gates_are_mandatory():
+>       names = {gate.name for gate in gates_for_profile('full')}
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile = 'full'
+
+    def gates_for_profile(profile):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/cli.py:3: NotImplementedError
+_____________ test_quick_is_a_strict_subset_not_a_release_shortcut _____________
+
+    def test_quick_is_a_strict_subset_not_a_release_shortcut():
+>       quick={gate.name for gate in gates_for_profile('quick')}
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile = 'quick'
+
+    def gates_for_profile(profile):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/cli.py:3: NotImplementedError
+________________________ test_unknown_profile_rejected _________________________
+
+    def test_unknown_profile_rejected():
+        with pytest.raises(ValueError):
+>           gates_for_profile('ci')
+
+tests/test_quality_gates.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile = 'ci'
+
+    def gates_for_profile(profile):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/cli.py:3: NotImplementedError
+______________ test_pinned_binary_bytes_extract_without_executing ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_pinned_binary_bytes_extra0')
+
+    def test_pinned_binary_bytes_extract_without_executing(tmp_path):
+        payload=binary_tar()
+>       path=unpack_binary(payload,hashlib.sha256(payload).hexdigest(),'vale',tmp_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_quality_gates.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+payload = b'\x1f\x8b\x08\x00\xc4\x03\xe1j\x02\xff\xed\xcd1\n\x83@\x10\x05\xd09\x8aGP\x94\xbd\xcf\n\x16\x82\xa4P\x13\xf0\xf6\xaeV...81\xf7\xb2\xe6\xb9\xbc\x8cg\xea\xc7W\x9e\xb7\x00\x00\x00\x00\x00\x00\x00\x00\x00\xe0\xcf\xec\x95?\xf5\x15\x00(\x00\x00'
+expected = 'def31e28bc37456e00f9020713e1ebc8d5dcedef5d94ddd2f5ccc1e0f1ce33f3'
+name = 'vale'
+destination = PosixPath('/tmp/pytest-of-root/pytest-8/test_pinned_binary_bytes_extra0')
+
+    def unpack_binary(payload,expected,name,destination):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/bootstrap.py:3: NotImplementedError
+_______________________ test_checksum_mismatch_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_checksum_mismatch_rejecte0')
+
+    def test_checksum_mismatch_rejected(tmp_path):
+        with pytest.raises(ValueError,match='checksum'):
+>           unpack_binary(binary_tar(),'0'*64,'vale',tmp_path)
+
+tests/test_quality_gates.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+payload = b'\x1f\x8b\x08\x00\xc4\x03\xe1j\x02\xff\xed\xcd1\n\x83@\x10\x05\xd09\x8aGP\x94\xbd\xcf\n\x16\x82\xa4P\x13\xf0\xf6\xaeV...81\xf7\xb2\xe6\xb9\xbc\x8cg\xea\xc7W\x9e\xb7\x00\x00\x00\x00\x00\x00\x00\x00\x00\xe0\xcf\xec\x95?\xf5\x15\x00(\x00\x00'
+expected = '0000000000000000000000000000000000000000000000000000000000000000'
+name = 'vale'
+destination = PosixPath('/tmp/pytest-of-root/pytest-8/test_checksum_mismatch_rejecte0')
+
+    def unpack_binary(payload,expected,name,destination):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/bootstrap.py:3: NotImplementedError
+_______________________ test_archive_traversal_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_archive_traversal_rejecte0')
+
+    def test_archive_traversal_rejected(tmp_path):
+        payload=binary_tar('../vale')
+        with pytest.raises(ValueError):
+>           unpack_binary(payload,hashlib.sha256(payload).hexdigest(),'vale',tmp_path)
+
+tests/test_quality_gates.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+payload = b'\x1f\x8b\x08\x00\xc4\x03\xe1j\x02\xff\xed\xcd1\n\x83@\x10\x05\xd09JN\xa0\x8b\x88\x9eg\x03\x16BH\xb1\x89\x82\xb7w\xb5...fS7\xc4%\xc5\x17,\x8fg.\xf5e\xfc\xa7\xeb|\xcfe\x0b\x00\x00\x00\x00\x00\x00\x00\x00\x00~\xcc\x0e\x064W\x8d\x00(\x00\x00'
+expected = '49883a103cb4ffd68f02aa9d19b679736ed01a608c9bd427db5204d3d5cf52f0'
+name = 'vale'
+destination = PosixPath('/tmp/pytest-of-root/pytest-8/test_archive_traversal_rejecte0')
+
+    def unpack_binary(payload,expected,name,destination):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/bootstrap.py:3: NotImplementedError
+___________________ test_archive_missing_executable_rejected ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_archive_missing_executabl0')
+
+    def test_archive_missing_executable_rejected(tmp_path):
+        payload=binary_tar('not-vale')
+        with pytest.raises(ValueError):
+>           unpack_binary(payload,hashlib.sha256(payload).hexdigest(),'vale',tmp_path)
+
+tests/test_quality_gates.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+payload = b'\x1f\x8b\x08\x00\xc4\x03\xe1j\x02\xff\xed\xcdK\n\x83@\x10\x04\xd0>\x8a\x17\x08(\x0c\xf1<#\xb8\x08\x88\x01\x7f\xe0\xe...5\xeb\xbc\xe4\xa9\xbc\x8c\xff\xd4=\xc6<\xed\x01\x00\x00\x00\x00\x00\x00\x00\x00\xc0\x8f9\x00\xad\x96\xaa?\x00(\x00\x00'
+expected = '788b16ef13bf879db96fcc10649bd858039b34ad6366e6f49bc7826f3c099f22'
+name = 'vale'
+destination = PosixPath('/tmp/pytest-of-root/pytest-8/test_archive_missing_executabl0')
+
+    def unpack_binary(payload,expected,name,destination):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/bootstrap.py:3: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_quality_gates.py::test_mutation_target_met - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data0] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data1] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data2] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data3] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data4] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data5] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data6] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unreliable_mutation_result_cannot_pass[data7] - NotImplementedError
+FAILED tests/test_quality_gates.py::test_lying_mutation_percentage_cannot_pass - NotImplementedError
+FAILED tests/test_quality_gates.py::test_all_requested_tool_gates_are_mandatory - NotImplementedError
+FAILED tests/test_quality_gates.py::test_quick_is_a_strict_subset_not_a_release_shortcut - NotImplementedError
+FAILED tests/test_quality_gates.py::test_unknown_profile_rejected - NotImplementedError
+FAILED tests/test_quality_gates.py::test_pinned_binary_bytes_extract_without_executing - NotImplementedError
+FAILED tests/test_quality_gates.py::test_checksum_mismatch_rejected - NotImplementedError
+FAILED tests/test_quality_gates.py::test_archive_traversal_rejected - NotImplementedError
+FAILED tests/test_quality_gates.py::test_archive_missing_executable_rejected - NotImplementedError
+17 failed in 0.12s

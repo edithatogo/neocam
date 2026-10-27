@@ -1,0 +1,278 @@
+.FFFF..FFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+________ test_installer_checksum_failure_is_failure_not_unavailability _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa872815e00>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_installer_checksum_failur0')
+
+    def test_installer_checksum_failure_is_failure_not_unavailability(monkeypatch, tmp_path: Path) -> None:
+        native_fixture(tmp_path)
+        use_fixture(monkeypatch, tmp_path)
+        monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', lambda *a, **k: io.BytesIO(b'tampered'))
+>       assert bootstrap.main() == 1
+E       assert 69 == 1
+E        +  where 69 = <function main at 0x7fa87265cea0>()
+E        +    where <function main at 0x7fa87265cea0> = bootstrap.main
+
+tests/test_native_integrity.py:43: AssertionError
+----------------------------- Captured stdout call -----------------------------
+BLOCKED vale: Native archive checksum mismatch
+_ test_installer_rejects_unapproved_download_before_request[http://github.com/vale-cli/vale/releases/download/a] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8726243b0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_installer_rejects_unappro0')
+url = 'http://github.com/vale-cli/vale/releases/download/a'
+
+    @pytest.mark.parametrize('url', ['http://github.com/vale-cli/vale/releases/download/a', 'https://untrusted.invalid/vale', 'file:///etc/passwd'])
+    def test_installer_rejects_unapproved_download_before_request(monkeypatch, tmp_path: Path, url: str) -> None:
+        native_fixture(tmp_path, url)
+        use_fixture(monkeypatch, tmp_path)
+        def unexpected_request(*args, **kwargs):
+            pytest.fail('Unsafe URL was fetched')
+        monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', unexpected_request)
+>       assert bootstrap.main() == 1
+               ^^^^^^^^^^^^^^^^
+
+tests/test_native_integrity.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+quality/bootstrap.py:54: in main
+    with urllib.request.urlopen(asset['url'], timeout=20) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('http://github.com/vale-cli/vale/releases/download/a',)
+kwargs = {'timeout': 20}
+
+    def unexpected_request(*args, **kwargs):
+>       pytest.fail('Unsafe URL was fetched')
+E       Failed: Unsafe URL was fetched
+
+tests/test_native_integrity.py:52: Failed
+_ test_installer_rejects_unapproved_download_before_request[https://untrusted.invalid/vale] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8725f4f30>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_installer_rejects_unappro1')
+url = 'https://untrusted.invalid/vale'
+
+    @pytest.mark.parametrize('url', ['http://github.com/vale-cli/vale/releases/download/a', 'https://untrusted.invalid/vale', 'file:///etc/passwd'])
+    def test_installer_rejects_unapproved_download_before_request(monkeypatch, tmp_path: Path, url: str) -> None:
+        native_fixture(tmp_path, url)
+        use_fixture(monkeypatch, tmp_path)
+        def unexpected_request(*args, **kwargs):
+            pytest.fail('Unsafe URL was fetched')
+        monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', unexpected_request)
+>       assert bootstrap.main() == 1
+               ^^^^^^^^^^^^^^^^
+
+tests/test_native_integrity.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+quality/bootstrap.py:54: in main
+    with urllib.request.urlopen(asset['url'], timeout=20) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('https://untrusted.invalid/vale',), kwargs = {'timeout': 20}
+
+    def unexpected_request(*args, **kwargs):
+>       pytest.fail('Unsafe URL was fetched')
+E       Failed: Unsafe URL was fetched
+
+tests/test_native_integrity.py:52: Failed
+_ test_installer_rejects_unapproved_download_before_request[file:///etc/passwd] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8725f58c0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_installer_rejects_unappro2')
+url = 'file:///etc/passwd'
+
+    @pytest.mark.parametrize('url', ['http://github.com/vale-cli/vale/releases/download/a', 'https://untrusted.invalid/vale', 'file:///etc/passwd'])
+    def test_installer_rejects_unapproved_download_before_request(monkeypatch, tmp_path: Path, url: str) -> None:
+        native_fixture(tmp_path, url)
+        use_fixture(monkeypatch, tmp_path)
+        def unexpected_request(*args, **kwargs):
+            pytest.fail('Unsafe URL was fetched')
+        monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', unexpected_request)
+>       assert bootstrap.main() == 1
+               ^^^^^^^^^^^^^^^^
+
+tests/test_native_integrity.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+quality/bootstrap.py:54: in main
+    with urllib.request.urlopen(asset['url'], timeout=20) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ('file:///etc/passwd',), kwargs = {'timeout': 20}
+
+    def unexpected_request(*args, **kwargs):
+>       pytest.fail('Unsafe URL was fetched')
+E       Failed: Unsafe URL was fetched
+
+tests/test_native_integrity.py:52: Failed
+____________ test_installer_oversized_download_is_integrity_failure ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa87282b5c0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_installer_oversized_downl0')
+
+    def test_installer_oversized_download_is_integrity_failure(monkeypatch, tmp_path: Path) -> None:
+        native_fixture(tmp_path)
+        use_fixture(monkeypatch, tmp_path)
+        monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', lambda *a, **k: io.BytesIO(b'x'*50_000_001))
+>       assert bootstrap.main() == 1
+E       assert 69 == 1
+E        +  where 69 = <function main at 0x7fa87265cea0>()
+E        +    where <function main at 0x7fa87265cea0> = bootstrap.main
+
+tests/test_native_integrity.py:77: AssertionError
+----------------------------- Captured stdout call -----------------------------
+BLOCKED vale: Unexpected archive size
+___ test_native_version_contract_accepts_exact_release[vale version 3.25.1] ____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa87282bb60>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_a0')
+output = 'vale version 3.25.1'
+
+    @pytest.mark.parametrize('output', ['vale version 3.25.1', 'Vale 3.25.1 (build abc)'])
+    def test_native_version_contract_accepts_exact_release(monkeypatch, tmp_path: Path, output: str) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=0, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:85: AssertionError
+_ test_native_version_contract_accepts_exact_release[Vale 3.25.1 (build abc)] __
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8726d6270>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_a1')
+output = 'Vale 3.25.1 (build abc)'
+
+    @pytest.mark.parametrize('output', ['vale version 3.25.1', 'Vale 3.25.1 (build abc)'])
+    def test_native_version_contract_accepts_exact_release(monkeypatch, tmp_path: Path, output: str) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=0, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:85: AssertionError
+_ test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.10-0] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8726d6dd0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_r0')
+output = 'vale version 3.25.10', code = 0
+
+    @pytest.mark.parametrize('output,code', [('vale version 3.25.10',0), ('vale version 3.25.0',0), ('vale version 3.25.1',1), ('unparseable',0)])
+    def test_native_version_contract_rejects_wrong_or_failed_release(monkeypatch, tmp_path: Path, output: str, code: int) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=code, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:94: AssertionError
+_ test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.0-0] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa872513ba0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_r1')
+output = 'vale version 3.25.0', code = 0
+
+    @pytest.mark.parametrize('output,code', [('vale version 3.25.10',0), ('vale version 3.25.0',0), ('vale version 3.25.1',1), ('unparseable',0)])
+    def test_native_version_contract_rejects_wrong_or_failed_release(monkeypatch, tmp_path: Path, output: str, code: int) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=code, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:94: AssertionError
+_ test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.1-1] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa872966390>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_r2')
+output = 'vale version 3.25.1', code = 1
+
+    @pytest.mark.parametrize('output,code', [('vale version 3.25.10',0), ('vale version 3.25.0',0), ('vale version 3.25.1',1), ('unparseable',0)])
+    def test_native_version_contract_rejects_wrong_or_failed_release(monkeypatch, tmp_path: Path, output: str, code: int) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=code, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:94: AssertionError
+_ test_native_version_contract_rejects_wrong_or_failed_release[unparseable-0] __
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa872966f90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_r3')
+output = 'unparseable', code = 0
+
+    @pytest.mark.parametrize('output,code', [('vale version 3.25.10',0), ('vale version 3.25.0',0), ('vale version 3.25.1',1), ('unparseable',0)])
+    def test_native_version_contract_rejects_wrong_or_failed_release(monkeypatch, tmp_path: Path, output: str, code: int) -> None:
+        native_fixture(tmp_path)
+        monkeypatch.setattr(checks.subprocess, 'run', lambda *a, **k: SimpleNamespace(returncode=code, stdout=output, stderr=''))
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:94: AssertionError
+____________ test_native_version_contract_missing_tool_fails_closed ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fa8725019c0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-17/test_native_version_contract_m0')
+
+    def test_native_version_contract_missing_tool_fails_closed(monkeypatch, tmp_path: Path) -> None:
+        native_fixture(tmp_path)
+        def missing(*args, **kwargs):
+            raise FileNotFoundError('not installed')
+        monkeypatch.setattr(checks.subprocess, 'run', missing)
+        check = getattr(checks, 'native_version_errors', None)
+>       assert callable(check), 'Native version gate has not been implemented'
+E       AssertionError: Native version gate has not been implemented
+E       assert False
+E        +  where False = callable(None)
+
+tests/test_native_integrity.py:104: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_native_integrity.py::test_installer_checksum_failure_is_failure_not_unavailability - assert 69 == 1
+ +  where 69 = <function main at 0x7fa87265cea0>()
+ +    where <function main at 0x7fa87265cea0> = bootstrap.main
+FAILED tests/test_native_integrity.py::test_installer_rejects_unapproved_download_before_request[http://github.com/vale-cli/vale/releases/download/a] - Failed: Unsafe URL was fetched
+FAILED tests/test_native_integrity.py::test_installer_rejects_unapproved_download_before_request[https://untrusted.invalid/vale] - Failed: Unsafe URL was fetched
+FAILED tests/test_native_integrity.py::test_installer_rejects_unapproved_download_before_request[file:///etc/passwd] - Failed: Unsafe URL was fetched
+FAILED tests/test_native_integrity.py::test_installer_oversized_download_is_integrity_failure - assert 69 == 1
+ +  where 69 = <function main at 0x7fa87265cea0>()
+ +    where <function main at 0x7fa87265cea0> = bootstrap.main
+FAILED tests/test_native_integrity.py::test_native_version_contract_accepts_exact_release[vale version 3.25.1] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_accepts_exact_release[Vale 3.25.1 (build abc)] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.10-0] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.0-0] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_rejects_wrong_or_failed_release[vale version 3.25.1-1] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_rejects_wrong_or_failed_release[unparseable-0] - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+FAILED tests/test_native_integrity.py::test_native_version_contract_missing_tool_fails_closed - AssertionError: Native version gate has not been implemented
+assert False
+ +  where False = callable(None)
+12 failed, 3 passed in 0.17s

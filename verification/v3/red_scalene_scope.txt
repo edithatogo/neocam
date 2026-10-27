@@ -1,0 +1,16 @@
+........F                                                                [100%]
+=================================== FAILURES ===================================
+____________ test_scalene_profile_keeps_cpu_and_memory_measurement _____________
+
+    def test_scalene_profile_keeps_cpu_and_memory_measurement():
+        from quality.cli import gates_for_profile
+        gate = next(item for item in gates_for_profile('full') if item.name == 'scalene')
+>       assert '--cpu-only' not in gate.command
+E       AssertionError: assert '--cpu-only' not in ('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', ...)
+E        +  where ('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', ...) = Gate(name='scalene', command=('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', 'verification/v3/scalene.json', 'quality/profile_workload.py'), timeout=180, module='scalene', allow_unavailable=False).command
+
+tests/test_toolchain_contracts.py:91: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_toolchain_contracts.py::test_scalene_profile_keeps_cpu_and_memory_measurement - AssertionError: assert '--cpu-only' not in ('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', ...)
+ +  where ('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', ...) = Gate(name='scalene', command=('/opt/pyvenv/bin/python', '-m', 'scalene', 'run', '--cpu-only', '-o', 'verification/v3/scalene.json', 'quality/profile_workload.py'), timeout=180, module='scalene', allow_unavailable=False).command
+1 failed, 8 passed in 0.11s

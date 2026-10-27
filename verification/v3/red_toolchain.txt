@@ -1,0 +1,92 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+____________________ test_ruff_all_preview_no_unsafe_fixes _____________________
+
+    def test_ruff_all_preview_no_unsafe_fixes():
+        ruff = config()['tool']['ruff']
+>       assert ruff['preview'] is True
+               ^^^^^^^^^^^^^^^
+E       KeyError: 'preview'
+
+tests/test_toolchain_contracts.py:16: KeyError
+_____________ test_both_type_checkers_are_strict_and_unsuppressed ______________
+
+    def test_both_type_checkers_are_strict_and_unsuppressed():
+        tool = config()['tool']
+>       assert tool['ty']['rules']['all'] == 'error'
+               ^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'rules'
+
+tests/test_toolchain_contracts.py:25: KeyError
+__________ test_mutation_checks_all_operator_classes_without_pardons ___________
+
+    def test_mutation_checks_all_operator_classes_without_pardons():
+>       mutation = config()['tool']['pytest-gremlins']
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'pytest-gremlins'
+
+tests/test_toolchain_contracts.py:33: KeyError
+_________________ test_dataframe_policy_and_tools_are_declared _________________
+
+    def test_dataframe_policy_and_tools_are_declared():
+        cfg = config()
+>       tabular = cfg['project']['optional-dependencies']['tabular']
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'optional-dependencies'
+
+tests/test_toolchain_contracts.py:42: KeyError
+________________ test_native_tools_have_pinned_binary_integrity ________________
+
+    def test_native_tools_have_pinned_binary_integrity():
+        path = ROOT / 'quality/native-tools.json'
+>       assert path.exists()
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/work/panda-vision/quality/native-tools.json').exists
+
+tests/test_toolchain_contracts.py:52: AssertionError
+_______________ test_ci_no_dynamic_resolution_or_partial_bypass ________________
+
+    def test_ci_no_dynamic_resolution_or_partial_bypass():
+        workflow = (ROOT / '.github/workflows/ci.yml').read_text()
+>       assert 'uv sync --frozen' in workflow
+E       assert 'uv sync --frozen' in 'name: Model and evidence assurance\non:\n  pull_request:\n  push:\n  workflow_dispatch:\npermissions:\n  contents: re... -C extensions/conductor rev-parse HEAD)" = 137c1e41ff9c1dc75ff277b9582460a0bd8c4768\n          git submodule status\n'
+
+tests/test_toolchain_contracts.py:63: AssertionError
+________________ test_context_has_single_authoritative_runbook _________________
+
+    def test_context_has_single_authoritative_runbook():
+>       assert (ROOT / 'GEMINI.md').exists()
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = (PosixPath('/mnt/data/work/panda-vision') / 'GEMINI.md').exists
+
+tests/test_toolchain_contracts.py:72: AssertionError
+_______________________ test_no_fake_uv_lock_is_supplied _______________________
+
+    def test_no_fake_uv_lock_is_supplied():
+        path = ROOT / 'uv.lock'
+        if path.exists():
+            from quality.contracts import validate_lock
+            assert validate_lock(path) == []
+        else:
+            state = json.loads((ROOT / 'conductor/current-state.json').read_text())
+>           assert state['release_ready'] is False
+                   ^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'release_ready'
+
+tests/test_toolchain_contracts.py:85: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_toolchain_contracts.py::test_ruff_all_preview_no_unsafe_fixes - KeyError: 'preview'
+FAILED tests/test_toolchain_contracts.py::test_both_type_checkers_are_strict_and_unsuppressed - KeyError: 'rules'
+FAILED tests/test_toolchain_contracts.py::test_mutation_checks_all_operator_classes_without_pardons - KeyError: 'pytest-gremlins'
+FAILED tests/test_toolchain_contracts.py::test_dataframe_policy_and_tools_are_declared - KeyError: 'optional-dependencies'
+FAILED tests/test_toolchain_contracts.py::test_native_tools_have_pinned_binary_integrity - AssertionError: assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/work/panda-vision/quality/native-tools.json').exists
+FAILED tests/test_toolchain_contracts.py::test_ci_no_dynamic_resolution_or_partial_bypass - assert 'uv sync --frozen' in 'name: Model and evidence assurance\non:\n  pull_request:\n  push:\n  workflow_dispatch:\npermissions:\n  contents: re... -C extensions/conductor rev-parse HEAD)" = 137c1e41ff9c1dc75ff277b9582460a0bd8c4768\n          git submodule status\n'
+FAILED tests/test_toolchain_contracts.py::test_context_has_single_authoritative_runbook - AssertionError: assert False
+ +  where False = exists()
+ +    where exists = (PosixPath('/mnt/data/work/panda-vision') / 'GEMINI.md').exists
+FAILED tests/test_toolchain_contracts.py::test_no_fake_uv_lock_is_supplied - KeyError: 'release_ready'
+8 failed in 0.11s

@@ -1,7 +1,7 @@
 {
   "track_id": "v3-01-input-and-numerical-integrity",
   "title": "Preserve model scope and harden verified inputs",
-  "status": "planned",
+  "status": "complete_within_scope",
   "created": "2026-10-28",
   "base_sha": "4be33ea986fc7581634da8b4abd76edbf343bd42",
   "acceptance": "execution_receipts_required",
@@ -9,44 +9,111 @@
     {
       "id": "v3-01-input-and-numerical-integrity.01",
       "title": "Reproduce v2 baseline",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/baseline.txt"
+      ],
+      "files": [
+        "src/statewide.py",
+        "tests/test_model.py",
+        "tests/test_v2.py"
+      ],
+      "command": "python -m pytest -q",
+      "acceptance": "75 baseline tests passed before repairs.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.02",
       "title": "Freeze assumptions",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/protected_inputs.json"
+      ],
+      "files": [
+        "data/",
+        "evidence/parameter_register.csv",
+        "evidence/literature_parameter_map.csv"
+      ],
+      "command": "git diff 4be33ea986fc7581634da8b4abd76edbf343bd42 -- data evidence",
+      "acceptance": "All 27 model parameters and nine protected source/data files unchanged; new engineering evidence is separate.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.03",
       "title": "Reproduce integrity failures",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/red_regressions.txt"
+      ],
+      "files": [
+        "tests/test_v3_regressions.py"
+      ],
+      "command": "python -m pytest -q tests/test_v3_regressions.py",
+      "acceptance": "15 new tests first failed on v2 behaviour; retain the original failures.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.04",
       "title": "Repair data and numeric contracts",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/green_all.txt"
+      ],
+      "files": [
+        "src/statewide.py",
+        "tests/test_v3_regressions.py",
+        "tests/test_contract_adversaries.py"
+      ],
+      "command": "python -m pytest -q tests/test_v3_regressions.py tests/test_contract_adversaries.py",
+      "acceptance": "Reject malformed and duplicate rows; preserve source year; canonicalise sequences; reject booleans as numbers; stabilise annuities; honour supplied PSA odds ratio.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.05",
       "title": "Verify economic regression",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/default_output_parity.json"
+      ],
+      "files": [
+        "src/statewide.py",
+        "verification/v3/default_output_parity.json"
+      ],
+      "command": "python -m pytest -q tests/test_v2.py tests/test_v3_regressions.py",
+      "acceptance": "Five deterministic portfolios and pilot/spoke 20,000-draw PSA arrays compared against the original Git commit; rtol 1e-12 and atol 1e-8.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.06",
       "title": "Audit provenance",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/input_audit.json"
+      ],
+      "files": [
+        "quality/contracts.py",
+        "evidence/",
+        "tests/test_contract_adversaries.py"
+      ],
+      "command": "python -m quality.checks inputs",
+      "acceptance": "27 fields, 15 sources, 7 studies and 46,711 births reconcile; empirical assumptions remain uncertain.",
+      "blocker": null
     },
     {
       "id": "v3-01-input-and-numerical-integrity.07",
       "title": "Commit verified repairs",
-      "status": "pending",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "verification/v3/protected_inputs.json"
+      ],
+      "files": [
+        "verification/v3/",
+        "conductor/decisions-v3.md"
+      ],
+      "command": "git log --oneline 4be33ea..HEAD",
+      "acceptance": "Input/model repairs and their reproducing tests committed; no new default clinical/economic parameter.",
+      "blocker": null
     }
-  ]
+  ],
+  "updated": "2026-10-28"
 }
