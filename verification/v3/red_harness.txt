@@ -1,0 +1,875 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                  [100%]
+=================================== FAILURES ===================================
+________________________ test_real_success_has_log_hash ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_real_success_has_log_hash0')
+
+    def test_real_success_has_log_hash(tmp_path):
+>       receipt = make_receipt(tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_real_success_has_log_hash0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_real_success_has_log_hash0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+__________ test_program_error_is_failure_even_for_missing_module_text __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_program_error_is_failure_0')
+
+    def test_program_error_is_failure_even_for_missing_module_text(tmp_path):
+>       receipt = run_gate(Gate('probe', (sys.executable, '-c', 'raise ModuleNotFoundError("No module named real_bug")')), tmp_path, 'abc', tmp_path / 'logs')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'raise ModuleNotFoundError("No module named real_bug")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_program_error_is_failure_0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_program_error_is_failure_0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+______________________ test_missing_executable_is_blocked ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_executable_is_blo0')
+
+    def test_missing_executable_is_blocked(tmp_path):
+>       receipt = run_gate(Gate('probe', ('/certainly-not-installed/panda-tool',)), tmp_path, 'abc', tmp_path / 'logs')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/certainly-not-installed/panda-tool',), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_executable_is_blo0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_executable_is_blo0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+__________________ test_timeout_is_failure_not_unavailability __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_timeout_is_failure_not_un0')
+
+    def test_timeout_is_failure_not_unavailability(tmp_path):
+>       receipt = run_gate(Gate('probe', (sys.executable, '-c', 'import time; time.sleep(5)'), timeout=.05), tmp_path, 'abc', tmp_path / 'logs')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'import time; time.sleep(5)'), timeout=0.05, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_timeout_is_failure_not_un0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_timeout_is_failure_not_un0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_____________________ test_missing_python_tool_is_blocked ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_python_tool_is_bl0')
+
+    def test_missing_python_tool_is_blocked(tmp_path):
+>       receipt = run_gate(Gate('probe', (sys.executable, '-m', 'not_installed_panda_module'), module='not_installed_panda_module'), tmp_path, 'abc', tmp_path / 'logs')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-m', 'not_installed_panda_module'), timeout=60, module='not_installed_panda_module')
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_python_tool_is_bl0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_python_tool_is_bl0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_________________________ test_no_shell_interpolation __________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_no_shell_interpolation0')
+
+    def test_no_shell_interpolation(tmp_path):
+>       receipt = run_gate(Gate('probe', (sys.executable, '-c', 'import sys; print(sys.argv[1])', '$(touch compromised)')), tmp_path, 'abc', tmp_path / 'logs')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'import sys; print(sys.argv[1])', '$(touch compromised)'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_no_shell_interpolation0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_no_shell_interpolation0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_________________________ test_valid_receipts_accepted _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_valid_receipts_accepted0')
+
+    def test_valid_receipts_accepted(tmp_path):
+>       receipt = make_receipt(tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_valid_receipts_accepted0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_valid_receipts_accepted0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+____ test_stale_or_failed_or_tampered_receipts_rejected[fingerprint-stale] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper0')
+field = 'fingerprint', value = 'stale'
+
+    @pytest.mark.parametrize('field,value', [('fingerprint', 'stale'), ('status', 'blocked'), ('returncode', 1), ('log_sha256', '0'*64)])
+    def test_stale_or_failed_or_tampered_receipts_rejected(tmp_path, field, value):
+>       receipt = replace(make_receipt(tmp_path), **{field: value})
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+______ test_stale_or_failed_or_tampered_receipts_rejected[status-blocked] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper1')
+field = 'status', value = 'blocked'
+
+    @pytest.mark.parametrize('field,value', [('fingerprint', 'stale'), ('status', 'blocked'), ('returncode', 1), ('log_sha256', '0'*64)])
+    def test_stale_or_failed_or_tampered_receipts_rejected(tmp_path, field, value):
+>       receipt = replace(make_receipt(tmp_path), **{field: value})
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper1')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper1/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_______ test_stale_or_failed_or_tampered_receipts_rejected[returncode-1] _______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper2')
+field = 'returncode', value = 1
+
+    @pytest.mark.parametrize('field,value', [('fingerprint', 'stale'), ('status', 'blocked'), ('returncode', 1), ('log_sha256', '0'*64)])
+    def test_stale_or_failed_or_tampered_receipts_rejected(tmp_path, field, value):
+>       receipt = replace(make_receipt(tmp_path), **{field: value})
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper2')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper2/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_ test_stale_or_failed_or_tampered_receipts_rejected[log_sha256-0000000000000000000000000000000000000000000000000000000000000000] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper3')
+field = 'log_sha256'
+value = '0000000000000000000000000000000000000000000000000000000000000000'
+
+    @pytest.mark.parametrize('field,value', [('fingerprint', 'stale'), ('status', 'blocked'), ('returncode', 1), ('log_sha256', '0'*64)])
+    def test_stale_or_failed_or_tampered_receipts_rejected(tmp_path, field, value):
+>       receipt = replace(make_receipt(tmp_path), **{field: value})
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper3')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_stale_or_failed_or_tamper3/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_______________________ test_duplicate_receipts_rejected _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_duplicate_receipts_reject0')
+
+    def test_duplicate_receipts_rejected(tmp_path):
+>       receipt = make_receipt(tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_duplicate_receipts_reject0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_duplicate_receipts_reject0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+__________________________ test_missing_gate_rejected __________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_gate_rejected0')
+
+    def test_missing_gate_rejected(tmp_path):
+>       assert validate_receipts([make_receipt(tmp_path)], {'probe', 'missing'}, 'abc', tmp_path)
+                                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_gate_rejected0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_gate_rejected0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_______________________ test_extra_failed_gate_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_extra_failed_gate_rejecte0')
+
+    def test_extra_failed_gate_rejected(tmp_path):
+>       receipt = make_receipt(tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:72: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_extra_failed_gate_rejecte0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_extra_failed_gate_rejecte0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+________________________ test_log_cannot_escape_project ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_log_cannot_escape_project0')
+
+    def test_log_cannot_escape_project(tmp_path):
+>       receipt = replace(make_receipt(tmp_path), log='../outside')
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_log_cannot_escape_project0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_log_cannot_escape_project0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+__________________________ test_deleted_log_rejected ___________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_deleted_log_rejected0')
+
+    def test_deleted_log_rejected(tmp_path):
+>       receipt = make_receipt(tmp_path)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_deleted_log_rejected0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_deleted_log_rejected0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_______________________ test_negative_duration_rejected ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_negative_duration_rejecte0')
+
+    def test_negative_duration_rejected(tmp_path):
+>       receipt = replace(make_receipt(tmp_path), duration_seconds=-1)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_assurance_v3.py:13: in make_receipt
+    return run_gate(Gate('probe', (sys.executable, '-c', 'print("real execution")')), tmp_path, 'abc', tmp_path / 'logs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gate = Gate(name='probe', command=('/opt/pyvenv/bin/python', '-c', 'print("real execution")'), timeout=60, module=None)
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_negative_duration_rejecte0')
+fingerprint = 'abc'
+log_dir = PosixPath('/tmp/pytest-of-root/pytest-3/test_negative_duration_rejecte0/logs')
+
+    def run_gate(gate, root, fingerprint, log_dir):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:25: NotImplementedError
+_______________ test_fingerprint_changes_with_source_not_report ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_fingerprint_changes_with_0')
+
+    def test_fingerprint_changes_with_source_not_report(tmp_path):
+        (tmp_path / 'src').mkdir()
+        src = tmp_path / 'src' / 'value.py'
+        src.write_text('VALUE = 1\n')
+>       before = input_fingerprint(tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-3/test_fingerprint_changes_with_0')
+
+    def input_fingerprint(root):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/assurance.py:31: NotImplementedError
+_________ test_pandas_and_xarray_imports_blocked[import pandas as pd] __________
+
+source = 'import pandas as pd'
+
+    @pytest.mark.parametrize('source', ['import pandas as pd', 'from xarray import Dataset', 'import pandas.core', 'importlib.import_module("pandas")', '__import__("xarray")'])
+    def test_pandas_and_xarray_imports_blocked(source):
+>       assert forbidden_imports(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import pandas as pd'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+______ test_pandas_and_xarray_imports_blocked[from xarray import Dataset] ______
+
+source = 'from xarray import Dataset'
+
+    @pytest.mark.parametrize('source', ['import pandas as pd', 'from xarray import Dataset', 'import pandas.core', 'importlib.import_module("pandas")', '__import__("xarray")'])
+    def test_pandas_and_xarray_imports_blocked(source):
+>       assert forbidden_imports(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'from xarray import Dataset'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+__________ test_pandas_and_xarray_imports_blocked[import pandas.core] __________
+
+source = 'import pandas.core'
+
+    @pytest.mark.parametrize('source', ['import pandas as pd', 'from xarray import Dataset', 'import pandas.core', 'importlib.import_module("pandas")', '__import__("xarray")'])
+    def test_pandas_and_xarray_imports_blocked(source):
+>       assert forbidden_imports(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import pandas.core'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+__ test_pandas_and_xarray_imports_blocked[importlib.import_module("pandas")] ___
+
+source = 'importlib.import_module("pandas")'
+
+    @pytest.mark.parametrize('source', ['import pandas as pd', 'from xarray import Dataset', 'import pandas.core', 'importlib.import_module("pandas")', '__import__("xarray")'])
+    def test_pandas_and_xarray_imports_blocked(source):
+>       assert forbidden_imports(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'importlib.import_module("pandas")'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+_________ test_pandas_and_xarray_imports_blocked[__import__("xarray")] _________
+
+source = '__import__("xarray")'
+
+    @pytest.mark.parametrize('source', ['import pandas as pd', 'from xarray import Dataset', 'import pandas.core', 'importlib.import_module("pandas")', '__import__("xarray")'])
+    def test_pandas_and_xarray_imports_blocked(source):
+>       assert forbidden_imports(source)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = '__import__("xarray")'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+___ test_policy_does_not_ban_numerics_or_documentation[import polars as pl] ____
+
+source = 'import polars as pl'
+
+    @pytest.mark.parametrize('source', ['import polars as pl', 'import numpy as np', 'import csv', 'text = "import pandas"', '# from xarray import Dataset'])
+    def test_policy_does_not_ban_numerics_or_documentation(source):
+>       assert forbidden_imports(source) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import polars as pl'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+____ test_policy_does_not_ban_numerics_or_documentation[import numpy as np] ____
+
+source = 'import numpy as np'
+
+    @pytest.mark.parametrize('source', ['import polars as pl', 'import numpy as np', 'import csv', 'text = "import pandas"', '# from xarray import Dataset'])
+    def test_policy_does_not_ban_numerics_or_documentation(source):
+>       assert forbidden_imports(source) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import numpy as np'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+________ test_policy_does_not_ban_numerics_or_documentation[import csv] ________
+
+source = 'import csv'
+
+    @pytest.mark.parametrize('source', ['import polars as pl', 'import numpy as np', 'import csv', 'text = "import pandas"', '# from xarray import Dataset'])
+    def test_policy_does_not_ban_numerics_or_documentation(source):
+>       assert forbidden_imports(source) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'import csv'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+__ test_policy_does_not_ban_numerics_or_documentation[text = "import pandas"] __
+
+source = 'text = "import pandas"'
+
+    @pytest.mark.parametrize('source', ['import polars as pl', 'import numpy as np', 'import csv', 'text = "import pandas"', '# from xarray import Dataset'])
+    def test_policy_does_not_ban_numerics_or_documentation(source):
+>       assert forbidden_imports(source) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = 'text = "import pandas"'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+_ test_policy_does_not_ban_numerics_or_documentation[# from xarray import Dataset] _
+
+source = '# from xarray import Dataset'
+
+    @pytest.mark.parametrize('source', ['import polars as pl', 'import numpy as np', 'import csv', 'text = "import pandas"', '# from xarray import Dataset'])
+    def test_policy_does_not_ban_numerics_or_documentation(source):
+>       assert forbidden_imports(source) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+source = '# from xarray import Dataset'
+
+    def forbidden_imports(source):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:3: NotImplementedError
+__________________ test_resolved_graph_bans_packages[names0] ___________________
+
+names = ['Pandas']
+
+    @pytest.mark.parametrize('names', [['Pandas'], ['XARRAY'], ['numpy', 'pandas'], ['pandas_stubs']])
+    def test_resolved_graph_bans_packages(names):
+>       assert forbidden_packages(names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+names = ['Pandas']
+
+    def forbidden_packages(names):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:6: NotImplementedError
+__________________ test_resolved_graph_bans_packages[names1] ___________________
+
+names = ['XARRAY']
+
+    @pytest.mark.parametrize('names', [['Pandas'], ['XARRAY'], ['numpy', 'pandas'], ['pandas_stubs']])
+    def test_resolved_graph_bans_packages(names):
+>       assert forbidden_packages(names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+names = ['XARRAY']
+
+    def forbidden_packages(names):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:6: NotImplementedError
+__________________ test_resolved_graph_bans_packages[names2] ___________________
+
+names = ['numpy', 'pandas']
+
+    @pytest.mark.parametrize('names', [['Pandas'], ['XARRAY'], ['numpy', 'pandas'], ['pandas_stubs']])
+    def test_resolved_graph_bans_packages(names):
+>       assert forbidden_packages(names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+names = ['numpy', 'pandas']
+
+    def forbidden_packages(names):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:6: NotImplementedError
+__________________ test_resolved_graph_bans_packages[names3] ___________________
+
+names = ['pandas_stubs']
+
+    @pytest.mark.parametrize('names', [['Pandas'], ['XARRAY'], ['numpy', 'pandas'], ['pandas_stubs']])
+    def test_resolved_graph_bans_packages(names):
+>       assert forbidden_packages(names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+names = ['pandas_stubs']
+
+    def forbidden_packages(names):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:6: NotImplementedError
+___________________ test_resolved_graph_allows_polars_numpy ____________________
+
+    def test_resolved_graph_allows_polars_numpy():
+>       assert forbidden_packages(['polars', 'polars-runtime-32', 'numpy']) == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+names = ['polars', 'polars-runtime-32', 'numpy']
+
+    def forbidden_packages(names):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:6: NotImplementedError
+______________________ test_missing_lock_is_not_accepted _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_lock_is_not_accep0')
+
+    def test_missing_lock_is_not_accepted(tmp_path):
+>       assert validate_lock(tmp_path / 'uv.lock')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-3/test_missing_lock_is_not_accep0/uv.lock')
+
+    def validate_lock(path):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:9: NotImplementedError
+_____________________ test_lock_rejects_banned_transitive ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_lock_rejects_banned_trans0')
+
+    def test_lock_rejects_banned_transitive(tmp_path):
+        path = tmp_path / 'uv.lock'
+        path.write_text('version=1\n[[package]]\nname="pandas"\nversion="1.0"\n')
+>       assert validate_lock(path)
+               ^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-3/test_lock_rejects_banned_trans0/uv.lock')
+
+    def validate_lock(path):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:9: NotImplementedError
+______________________ test_lock_requires_download_hashes ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_lock_requires_download_ha0')
+
+    def test_lock_requires_download_hashes(tmp_path):
+        path = tmp_path / 'uv.lock'
+        path.write_text('version=1\n[[package]]\nname="numpy"\nversion="2.5.4"\nsource={registry="https://pypi.org/simple"}\n')
+>       assert validate_lock(path)
+               ^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-3/test_lock_requires_download_ha0/uv.lock')
+
+    def validate_lock(path):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:9: NotImplementedError
+___________________________ test_empty_lock_rejected ___________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_empty_lock_rejected0')
+
+    def test_empty_lock_rejected(tmp_path):
+        path = tmp_path / 'uv.lock'
+        path.write_text('version=1\n')
+>       assert validate_lock(path)
+               ^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-3/test_empty_lock_rejected0/uv.lock')
+
+    def validate_lock(path):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:9: NotImplementedError
+__________________________ test_hashed_lock_accepted ___________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_hashed_lock_accepted0')
+
+    def test_hashed_lock_accepted(tmp_path):
+        path = tmp_path / 'uv.lock'
+        path.write_text('version=1\n[[package]]\nname="numpy"\nversion="2.5.4"\nsource={registry="https://pypi.org/simple"}\nwheels=[{url="https://files.pythonhosted.org/n.whl",hash="sha256:' + 'a'*64 + '"}]\n')
+>       assert validate_lock(path) == []
+               ^^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-3/test_hashed_lock_accepted0/uv.lock')
+
+    def validate_lock(path):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:9: NotImplementedError
+_____________________ test_current_input_register_complete _____________________
+
+    def test_current_input_register_complete():
+        root = Path(__file__).resolve().parents[1]
+>       report = audit_inputs(root)
+                 ^^^^^^^^^^^^^^^^^^
+
+tests/test_assurance_v3.py:154: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/mnt/data/work/panda-vision')
+
+    def audit_inputs(root):
+>       raise NotImplementedError
+E       NotImplementedError
+
+quality/contracts.py:12: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_assurance_v3.py::test_real_success_has_log_hash - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_program_error_is_failure_even_for_missing_module_text - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_missing_executable_is_blocked - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_timeout_is_failure_not_unavailability - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_missing_python_tool_is_blocked - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_no_shell_interpolation - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_valid_receipts_accepted - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[fingerprint-stale] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[status-blocked] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[returncode-1] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[log_sha256-0000000000000000000000000000000000000000000000000000000000000000] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_duplicate_receipts_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_missing_gate_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_extra_failed_gate_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_log_cannot_escape_project - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_deleted_log_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_negative_duration_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_fingerprint_changes_with_source_not_report - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[import pandas as pd] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[from xarray import Dataset] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[import pandas.core] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[importlib.import_module("pandas")] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[__import__("xarray")] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import polars as pl] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import numpy as np] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import csv] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[text = "import pandas"] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[# from xarray import Dataset] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names0] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names1] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names2] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names3] - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_resolved_graph_allows_polars_numpy - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_missing_lock_is_not_accepted - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_lock_rejects_banned_transitive - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_lock_requires_download_hashes - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_empty_lock_rejected - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_hashed_lock_accepted - NotImplementedError
+FAILED tests/test_assurance_v3.py::test_current_input_register_complete - NotImplementedError
+39 failed in 0.32s
