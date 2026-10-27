@@ -9,6 +9,7 @@ import csv
 from dataclasses import asdict, dataclass
 import json
 import math
+from numbers import Real
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,21 @@ class Site:
     group: str
     geography: str
     pilot: bool = False
+
+    def __post_init__(self) -> None:
+        """Reject malformed site records before they enter economic calculations."""
+        if not isinstance(self.name, str) or not self.name.strip():
+            raise ValueError("Site name must be non-empty")
+        if type(self.births) is not int or self.births < 0:
+            raise ValueError("Births must be a non-negative integer")
+        if type(self.year) is not int or not 1900 <= self.year <= 2100:
+            raise ValueError("Birth year must be an integer in [1900, 2100]")
+        if self.group not in {"hub", "scn", "readiness", "regional_proxy", "rural_proxy"}:
+            raise ValueError("Unknown site group")
+        if self.geography not in {"metro", "regional", "remote"}:
+            raise ValueError("Unknown site geography")
+        if type(self.pilot) is not bool:
+            raise ValueError("Pilot status must be boolean")
 
 
 @dataclass(frozen=True)
@@ -58,10 +74,20 @@ class Parameters:
     include_capital: bool = True
 
     def __post_init__(self) -> None:
+        if type(self.include_capital) is not bool:
+            raise ValueError("include_capital must be boolean")
+        for name in ("case_mix", "baseline_transfer"):
+            values = getattr(self, name)
+            if not isinstance(values, (list, tuple)):
+                raise ValueError(f"{name} must be a three-value sequence")
+            if any((not isinstance(value, Real) or isinstance(value, bool)) for value in values):
+                raise ValueError(f"{name} values must be numeric, not boolean")
+            object.__setattr__(self, name, tuple(values))
         for key, value in asdict(self).items():
-            if isinstance(value, (float, int)) and not isinstance(value, bool):
-                if not math.isfinite(value):
-                    raise ValueError(f'{key} must be finite')
+            if key in {"case_mix", "baseline_transfer", "include_capital"}:
+                continue
+            if not isinstance(value, Real) or isinstance(value, bool) or not math.isfinite(value):
+                raise ValueError(f"{key} must be finite numeric, not boolean")
         for key in ('state_uptake', 'reliability', 'rescue_rate', 'marginal_fraction'):
             if not 0 <= getattr(self, key) <= 1:
                 raise ValueError(f'{key} must be in [0,1]')
@@ -88,13 +114,34 @@ def load_sites(path: Path | None = None) -> list[Site]:
     """Collapse co-located birth-centre rows; retain every published public birth."""
     cfg = json.loads((ROOT / 'data/site_classification.json').read_text())
     totals: dict[str, int] = {}
-    with (path or ROOT / 'data/births_queensland_2022.csv').open(newline='') as f:
-        for row in csv.DictReader(f):
-            name = cfg['aliases'].get(row['facility'], row['facility'])
-            count = int(row['births'])
+    years: set[int] = set()
+    seen: set[str] = set()
+    source = path or ROOT / "data/births_queensland_2022.csv"
+    with source.open(newline="", encoding="utf-8-sig") as stream:
+        reader = csv.DictReader(stream)
+        columns = set(reader.fieldnames or [])
+        if not {"facility", "births", "year"}.issubset(columns):
+            raise ValueError("Birth table requires facility, births and year columns")
+        for row in reader:
+            original_name = row["facility"].strip()
+            if not original_name:
+                raise ValueError("Birth facility must be non-empty")
+            if original_name in seen:
+                raise ValueError("duplicate birth facility row")
+            seen.add(original_name)
+            if "sector" in columns and row["sector"] != "public":
+                raise ValueError("Birth table must contain public-sector rows only")
+            count, year = int(row["births"]), int(row["year"])
             if count < 0:
-                raise ValueError('negative birth count')
+                raise ValueError("negative birth count")
+            years.add(year)
+            name = cfg["aliases"].get(original_name, original_name)
             totals[name] = totals.get(name, 0) + count
+    if not totals:
+        raise ValueError("Birth table is empty")
+    if len(years) != 1:
+        raise ValueError("Birth table must contain one year only")
+    birth_year = years.pop()
     sites = []
     for name, births in sorted(totals.items()):
         if name in cfg['nicu_anznn_2023']:
@@ -109,7 +156,7 @@ def load_sites(path: Path | None = None) -> list[Site]:
             group = 'rural_proxy'
         geography = ('remote' if name in cfg['geographic_remote_proxy'] else
                      'metro' if name in cfg['geographic_metro_proxy'] else 'regional')
-        sites.append(Site(name, births, 2022, group, geography, name in cfg['pilot_sites']))
+        sites.append(Site(name, births, birth_year, group, geography, name in cfg['pilot_sites']))
     return sites
 
 
@@ -141,7 +188,7 @@ def index_air_cost(base_cpi: float = 115.125, target_cpi: float = 102.03) -> flo
 def annuity(capital: float, years: float, rate: float) -> float:
     if not all(math.isfinite(x) for x in (capital, years, rate)) or years <= 0 or min(capital, rate) < 0:
         raise ValueError('Invalid annuity input')
-    return capital / years if rate == 0 else capital * rate / (1 - (1 + rate) ** -years)
+    return capital / years if rate == 0 else capital * rate / -math.expm1(-years * math.log1p(rate))
 
 
 def funding_ledger(nwau: float, qwau: float | None, nep: float, qep: float | None) -> dict[str, float | None]:
@@ -209,7 +256,7 @@ def _kernel(sites: list[Site], p: Parameters, x: dict[str, np.ndarray]) -> dict[
         annual_capital = np.divide(x['equipment_cost'], x['life_years'])
         positive = rate > 0
         annual_capital[positive] = (x['equipment_cost'][positive] * rate[positive]
-                                   / (1 - (1 + rate[positive]) ** -x['life_years'][positive]))
+                                   / -np.expm1(-x['life_years'][positive] * np.log1p(rate[positive])))
         cash = (52 * x['check_minutes'] / 60 * x['loaded_hour'] + x['support']
                 + x['training'] + calls * x['workflow_per_call'])
         out['consultations'] += calls
@@ -241,6 +288,8 @@ def evaluate(sites: list[Site], parameters: Parameters | None = None) -> dict[st
 def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
         parameters: Parameters | None = None, effect_mode: str = 'attenuated') -> dict[str, Any]:
     """Common state-wide draws preserve systematic uncertainty at all scales."""
+    if type(n) is not int:
+        raise ValueError('n must be an integer')
     if n < 2 or n > 1_000_000:
         raise ValueError('n must be between 2 and 1000000')
     if effect_mode not in {'attenuated', 'published', 'null', 'skeptical'}:
@@ -255,7 +304,8 @@ def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
     else:
         attenuation = 1 if effect_mode == 'published' else .5 if effect_mode == 'attenuated' else 0
         # .35 is an analyst transportability SD; not a fitted meta-analytic variance.
-        x['odds_ratio'] = np.exp(rng.normal(attenuation * math.log(.48),
+        centre = math.log(p.odds_ratio) if effect_mode == 'attenuated' else attenuation * math.log(.48)
+        x['odds_ratio'] = np.exp(rng.normal(centre,
                                             math.sqrt((attenuation * se)**2 + .35**2), n))
     x['baseline_transfer'] = np.column_stack([
         rng.beta(prob * 20, (1 - prob) * 20, n) if 0 < prob < 1 and j < 2

@@ -26,8 +26,9 @@ RELEASE_GATES = frozenset({
 def release_assurance_complete(gates: list[dict], scope: str) -> bool:
     """Release assurance needs explicit complete receipts, not a subset of checks."""
     statuses = {gate['gate']: gate['status'] for gate in gates}
-    return (scope == 'release' and RELEASE_GATES.issubset(statuses)
-            and all(statuses[name] == 'passed' for name in RELEASE_GATES))
+    return (scope == 'release' and len(statuses) == len(gates)
+            and RELEASE_GATES.issubset(statuses)
+            and all(gate['status'] == 'passed' for gate in gates))
 
 
 def command_receipt(name: str, command: list[str], timeout: int = 40) -> dict:
