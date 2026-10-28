@@ -4,7 +4,7 @@
 
 **Executed independent reviewers: 0.** Run IDs and reports are null, not invented. Four ready-to-run briefs specify scope, exact evidence, independence conditions and return format. The unavailable execution capability prevents this package from claiming independent validation.
 
-**Completed author technical checks:** a separately expressed scalar implementation, 20 seeded comparisons, hand-worked hospital components, probability/cohort conservation, null and failed-video paths, critical/no-avoidance behaviour, delay/excess-rescue cases, hub workload/capacity boundaries, replacement schedules and per-site aggregation. The full ordinary suite passes451 tests. These are not clinical face validation or independent authorship.
+**Completed author technical checks:** a separately expressed scalar implementation, 20 seeded comparisons, hand-worked hospital components, probability/cohort conservation, null and failed-video paths, critical/no-avoidance behaviour, delay/excess-rescue cases, hub workload/capacity boundaries, replacement schedules and per-site aggregation. The full ordinary suite passes 451 tests. These are not clinical face validation or independent authorship.
 
 **Evidence acceptance:** partial. Three article bodies reviewed; four core full-text sources unresolved. Abstracts and a related poster are explicitly labelled. Full-text access failures are retained.
 
