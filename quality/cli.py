@@ -54,7 +54,7 @@ def gates_for_profile(profile: str) -> list[Gate]:
         Gate('gitleaks_history', (_native('gitleaks'), 'git', '--log-opts=--all', '--redact=100', '--report-format=json', '--report-path=verification/v5/gitleaks-history.json', '.'), 180),
         Gate('gitleaks_tree', (_native('gitleaks'), 'dir', '--redact=100', '--report-format=json', '--report-path=verification/v5/gitleaks-tree.json', '.'), 180),
         Gate('vale', (_native('vale'), '--minAlertLevel=warning', 'README.md', 'AGENTS.md', 'GEMINI.md', 'conductor/runbook.md', 'conductor/decisions-v3.md'), 120),
-        Gate('dependency_consistency', ('uv', 'lock', '--check'), 120),
+        Gate('dependency_consistency', ('uv', 'lock', '--check', '--offline'), 30),
         Gate('dependency_lock', (python, '-m', 'quality.checks', 'lock'), allow_unavailable=True),
         Gate('native_versions', (python, '-m', 'quality.checks', 'native_versions'), allow_unavailable=True),
         Gate('locked_versions', (python, '-m', 'quality.checks', 'versions'), allow_unavailable=True),

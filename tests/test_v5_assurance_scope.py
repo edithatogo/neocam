@@ -20,3 +20,8 @@ def test_analysis_script_is_in_both_typecheck_scopes():
     cfg=tomllib.loads((ROOT/'pyproject.toml').read_text())
     assert 'scripts/analyse_v5.py' in cfg['tool']['ty']['src']['include']
     assert 'scripts/analyse_v5.py' in cfg['tool']['basedpyright']['include']
+
+
+def test_lock_validation_does_not_try_network_resolution():
+    gate=next(g for g in gates_for_profile('full') if g.name=='dependency_consistency')
+    assert '--offline' in gate.command

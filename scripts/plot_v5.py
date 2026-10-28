@@ -68,7 +68,7 @@ surface('pilot','mobile_capital_share','obsbot_reliability','07_surface_shared_c
 surface('pilot','life_years','marginal_fraction','08_surface_life_marginal','Pilot: equipment life and avoidable retrieval resources')
 surface('state','obsbot_installed_cost','obsbot_reliability','09_surface_state','33-site scenario: prototype cost and delivery')
 grid=rows('five_way_selected_grid.csv');counts=[sum(r['best']==k for r in grid) for k in KEYS]
-f,a=base('All five options can be preferred within joint assumptions','Number of exact five-way design points','Configuration')
+f,a=base('Preferred configuration across the five-way grid','Number of exact five-way design points','Configuration')
 a.barh(LABELS,counts);a.invert_yaxis()
 for i,v in enumerate(counts):a.text(v+20,i,str(v),va='center')
 a.set_xlim(0,max(counts)*1.15)
