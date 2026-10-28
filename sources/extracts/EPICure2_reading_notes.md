@@ -1,0 +1,6 @@
+# EPICure2 source abstraction
+Source: Achana et al. Economic costs and health utility values associated with extremely preterm birth. DOI 10.1111/ppe.12906; PMID35830294; PMC9543967. CC BY4.0.
+Full article body was read through the rights-eligible PubMed connector in overlapping windows; supplementary files were not retrieved. This file is an author abstraction, NOT the original article.
+200 extremely preterm children (<=26 completed weeks, England2006 cohort) and143 term classmates assessed at age11; utility complete cases161/162 vs118/120. Proxy parent reports; adult preference tariffs. Attrition (200/1031 survivors assessed) and mainstream-school control selection limit transportability. Utility instruments/value sets differ and must not be pooled as if measuring an identical decrement.
+Use: threshold/scenario anchors only. Video does not prevent prematurity; no fraction of this decrement is empirically attributable to video. UK2019 education/productivity costs are contextual and were not imported or mechanically exchange-rate-converted.
+Table4 adjusted HUI2 UK MAUF confidence bounds are typographically inconsistent in parsed source; that row is excluded. Selected UK SI and HUI3 rows have coherent bounds.

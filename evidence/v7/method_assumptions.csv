@@ -1,0 +1,31 @@
+parameter_or_method,value_or_range,interpretation,source_id
+OR_log_attenuation,0.5,"reference analyst choice; alternatives0,1",HAY2020; ASSUMED
+OR_transport_log_SD,0.35,"assumed additional transportability uncertainty, not fitted heterogeneity",ASSUMED
+baseline_beta_precision,20,"assumed precision, not effective empirical sample size",ASSUMED
+case_mix_Dirichlet_precision,20,assumed; zero-share components remain absent,ASSUMED
+reliability_beta_precision,20,"mean-preserving beta; reference Beta19,1",ASSUMED
+resource_fraction_precision,4,"reference Beta2,2; not finance confidence interval",ASSUMED
+delay_share_precision,20,"reference Beta1,19; not measured rescue frequency",ASSUMED
+activity_group_factors,hub0;scn0.5;regional0.65;rural1;readiness1,"proxy attenuation, not locally calibrated",ASSUMED
+remote_activity_multiplier,1.25,hypothetical geography association,ASSUMED
+pilot_activity_birth_anchor,37.5 consultations /486 births,current forecast divided by historical2022births; not observed incidence,USER2026; QH2022
+metro_mode_shares,road0.85;rotary0.10;fixed0.05,"analyst proxy, not dispatch census",ASSUMED
+regional_mode_shares,road0.60;rotary0.25;fixed0.15,"analyst proxy, not dispatch census",ASSUMED
+remote_mode_shares,road0.15;rotary0.35;fixed0.50,"analyst proxy, not dispatch census",ASSUMED
+mode_shift_SD_and_bounds,"SD0.10;shift[-0.6,0.6];road[0.02,0.98]","bounded geographical sensitivity, not transport likelihood fit",ASSUMED
+rotary_fixed_price_multipliers,1.15;0.85,"shares of indexed pooled air anchor, not neonatal mode-specific tariff",AIR2019; ASSUMED
+NEP26,7418,unadjusted standardised episode-price benchmark,NEP26
+stratum_origin_weights,P60B;P60B;P60A,"low/moderate/critical illustrative mapping, not actual coding",NEP26; ASSUMED
+stratum_receiving_weights,P68D;P68B;P06B,illustrative mapping; local price equals receiving prototype times local multiplier,NEP26; ASSUMED
+prototype_installed_cost,triangular2500;4500;10000,mode4500;mean5666.67; no supplier quote,ASSUMED
+prototype_relative_delivery,triangular0.65;0.95;1.0,multiplies established reliability; not a measured distribution,ASSUMED
+Cairns_origin_role,included;referral-only alternative,"scope scenario, not proven incremental need",CHHHS_DIR; ASSUMED
+Weipa_reopened_births,32 in2025,observed report year distinct from2022denominator,WEIPA2026
+QALY_values,30000;50000;100000 AUD/QALY,"hypothetical decision valuations, not official threshold",ASSUMED
+utility_contrasts,0.13 HUI2UKSI;0.28 HUI3Canada,"adjusted age11 cohort differences, not causal video effects",EPICURE2
+health_bridge_start_age,11,measured utility age; hypothetical improvement begins then,EPICURE2; ASSUMED
+health_bridge_duration,1;5;10 years,continuation beyond measured age is hypothetical,ASSUMED
+health_bridge_improved_fraction,0.001;0.005;0.01,not clinical effectiveness estimates,ASSUMED
+health_bridge_discount,0;0.03;0.05,discount from birth; fixed assumed survival during each bounded bridge,ASSUMED
+QALY_vs_DALY,separate calculations,no conversion of1-disability-weight into utility; no double-counting,AIHW_ABDS
+episode_per_consultation,1,repeated calls per infant not identified; explicit modelling limitation,ASSUMED

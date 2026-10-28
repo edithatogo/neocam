@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-28",
+  "original_public_downloads_complete": false,
+  "reason": "Container DNS and container.download failed; no original public PDF/XLSX byte claim",
+  "files": [
+    {
+      "path": "sources/README.md",
+      "sha256": "bd28690cb94e1392a9fff591dfed784e95ed5e7b73d2b96d993e15a4558cae48",
+      "bytes": 811,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/AIHW_burden_notes.md",
+      "sha256": "385efa29e266900a9e8ea5d5f445eebe72806d73ab95b4a303b1be6a04723344",
+      "bytes": 591,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/EPICure2_reading_notes.md",
+      "sha256": "da3652ba4298193c4e22797d32b4fe76f00c7ce05121a679c1f112bbaf258dba",
+      "bytes": 1228,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/EPICure2_utility_extract.csv",
+      "sha256": "a24ef59a9ac9f1985f482ff5dc698414c073dce9f3f00e9f4c8fa1c00d2f5d10",
+      "bytes": 317,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/IHACPA_NEP26_verified_rows.csv",
+      "sha256": "ffc7dc1489fbd0ba2732f4b4742b443c7b3752e45a0b6bda519d341a499ac30e",
+      "bytes": 672,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/NHRA_2026_2031_input_rate_floor.csv",
+      "sha256": "1ee22beb9ad8cd806862f440088653b03d6475b7018b4817e9390181a898400b",
+      "bytes": 626,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/regional_capability_notes.md",
+      "sha256": "3acd1dda517fb5aaf316c7a4254d04697395a3bde41ecab1a81498673d6b71d8",
+      "bytes": 1026,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/extracts/vop_method_contract.md",
+      "sha256": "71a4b6f373408e19666f5c556f6b7a221ea57dfc5eaa18954f390d879714b309",
+      "bytes": 790,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/original/A4-Report-1-light.docx",
+      "sha256": "a479a3665e4fcf4db090a90dce3a909160db8228d00f55385047b08852f04bb8",
+      "bytes": 2785665,
+      "representation": "supplied original",
+      "redistribution": "not authorised for public release"
+    },
+    {
+      "path": "sources/original/Briefing_note.docx",
+      "sha256": "41959a167b7082bb8edcb3887f7f8b6802c8b34bbae4f08d47018ec25bb1b20c",
+      "bytes": 165892,
+      "representation": "supplied original",
+      "redistribution": "not authorised for public release"
+    },
+    {
+      "path": "sources/original/chhhs-powerpoint-template.pptx",
+      "sha256": "2166f89d8e4f1d6449fc656abd1f17f9616b586011cd8df999ac6344c412fefb",
+      "bytes": 10202288,
+      "representation": "supplied original",
+      "redistribution": "not authorised for public release"
+    },
+    {
+      "path": "sources/restricted/ELC_Panda_cost_slides_excerpt.pdf",
+      "sha256": "3681b6f86a23ec0bec7e784e111347f36e896508121f486fe56d546b7cc7a181",
+      "bytes": 442807,
+      "representation": "restricted derived excerpt",
+      "redistribution": "not authorised for public release"
+    },
+    {
+      "path": "sources/retrieval_receipts.json",
+      "sha256": "657f3b545dbad0e5366fcc38db52d6de9c09166fffb895d52aff4dfba62d2856",
+      "bytes": 1090,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/retrieve_originals.py",
+      "sha256": "9b4debafee201ae459c905b9978482e77e602749b75ec0972ca9b6d4df13dc8c",
+      "bytes": 2464,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    },
+    {
+      "path": "sources/source_register.csv",
+      "sha256": "17cd1d7c11272294754b67b7741e33bda263ec46c980c03913c71541715c2f56",
+      "bytes": 7361,
+      "representation": "abstraction/extract/registry",
+      "redistribution": "check underlying rights; original source attribution retained"
+    }
+  ],
+  "registered_sources": 32
+}

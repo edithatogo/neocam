@@ -1,0 +1,50 @@
+group,parameter,reference,active,distribution,range_or_parameters,source_id,verification
+Parameters,equipment_cost,10000.0,True,triangular,8000;10000;15000,ELC2026; USER2026,10000 is mode; mean11000; source point estimate not invoice
+Parameters,life_years,5.0,True,triangular,3;5;7,ASSUMED,symmetric mode/mean5
+Parameters,discount,0.05,True,fixed/scenario,0.05,ASSUMED,no empirical fitting; see structural sensitivity
+Parameters,check_minutes,10.0,True,triangular,5;10;20,ELC2026; ASSUMED,weekly checks documented; duration assumed
+Parameters,loaded_hour,85.0,True,fixed/scenario,85.0,ASSUMED,no empirical fitting; see structural sensitivity
+Parameters,support,300.0,True,triangular,0;300;1000,ASSUMED,mean433 not mode300
+Parameters,training,400.0,True,triangular,100;400;1200,ASSUMED,mean567 not mode400
+Parameters,workflow_per_call,75.0,True,triangular,0;75;175,ASSUMED,split local25 and15minhub200/h at reference; common phone time excluded
+Parameters,calls_per_pilot_site,12.5,True,triangular,10;12.5;15,USER2026,forecast per site; not fitted to4-5cases
+Parameters,birth_growth,1.0,True,triangular,.8;1;1.2,ASSUMED,not fitted birth trend
+Parameters,state_uptake,0.8,True,fixed/scenario,0.8,ASSUMED,no empirical fitting; see structural sensitivity
+Parameters,reliability,0.95,True,beta mean/precision,mean.95;precision20,ASSUMED,nonreference mean reparameterised; no clipping
+Parameters,odds_ratio,0.6928203230275509,True,normal log-OR,log(sqrt(.48));SE from.26-.90;transport SD.35,HAY2020,transported observational association; no local posterior or causal fit
+Parameters,case_mix,"[0.35, 0.5, 0.15]",True,Dirichlet,"(.35,.50,.15);concentration20",ASSUMED,"concentration is judgement, not observed sample size"
+Parameters,baseline_transfer,"[0.3, 0.65, 0.98]",True,beta; critical fixed,"(.30,.65,.98);precision20 for first2",ASSUMED,not observed local fractions; critical .98 is not certain transfer
+Parameters,rescue_rate,0.05,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,rescue_premium,10000.0,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,road_cost,4000.0,True,triangular,2000;4000;8000,ASSUMED,4000 mode; mean4667; not QAS tariff
+Parameters,air_multiplier,1.0,True,lognormal anchor,log(indexed18670);SDlog.35,AIR2019; CPI2019; CPIBASE; CPI2026,indexed point is median; mean is higher; source-price year uncertain
+Parameters,marginal_fraction,0.5,True,beta mean/precision,mean.5;precision4,ASSUMED,"resource avoidability, not guaranteed cash release"
+Parameters,downstream_delta,2000.0,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,family_delta,1500.0,True,triangular,0;1500;4000,ASSUMED,gross travel/time aggregate; not measured parent costs; avoid productivity double counting
+Parameters,hub_annual_cost,60000.0,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,capacity_threshold,500.0,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,capacity_step_cost,30000.0,False,retired,not active,ASSUMED,"Retained for historical v2-v5 compatibility, not used in active pathway costs"
+Parameters,mode_air_shift,0.0,True,clipped normal,mean0;SD.1;limits+/- .6,ASSUMED; NEOSTRESS2020,geographic proxy; structural alternatives more important than exact tail
+Parameters,include_capital,true,True,fixed/scenario,True,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,phone_delay_share,0.05,True,beta mean/precision,mean.05;precision20,ASSUMED,"eventual-transfer partition, not second failed-retention penalty"
+PathwaySpec,video_delay_share,0.05,True,shared delay plus scenario difference,reference equal phone,ASSUMED,shared reference timing; no independently fitted video effect
+PathwaySpec,extra_rescue,0.0,True,fixed/scenario,0.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,endpoint,"""eventual""",True,fixed/scenario,eventual,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,local_coordination_per_call,25.0,True,fixed/scenario,25.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hub_minutes_per_call,15.0,True,fixed/scenario,15.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hub_hourly_rate,200.0,True,fixed/scenario,200.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hub_spare_hours,100.0,True,fixed/scenario,100.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hub_block_hours,200.0,True,fixed/scenario,200.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hub_block_cost,40000.0,True,fixed/scenario,40000.0,ASSUMED,no empirical fitting; see structural sensitivity
+PathwaySpec,hospital_marginal_fraction,0.5,True,beta mean/precision,mean.5;precision4,ASSUMED,benchmark fraction; not actual finance data
+PathwaySpec,hospital_resource_multiplier,1.0,True,mean-one lognormal,SDlog.25,ASSUMED; NEP26,all hospital component prices share multiplier
+PathwaySpec,local_care_multiplier,1.0,True,triangular,.7;1;1.8,ASSUMED,mode1;mean1.1667; plausible increased local care allowed
+PathwaySpec,extra_pre_rescue_cost,2000.0,True,triangular,0;2000;6000,ASSUMED,mode2000;mean2667; duration not empirically calibrated
+PathwaySpec,rescue_receiving_premium,0.0,True,fixed/scenario,0.0,ASSUMED,no empirical fitting; see structural sensitivity
+Perspective/regional scenario,receiver_share,0.5,True,fixed scenario; NOT fitted,0-1,ASSUMED,CHHHS share of receiving resource changes; routing/payment unknown
+Perspective/regional scenario,retrieval_chhhs_share,1.0,True,fixed scenario; NOT fitted,0-1,ASSUMED,"origin CHHHS allocation, not confirmed current inter-HHS contract"
+Perspective/regional scenario,family_travel_share,0.4,True,fixed scenario; NOT fitted,0-1,ASSUMED,within existing aggregate; remaining share time; no added gross cost
+Perspective/regional scenario,subsidy_fraction,0.5,True,fixed scenario; NOT fitted,0-1,ASSUMED,"hypothetical subsidy on travel share, not actual PTSS eligibility/rates"
+Perspective/regional scenario,funding_response,0.0,True,fixed scenario; NOT fitted,0 or.405 illustrative,ASSUMED,"fixed reference; .405 uncapped benchmark floor case, not entitlement calculator"
+Perspective/regional scenario,readiness_calls,0.0,True,fixed scenario; NOT fitted,0;1 per site/year,ASSUMED,"zero reference is zero credited benefit, not zero need"
+Perspective/regional scenario,Cooktown_reopened_births,50.0,True,fixed scenario; NOT fitted,assumed50; not observed,ASSUMED,2022suspension makes historical denominator incomplete

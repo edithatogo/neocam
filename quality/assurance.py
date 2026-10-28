@@ -14,7 +14,7 @@ import re
 import subprocess
 import time
 
-INPUT_DIRS = ('src', 'scripts', 'quality', 'tests', 'data', 'evidence', 'conductor', '.github', '.vale', '.agents')
+INPUT_DIRS = ('src', 'scripts', 'quality', 'tests', 'data', 'evidence', 'sources', 'conductor', '.github', '.vale', '.agents')
 INPUT_FILES = ('pyproject.toml', 'uv.lock', '.vale.ini', '.gitleaks.toml', 'AGENTS.md', 'GEMINI.md', 'README.md', '.pre-commit-config.yaml', 'renovate.json')
 
 

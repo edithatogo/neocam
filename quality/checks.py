@@ -155,7 +155,7 @@ def main() -> int:
             return 69
         errors = mutation_errors(json.loads(path.read_text(encoding='utf-8')))
     else:
-        path = ROOT / 'verification/v6/scalene.json'
+        path = ROOT / 'verification/v7/scalene.json'
         if not path.exists():
             print('No Scalene profile was produced')
             return 69

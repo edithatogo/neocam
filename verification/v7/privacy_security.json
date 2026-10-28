@@ -1,0 +1,46 @@
+{
+  "project_pandas_xarray_imports": [],
+  "bounded_text_scan_files": 213,
+  "bounded_text_findings": [],
+  "gitleaks_actual": {
+    "status": "blocked",
+    "reason": "FileNotFoundError"
+  },
+  "gitleaks_passed": false,
+  "tool_probes": {
+    "ruff": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "ty": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "basedpyright": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "gitleaks": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "vale": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "actionlint": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "zizmor": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    },
+    "prek": {
+      "status": "blocked",
+      "reason": "FileNotFoundError"
+    }
+  },
+  "privacy": "No patient-level records added. Corporate originals and selected ELC extract remain private. No cloud inference or code upload for profiling.",
+  "release": "No hosted CI, full locked environment, independent agent review or public publication is claimed."
+}

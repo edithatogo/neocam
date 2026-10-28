@@ -1,0 +1,24 @@
+# V7: regional decisions, perspective accounting and evidence assurance
+
+User-authorised continuation of v6. Preserve the five-arm clinical kernel and historical inputs. Add small NumPy/standard-library modules, not another modelling framework. No pandas or xarray.
+
+## Decisions
+Compare new purchase, retained Panda, and prototype uncertainty for pilot, CHHHS hospital/emergency network, CHHHS + TCHHS hospital network, and the historical Queensland 33-spoke portfolio. The regional census includes non-birthing readiness sites and an explicit Cairns referral role. Missing births are not reported zero births. Reopened Weipa/Cooktown are separate scenarios, not silently mixed into 2022 totals.
+
+## Accounting
+Separate resource use from payer allocation, and patient/family gross nonmedical resources from reimbursements. Health-system + gross family resources equals bounded societal resource cost. State + Commonwealth + net patient allocation reconciles to the same total under an explicitly hypothetical funding allocation. CHHHS provider is a subset, never added to the state total. Fiscal response to NWAU is a scenario, not a flat statutory percentage. Current QEP remains unknown.
+
+## Value of perspective
+Reimplement the small fixed-decision, tie-aware contract inspected in edithatogo/vop_poc_nz perspective.py at ad84d3090a2d97f2805a86e94a7b9614a3d1ab14. Choose under one perspective using expected value; evaluate the fixed decision under another. Do not substitute per-draw oracle regret, and do not multiply network-year results by population again.
+
+## Health effects
+Identify primary utility and burden evidence. No inferred video mortality effect. Add only a labelled threshold/health-gain scenario calculation; distinguish QALYs and DALYs, age/rater/instrument, duration and survival. Retain zero health gain in reference results.
+
+## Review and sources
+Simulate four reviewer roles and adjudicate findings; not independent agents. Audit all active parameters, distribution semantics and retired inputs. Save obtainable originals/extracts with hashes, rights and retrieval status; inaccessible bytes remain missing. No blanket claim that abstracts were full-text verified. Keep corporate sources in private working package; no public publication.
+
+## Alternatives considered
+Importing the entire VoP framework adds unnecessary dependencies; use a small inspected-method adapter. Full lifetime microsimulation is not supported by effect evidence; use thresholds. A single provider/health-system cost total conceals transfers; use explicit ledgers.
+
+
+Additional reviewed repairs: restrict CHHHS receiving allocation to the regional catchment; retain capital only at known pilot installations; verify source redirects before following; bind archived source bytes to assurance fingerprints. No empirical local fitting, universal societal scope, actual funding entitlement or independent validation is implied.

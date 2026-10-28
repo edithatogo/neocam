@@ -1,0 +1,15 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_current_core_coverage_includes_new_perspective_health_and_portfolio_modules _
+
+    def test_current_core_coverage_includes_new_perspective_health_and_portfolio_modules():
+        from quality.cli import gates_for_profile
+        command = ' '.join(next(g for g in gates_for_profile('full') if g.name == 'core_coverage').command)
+        for path in ('src/pathways_v6.py', 'src/perspectives_v7.py', 'src/portfolios_v7.py', 'src/audit_v7.py'):
+>           assert path in command
+E           AssertionError: assert 'src/perspectives_v7.py' in '/opt/pyvenv/bin/python -m coverage report --include=src/pathways_v6.py --fail-under=95'
+
+tests/test_v7_review_repairs.py:48: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v7_review_repairs.py::test_current_core_coverage_includes_new_perspective_health_and_portfolio_modules - AssertionError: assert 'src/perspectives_v7.py' in '/opt/pyvenv/bin/python -m coverage report --include=src/pathways_v6.py --fail-under=95'
+1 failed in 0.07s

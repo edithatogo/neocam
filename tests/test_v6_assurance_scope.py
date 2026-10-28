@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def test_receipts_and_core_gate_target_current_model():
     gates=gates_for_profile('full');commands=[' '.join(g.command) for g in gates]
     assert not any('verification/v5/' in c for c in commands)
-    assert any('verification/v6/scalene.json' in c for c in commands)
+    assert any('verification/v7/scalene.json' in c for c in commands)
     assert 'src/pathways_v6.py' in ' '.join(next(g for g in gates if g.name=='core_coverage').command)
 
 def test_current_type_mutation_profile_scope():

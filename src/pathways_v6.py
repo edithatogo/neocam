@@ -17,7 +17,7 @@ from src.statewide import Parameters, Site, _base_arrays, _site_modes, sample_in
 from src.strategies import KEYS, STRATEGIES, _validate_overrides
 
 NEP26 = 7418.0
-# NEP Determination 2026-27, Appendix A, PDF pp82-83. Text-extracted rows.
+# NEP Determination 2026-27, Appendix H, PDF pp82-83. Text-extracted rows.
 WEIGHTS = {"P68D": .6454, "P68B": 1.4581, "P60B": .8224,
            "P60A": 1.6530, "P06B": 7.1826}
 
@@ -156,7 +156,8 @@ def _annuity_vector(capital: np.ndarray, life: np.ndarray, rate: np.ndarray) -> 
 def compare_v6(sites: list[Site], parameters: Parameters | None = None,
                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
-               structural_draws: dict[str, np.ndarray] | None = None) -> dict[str, dict[str, np.ndarray]]:
+               structural_draws: dict[str, np.ndarray] | None = None,
+               site_calls: dict[str, np.ndarray] | None = None) -> dict[str, dict[str, np.ndarray]]:
     """Calculate absolute pathways and paired incremental outcomes for all arms."""
     if not sites or len({s.name for s in sites}) != len(sites):
         raise ValueError("non-empty unique sites required")
@@ -195,10 +196,14 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
     local = receiver * lm[:,None]
     # All current sites share stratum probabilities and hospital prototypes.
     # Aggregate exposure once; geography still weights the transport cost by site.
+    site_calls = site_calls or {}
+    if set(site_calls) - {site.name for site in sites}:
+        raise ValueError("Unknown site in activity override")
     total_calls = np.zeros(n)
     transport_exposure = np.zeros(n)
     for site in sites:
-        calls = _activity(site, x)
+        calls = (_column(site_calls[site.name], n, "site calls")[:, 0]
+                 if site.name in site_calls else _activity(site, x))
         transport = np.sum(_site_modes(site, x["mode_air_shift"])*np.column_stack(
             [x["road_cost"], x["air_anchor"]*1.15, x["air_anchor"]*.85]), axis=1)
         total_calls += calls

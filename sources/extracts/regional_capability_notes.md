@@ -1,0 +1,5 @@
+# Regional capability verification
+Official CHHHS facility listings support the hospital/emergency-network inventory, not universal camera eligibility. Primary/community health centres are outside this14-location scenario; Gordonvale/Herberton and other readiness entries are not claimed planned birth sites.
+Cooktown: official Queensland Health/TCHHS news published9October2026 states birthing resumed14September2026, after suspension inFebruary2022. Its six recorded2022 births cannot represent a full operational year. Reopened scenario50/year is assumed and requires sensitivity, not a reported total.
+Weipa: TCHHS news11February2026 reports32 births2025,14 in2024; service resumed22May2024. These are separate from the common2022 perinatal denominator.
+Cairns referral-only scenario removes its externally supported birth consultations but retains equipment readiness; referral handling remains in incremental specialist workload, not another infant cohort. Missing historic counts are None in roster, not measured zero.

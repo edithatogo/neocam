@@ -1,78 +1,33 @@
-# Current v6 runbook
+# Panda Vision v7: authoritative runbook
 
-Read `current-state.json`, the active track and `docs/validation/v6/README.md` before making claims. The active numerical API is `src.pathways_v6.compare_v6`; `src.statewide` and v2/v5 outputs are historical, not the current pathway specification.
+Read current-state.json, tracks/v7-perspectives/spec.md and its plan.md. For assurance work read .agents/skills/maintaining-lean-ci/SKILL.md. Historical runbooks are references, not current commands.
 
-Run `python -m pytest -q` for the ordinary suite; `python scripts/analyse_v6.py` regenerates the five-option pathway analysis. Plotting uses `scripts/plot_v6.py`. The workbook uses `scripts/build_workbook_v6.py` with artifact_tool; it is a results workbook, not a spreadsheet PSA engine. Document and slide builds use `scripts/build_documents_v6.py` and `scripts/build_slides_v6.js`.
+## Decision and model
+Active base: src/pathways_v6.py. Regional adapter: scripts/analyse_v7.py; src/portfolios_v7.py; src/perspectives_v7.py; src/audit_v7.py. No new clinical effectiveness is inferred. Forecast consultations are assumed to represent distinct clinical episodes; repeated calls remain a denominator limitation. Retain only the three known Panda installations when modelling regional expansion. CHHHS receiving resources are restricted to the modelled regional catchment.
 
-`python -m quality.cli --profile full` records current evidence at `verification/v6/full/receipt.json`. It runs the ordinary suite once under coverage. Missing external tools or the genuine lock remain failures/blockers, never passes. Do not relax a gate to obtain a green badge. New kernel is included in mutation/type/profiler scope.
+Six evaluative views reconcile resource costs and transfers. Government allocation scenarios are not actual entitlement/cash models. Provider CHHHS is nested, not additive. Value of perspective selects fixed expected-value strategies; it is not per-draw EVPI. Ties and ties' regret bounds remain explicit. The societal extension is bounded, not comprehensive. No reference QALY/DALY gain is claimed. The utility bridge begins at age 11 and discounts to birth; continuation and affected fractions are hypothetical. See evidence/v7/method_assumptions.csv for 30 additional existing numerical/structural choices.
 
-The requested independent panel is NOT executed. Four briefs and null run IDs are in `docs/validation/v6`. An independently worded arithmetic implementation by the author is not independent clinical review. Critical paper retrieval remains partial: see `evidence/v6/full_text_verification.csv`. No new patient data or structured elicitation is required to use the preliminary model.
+## Reproduce
+Set OPENBLAS_NUM_THREADS=1 and OMP_NUM_THREADS=1 for repeatable resource use.
+- python scripts/analyse_v7.py
+- python scripts/plot_v7.py
+- python scripts/build_workbook_v7.py (artifact_tool authoring environment)
+- python scripts/build_documents_v7.py
+- node scripts/build_slides_v7.js
+- python scripts/audit_v7.py
+- python scripts/archive_sources_v7.py
+- python -m quality.source_archive
 
-## Historical runbook (commands/results below are not current acceptance)
+Run ordinary tests: PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q on the shared host. Autoload caused hangs here; the responsible third-party plugin is not established. This does not certify required external pytest extensions. The isolated, frozen environment and dedicated external-tool gates remain authoritative for full acceptance.
 
-# Current v5 entrypoint
+Run full harness: python -m quality.cli --profile full. Current evidence goes to verification/v7/full. One covered ordinary execution is reused. Unavailable tools, missing real uv.lock and an unpopulated submodule are not successes. Do not silently disable dedicated plugins or lower thresholds. Research dependencies are optional; numerical v7 adds no pandas/xarray or new runtime package.
 
-Read `conductor/current-state.json`, then the relevant active track only. Exact analysis: `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python scripts/analyse_v5.py`. Do not change original scientific parameters merely to obtain a preferred option. Reference equal video effects are hypothetical. Keep new procurement, existing capital and shared allocation distinct.
+## Sources and safety
+sources/manifest.json binds actual files. Public original-source completeness is false. sources/retrieve_originals.py --fetch is an opt-in allowlisted bounded download; it is not an automatic background process. Transcriptions are not original PDFs/XLSX. Keep corporate originals and the ELC pricing excerpt private. Do not redistribute the full ELC pack. No patient-level records were added. A bounded pattern scan is not Gitleaks or a full-history/binary security audit.
 
-Run `python -m quality.cli --profile full` for acceptance. Current receipts go to `verification/v5`; the ordinary suite runs once under coverage. Optional research targets are checked but not installed in this host; actual analysis versions are in results_v5.json. Missing tools, missing lock or unpopulated submodule cannot be passed. Existing source/plots and prototype assumptions are not clinical validation.
+## Review and release
+The user authorised simulated roles. docs/validation/v7/simulated_panel.md is same-author self-review; never describe it as independent agents or clinician sign-off. Independent validation, four critical full texts, full original-source acquisition, local capability/routing/costs, current QEP, connected lock/toolchain/Gitleaks/hosted CI and actual Conductor checkout remain open. No push, submission or deployment is authorised by this local handoff.
 
-Journal strategy: `docs/publication_strategy_v5.md`. Corporate template assets and the ELC pack must not be published without redistribution permission. Do not submit to a journal or publish a repository without author approval.
+Commit, bundle and restore; run ordinary tests from the restored tree and inspect actual artifacts. Keep implementation, execution evidence and external acceptance separate.
 
-## Retained v4 runbook (historical profile paths are superseded above)
-
-# Single-developer runbook — v4
-
-## Authority and scope
-Read `current-state.json`, the active track and `.agents/skills/maintaining-lean-ci/SKILL.md`. Explicit user instructions and source/parameter registers control the work. Engineering v4 adds no clinical parameter. The economic specification remains v2/v3, rerun into `outputs/v4`; diagnostics use existing parameters. Source checks establish consistency, not empirical truth of estimated effects/costs.
-
-## Environments: pin, resolve, review, then freeze
-`pyproject.toml` controls Python pins. `quality/native-tools.json` controls checksum-pinned native tools. Polars is the sole DataFrame engine; NumPy/CSV remain appropriate for this small model. Do not install pandas/xarray or Hypothesis extras that introduce them.
-
-The current runtime cannot download packages. No real `uv.lock` exists. On a connected authorised checkout:
-
-```bash
-python -m pip install uv==0.13.6
-uv lock --upgrade
-python -m quality.checks lock
-# Review lock and compatibility; commit the actual resolved lock before normal CI.
-uv sync --frozen --group assurance --extra tabular
-uv run --frozen --no-sync python -m quality.bootstrap
-git submodule update --init --recursive
-uv run --frozen --no-sync python -m quality.cli --profile full
-```
-
-Normal CI executes `uv lock --check` before `uv sync --frozen`. Pins/configuration are not successful installation. Resolve conflicts explicitly; do not fabricate lock hashes, silently downgrade, or suppress whole families of diagnostics. Hosted CI is unexecuted until an actual exact-commit run passes.
-
-## Execution scopes
-- **Edit loop:** `python -m quality.cli --profile quick`. Complete ordinary tests plus input/context checks; no release claim.
-- **Hooks:** `uv run --frozen --no-sync prek install`; thin hooks call canonical tool configuration. No mutation/profiling in every commit. Installation not performed here.
-- **Optional local selection:** install the feedback group in a controlled environment, then `python -m quality.feedback --mode tests`. Testmon absence falls back to all ordinary tests, not a selection-speed claim.
-- **Optional local mutation:** `python -m quality.feedback --mode mutation`. Gremlins absence is blocked. Valid incremental caches are local-only; source/data/config/dependency/interpreter/test changes invalidate evidence.
-- **PR:** `python -m quality.cli --profile pr`. One covered ordinary suite, complete relevant static/security/input checks. Coverage report reuses the same execution.
-- **Full acceptance:** `python -m quality.cli --profile full`. All mandatory gates, clean mutation evidence, exact installed versions, real lock, native binary integrity, profiling and tabular reconciliation. Every required gate must pass.
-
-Keep serial testing until measured xdist benefit is established. Testmon and xdist remain optional and unbenchmarked here. Cache downloaded artifacts, not whole environments or acceptance receipts. Cancel obsolete PR jobs, not full acceptance. One reviewed Renovate configuration replaces the duplicate updater; bot activation is not claimed.
-
-## Verification policy
-Coverage: 90% scoped model/harness and 95% active numerical module. Mutation: nonzero mutants, at least90% killed, no unexplained timeout/error/pardon. These thresholds are unchanged. Ruff selects ALL/preview with formatter-conflict exemptions only. ty/basedpyright retain strict configurations. Scalene uses reproducible CPU/memory workloads without code upload. Gitleaks logs are redacted; Vale uses local styles; actionlint and zizmor inspect CI itself.
-
-Receipts contain actual commands, exit status, source/input fingerprints, elapsed times and log hashes. Blocked is not passed. Source changes invalidate old receipts. The portable skill checker tests receipt consistency, not cryptographic authenticity or hosted execution.
-
-## Analysis and artifacts
-```bash
-python scripts/run_v2.py --out outputs/v4 --iterations 20000
-python scripts/complete_analysis_v4.py
-python scripts/build_documents_v4.py
-node scripts/build_slides_v4.js
-# Workbook authoring uses artifact_tool, outside the numerical model environment:
-python scripts/build_workbook_v4.py
-```
-
-Authoring requires the recorded document/plot/office-tool environment. Do not silently add those tools to runtime dependencies. Render the two-page plan and supplement, inspect charts/tables and slides, verify workbook formulas and preserve the actual output manifest. Full CSV/PNG/SVG data live in `outputs/v4`. Re-running analysis must precede relabelling artifacts.
-
-## Handoff and remaining gates
-Commit bounded changes, update Conductor implementation/acceptance separately, and deliver a versioned ZIP plus Git bundle. Restore the bundle and rerun tests. No remote push, app installation or publication follows from a local archive.
-
-Current limits: external tools unavailable, missing real lock, Conductor gitlink not populated, no hosted CI, no independent agent pressure test, historical population/effect/cost uncertainty and unverified QEP. Read the current receipt rather than inheriting a previous pass. Combined repeated benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.
-
-`data/v6/spec.json` is a reference snapshot, not a live configuration input. The authoritative default specification is `PathwaySpec`; supply an explicit instance to the API or change the documented analysis driver to run alternatives. `extra_rescue` is conditional on otherwise locally retained infants after a successful video connection, not an absolute percentage-point increment among all consultations.
+`data/v6/spec.json` is a reference snapshot, not a live configuration input. `PathwaySpec` is the default structural specification; the analysis driver passes explicit scenario instances. `extra_rescue` is conditional on otherwise locally retained infants after successful video, not an absolute percentage-point increase among all consultations.

@@ -1,0 +1,16 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_regional_retention_removes_only_known_pilot_capital ___________
+
+    def test_regional_retention_removes_only_known_pilot_capital():
+        p=Parameters();s=PathwaySpec();x=_base_arrays(p,1)
+        sites=portfolio('chhhs_tchhs')
+        new,_,_=evaluate_perspectives(sites,p,s,x,{})
+        retained,_,_=evaluate_perspectives(sites,p,s,x,{},sunk=('panda',))
+>       assert retained['panda']['incremental_purchase_capital'][0]==110000
+E       assert np.float64(0.0) == 110000
+
+tests/test_v7_review_repairs.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v7_review_repairs.py::test_regional_retention_removes_only_known_pilot_capital - assert np.float64(0.0) == 110000
+1 failed in 0.08s

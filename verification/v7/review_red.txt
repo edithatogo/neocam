@@ -1,0 +1,46 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+______ test_unrelated_statewide_site_does_not_add_chhhs_receiver_savings _______
+
+    def test_unrelated_statewide_site_does_not_add_chhhs_receiver_savings():
+        p=Parameters();s=PathwaySpec();x=_base_arrays(p,1)
+        sites=portfolio('chhhs_tchhs')
+        _,regional,_=evaluate_perspectives(sites,p,s,x,{})
+        _,expanded,_=evaluate_perspectives(sites+[Site('Outside referral catchment',5000,2022,'regional_proxy','regional')],p,s,x,{})
+        for key in regional:
+>           assert np.allclose(regional[key]['provider_chhhs'],expanded[key]['provider_chhhs'])
+E           assert False
+E            +  where False = <function allclose at 0x7f89d2dd4370>(array([70584.38422124]), array([42411.5255724]))
+E            +    where <function allclose at 0x7f89d2dd4370> = np.allclose
+
+tests/test_v7_review_repairs.py:17: AssertionError
+______ test_source_redirect_is_rejected_before_opening_an_unapproved_host ______
+
+    def test_source_redirect_is_rejected_before_opening_an_unapproved_host():
+        import sources.retrieve_originals as module
+>       assert hasattr(module,'ApprovedRedirect'), 'Missing pre-request redirect guard'
+E       AssertionError: Missing pre-request redirect guard
+E       assert False
+E        +  where False = hasattr(<module 'sources.retrieve_originals' from '/mnt/data/panda-v7/sources/retrieve_originals.py'>, 'ApprovedRedirect')
+
+tests/test_v7_review_repairs.py:23: AssertionError
+_________ test_current_gates_do_not_write_into_historical_verification _________
+
+    def test_current_gates_do_not_write_into_historical_verification():
+        from quality.cli import gates_for_profile
+        commands=[' '.join(g.command) for g in gates_for_profile('full')]
+>       assert not any('verification/v6/' in c for c in commands)
+E       assert not True
+E        +  where True = any(<generator object test_current_gates_do_not_write_into_historical_verification.<locals>.<genexpr> at 0x7f89c06625a0>)
+
+tests/test_v7_review_repairs.py:32: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v7_review_repairs.py::test_unrelated_statewide_site_does_not_add_chhhs_receiver_savings - assert False
+ +  where False = <function allclose at 0x7f89d2dd4370>(array([70584.38422124]), array([42411.5255724]))
+ +    where <function allclose at 0x7f89d2dd4370> = np.allclose
+FAILED tests/test_v7_review_repairs.py::test_source_redirect_is_rejected_before_opening_an_unapproved_host - AssertionError: Missing pre-request redirect guard
+assert False
+ +  where False = hasattr(<module 'sources.retrieve_originals' from '/mnt/data/panda-v7/sources/retrieve_originals.py'>, 'ApprovedRedirect')
+FAILED tests/test_v7_review_repairs.py::test_current_gates_do_not_write_into_historical_verification - assert not True
+ +  where True = any(<generator object test_current_gates_do_not_write_into_historical_verification.<locals>.<genexpr> at 0x7f89c06625a0>)
+3 failed in 0.08s

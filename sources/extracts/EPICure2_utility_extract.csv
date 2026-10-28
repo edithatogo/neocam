@@ -1,0 +1,3 @@
+metric,EP_mean,EP_sd,control_mean,control_sd,adjusted_difference,lower,upper,age,perspective,source
+HUI2 UK SI,0.789,0.176,0.93,0.089,-0.13,-0.18,-0.09,11,parent proxy; UK adult tariff,PMC9543967 Table4
+HUI3 Canada,0.685,0.324,0.947,0.118,-0.28,-0.37,-0.18,11,parent proxy; Canadian adult tariff,PMC9543967 Table4

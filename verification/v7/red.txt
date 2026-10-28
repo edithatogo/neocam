@@ -1,0 +1,667 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+_______________ test_vop_uses_fixed_expected_decision_not_oracle _______________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_vop_uses_fixed_expected_decision_not_oracle():
+        # A wins expected under p; B wins expected under q. Fixed regret=1, oracle=5.
+        p=np.array([[9.,0.],[1.,0.]])
+        q=np.array([[0.,10.],[8.,0.]])
+>       r=api().perspective_regret(p,q)
+          ^^^^^
+
+tests/test_v7_perspectives.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+__________________________ test_vop_diagonal_and_ties __________________________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_vop_diagonal_and_ties():
+        a=np.array([[1.,1.],[3.,3.]])
+>       assert api().perspective_regret(a,a)['value']==0.
+               ^^^^^
+
+tests/test_v7_perspectives.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+____________ test_ledger_subsidy_does_not_change_societal_resources ____________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_ledger_subsidy_does_not_change_societal_resources():
+>       m=api(); c=dict(health_cost=np.array([100.]),family_gross=np.array([40.]),
+          ^^^^^
+                       family_subsidy=np.array([20.]),commonwealth=np.array([30.]),provider_cost=np.array([70.]))
+
+tests/test_v7_perspectives.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+________________ test_ledger_signed_incremental_costs_reconcile ________________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_ledger_signed_incremental_costs_reconcile():
+>       a=api().reconcile_ledger(health_cost=np.array([-100.,0.]),family_gross=np.array([-40.,0.]),
+          ^^^^^
+           family_subsidy=np.array([-20.,0.]),commonwealth=np.array([-30.,0.]),provider_cost=np.array([10.,0.]))
+
+tests/test_v7_perspectives.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+_______________________ test_vop_rejects_invalid[a0-b0] ________________________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+a = array([1]), b = array([1])
+
+    @pytest.mark.parametrize('a,b',[(np.array([1]),np.array([1])),(np.ones((2,2)),np.ones((3,2))),
+                                  (np.array([[np.nan]]),np.array([[0.]]))])
+    def test_vop_rejects_invalid(a,b):
+>       with pytest.raises(ValueError): api().perspective_regret(a,b)
+                                        ^^^^^
+
+tests/test_v7_perspectives.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+_______________________ test_vop_rejects_invalid[a1-b1] ________________________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+a = array([[1., 1.],
+       [1., 1.]])
+b = array([[1., 1.],
+       [1., 1.],
+       [1., 1.]])
+
+    @pytest.mark.parametrize('a,b',[(np.array([1]),np.array([1])),(np.ones((2,2)),np.ones((3,2))),
+                                  (np.array([[np.nan]]),np.array([[0.]]))])
+    def test_vop_rejects_invalid(a,b):
+>       with pytest.raises(ValueError): api().perspective_regret(a,b)
+                                        ^^^^^
+
+tests/test_v7_perspectives.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+_______________________ test_vop_rejects_invalid[a2-b2] ________________________
+
+    def api():
+        try:
+>           return importlib.import_module('src.perspectives_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_perspectives.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.perspectives_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.perspectives_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+a = array([[nan]]), b = array([[0.]])
+
+    @pytest.mark.parametrize('a,b',[(np.array([1]),np.array([1])),(np.ones((2,2)),np.ones((3,2))),
+                                  (np.array([[np.nan]]),np.array([[0.]]))])
+    def test_vop_rejects_invalid(a,b):
+>       with pytest.raises(ValueError): api().perspective_regret(a,b)
+                                        ^^^^^
+
+tests/test_v7_perspectives.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('src.perspectives_v7')
+        except ModuleNotFoundError:
+>           pytest.fail('V7 perspective implementation is absent')
+E           Failed: V7 perspective implementation is absent
+
+tests/test_v7_perspectives.py:10: Failed
+____________ test_beta_preserves_mean_without_clipped_boundary_mass ____________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_beta_preserves_mean_without_clipped_boundary_mass():
+>       x=api().beta_mean(np.random.default_rng(1),.8,20,100000)
+          ^^^^^
+
+tests/test_v7_sampling_health.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+_______________________ test_beta_degenerate_boundaries ________________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_beta_degenerate_boundaries():
+>       for p in [0.,1.]: assert np.all(api().beta_mean(np.random.default_rng(1),p,20,5)==p)
+                                        ^^^^^
+
+tests/test_v7_sampling_health.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+______________________ test_beta_rejects_invalid[-0.1-20] ______________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+p = -0.1, k = 20
+
+    @pytest.mark.parametrize('p,k', [(-.1,20),(1.1,20),(.5,0),(.5,np.nan)])
+    def test_beta_rejects_invalid(p,k):
+>       with pytest.raises(ValueError):api().beta_mean(np.random.default_rng(1),p,k,3)
+                                       ^^^^^
+
+tests/test_v7_sampling_health.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+______________________ test_beta_rejects_invalid[1.1-20] _______________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+p = 1.1, k = 20
+
+    @pytest.mark.parametrize('p,k', [(-.1,20),(1.1,20),(.5,0),(.5,np.nan)])
+    def test_beta_rejects_invalid(p,k):
+>       with pytest.raises(ValueError):api().beta_mean(np.random.default_rng(1),p,k,3)
+                                       ^^^^^
+
+tests/test_v7_sampling_health.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+_______________________ test_beta_rejects_invalid[0.5-0] _______________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+p = 0.5, k = 0
+
+    @pytest.mark.parametrize('p,k', [(-.1,20),(1.1,20),(.5,0),(.5,np.nan)])
+    def test_beta_rejects_invalid(p,k):
+>       with pytest.raises(ValueError):api().beta_mean(np.random.default_rng(1),p,k,3)
+                                       ^^^^^
+
+tests/test_v7_sampling_health.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+______________________ test_beta_rejects_invalid[0.5-nan] ______________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+p = 0.5, k = nan
+
+    @pytest.mark.parametrize('p,k', [(-.1,20),(1.1,20),(.5,0),(.5,np.nan)])
+    def test_beta_rejects_invalid(p,k):
+>       with pytest.raises(ValueError):api().beta_mean(np.random.default_rng(1),p,k,3)
+                                       ^^^^^
+
+tests/test_v7_sampling_health.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+___________________ test_qaly_threshold_not_effect_estimate ____________________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_qaly_threshold_not_effect_estimate():
+>       m=api(); assert m.required_health_gain(10000,50000)==pytest.approx(.2)
+          ^^^^^
+
+tests/test_v7_sampling_health.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+_______________ test_survival_and_disability_are_separate_inputs _______________
+
+    def api():
+>       try:return importlib.import_module('src.audit_v7')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_sampling_health.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.audit_v7', import_ = <function _gcd_import at 0x7f00671c84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.audit_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_survival_and_disability_are_separate_inputs():
+>       m=api(); assert m.dalys(yll=5,prevalent_years=10,disability_weight=.2)==7
+          ^^^^^
+
+tests/test_v7_sampling_health.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('src.audit_v7')
+>       except ModuleNotFoundError:pytest.fail('V7 audited numerical helpers absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: V7 audited numerical helpers absent
+
+tests/test_v7_sampling_health.py:8: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v7_perspectives.py::test_vop_uses_fixed_expected_decision_not_oracle - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_vop_diagonal_and_ties - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_ledger_subsidy_does_not_change_societal_resources - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_ledger_signed_incremental_costs_reconcile - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_vop_rejects_invalid[a0-b0] - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_vop_rejects_invalid[a1-b1] - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_perspectives.py::test_vop_rejects_invalid[a2-b2] - Failed: V7 perspective implementation is absent
+FAILED tests/test_v7_sampling_health.py::test_beta_preserves_mean_without_clipped_boundary_mass - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_beta_degenerate_boundaries - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_beta_rejects_invalid[-0.1-20] - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_beta_rejects_invalid[1.1-20] - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_beta_rejects_invalid[0.5-0] - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_beta_rejects_invalid[0.5-nan] - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_qaly_threshold_not_effect_estimate - Failed: V7 audited numerical helpers absent
+FAILED tests/test_v7_sampling_health.py::test_survival_and_disability_are_separate_inputs - Failed: V7 audited numerical helpers absent
+15 failed in 0.21s

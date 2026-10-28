@@ -1,0 +1,4 @@
+# Source archive status
+This is a PRIVATE working archive. Original supplied corporate templates, a narrowly selected restricted ELC excerpt, verified numeric transcriptions and source abstractions are saved. Public original PDFs/XLSX could be read via web but not downloaded as bytes. No fabricated original files are provided.
+Every scientific source is registered where present in the inherited registers; the numerical active inputs retain their source IDs. Missing public originals, four critical full texts, current QEP, local invoices and local transport invoices remain outstanding.
+Run the opt-in retrieval script in a network-enabled environment, review rights/content, and regenerate the checksum manifest before claiming archival completeness. Do not publish corporate originals or the ELC excerpt.

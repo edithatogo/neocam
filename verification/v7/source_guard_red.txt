@@ -1,0 +1,185 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+__________________ test_hash_mismatch_is_not_an_original_file __________________
+
+    def module():
+>       try:return importlib.import_module('quality.source_archive')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_source_archive.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.source_archive'
+import_ = <function _gcd_import at 0x7f3a997044a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.source_archive'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_hash_mismatch_is_not_an_o0')
+
+    def test_hash_mismatch_is_not_an_original_file(tmp_path):
+        p=tmp_path/'sources';p.mkdir();(p/'a.txt').write_text('actual')
+        m={'files':[{'path':'sources/a.txt','sha256':'0'*64,'bytes':6}], 'original_public_downloads_complete':False}
+>       assert module().verify_manifest(tmp_path,m)
+               ^^^^^^^^
+
+tests/test_v7_source_archive.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def module():
+        try:return importlib.import_module('quality.source_archive')
+>       except ModuleNotFoundError:pytest.fail('source archive verifier missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: source archive verifier missing
+
+tests/test_v7_source_archive.py:9: Failed
+__________________________ test_path_escape_rejected ___________________________
+
+    def module():
+>       try:return importlib.import_module('quality.source_archive')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_source_archive.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.source_archive'
+import_ = <function _gcd_import at 0x7f3a997044a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.source_archive'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_path_escape_rejected0')
+
+    def test_path_escape_rejected(tmp_path):
+        m={'files':[{'path':'../outside','sha256':'0'*64,'bytes':0}]}
+>       assert module().verify_manifest(tmp_path,m)
+               ^^^^^^^^
+
+tests/test_v7_source_archive.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def module():
+        try:return importlib.import_module('quality.source_archive')
+>       except ModuleNotFoundError:pytest.fail('source archive verifier missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: source archive verifier missing
+
+tests/test_v7_source_archive.py:9: Failed
+_____________ test_empty_archive_cannot_claim_all_public_originals _____________
+
+    def module():
+>       try:return importlib.import_module('quality.source_archive')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_source_archive.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.source_archive'
+import_ = <function _gcd_import at 0x7f3a997044a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.source_archive'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_empty_archive_cannot_clai0')
+
+    def test_empty_archive_cannot_claim_all_public_originals(tmp_path):
+>       assert module().verify_manifest(tmp_path,{'files':[],'original_public_downloads_complete':True})
+               ^^^^^^^^
+
+tests/test_v7_source_archive.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def module():
+        try:return importlib.import_module('quality.source_archive')
+>       except ModuleNotFoundError:pytest.fail('source archive verifier missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: source archive verifier missing
+
+tests/test_v7_source_archive.py:9: Failed
+________ test_actual_bytes_pass_but_do_not_imply_original_completeness _________
+
+    def module():
+>       try:return importlib.import_module('quality.source_archive')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_source_archive.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.source_archive'
+import_ = <function _gcd_import at 0x7f3a997044a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.source_archive'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_actual_bytes_pass_but_do_0')
+
+    def test_actual_bytes_pass_but_do_not_imply_original_completeness(tmp_path):
+        p=tmp_path/'sources';p.mkdir();(p/'a.txt').write_text('actual')
+        m={'files':[{'path':'sources/a.txt','sha256':hashlib.sha256(b'actual').hexdigest(),'bytes':6}], 'original_public_downloads_complete':False}
+>       assert module().verify_manifest(tmp_path,m)==[]
+               ^^^^^^^^
+
+tests/test_v7_source_archive.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def module():
+        try:return importlib.import_module('quality.source_archive')
+>       except ModuleNotFoundError:pytest.fail('source archive verifier missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: source archive verifier missing
+
+tests/test_v7_source_archive.py:9: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v7_source_archive.py::test_hash_mismatch_is_not_an_original_file - Failed: source archive verifier missing
+FAILED tests/test_v7_source_archive.py::test_path_escape_rejected - Failed: source archive verifier missing
+FAILED tests/test_v7_source_archive.py::test_empty_archive_cannot_claim_all_public_originals - Failed: source archive verifier missing
+FAILED tests/test_v7_source_archive.py::test_actual_bytes_pass_but_do_not_imply_original_completeness - Failed: source archive verifier missing
+4 failed in 0.09s

@@ -1,0 +1,32 @@
+{
+  "plan_pages": 2,
+  "supplement_pages": 10,
+  "slides": 10,
+  "workbook_sheets": 20,
+  "workbook_formulas": 40,
+  "workbook_errors": [],
+  "max_formula_residual": 1.8189894035458565e-12,
+  "figures_png": 8,
+  "figures_svg": 8,
+  "tables": {
+    "utility_bridge_scenarios.csv": 54,
+    "deterministic.csv": 20,
+    "allocation_two_way.csv": 1452,
+    "established_options.csv": 96,
+    "structural_scenarios.csv": 220,
+    "health_thresholds.csv": 48,
+    "reconciliation.csv": 44,
+    "regional_roster.csv": 14,
+    "value_of_perspective.csv": 1584,
+    "psa_perspectives.csv": 1320
+  },
+  "files": {
+    "Panda_Vision_analysis_v7.xlsx": "9ac6eab8474001174398d9a77dd28c4de623d775b12a574dc561457b70aad4fe",
+    "Panda_Vision_two_page_plan_v7.pdf": "8ebb6ee3f6ee4735a4f9b5766f1c72dcab7d611cece0dd94c643499b05c5b4f3",
+    "Panda_Vision_CHHHS_presentation_v7.pptx": "fcaebe108be0fa6db7c5e494e012ec314aa5ec81d4f839c3f098cf5648a8ebc8",
+    "Panda_Vision_two_page_plan_v7.docx": "fa6c2d71707c6a9f352702450cc1cb553c66de7575bf42e6b13864a8ef0aa6d5",
+    "Panda_Vision_perspectives_audit_supplement_v7.pdf": "2eaadca967f600c60151efd80ecf5c793063b0eee20b82c85eda8be90fde8655",
+    "Panda_Vision_perspectives_audit_supplement_v7.docx": "76554af279c4039be9e04f062fc18466d10ab8c684b22ab54f81cfbacfbfbaf9"
+  },
+  "visual_review": "All final document pages reviewed, unchanged pages retained by hash; ten slides reviewed, title/footer and table header repaired; workbook summary inspected."
+}

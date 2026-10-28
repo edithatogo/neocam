@@ -1,3 +1,13 @@
+# Panda Vision v7 — regional perspectives and evidence audit
+
+Private working research model. Active commands and limitations: conductor/runbook.md and conductor/current-state.json.
+
+V7 adds hospital/emergency-network CHHHS and CHHHS+TCHHS portfolios, reconciled evaluative perspectives, directional fixed-decision Value of Perspective, bounded HRQoL thresholds, source integrity and simulated role reviews. It does not add a proven clinical effect, a complete societal model, actual payer contract prices or independent validation. Public original-source archiving and full external-tool acceptance remain incomplete.
+
+Outputs: outputs/v7. Figures/tables are exact model results under researcher assumptions. Reproduce with scripts/analyse_v7.py. No pandas/xarray project imports are permitted.
+
+## Historical README (not current acceptance)
+
 # Panda Vision v6 — explicit clinical pathways
 
 Early model-based cost–consequence and investment-threshold evaluation. Current model: `src/pathways_v6.py`. Start with `conductor/runbook.md`. Main outputs are in `outputs/v6`. Version 5 and older code/results are retained only for reproducibility and comparison.

@@ -1,0 +1,57 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_____________ test_explicit_calls_override_without_changing_births _____________
+
+    def test_explicit_calls_override_without_changing_births():
+        sites=select_sites(load_sites(),'pilot');counts={s.name:np.array([2.]) for s in sites}
+>       r=compare_v6(sites,site_calls=counts)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: compare_v6() got an unexpected keyword argument 'site_calls'
+
+tests/test_v7_regional.py:9: TypeError
+_________________ test_calls_override_unknown_site_is_rejected _________________
+
+    def test_calls_override_unknown_site_is_rejected():
+>       with pytest.raises(ValueError):compare_v6(select_sites(load_sites(),'pilot'),site_calls={'x':np.array([2.])})
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: compare_v6() got an unexpected keyword argument 'site_calls'
+
+tests/test_v7_regional.py:14: TypeError
+________ test_regional_census_preserves_missingness_and_reopened_status ________
+
+    def test_regional_census_preserves_missingness_and_reopened_status():
+>       try:m=importlib.import_module('src.portfolios_v7')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v7_regional.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.portfolios_v7', import_ = <function _gcd_import at 0x7fd8f0fa84a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.portfolios_v7'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_regional_census_preserves_missingness_and_reopened_status():
+        try:m=importlib.import_module('src.portfolios_v7')
+>       except ModuleNotFoundError:pytest.fail('regional module absent')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: regional module absent
+
+tests/test_v7_regional.py:18: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v7_regional.py::test_explicit_calls_override_without_changing_births - TypeError: compare_v6() got an unexpected keyword argument 'site_calls'
+FAILED tests/test_v7_regional.py::test_calls_override_unknown_site_is_rejected - TypeError: compare_v6() got an unexpected keyword argument 'site_calls'
+FAILED tests/test_v7_regional.py::test_regional_census_preserves_missingness_and_reopened_status - Failed: regional module absent
+3 failed in 0.07s
