@@ -1,6 +1,6 @@
 [project]
 name = "panda-vision-evaluation"
-version = "4.0.0"
+version = "5.0.0"
 description = "Preliminary neonatal economic model with explicit evidence and developer assurance"
 requires-python = ">=3.13,<3.16"
 dependencies = ["numpy==2.5.4"]
@@ -9,6 +9,8 @@ dependencies = ["numpy==2.5.4"]
 # No dataframe package is needed for the small CSV model. This extra provides
 # an independent tabular reconciliation; Polars is the only supported engine.
 tabular = ["polars==2.1.0"]
+# Offline explanatory sensitivity tools, not required by the exact model kernel.
+research = ["scipy==1.18.1", "scikit-learn==1.9.1"]
 
 [dependency-groups]
 test = ["pytest==9.1.1", "coverage==7.17.0"]
@@ -76,13 +78,13 @@ quote-style = "double"
 python-version = "3.13"
 
 [tool.ty.src]
-include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py"]
+include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py", "scripts/analyse_v5.py"]
 
 [tool.ty.rules]
 all = "error"
 
 [tool.basedpyright]
-include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py"]
+include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py", "scripts/analyse_v5.py"]
 pythonVersion = "3.13"
 pythonPlatform = "All"
 typeCheckingMode = "all"
@@ -95,7 +97,7 @@ strictGenericNarrowing = true
 enableExperimentalFeatures = false
 
 [tool.pytest-gremlins]
-paths = ["src/statewide.py", "quality/contracts.py", "quality/assurance.py"]
+paths = ["src/statewide.py", "src/strategies.py", "src/sensitivity.py", "quality/contracts.py", "quality/assurance.py"]
 operators = ["comparison", "arithmetic", "boolean", "boundary", "return"]
 report = ["console", "html", "json"]
 cache = false

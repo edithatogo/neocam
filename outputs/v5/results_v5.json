@@ -1,0 +1,5329 @@
+{
+  "version": "5.0.0-preliminary",
+  "date": "2026-10-28",
+  "protected_v4_result_parity": {
+    "pilot": true,
+    "spokes": true
+  },
+  "psa": {
+    "pilot_new": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.46075,
+          "expected_regret": 12902.623074311638,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 37811.42625567865,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 10474.745554113917,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 39373.52229576806,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.53925,
+          "expected_regret": 6178.9814438680305,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 6178.981443868072,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.444811810623,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.379389667418
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515187
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.54,
+            "expected_regret": 10780.66305234474,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 35689.466233711755,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.46,
+            "expected_regret": 8352.785532147016,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 37251.56227380116,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 8352.785532147027,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3942,
+            "expected_regret": 16649.522642281267,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 37584.48999887163,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 10247.809297306889,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 39146.58603896103,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.6058,
+            "expected_regret": 5952.045187061003,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 5952.045187061001,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -31632.444811810623,
+            "p_a_more_saving": 0.0,
+            "lower": -46540.1098938408,
+            "upper": -21537.379389667418
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+            "p_a_more_saving": 0.0,
+            "lower": -6320.261837435173,
+            "upper": -2924.8292998313723
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -33194.54085190003,
+            "p_a_more_saving": 0.0,
+            "lower": -48838.38692563542,
+            "upper": -22600.953680515187
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "obsbot",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "state_new": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.4563,
+          "expected_regret": 342015.4457488211,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -165274.40878673064,
+          "lower": -1324809.2390492086,
+          "median": -290579.1292703811,
+          "upper": 1521450.153028361,
+          "p_saving_vs_telephone": 0.3264,
+          "p_optimal": 0.0,
+          "expected_regret": 507289.85453555174,
+          "mean_programme_cost": 655359.3102021232,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "panda": {
+          "mean": 135429.07893048142,
+          "lower": -1011528.721381418,
+          "median": 9691.55582987782,
+          "upper": 1808652.4649993181,
+          "p_saving_vs_telephone": 0.50665,
+          "p_optimal": 0.0,
+          "expected_regret": 206586.36681833968,
+          "mean_programme_cost": 354655.8224849112,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "fixed": {
+          "mean": -182457.46522771422,
+          "lower": -1342838.379869981,
+          "median": -307730.2144986839,
+          "upper": 1503999.5227394046,
+          "p_saving_vs_telephone": 0.31865,
+          "p_optimal": 0.0,
+          "expected_regret": 524472.9109765352,
+          "mean_programme_cost": 672542.3666431068,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "obsbot": {
+          "mean": 182682.4841431862,
+          "lower": -961371.462441984,
+          "median": 56693.73125619831,
+          "upper": 1858006.5069653068,
+          "p_saving_vs_telephone": 0.5437,
+          "p_optimal": 0.5437,
+          "expected_regret": 159332.96160563492,
+          "mean_programme_cost": 307402.4172722065,
+          "mean_avoided_transfers": 64.48057710872946
+        }
+      },
+      "cost_only_evpi": 159332.96160563378,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 165274.40878673064,
+          "p_a_more_saving": 0.6736,
+          "lower": -1521450.153028366,
+          "upper": 1324809.2390492086
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -135429.07893048142,
+          "p_a_more_saving": 0.49335,
+          "lower": -1808652.46499932,
+          "upper": 1011528.7213814168
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 182457.46522771422,
+          "p_a_more_saving": 0.68135,
+          "lower": -1503999.5227394078,
+          "upper": 1342838.3798699807
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -182682.4841431862,
+          "p_a_more_saving": 0.4563,
+          "lower": -1858006.5069653105,
+          "upper": 961371.4624419796
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -300703.48771721206,
+          "p_a_more_saving": 0.0,
+          "lower": -442418.32862046215,
+          "upper": -204738.05098819672
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 17183.056440983564,
+          "p_a_more_saving": 1.0,
+          "lower": 11699.31719932548,
+          "upper": 25281.047349740602
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -347956.8929299168,
+          "p_a_more_saving": 0.0,
+          "lower": -511941.20883224905,
+          "upper": -236911.17328634183
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 317886.5441581956,
+          "p_a_more_saving": 1.0,
+          "lower": 216437.36818752217,
+          "upper": 467699.37597020244
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -47253.40521270475,
+          "p_a_more_saving": 0.0,
+          "lower": -69522.88021178688,
+          "upper": -32173.122298145092
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -365139.94937090034,
+          "p_a_more_saving": 0.0,
+          "lower": -537222.2561819897,
+          "upper": -248610.4904856673
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.49335,
+            "expected_regret": 317331.9390298977,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -165274.40878673064,
+            "lower": -1324809.2390492086,
+            "median": -290579.1292703811,
+            "upper": 1521450.153028361,
+            "p_saving_vs_telephone": 0.3264,
+            "p_optimal": 0.0,
+            "expected_regret": 482606.34781662835,
+            "mean_programme_cost": 655359.3102021232,
+            "mean_avoided_transfers": 64.48057710872946
+          },
+          "panda": {
+            "mean": 135429.07893048142,
+            "lower": -1011528.721381418,
+            "median": 9691.55582987782,
+            "upper": 1808652.4649993181,
+            "p_saving_vs_telephone": 0.50665,
+            "p_optimal": 0.50665,
+            "expected_regret": 181902.86009941626,
+            "mean_programme_cost": 354655.8224849112,
+            "mean_avoided_transfers": 64.48057710872946
+          },
+          "fixed": {
+            "mean": -182457.46522771422,
+            "lower": -1342838.379869981,
+            "median": -307730.2144986839,
+            "upper": 1503999.5227394046,
+            "p_saving_vs_telephone": 0.31865,
+            "p_optimal": 0.0,
+            "expected_regret": 499789.40425761184,
+            "mean_programme_cost": 672542.3666431068,
+            "mean_avoided_transfers": 64.48057710872946
+          }
+        },
+        "cost_only_evpi": 181902.86009941637,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 165274.40878673064,
+            "p_a_more_saving": 0.6736,
+            "lower": -1521450.153028366,
+            "upper": 1324809.2390492086
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -135429.07893048142,
+            "p_a_more_saving": 0.49335,
+            "lower": -1808652.46499932,
+            "upper": 1011528.7213814168
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 182457.46522771422,
+            "p_a_more_saving": 0.68135,
+            "lower": -1503999.5227394078,
+            "upper": 1342838.3798699807
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -300703.48771721206,
+            "p_a_more_saving": 0.0,
+            "lower": -442418.32862046215,
+            "upper": -204738.05098819672
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 17183.056440983564,
+            "p_a_more_saving": 1.0,
+            "lower": 11699.31719932548,
+            "upper": 25281.047349740602
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 317886.5441581956,
+            "p_a_more_saving": 1.0,
+            "lower": 216437.36818752217,
+            "upper": 467699.37597020244
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.38435,
+            "expected_regret": 453736.3471019676,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -47146.63030493886,
+            "lower": -1440220.5634963848,
+            "median": -167566.5323929151,
+            "upper": 1840339.95874181,
+            "p_saving_vs_telephone": 0.4068,
+            "p_optimal": 0.0,
+            "expected_regret": 500882.9774069065,
+            "mean_programme_cost": 655359.3102021232,
+            "mean_avoided_transfers": 64.48057710872946
+          },
+          "panda": {
+            "mean": 253556.8574122732,
+            "lower": -1130181.9831924876,
+            "median": 131031.26157143334,
+            "upper": 2139844.9018963706,
+            "p_saving_vs_telephone": 0.5849,
+            "p_optimal": 0.0,
+            "expected_regret": 200179.48968969446,
+            "mean_programme_cost": 354655.8224849112,
+            "mean_avoided_transfers": 64.48057710872946
+          },
+          "fixed": {
+            "mean": -64329.68674592242,
+            "lower": -1458591.8711266767,
+            "median": -184538.29830360407,
+            "upper": 1825419.1597263068,
+            "p_saving_vs_telephone": 0.3981,
+            "p_optimal": 0.0,
+            "expected_regret": 518066.0338478901,
+            "mean_programme_cost": 672542.3666431068,
+            "mean_avoided_transfers": 64.48057710872946
+          },
+          "obsbot": {
+            "mean": 300810.2626249779,
+            "lower": -1083018.9899109798,
+            "median": 178154.16309528146,
+            "upper": 2187946.1567948572,
+            "p_saving_vs_telephone": 0.61565,
+            "p_optimal": 0.61565,
+            "expected_regret": 152926.08447698972,
+            "mean_programme_cost": 307402.4172722065,
+            "mean_avoided_transfers": 64.48057710872946
+          }
+        },
+        "cost_only_evpi": 152926.08447699185,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 47146.63030493886,
+            "p_a_more_saving": 0.5932,
+            "lower": -1840339.9587418153,
+            "upper": 1440220.5634963845
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -253556.8574122732,
+            "p_a_more_saving": 0.4151,
+            "lower": -2139844.901896381,
+            "upper": 1130181.9831924844
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 64329.68674592242,
+            "p_a_more_saving": 0.6019,
+            "lower": -1825419.1597263105,
+            "upper": 1458591.871126676
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -300810.2626249779,
+            "p_a_more_saving": 0.38435,
+            "lower": -2187946.1567948675,
+            "upper": 1083018.989910978
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -300703.4877172121,
+            "p_a_more_saving": 0.0,
+            "lower": -442418.32862046215,
+            "upper": -204738.0509881965
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 17183.056440983564,
+            "p_a_more_saving": 1.0,
+            "lower": 11699.31719932548,
+            "upper": 25281.047349740573
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -347956.8929299168,
+            "p_a_more_saving": 0.0,
+            "lower": -511941.20883224905,
+            "upper": -236911.17328634183
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 317886.5441581956,
+            "p_a_more_saving": 1.0,
+            "lower": 216437.36818752193,
+            "upper": 467699.3759702024
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -47253.40521270475,
+            "p_a_more_saving": 0.0,
+            "lower": -69522.8802117869,
+            "upper": -32173.12229814532
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -365139.94937090034,
+            "p_a_more_saving": 0.0,
+            "lower": -537222.2561819897,
+            "upper": -248610.4904856673
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "obsbot",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_retain_panda": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.3859,
+          "expected_regret": 14923.352716341615,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 39832.155897708624,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 10238.357720644786,
+          "lower": -33201.89927356614,
+          "median": 5552.701284069536,
+          "upper": 73345.44924081105,
+          "p_saving_vs_telephone": 0.6141,
+          "p_optimal": 0.6141,
+          "expected_regret": 4684.994995696827,
+          "mean_programme_cost": 8708.906432215774,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 41394.25193779804,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.0,
+          "expected_regret": 8199.711085898007,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 4684.994995696858,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -10238.357720644786,
+          "p_a_more_saving": 0.3859,
+          "lower": -73345.44924081113,
+          "upper": 33201.89927356609
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -35147.16090201179,
+          "p_a_more_saving": 0.0,
+          "lower": -51711.23321537867,
+          "upper": -23930.42154407491
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.444811810623,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.379389667418
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 36709.256942101216,
+          "p_a_more_saving": 1.0,
+          "lower": 24993.995834922676,
+          "upper": 54009.51024717325
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+          "p_a_more_saving": 1.0,
+          "lower": 2393.0421544074934,
+          "upper": 5171.123321537863
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515187
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "panda",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3859,
+            "expected_regret": 14923.352716341615,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 39832.155897708624,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 10238.357720644786,
+            "lower": -33201.89927356614,
+            "median": 5552.701284069536,
+            "upper": 73345.44924081105,
+            "p_saving_vs_telephone": 0.6141,
+            "p_optimal": 0.6141,
+            "expected_regret": 4684.994995696827,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 41394.25193779804,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4684.994995696858,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -10238.357720644786,
+            "p_a_more_saving": 0.3859,
+            "lower": -73345.44924081113,
+            "upper": 33201.89927356609
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -35147.16090201179,
+            "p_a_more_saving": 0.0,
+            "lower": -51711.23321537867,
+            "upper": -23930.42154407491
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 36709.256942101216,
+            "p_a_more_saving": 1.0,
+            "lower": 24993.995834922676,
+            "upper": 54009.51024717325
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.32745,
+            "expected_regret": 18892.64572025041,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 39827.61307684076,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 14212.193545421445,
+            "lower": -37158.48804785778,
+            "median": 9717.328605982626,
+            "upper": 85102.52125166036,
+            "p_saving_vs_telephone": 0.67255,
+            "p_optimal": 0.67255,
+            "expected_regret": 4680.452174828965,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 41389.70911693018,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.0,
+            "expected_regret": 8195.168265030145,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4680.452174828935,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -14212.193545421445,
+            "p_a_more_saving": 0.32745,
+            "lower": -85102.52125166054,
+            "upper": 37158.48804785771
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -35147.1609020118,
+            "p_a_more_saving": 0.0,
+            "lower": -51711.23321537867,
+            "upper": -23930.42154407491
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -31632.444811810623,
+            "p_a_more_saving": 0.0,
+            "lower": -46540.1098938408,
+            "upper": -21537.379389667418
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 36709.256942101216,
+            "p_a_more_saving": 1.0,
+            "lower": 24993.995834922676,
+            "upper": 54009.51024717325
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+            "p_a_more_saving": 1.0,
+            "lower": 2393.0421544074934,
+            "upper": 5171.123321537863
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -33194.54085190003,
+            "p_a_more_saving": 0.0,
+            "lower": -48838.38692563542,
+            "upper": -22600.953680515187
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_existing_mobile": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.3859,
+          "expected_regret": 14923.352716341615,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": 10238.357720644786,
+          "lower": -33201.89927356614,
+          "median": 5552.701284069536,
+          "upper": 73345.44924081105,
+          "p_saving_vs_telephone": 0.6141,
+          "p_optimal": 0.6141,
+          "expected_regret": 4684.994995696827,
+          "mean_programme_cost": 8708.906432215774,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 12495.475196143894,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 41394.25193779804,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.0,
+          "expected_regret": 8199.711085898007,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 4684.994995696858,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": -10238.357720644786,
+          "p_a_more_saving": 0.3859,
+          "lower": -73345.44924081113,
+          "upper": 33201.89927356609
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 7810.480200447066,
+          "p_a_more_saving": 1.0,
+          "lower": 5317.871454238864,
+          "upper": 11491.385158973031
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 36709.256942101216,
+          "p_a_more_saving": 1.0,
+          "lower": 24993.995834922676,
+          "upper": 54009.51024717325
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+          "p_a_more_saving": 1.0,
+          "lower": 2393.0421544074934,
+          "upper": 5171.123321537863
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515187
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "mobile",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3859,
+            "expected_regret": 14923.352716341615,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": 10238.357720644786,
+            "lower": -33201.89927356614,
+            "median": 5552.701284069536,
+            "upper": 73345.44924081105,
+            "p_saving_vs_telephone": 0.6141,
+            "p_optimal": 0.6141,
+            "expected_regret": 4684.994995696827,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.0,
+            "expected_regret": 12495.475196143894,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 41394.25193779804,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4684.994995696858,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": -10238.357720644786,
+            "p_a_more_saving": 0.3859,
+            "lower": -73345.44924081113,
+            "upper": 33201.89927356609
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": 7810.480200447066,
+            "p_a_more_saving": 1.0,
+            "lower": 5317.871454238864,
+            "upper": 11491.385158973031
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 36709.256942101216,
+            "p_a_more_saving": 1.0,
+            "lower": 24993.995834922676,
+            "upper": 54009.51024717325
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "mobile",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.32745,
+            "expected_regret": 18892.64572025041,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": 14212.193545421445,
+            "lower": -37158.48804785778,
+            "median": 9717.328605982626,
+            "upper": 85102.52125166036,
+            "p_saving_vs_telephone": 0.67255,
+            "p_optimal": 0.67255,
+            "expected_regret": 4680.452174828965,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 12490.93237527603,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 41389.70911693018,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.0,
+            "expected_regret": 8195.168265030145,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4680.452174828935,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": -14212.193545421445,
+            "p_a_more_saving": 0.32745,
+            "lower": -85102.52125166054,
+            "upper": 37158.48804785771
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": 7810.480200447068,
+            "p_a_more_saving": 1.0,
+            "lower": 5317.871454238864,
+            "upper": 11491.385158973031
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 36709.256942101216,
+            "p_a_more_saving": 1.0,
+            "lower": 24993.995834922676,
+            "upper": 54009.51024717325
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+            "p_a_more_saving": 1.0,
+            "lower": 2393.0421544074934,
+            "upper": 5171.123321537863
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+            "p_a_more_saving": 0.0,
+            "lower": -6320.261837435173,
+            "upper": -2924.8292998313723
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -33194.54085190003,
+            "p_a_more_saving": 0.0,
+            "lower": -48838.38692563542,
+            "upper": -22600.953680515187
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "mobile",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_existing_fixed": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.3859,
+          "expected_regret": 14923.352716341615,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 39832.155897708624,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 12495.475196143894,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": 10238.357720644786,
+          "lower": -33201.89927356614,
+          "median": 5552.701284069536,
+          "upper": 73345.44924081105,
+          "p_saving_vs_telephone": 0.6141,
+          "p_optimal": 0.6141,
+          "expected_regret": 4684.994995696827,
+          "mean_programme_cost": 8708.906432215774,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.0,
+          "expected_regret": 8199.711085898007,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 4684.994995696858,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -10238.357720644786,
+          "p_a_more_saving": 0.3859,
+          "lower": -73345.44924081113,
+          "upper": 33201.89927356609
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -35147.16090201179,
+          "p_a_more_saving": 0.0,
+          "lower": -51711.23321537867,
+          "upper": -23930.42154407491
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.444811810623,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.379389667418
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -7810.480200447066,
+          "p_a_more_saving": 0.0,
+          "lower": -11491.38515897304,
+          "upper": -5317.871454238866
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+          "p_a_more_saving": 1.0,
+          "lower": 2393.0421544074934,
+          "upper": 5171.123321537863
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "fixed",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3859,
+            "expected_regret": 14923.352716341615,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 39832.155897708624,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.0,
+            "expected_regret": 12495.475196143894,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": 10238.357720644786,
+            "lower": -33201.89927356614,
+            "median": 5552.701284069536,
+            "upper": 73345.44924081105,
+            "p_saving_vs_telephone": 0.6141,
+            "p_optimal": 0.6141,
+            "expected_regret": 4684.994995696827,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4684.994995696858,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -10238.357720644786,
+            "p_a_more_saving": 0.3859,
+            "lower": -73345.44924081113,
+            "upper": 33201.89927356609
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -35147.16090201179,
+            "p_a_more_saving": 0.0,
+            "lower": -51711.23321537867,
+            "upper": -23930.42154407491
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -7810.480200447066,
+            "p_a_more_saving": 0.0,
+            "lower": -11491.38515897304,
+            "upper": -5317.871454238866
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "fixed",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.32745,
+            "expected_regret": 18892.64572025041,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 39827.61307684076,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 12490.93237527603,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": 14212.193545421445,
+            "lower": -37158.48804785778,
+            "median": 9717.328605982626,
+            "upper": 85102.52125166036,
+            "p_saving_vs_telephone": 0.67255,
+            "p_optimal": 0.67255,
+            "expected_regret": 4680.452174828965,
+            "mean_programme_cost": 8708.906432215774,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.0,
+            "expected_regret": 8195.168265030145,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 4680.452174828935,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -14212.193545421445,
+            "p_a_more_saving": 0.32745,
+            "lower": -85102.52125166054,
+            "upper": 37158.48804785771
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -35147.1609020118,
+            "p_a_more_saving": 0.0,
+            "lower": -51711.23321537867,
+            "upper": -23930.42154407491
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -31632.444811810623,
+            "p_a_more_saving": 0.0,
+            "lower": -46540.1098938408,
+            "upper": -21537.379389667418
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -7810.480200447068,
+            "p_a_more_saving": 0.0,
+            "lower": -11491.38515897304,
+            "upper": -5317.871454238866
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+            "p_a_more_saving": 0.0,
+            "lower": -6320.261837435173,
+            "upper": -2924.8292998313723
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": 3514.7160902011797,
+            "p_a_more_saving": 1.0,
+            "lower": 2393.0421544074934,
+            "upper": 5171.123321537863
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "fixed",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_shared_mobile": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.46075,
+          "expected_regret": 12902.623074311638,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.269625,
+          "expected_regret": 6178.9814438680305,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 10474.745554113917,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 39373.52229576806,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.269625,
+          "expected_regret": 6178.9814438680305,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 6178.981443868072,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 4295.7641102458865,
+          "p_a_more_saving": 1.0,
+          "lower": 2924.8292998313714,
+          "upper": 6320.261837435169
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 33194.540851900034,
+          "p_a_more_saving": 1.0,
+          "lower": 22600.95368051518,
+          "upper": 48838.38692563539
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -9.363247954752296e-14,
+          "p_a_more_saving": 0.0107,
+          "lower": -1.8189894035458565e-12,
+          "upper": 0.0
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515187
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "mobile",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.46075,
+            "expected_regret": 12902.623074311638,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": 6723.641630443607,
+            "lower": -36714.92107675347,
+            "median": 2053.056070055608,
+            "upper": 69770.31698229357,
+            "p_saving_vs_telephone": 0.53925,
+            "p_optimal": 0.53925,
+            "expected_regret": 6178.9814438680305,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.0,
+            "expected_regret": 10474.745554113917,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 39373.52229576806,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 6178.981443868072,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": -6723.641630443607,
+            "p_a_more_saving": 0.46075,
+            "lower": -69770.31698229407,
+            "upper": 36714.921076753446
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": 4295.7641102458865,
+            "p_a_more_saving": 1.0,
+            "lower": 2924.8292998313714,
+            "upper": 6320.261837435169
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 33194.540851900034,
+            "p_a_more_saving": 1.0,
+            "lower": 22600.95368051518,
+            "upper": 48838.38692563539
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "mobile",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3942,
+            "expected_regret": 16649.522642281267,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": 10697.477455220265,
+            "lower": -40707.09813200389,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.3029,
+            "expected_regret": 5952.045187061003,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 10247.809297306889,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 39146.58603896103,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.3029,
+            "expected_regret": 5952.045187061003,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 5952.045187061001,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200388
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": 4295.7641102458865,
+            "p_a_more_saving": 1.0,
+            "lower": 2924.8292998313714,
+            "upper": 6320.261837435169
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 33194.54085190003,
+            "p_a_more_saving": 1.0,
+            "lower": 22600.95368051518,
+            "upper": 48838.38692563539
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -9.358700481243432e-14,
+            "p_a_more_saving": 0.00965,
+            "lower": -1.8189894035458565e-12,
+            "upper": 0.0
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+            "p_a_more_saving": 0.0,
+            "lower": -6320.261837435173,
+            "upper": -2924.8292998313723
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -33194.54085190003,
+            "p_a_more_saving": 0.0,
+            "lower": -48838.38692563542,
+            "upper": -22600.953680515187
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "mobile",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_shared_fixed": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.46075,
+          "expected_regret": 12902.623074311638,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 37811.42625567865,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 10474.745554113917,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": 6567.432026434666,
+          "lower": -36884.68518145542,
+          "median": 1897.3965281869014,
+          "upper": 69654.51426233539,
+          "p_saving_vs_telephone": 0.53655,
+          "p_optimal": 0.0,
+          "expected_regret": 6335.191047876972,
+          "mean_programme_cost": 12379.832126425896,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 6723.641630443607,
+          "lower": -36714.92107675347,
+          "median": 2053.056070055608,
+          "upper": 69770.31698229357,
+          "p_saving_vs_telephone": 0.53925,
+          "p_optimal": 0.53925,
+          "expected_regret": 6178.9814438680305,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 6178.981443868072,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -6567.432026434666,
+          "p_a_more_saving": 0.46345,
+          "lower": -69654.51426233578,
+          "upper": 36884.6851814554
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -6723.641630443607,
+          "p_a_more_saving": 0.46075,
+          "lower": -69770.31698229407,
+          "upper": 36714.921076753446
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -31476.235207801677,
+          "p_a_more_saving": 0.0,
+          "lower": -46310.282190661346,
+          "upper": -21431.021960582646
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.444811810623,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.379389667418
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -4139.554506236945,
+          "p_a_more_saving": 0.0,
+          "lower": -6090.434134255712,
+          "upper": -2818.4718707465995
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -156.20960400894154,
+          "p_a_more_saving": 0.0,
+          "lower": -229.8277031794612,
+          "upper": -106.35742908477272
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.46345,
+            "expected_regret": 12819.093753156367,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 37727.89693452338,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.0,
+            "expected_regret": 10391.216232958648,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": 6567.432026434666,
+            "lower": -36884.68518145542,
+            "median": 1897.3965281869014,
+            "upper": 69654.51426233539,
+            "p_saving_vs_telephone": 0.53655,
+            "p_optimal": 0.53655,
+            "expected_regret": 6251.661726721702,
+            "mean_programme_cost": 12379.832126425896,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 6251.661726721706,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -6567.432026434666,
+            "p_a_more_saving": 0.46345,
+            "lower": -69654.51426233578,
+            "upper": 36884.6851814554
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -31476.235207801677,
+            "p_a_more_saving": 0.0,
+            "lower": -46310.282190661346,
+            "upper": -21431.021960582646
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -4139.554506236945,
+            "p_a_more_saving": 0.0,
+            "lower": -6090.434134255712,
+            "upper": -2818.4718707465995
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "fixed",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.3942,
+            "expected_regret": 16649.522642281267,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 37584.48999887163,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 10247.809297306889,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": 10541.267851211323,
+            "lower": -40841.76741673577,
+            "median": 6065.234370556274,
+            "upper": 81641.23547490145,
+            "p_saving_vs_telephone": 0.60345,
+            "p_optimal": 0.0,
+            "expected_regret": 6108.254791069944,
+            "mean_programme_cost": 12379.832126425896,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 10697.477455220265,
+            "lower": -40707.098132003885,
+            "median": 6226.727408855048,
+            "upper": 81784.78117827745,
+            "p_saving_vs_telephone": 0.6058,
+            "p_optimal": 0.6058,
+            "expected_regret": 5952.045187061003,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 5952.045187061001,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -10541.267851211323,
+            "p_a_more_saving": 0.39655,
+            "lower": -81641.23547490172,
+            "upper": 40841.76741673571
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -10697.477455220265,
+            "p_a_more_saving": 0.3942,
+            "lower": -81784.78117827771,
+            "upper": 40707.09813200387
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -31476.235207801677,
+            "p_a_more_saving": 0.0,
+            "lower": -46310.282190661346,
+            "upper": -21431.021960582646
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -31632.444811810623,
+            "p_a_more_saving": 0.0,
+            "lower": -46540.1098938408,
+            "upper": -21537.379389667418
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": -4139.554506236945,
+            "p_a_more_saving": 0.0,
+            "lower": -6090.434134255712,
+            "upper": -2818.4718707465995
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+            "p_a_more_saving": 0.0,
+            "lower": -6320.261837435173,
+            "upper": -2924.8292998313723
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -156.2096040089416,
+            "p_a_more_saving": 0.0,
+            "lower": -229.8277031794612,
+            "upper": -106.35742908477262
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "obsbot",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_obsbot_7500": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.49545,
+          "expected_regret": 11955.07833351546,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 36863.88151488247,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.0,
+          "expected_regret": 9527.200813317737,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 38425.97755497188,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 4906.184216259254,
+          "lower": -38611.89517623517,
+          "median": 229.52587389944347,
+          "upper": 68093.49518076332,
+          "p_saving_vs_telephone": 0.50455,
+          "p_optimal": 0.50455,
+          "expected_regret": 7048.8941172562045,
+          "mean_programme_cost": 14041.079936601309,
+          "mean_avoided_transfers": 2.1693342987289586
+        }
+      },
+      "cost_only_evpi": 7048.894117256233,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4906.184216259254,
+          "p_a_more_saving": 0.49545,
+          "lower": -68093.49518076339,
+          "upper": 38611.89517623515
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -29814.987397626264,
+          "p_a_more_saving": 0.0,
+          "lower": -45085.66261274806,
+          "upper": -19550.084079980174
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -2478.3066960615324,
+          "p_a_more_saving": 0.0,
+          "lower": -4996.647676507534,
+          "upper": -735.0285812002636
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31377.083437715675,
+          "p_a_more_saving": 0.0,
+          "lower": -47404.2031837406,
+          "upper": -20615.81354147416
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.54,
+            "expected_regret": 10780.66305234474,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 35689.466233711755,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.46,
+            "expected_regret": 8352.785532147016,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 37251.56227380116,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 8352.785532147027,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.42335,
+            "expected_regret": 15575.79545144921,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 36510.762808039566,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.0,
+            "expected_regret": 9174.082106474832,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 38072.85884812898,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 8880.020041035912,
+            "lower": -42609.6902873734,
+            "median": 4368.322250776112,
+            "upper": 79820.65433218518,
+            "p_saving_vs_telephone": 0.57665,
+            "p_optimal": 0.57665,
+            "expected_regret": 6695.7754104133,
+            "mean_programme_cost": 14041.079936601309,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 6695.775410413231,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -8880.020041035912,
+            "p_a_more_saving": 0.42335,
+            "lower": -79820.65433218528,
+            "upper": 42609.69028737331
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -29814.987397626264,
+            "p_a_more_saving": 0.0,
+            "lower": -45085.662612748056,
+            "upper": -19550.084079980174
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -2478.3066960615324,
+            "p_a_more_saving": 0.0,
+            "lower": -4996.647676507534,
+            "upper": -735.0285812002636
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -31377.083437715675,
+            "p_a_more_saving": 0.0,
+            "lower": -47404.203183740596,
+            "upper": -20615.81354147416
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "obsbot",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_obsbot_reliability80": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.5038,
+          "expected_regret": 11074.408487336244,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 35983.21166870326,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.2966,
+          "expected_regret": 8646.530967138522,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 37545.30770879267,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 3748.196751873865,
+          "lower": -33142.049211167294,
+          "median": -172.36577454420149,
+          "upper": 57492.12856783657,
+          "p_saving_vs_telephone": 0.49615,
+          "p_optimal": 0.1996,
+          "expected_regret": 7326.21173546238,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 1.8283634383359637
+        }
+      },
+      "cost_only_evpi": 7326.2117354624315,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -3748.196751873865,
+          "p_a_more_saving": 0.50385,
+          "lower": -57492.12856783667,
+          "upper": 33142.04921116724
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -28656.999933240877,
+          "p_a_more_saving": 0.001,
+          "lower": -45351.54646752564,
+          "upper": -14074.799451089757
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -1320.3192316761435,
+          "p_a_more_saving": 0.29685,
+          "lower": -8404.976488269966,
+          "upper": 9827.772506684822
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -30219.095973330295,
+          "p_a_more_saving": 0.00055,
+          "lower": -47615.36146809499,
+          "upper": -15256.92492817493
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "attenuated",
+      "without_proposed_obsbot": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.54,
+            "expected_regret": 10780.66305234474,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -24908.80318136701,
+            "lower": -71034.54631318741,
+            "median": -29061.747678163803,
+            "upper": 39796.37090146941,
+            "p_saving_vs_telephone": 0.15275,
+            "p_optimal": 0.0,
+            "expected_regret": 35689.466233711755,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 2427.8775201977214,
+            "lower": -41147.577109063444,
+            "median": -2194.1815250149766,
+            "upper": 65642.17375501068,
+            "p_saving_vs_telephone": 0.46,
+            "p_optimal": 0.46,
+            "expected_regret": 8352.785532147016,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -26470.899221456428,
+            "lower": -72830.2031280788,
+            "median": -30567.44948145433,
+            "upper": 38286.638156602356,
+            "p_saving_vs_telephone": 0.14285,
+            "p_optimal": 0.0,
+            "expected_regret": 37251.56227380116,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          }
+        },
+        "cost_only_evpi": 8352.785532147027,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 24908.80318136701,
+            "p_a_more_saving": 0.84725,
+            "lower": -39796.37090146947,
+            "upper": 71034.54631318738
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+            "p_a_more_saving": 0.54,
+            "lower": -65642.17375501084,
+            "upper": 41147.577109063386
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 26470.899221456428,
+            "p_a_more_saving": 0.85715,
+            "lower": -38286.63815660242,
+            "upper": 72830.20312807878
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed"
+        ],
+        "preferred_expected_value": "panda",
+        "metric": "net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      },
+      "societal": {
+        "summary": {
+          "telephone": {
+            "mean": 0.0,
+            "lower": 0.0,
+            "median": 0.0,
+            "upper": 0.0,
+            "p_saving_vs_telephone": 0.0,
+            "p_optimal": 0.43285,
+            "expected_regret": 14528.232178626544,
+            "mean_programme_cost": 0.0,
+            "mean_avoided_transfers": 0.0
+          },
+          "mobile": {
+            "mean": -20934.967356590354,
+            "lower": -74571.16591263427,
+            "median": -24882.296568623336,
+            "upper": 51187.62070670342,
+            "p_saving_vs_telephone": 0.20785,
+            "p_optimal": 0.0,
+            "expected_regret": 35463.199535216896,
+            "mean_programme_cost": 43856.06733422758,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "panda": {
+            "mean": 6401.71334497438,
+            "lower": -45001.96262936865,
+            "median": 1944.130139228154,
+            "upper": 77501.13850473415,
+            "p_saving_vs_telephone": 0.5325,
+            "p_optimal": 0.3602,
+            "expected_regret": 8126.518833652165,
+            "mean_programme_cost": 16519.386632662838,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "fixed": {
+            "mean": -22497.06339667977,
+            "lower": -76479.4780603349,
+            "median": -26430.79838208854,
+            "upper": 49829.440311848084,
+            "p_saving_vs_telephone": 0.19575,
+            "p_optimal": 0.0,
+            "expected_regret": 37025.29557530631,
+            "mean_programme_cost": 45418.16337431699,
+            "mean_avoided_transfers": 2.1693342987289586
+          },
+          "obsbot": {
+            "mean": 7095.955237388802,
+            "lower": -36148.22813983632,
+            "median": 3346.515348302267,
+            "upper": 66564.78969760281,
+            "p_saving_vs_telephone": 0.5671,
+            "p_optimal": 0.20695,
+            "expected_regret": 7432.27694123774,
+            "mean_programme_cost": 12223.622522416954,
+            "mean_avoided_transfers": 1.8283634383359637
+          }
+        },
+        "cost_only_evpi": 7432.276941237683,
+        "pairwise": [
+          {
+            "a": "telephone",
+            "b": "mobile",
+            "mean_incremental_saving_a_vs_b": 20934.967356590354,
+            "p_a_more_saving": 0.79215,
+            "lower": -51187.62070670343,
+            "upper": 74571.16591263426
+          },
+          {
+            "a": "telephone",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -6401.71334497438,
+            "p_a_more_saving": 0.4675,
+            "lower": -77501.1385047342,
+            "upper": 45001.962629368616
+          },
+          {
+            "a": "telephone",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 22497.06339667977,
+            "p_a_more_saving": 0.80425,
+            "lower": -49829.44031184814,
+            "upper": 76479.4780603349
+          },
+          {
+            "a": "telephone",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -7095.955237388802,
+            "p_a_more_saving": 0.4329,
+            "lower": -66564.78969760281,
+            "upper": 36148.22813983631
+          },
+          {
+            "a": "mobile",
+            "b": "panda",
+            "mean_incremental_saving_a_vs_b": -27336.68070156473,
+            "p_a_more_saving": 0.0,
+            "lower": -40219.84805640564,
+            "upper": -18612.550089836044
+          },
+          {
+            "a": "mobile",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+            "p_a_more_saving": 1.0,
+            "lower": 1063.57429084777,
+            "upper": 2298.277031794617
+          },
+          {
+            "a": "mobile",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -28030.922593979158,
+            "p_a_more_saving": 0.00175,
+            "lower": -45308.34461431445,
+            "upper": -12379.382533070439
+          },
+          {
+            "a": "panda",
+            "b": "fixed",
+            "mean_incremental_saving_a_vs_b": 28898.776741654146,
+            "p_a_more_saving": 1.0,
+            "lower": 19676.12438068381,
+            "upper": 42518.12508820022
+          },
+          {
+            "a": "panda",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -694.2418924144242,
+            "p_a_more_saving": 0.3605,
+            "lower": -9014.258516734171,
+            "upper": 11720.199484263967
+          },
+          {
+            "a": "fixed",
+            "b": "obsbot",
+            "mean_incremental_saving_a_vs_b": -29593.018634068572,
+            "p_a_more_saving": 0.00125,
+            "lower": -47500.386486977346,
+            "upper": -13605.5339527829
+          }
+        ],
+        "eligible": [
+          "telephone",
+          "mobile",
+          "panda",
+          "fixed",
+          "obsbot"
+        ],
+        "preferred_expected_value": "obsbot",
+        "metric": "societal_net_saving",
+        "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+      }
+    },
+    "pilot_published": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.24535,
+          "expected_regret": 27794.592712532343,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -6681.104892480957,
+          "lower": -59208.22595469507,
+          "median": -13291.204721259415,
+          "upper": 79849.75642450078,
+          "p_saving_vs_telephone": 0.3501,
+          "p_optimal": 0.0,
+          "expected_regret": 34475.6976050133,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 4.225015822893094
+        },
+        "panda": {
+          "mean": 20655.575809083773,
+          "lower": -28908.62164025232,
+          "median": 13892.662743689012,
+          "upper": 106248.37858433569,
+          "p_saving_vs_telephone": 0.6921,
+          "p_optimal": 0.0,
+          "expected_regret": 7139.016903448567,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 4.225015822893094
+        },
+        "fixed": {
+          "mean": -8243.200932570371,
+          "lower": -61221.98037432656,
+          "median": -14813.1972577923,
+          "upper": 78476.5253778222,
+          "p_saving_vs_telephone": 0.33475,
+          "p_optimal": 0.0,
+          "expected_regret": 36037.79364510271,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 4.225015822893094
+        },
+        "obsbot": {
+          "mean": 24951.33991932966,
+          "lower": -24503.348847971323,
+          "median": 18166.657519491273,
+          "upper": 110430.4705703347,
+          "p_saving_vs_telephone": 0.75465,
+          "p_optimal": 0.75465,
+          "expected_regret": 2843.252793202682,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 4.225015822893094
+        }
+      },
+      "cost_only_evpi": 2843.2527932026424,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 6681.104892480957,
+          "p_a_more_saving": 0.6499,
+          "lower": -79849.75642450078,
+          "upper": 59208.22595469503
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -20655.575809083773,
+          "p_a_more_saving": 0.3079,
+          "lower": -106248.3785843357,
+          "upper": 28908.621640252313
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 8243.200932570371,
+          "p_a_more_saving": 0.66525,
+          "lower": -78476.52537782221,
+          "upper": 61221.98037432632
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -24951.33991932966,
+          "p_a_more_saving": 0.24535,
+          "lower": -110430.47057033482,
+          "upper": 24503.348847971298
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.444811810623,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.379389667418
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313723
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515187
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "published"
+    },
+    "pilot_null": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 1.0,
+          "expected_regret": 0.0,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -43889.600703241646,
+          "lower": -60989.69946202555,
+          "median": -43014.236202006854,
+          "upper": -32065.200058623675,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 43889.600703241646,
+          "mean_programme_cost": 43889.600703241646,
+          "mean_avoided_transfers": 0.0
+        },
+        "panda": {
+          "mean": -16516.444559194137,
+          "lower": -21453.370735537956,
+          "median": -16403.481497810997,
+          "upper": -12135.889509216424,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 16516.444559194137,
+          "mean_programme_cost": 16516.444559194137,
+          "mean_avoided_transfers": 0.0
+        },
+        "fixed": {
+          "mean": -45453.78105433007,
+          "lower": -63290.759304753745,
+          "median": -44536.89786664196,
+          "upper": -33158.382567601424,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 45453.78105433007,
+          "mean_programme_cost": 45453.78105433007,
+          "mean_avoided_transfers": 0.0
+        },
+        "obsbot": {
+          "mean": -12214.948593700958,
+          "lower": -16049.511069599288,
+          "median": -12167.662581267832,
+          "upper": -8569.892058820964,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 12214.948593700958,
+          "mean_programme_cost": 12214.948593700958,
+          "mean_avoided_transfers": 0.0
+        }
+      },
+      "cost_only_evpi": 0,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 43889.600703241646,
+          "p_a_more_saving": 1.0,
+          "lower": 32065.20005862367,
+          "upper": 60989.69946202555
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 16516.444559194137,
+          "p_a_more_saving": 1.0,
+          "lower": 12135.889509216424,
+          "upper": 21453.370735537952
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 45453.78105433007,
+          "p_a_more_saving": 1.0,
+          "lower": 33158.3825676014,
+          "upper": 63290.75930475369
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 12214.948593700958,
+          "p_a_more_saving": 1.0,
+          "lower": 8569.89205882096,
+          "upper": 16049.511069599286
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27373.15614404751,
+          "p_a_more_saving": 0.0,
+          "lower": -40395.4806931304,
+          "upper": -18678.87433951093
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1564.1803510884306,
+          "p_a_more_saving": 1.0,
+          "lower": 1067.364247972058,
+          "upper": 2308.3131824645952
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31674.65210954069,
+          "p_a_more_saving": 0.0,
+          "lower": -46743.34194490803,
+          "upper": -21614.12602143408
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28937.33649513594,
+          "p_a_more_saving": 1.0,
+          "lower": 19746.238587482974,
+          "upper": 42703.79387559499
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4301.49596549318,
+          "p_a_more_saving": 0.0,
+          "lower": -6347.86125177763,
+          "upper": -2935.251681923148
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33238.83246062912,
+          "p_a_more_saving": 0.0,
+          "lower": -49051.65512737263,
+          "upper": -22681.49026940614
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "telephone",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "null"
+    },
+    "pilot_skeptical": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.7822,
+          "expected_regret": 3378.2969791041696,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -44666.064000928534,
+          "lower": -95343.22383714779,
+          "median": -43719.26155415732,
+          "upper": 3502.0297911844586,
+          "p_saving_vs_telephone": 0.0318,
+          "p_optimal": 0.0,
+          "expected_regret": 48044.3609800327,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": -0.018406110216589423
+        },
+        "panda": {
+          "mean": -17329.3832993638,
+          "lower": -66931.99188571493,
+          "median": -16613.769058705457,
+          "upper": 29407.30441964634,
+          "p_saving_vs_telephone": 0.1652,
+          "p_optimal": 0.0,
+          "expected_regret": 20707.680278467964,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": -0.018406110216589423
+        },
+        "fixed": {
+          "mean": -46228.160041017945,
+          "lower": -97201.02127366701,
+          "median": -45299.18243030281,
+          "upper": 2093.4019807189843,
+          "p_saving_vs_telephone": 0.0291,
+          "p_optimal": 0.0,
+          "expected_regret": 49606.457020122114,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": -0.018406110216589423
+        },
+        "obsbot": {
+          "mean": -13033.619189117911,
+          "lower": -62581.08693075723,
+          "median": -12303.33767257741,
+          "upper": 33593.918707388846,
+          "p_saving_vs_telephone": 0.2178,
+          "p_optimal": 0.2178,
+          "expected_regret": 16411.91616822208,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": -0.018406110216589423
+        }
+      },
+      "cost_only_evpi": 3378.2969791041696,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 44666.064000928534,
+          "p_a_more_saving": 0.9682,
+          "lower": -3502.029791184493,
+          "upper": 95343.22383714764
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 17329.3832993638,
+          "p_a_more_saving": 0.8348,
+          "lower": -29407.304419646414,
+          "upper": 66931.99188571487
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 46228.160041017945,
+          "p_a_more_saving": 0.9709,
+          "lower": -2093.4019807189907,
+          "upper": 97201.02127366701
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 13033.619189117911,
+          "p_a_more_saving": 0.7822,
+          "lower": -33593.91870738889,
+          "upper": 62581.08693075719
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.5742908477735,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -31632.44481181062,
+          "p_a_more_saving": 0.0,
+          "lower": -46540.1098938408,
+          "upper": -21537.37938966742
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.77674165415,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.124380683814,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4295.7641102458865,
+          "p_a_more_saving": 0.0,
+          "lower": -6320.261837435173,
+          "upper": -2924.8292998313755
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -33194.540851900034,
+          "p_a_more_saving": 0.0,
+          "lower": -48838.38692563542,
+          "upper": -22600.953680515195
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "telephone",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "skeptical"
+    },
+    "state_published": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.24925,
+          "expected_regret": 731451.5463586502,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": 307543.9394893197,
+          "lower": -1010533.6477991005,
+          "median": 128680.11571014737,
+          "upper": 2586930.7023176425,
+          "p_saving_vs_telephone": 0.561,
+          "p_optimal": 0.0,
+          "expected_regret": 423907.6068693306,
+          "mean_programme_cost": 655359.3102021232,
+          "mean_avoided_transfers": 125.58256053713536
+        },
+        "panda": {
+          "mean": 608247.4272065317,
+          "lower": -699087.9376121834,
+          "median": 425171.4224975549,
+          "upper": 2890442.4690662413,
+          "p_saving_vs_telephone": 0.72575,
+          "p_optimal": 0.0,
+          "expected_regret": 123204.1191521185,
+          "mean_programme_cost": 354655.8224849112,
+          "mean_avoided_transfers": 125.58256053713536
+        },
+        "fixed": {
+          "mean": 290360.88304833614,
+          "lower": -1029289.5536176983,
+          "median": 111993.44470572734,
+          "upper": 2567843.002308234,
+          "p_saving_vs_telephone": 0.55325,
+          "p_optimal": 0.0,
+          "expected_regret": 441090.66331031406,
+          "mean_programme_cost": 672542.3666431068,
+          "mean_avoided_transfers": 125.58256053713536
+        },
+        "obsbot": {
+          "mean": 655500.8324192364,
+          "lower": -651455.3375990593,
+          "median": 472322.4294943269,
+          "upper": 2933897.7896305136,
+          "p_saving_vs_telephone": 0.75075,
+          "p_optimal": 0.75075,
+          "expected_regret": 75950.71393941375,
+          "mean_programme_cost": 307402.4172722065,
+          "mean_avoided_transfers": 125.58256053713536
+        }
+      },
+      "cost_only_evpi": 75950.71393941587,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": -307543.9394893197,
+          "p_a_more_saving": 0.439,
+          "lower": -2586930.7023176444,
+          "upper": 1010533.6477990993
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -608247.4272065317,
+          "p_a_more_saving": 0.27425,
+          "lower": -2890442.4690662418,
+          "upper": 699087.937612183
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": -290360.88304833614,
+          "p_a_more_saving": 0.44675,
+          "lower": -2567843.0023082406,
+          "upper": 1029289.5536176973
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -655500.8324192364,
+          "p_a_more_saving": 0.24925,
+          "lower": -2933897.7896305146,
+          "upper": 651455.3375990583
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -300703.48771721206,
+          "p_a_more_saving": 0.0,
+          "lower": -442418.3286204621,
+          "upper": -204738.0509881965
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 17183.056440983564,
+          "p_a_more_saving": 1.0,
+          "lower": 11699.317199325937,
+          "upper": 25281.047349740602
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -347956.8929299168,
+          "p_a_more_saving": 0.0,
+          "lower": -511941.20883224905,
+          "upper": -236911.17328634136
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 317886.5441581956,
+          "p_a_more_saving": 1.0,
+          "lower": 216437.36818752237,
+          "upper": 467699.3759702024
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -47253.405212704754,
+          "p_a_more_saving": 0.0,
+          "lower": -69522.88021178693,
+          "upper": -32173.122298144866
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -365139.94937090034,
+          "p_a_more_saving": 0.0,
+          "lower": -537222.2561819897,
+          "upper": -248610.4904856673
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "published"
+    },
+    "state_null": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 1.0,
+          "expected_regret": 0.0,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -655528.6539579428,
+          "lower": -857006.3039082224,
+          "median": -647883.7640423425,
+          "upper": -499128.4730519857,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 655528.6539579428,
+          "mean_programme_cost": 655528.6539579428,
+          "mean_avoided_transfers": 0.0
+        },
+        "panda": {
+          "mean": -354423.93637342023,
+          "lower": -454679.9600579764,
+          "median": -352993.01583097456,
+          "upper": -263278.4135892585,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 354423.93637342023,
+          "mean_programme_cost": 354423.93637342023,
+          "mean_avoided_transfers": 0.0
+        },
+        "fixed": {
+          "mean": -672734.6378199155,
+          "lower": -882209.9733920804,
+          "median": -664354.6147215683,
+          "upper": -511637.7921083924,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 672734.6378199155,
+          "mean_programme_cost": 672734.6378199155,
+          "mean_avoided_transfers": 0.0
+        },
+        "obsbot": {
+          "mean": -307107.4807529952,
+          "lower": -402531.1668218082,
+          "median": -305273.084159588,
+          "upper": -220692.02292132584,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.0,
+          "expected_regret": 307107.4807529952,
+          "mean_programme_cost": 307107.4807529952,
+          "mean_avoided_transfers": 0.0
+        }
+      },
+      "cost_only_evpi": 0,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 655528.6539579428,
+          "p_a_more_saving": 1.0,
+          "lower": 499128.47305198567,
+          "upper": 857006.3039082219
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 354423.93637342023,
+          "p_a_more_saving": 1.0,
+          "lower": 263278.4135892585,
+          "upper": 454679.9600579763
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 672734.6378199155,
+          "p_a_more_saving": 1.0,
+          "lower": 511637.79210839234,
+          "upper": 882209.9733920798
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 307107.4807529952,
+          "p_a_more_saving": 1.0,
+          "lower": 220692.02292132578,
+          "upper": 402531.1668218082
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -301104.7175845226,
+          "p_a_more_saving": 0.0,
+          "lower": -444350.28762443434,
+          "upper": -205467.6177346203
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 17205.983861972738,
+          "p_a_more_saving": 1.0,
+          "lower": 11741.006727692498,
+          "upper": 25391.445007110597
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -348421.1732049476,
+          "p_a_more_saving": 0.0,
+          "lower": -514176.7613939883,
+          "upper": -237755.38623577496
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 318310.70144649537,
+          "p_a_more_saving": 1.0,
+          "lower": 217208.62446231264,
+          "upper": 469741.7326315448
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -47316.455620424975,
+          "p_a_more_saving": 0.0,
+          "lower": -69826.47376955397,
+          "upper": -32287.768501154667
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -365627.1570669203,
+          "p_a_more_saving": 0.0,
+          "lower": -539568.2064010989,
+          "upper": -249496.39296346746
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "telephone",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "null"
+    },
+    "state_skeptical": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.77775,
+          "expected_regret": 90386.37872464629,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -679145.773148215,
+          "lower": -1997568.5688469226,
+          "median": -656440.9720096933,
+          "upper": 557596.5946907296,
+          "p_saving_vs_telephone": 0.09555,
+          "p_optimal": 0.0,
+          "expected_regret": 769532.1518728613,
+          "mean_programme_cost": 655359.3102021232,
+          "mean_avoided_transfers": -0.5464120321262055
+        },
+        "panda": {
+          "mean": -378442.2854310029,
+          "lower": -1695311.1411946504,
+          "median": -357881.4613387465,
+          "upper": 839701.990702089,
+          "p_saving_vs_telephone": 0.1983,
+          "p_optimal": 0.0,
+          "expected_regret": 468828.6641556492,
+          "mean_programme_cost": 354655.8224849112,
+          "mean_avoided_transfers": -0.5464120321262055
+        },
+        "fixed": {
+          "mean": -696328.8295891985,
+          "lower": -2015616.4245959003,
+          "median": -673556.9107593717,
+          "upper": 541472.6976037527,
+          "p_saving_vs_telephone": 0.0919,
+          "p_optimal": 0.0,
+          "expected_regret": 786715.2083138449,
+          "mean_programme_cost": 672542.3666431068,
+          "mean_avoided_transfers": -0.5464120321262055
+        },
+        "obsbot": {
+          "mean": -331188.8802182982,
+          "lower": -1648963.4591473865,
+          "median": -310482.68197751686,
+          "upper": 888981.659704274,
+          "p_saving_vs_telephone": 0.22225,
+          "p_optimal": 0.22225,
+          "expected_regret": 421575.25894294446,
+          "mean_programme_cost": 307402.4172722065,
+          "mean_avoided_transfers": -0.5464120321262055
+        }
+      },
+      "cost_only_evpi": 90386.37872464629,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 679145.773148215,
+          "p_a_more_saving": 0.90445,
+          "lower": -557596.5946907315,
+          "upper": 1997568.5688469203
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": 378442.2854310029,
+          "p_a_more_saving": 0.8017,
+          "lower": -839701.990702092,
+          "upper": 1695311.1411946479
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 696328.8295891985,
+          "p_a_more_saving": 0.9081,
+          "lower": -541472.6976037533,
+          "upper": 2015616.4245958957
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 331188.8802182982,
+          "p_a_more_saving": 0.77775,
+          "lower": -888981.6597042748,
+          "upper": 1648963.4591473837
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -300703.48771721206,
+          "p_a_more_saving": 0.0,
+          "lower": -442418.32862046215,
+          "upper": -204738.0509881965
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 17183.056440983564,
+          "p_a_more_saving": 1.0,
+          "lower": 11699.317199325651,
+          "upper": 25281.047349740606
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -347956.8929299168,
+          "p_a_more_saving": 0.0,
+          "lower": -511941.20883224905,
+          "upper": -236911.1732863417
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 317886.5441581956,
+          "p_a_more_saving": 1.0,
+          "lower": 216437.3681875221,
+          "upper": 467699.37597020244
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -47253.40521270475,
+          "p_a_more_saving": 0.0,
+          "lower": -69522.88021178688,
+          "upper": -32173.12229814521
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -365139.94937090034,
+          "p_a_more_saving": 0.0,
+          "lower": -537222.2561819897,
+          "upper": -248610.49048566737
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "telephone",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim",
+      "seed": 20261027,
+      "iterations": 20000,
+      "effect_mode": "skeptical"
+    },
+    "pilot_prototype_reliability_uncertain": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.49605,
+          "expected_regret": 11339.452455317996,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 36248.255636685004,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.2169,
+          "expected_regret": 8911.574935120274,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 37810.351676774415,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 4210.057068975502,
+          "lower": -33596.987642335975,
+          "median": 142.96794782945472,
+          "upper": 59585.746551983604,
+          "p_saving_vs_telephone": 0.5028,
+          "p_optimal": 0.28705,
+          "expected_regret": 7129.395386342496,
+          "mean_programme_cost": 12223.622522416954,
+          "mean_avoided_transfers": 1.8827885988415087
+        }
+      },
+      "cost_only_evpi": 7129.395386342509,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -4210.057068975502,
+          "p_a_more_saving": 0.4972,
+          "lower": -59585.74655198423,
+          "upper": 33596.98764233595
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -29118.860250342514,
+          "p_a_more_saving": 0.0015,
+          "lower": -45532.201385483044,
+          "upper": -14205.895680084339
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -1782.1795487777804,
+          "p_a_more_saving": 0.2205,
+          "lower": -7729.895772202874,
+          "upper": 9821.98700989607
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -30680.95629043193,
+          "p_a_more_saving": 0.0012,
+          "lower": -47763.82331320703,
+          "upper": -15497.449456235032
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+    },
+    "pilot_prototype_cost_and_reliability_uncertain": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.51025,
+          "expected_regret": 11159.8094326618,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -24908.80318136701,
+          "lower": -71034.54631318741,
+          "median": -29061.747678163803,
+          "upper": 39796.37090146941,
+          "p_saving_vs_telephone": 0.15275,
+          "p_optimal": 0.0,
+          "expected_regret": 36068.6126140288,
+          "mean_programme_cost": 43856.06733422758,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "panda": {
+          "mean": 2427.8775201977214,
+          "lower": -41147.577109063444,
+          "median": -2194.1815250149766,
+          "upper": 65642.17375501068,
+          "p_saving_vs_telephone": 0.46,
+          "p_optimal": 0.27155,
+          "expected_regret": 8731.931912464077,
+          "mean_programme_cost": 16519.386632662838,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "fixed": {
+          "mean": -26470.899221456428,
+          "lower": -72830.2031280788,
+          "median": -30567.44948145433,
+          "upper": 38286.638156602356,
+          "p_saving_vs_telephone": 0.14285,
+          "p_optimal": 0.0,
+          "expected_regret": 37630.70865411822,
+          "mean_programme_cost": 45418.16337431699,
+          "mean_avoided_transfers": 2.1693342987289586
+        },
+        "obsbot": {
+          "mean": 3295.0700368319676,
+          "lower": -34426.445139593896,
+          "median": -756.7793139395671,
+          "upper": 58438.335631155984,
+          "p_saving_vs_telephone": 0.4842,
+          "p_optimal": 0.2182,
+          "expected_regret": 7864.739395829833,
+          "mean_programme_cost": 13138.60955456049,
+          "mean_avoided_transfers": 1.8827885988415087
+        }
+      },
+      "cost_only_evpi": 7864.7393958298235,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 24908.80318136701,
+          "p_a_more_saving": 0.84725,
+          "lower": -39796.37090146947,
+          "upper": 71034.54631318738
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -2427.8775201977214,
+          "p_a_more_saving": 0.54,
+          "lower": -65642.17375501084,
+          "upper": 41147.577109063386
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 26470.899221456428,
+          "p_a_more_saving": 0.85715,
+          "lower": -38286.63815660242,
+          "upper": 72830.20312807878
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -3295.0700368319676,
+          "p_a_more_saving": 0.5158,
+          "lower": -58438.33563115605,
+          "upper": 34426.4451395938
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -27336.68070156473,
+          "p_a_more_saving": 0.0,
+          "lower": -40219.84805640564,
+          "upper": -18612.550089836044
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 1562.0960400894146,
+          "p_a_more_saving": 1.0,
+          "lower": 1063.57429084777,
+          "upper": 2298.277031794617
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -28203.87321819898,
+          "p_a_more_saving": 0.00185,
+          "lower": -44473.74500381361,
+          "upper": -13437.134856098892
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 28898.776741654146,
+          "p_a_more_saving": 1.0,
+          "lower": 19676.12438068381,
+          "upper": 42518.12508820022
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -867.192516634246,
+          "p_a_more_saving": 0.29935,
+          "lower": -7296.463407722541,
+          "upper": 10742.202685112552
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -29765.96925828839,
+          "p_a_more_saving": 0.00145,
+          "lower": -46721.21148280561,
+          "upper": -14675.805346648056
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "obsbot",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+    },
+    "state_prototype_cost_and_reliability_uncertain": {
+      "summary": {
+        "telephone": {
+          "mean": 0.0,
+          "lower": 0.0,
+          "median": 0.0,
+          "upper": 0.0,
+          "p_saving_vs_telephone": 0.0,
+          "p_optimal": 0.4869,
+          "expected_regret": 318872.4333254093,
+          "mean_programme_cost": 0.0,
+          "mean_avoided_transfers": 0.0
+        },
+        "mobile": {
+          "mean": -165274.40878673064,
+          "lower": -1324809.2390492086,
+          "median": -290579.1292703811,
+          "upper": 1521450.153028361,
+          "p_saving_vs_telephone": 0.3264,
+          "p_optimal": 0.0,
+          "expected_regret": 484146.8421121399,
+          "mean_programme_cost": 655359.3102021232,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "panda": {
+          "mean": 135429.07893048142,
+          "lower": -1011528.721381418,
+          "median": 9691.55582987782,
+          "upper": 1808652.4649993181,
+          "p_saving_vs_telephone": 0.50665,
+          "p_optimal": 0.4263,
+          "expected_regret": 183443.35439492794,
+          "mean_programme_cost": 354655.8224849112,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "fixed": {
+          "mean": -182457.46522771422,
+          "lower": -1342838.379869981,
+          "median": -307730.2144986839,
+          "upper": 1503999.5227394046,
+          "p_saving_vs_telephone": 0.31865,
+          "p_optimal": 0.0,
+          "expected_regret": 501329.89855312346,
+          "mean_programme_cost": 672542.3666431068,
+          "mean_avoided_transfers": 64.48057710872946
+        },
+        "obsbot": {
+          "mean": 107582.04397524083,
+          "lower": -886872.028927464,
+          "median": -1926.1977191927435,
+          "upper": 1565905.3229456404,
+          "p_saving_vs_telephone": 0.49895,
+          "p_optimal": 0.0868,
+          "expected_regret": 211290.38935016852,
+          "mean_programme_cost": 317467.27462578536,
+          "mean_avoided_transfers": 55.964693754054906
+        }
+      },
+      "cost_only_evpi": 183443.354394928,
+      "pairwise": [
+        {
+          "a": "telephone",
+          "b": "mobile",
+          "mean_incremental_saving_a_vs_b": 165274.40878673064,
+          "p_a_more_saving": 0.6736,
+          "lower": -1521450.153028366,
+          "upper": 1324809.2390492086
+        },
+        {
+          "a": "telephone",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -135429.07893048142,
+          "p_a_more_saving": 0.49335,
+          "lower": -1808652.46499932,
+          "upper": 1011528.7213814168
+        },
+        {
+          "a": "telephone",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 182457.46522771422,
+          "p_a_more_saving": 0.68135,
+          "lower": -1503999.5227394078,
+          "upper": 1342838.3798699807
+        },
+        {
+          "a": "telephone",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -107582.04397524083,
+          "p_a_more_saving": 0.50105,
+          "lower": -1565905.322945644,
+          "upper": 886872.0289274615
+        },
+        {
+          "a": "mobile",
+          "b": "panda",
+          "mean_incremental_saving_a_vs_b": -300703.48771721206,
+          "p_a_more_saving": 0.0,
+          "lower": -442418.32862046215,
+          "upper": -204738.05098819672
+        },
+        {
+          "a": "mobile",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 17183.056440983564,
+          "p_a_more_saving": 1.0,
+          "lower": 11699.31719932548,
+          "upper": 25281.047349740602
+        },
+        {
+          "a": "mobile",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -272856.45276197145,
+          "p_a_more_saving": 0.03695,
+          "lower": -500994.2710704317,
+          "upper": 49758.32290789857
+        },
+        {
+          "a": "panda",
+          "b": "fixed",
+          "mean_incremental_saving_a_vs_b": 317886.5441581956,
+          "p_a_more_saving": 1.0,
+          "lower": 216437.36818752217,
+          "upper": 467699.37597020244
+        },
+        {
+          "a": "panda",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": 27847.034955240582,
+          "p_a_more_saving": 0.4997,
+          "lower": -123346.4414796437,
+          "upper": 334066.9096015414
+        },
+        {
+          "a": "fixed",
+          "b": "obsbot",
+          "mean_incremental_saving_a_vs_b": -290039.50920295506,
+          "p_a_more_saving": 0.03245,
+          "lower": -524449.5593140727,
+          "upper": 34728.939333188224
+        }
+      ],
+      "eligible": [
+        "telephone",
+        "mobile",
+        "panda",
+        "fixed",
+        "obsbot"
+      ],
+      "preferred_expected_value": "panda",
+      "metric": "net_saving",
+      "interpretation": "Conditional resource-cost choice; no proven clinical-equivalence or procurement claim"
+    }
+  },
+  "learning": {
+    "n_train": 8192,
+    "n_selection": 2048,
+    "n_independent_test": 4096,
+    "design_seeds": [
+      501,
+      502,
+      504
+    ],
+    "retired_diagnostic_holdout": 503,
+    "clustering": "Input-only train-fitted KMeans; all clusters retained; no clinical subgroup claim",
+    "silhouette": 0.05192560818116486,
+    "seed_stability_ari": [
+      0.0014428038582861556,
+      0.10906709427284539
+    ],
+    "pca_variance_explained": [
+      0.08345540364583678,
+      0.08333524068560416
+    ],
+    "forest": {
+      "accuracy": 0.78955078125,
+      "mean_regret": 688.091265275413,
+      "max_regret": 25120.306966849195,
+      "regret_95th": 4716.93529101088,
+      "near_optimal_100": 0.79345703125,
+      "near_optimal_1000": 0.834228515625,
+      "balanced_accuracy": 0.4478826605853133,
+      "r2_by_arm": {
+        "telephone": 1.0,
+        "mobile": 0.9535281108004666,
+        "panda": 0.9740809536049926,
+        "fixed": 0.9544454303276887,
+        "obsbot": 0.9658307010837646
+      },
+      "mae_by_arm": {
+        "telephone": 0.0,
+        "mobile": 4582.796288400187,
+        "panda": 3251.315311403728,
+        "fixed": 4532.6853521289495,
+        "obsbot": 3567.7354236892265
+      },
+      "confusion_matrix": [
+        [
+          2343,
+          0,
+          0,
+          0,
+          98
+        ],
+        [
+          7,
+          0,
+          62,
+          0,
+          120
+        ],
+        [
+          9,
+          0,
+          211,
+          0,
+          210
+        ],
+        [
+          7,
+          0,
+          68,
+          0,
+          99
+        ],
+        [
+          52,
+          0,
+          130,
+          0,
+          680
+        ]
+      ]
+    },
+    "classifier": {
+      "accuracy": 0.949951171875,
+      "mean_regret": 60.38721743574756,
+      "max_regret": 8970.469840112626,
+      "regret_95th": 5.0033001783181135,
+      "near_optimal_100": 0.953369140625,
+      "near_optimal_1000": 0.98046875,
+      "balanced_accuracy": 0.9326536712039589,
+      "confusion_matrix": [
+        [
+          2386,
+          11,
+          9,
+          4,
+          31
+        ],
+        [
+          4,
+          178,
+          0,
+          2,
+          5
+        ],
+        [
+          12,
+          0,
+          392,
+          1,
+          25
+        ],
+        [
+          4,
+          0,
+          0,
+          163,
+          7
+        ],
+        [
+          40,
+          13,
+          22,
+          15,
+          772
+        ]
+      ]
+    },
+    "shallow_tree": {
+      "accuracy": 0.8125,
+      "mean_regret": 1237.2152331608106,
+      "max_regret": 85381.61615893964,
+      "regret_95th": 6692.179116312085,
+      "near_optimal_100": 0.81640625,
+      "near_optimal_1000": 0.84814453125,
+      "balanced_accuracy": 0.6574107601377557,
+      "confusion_matrix": [
+        [
+          2256,
+          19,
+          47,
+          10,
+          109
+        ],
+        [
+          36,
+          121,
+          0,
+          0,
+          32
+        ],
+        [
+          89,
+          0,
+          252,
+          0,
+          89
+        ],
+        [
+          30,
+          15,
+          0,
+          71,
+          58
+        ],
+        [
+          117,
+          18,
+          87,
+          12,
+          628
+        ]
+      ]
+    },
+    "selected_kway_axes": [
+      "odds_ratio",
+      "downstream_delta",
+      "marginal_fraction",
+      "fixed_capital_share",
+      "mobile_capital_share"
+    ],
+    "independent_design_samples": 14336,
+    "kway_points": 3125,
+    "fourway_points": 2401,
+    "interpretation": "Emulator agreement with this assumed exact model, not clinical validation"
+  },
+  "deterministic_count": 45,
+  "one_way_rows": 2520,
+  "two_way_grid_points": 7688,
+  "psa_primary_structures": 18,
+  "psa_iterations_each": 20000,
+  "seed_precision_runs": 6,
+  "sobol_evaluations": 86016,
+  "scientific_runtime": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0"
+  },
+  "elapsed_seconds": 30.746782113000336,
+  "qualification": "Researcher-prior analysis; prototype unvalidated; deterministic design fractions are not probabilities"
+}

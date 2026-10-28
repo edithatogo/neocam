@@ -1,3 +1,11 @@
+# Active v5 tracks
+
+- [v5-01-comparators](tracks/v5-01-comparators/plan.md): Five complete service configurations
+- [v5-02-sensitivity](tracks/v5-02-sensitivity/plan.md): Exact multidimensional sensitivity and explanatory learning
+- [v5-03-publication](tracks/v5-03-publication/plan.md): Publication-ready presentation and honest release boundaries
+
+## Historical track index
+
 # Current Conductor tracks
 
 V4 current-state is authoritative. Prior v1/v2/v3 tracks are retained as historical records.

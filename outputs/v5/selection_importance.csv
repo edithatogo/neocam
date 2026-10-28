@@ -1,0 +1,13 @@
+parameter,increase_in_mean_regret,sd_across_permutations,repeats,scope
+odds_ratio,9372.883295234615,377.67567518155266,4,"predictive importance, not causal or EVPPI"
+downstream_delta,1365.7714481356404,94.08908330382562,4,"predictive importance, not causal or EVPPI"
+marginal_fraction,954.0360585007684,57.96650407311746,4,"predictive importance, not causal or EVPPI"
+fixed_capital_share,635.7639649050516,70.718171699765,4,"predictive importance, not causal or EVPPI"
+mobile_capital_share,588.4208330678484,61.207291807410414,4,"predictive importance, not causal or EVPPI"
+obsbot_reliability,542.893527702475,51.51125920536304,4,"predictive importance, not causal or EVPPI"
+calls_per_site,269.4970997374596,45.57870046923892,4,"predictive importance, not causal or EVPPI"
+common_reliability,175.71583914807252,20.636097408758328,4,"predictive importance, not causal or EVPPI"
+obsbot_installed_cost,81.76667287953849,11.208994627513697,4,"predictive importance, not causal or EVPPI"
+workflow_per_call,53.13518064899161,9.625891520778033,4,"predictive importance, not causal or EVPPI"
+critical_share,35.074469536121754,9.663299656342522,4,"predictive importance, not causal or EVPPI"
+life_years,18.24045000040307,6.087878258153419,4,"predictive importance, not causal or EVPPI"

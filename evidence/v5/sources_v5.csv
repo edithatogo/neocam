@@ -1,0 +1,15 @@
+source_id,source,locator,use
+ELC2026,"CHHHS ELC Operational 21 October 2026, item 2.1.7, printed pp197–215",Private source available to user; not for public redistribution,Device configuration and 45k/47k/10k indicative capital; $349 is camera only
+JTT,Journal of Telemedicine and Telecare instructions,https://journals.sagepub.com/author-instructions/jtt,Publication fit and original-article format
+TEH,Telemedicine and e-Health scope,https://journals.sagepub.com/home/tehb,"Cost-effectiveness, quality and access focus"
+CERA,Cost Effectiveness and Resource Allocation guidelines,https://link.springer.com/journal/12962/submission-guidelines,"Modelling, uncertainty and resource allocation; current APC"
+AHR,Australian Health Review author guidelines,https://connectsci.au/ah/pages/ah-authors,Original article word limit and policy audience
+JMIR,Journal of Medical Internet Research scope,https://www.jmir.org/about-journal/focus-and-scope,Generalizable digital-health decision research
+CHEERS,Husereau et al. CHEERS 2022,https://www.bmj.com/content/376/bmj-2021-067975,Economic reporting; checklist is not proof of model validity
+SOBOL,SciPy sobol_indices documentation,https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.sobol_indices.html,Independent-input variance sensitivity; not joint PSA prior decomposition
+PERM,scikit-learn permutation importance documentation,https://scikit-learn.org/stable/modules/permutation_importance.html,Holdout predictive diagnostics; not causal effects or EVPPI
+ARM2012,Armfield et al. 2012 acute neonatal telemedicine economics,https://pubmed.ncbi.nlm.nih.gov/23148301/,Direct Queensland predecessor; no new full-text extraction in v5
+HAY2020,Haynes et al. neonatal transfer comparison,https://pubmed.ncbi.nlm.nih.gov/32081766/,Observed transfer OR; local/device effects not identified
+THAO2022,Thao et al. cost of teleneonatology,https://pubmed.ncbi.nlm.nih.gov/35235430/,Decision-model precedent in Telemedicine and e-Health
+YOO2022,Yoo et al. economic evaluation of neonatal consultations,https://pubmed.ncbi.nlm.nih.gov/35074308/,Probabilistic model precedent; not independent device-effect trial
+LIETZ2026,Lietz et al. neonatal consultation simulation,https://pubmed.ncbi.nlm.nih.gov/42647428/,Supports explicit null incremental-device scenarios; not patient survival evidence

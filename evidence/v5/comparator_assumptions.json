@@ -1,0 +1,13 @@
+{
+  "evidence_date": "2026-10-28",
+  "capital_basis": "ELC prices indicative per complete installation; kit assumption not quote",
+  "reference": "All video alternatives share effect and reliability in each draw. Clinical parity is an assumption.",
+  "telephone": "Common specialist consultation cost cancels, rather than no care.",
+  "prototype": "Tablet mounted OBSBOT complete configuration, not the $349 camera; conditional on all engineering/clinical gates.",
+  "device_specific_effect_data": "not available; no inferred brand superiority",
+  "allocation": "Neonatal attributable capital in cross-use scenarios does not reduce full procurement cash.",
+  "decision_objective": "Expected incremental health-system resource saving, societal separately; not a QALY optimum.",
+  "morbidity": "v4 108-case exploratory survival/morbidity frontier retained, not differentiated by brand.",
+  "deterministic_design": "Independent bounded 12-coordinate design; frequencies not probabilities.",
+  "original_protected_inputs": "unchanged"
+}

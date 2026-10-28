@@ -1,0 +1,12 @@
+{
+  "id": "v5-03-publication",
+  "title": "Publication-ready presentation and honest release boundaries",
+  "date": "2026-10-28",
+  "type": "research-refinement",
+  "status": "implemented_with_acceptance_boundaries",
+  "vcs": {
+    "branch": "conductor/panda-vision-v5-comparative-sensitivity"
+  },
+  "tasks": 6,
+  "full_acceptance_claimed": false
+}

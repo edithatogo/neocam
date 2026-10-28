@@ -1,0 +1,17 @@
+{
+  "checked": "2026-10-28",
+  "scope": "Optional offline sensitivity/explanation group; exact kernel remains NumPy only",
+  "targets": {
+    "scipy": {
+      "version": "1.18.1",
+      "source": "https://pypi.org/project/scipy/1.18.1/",
+      "installed": "1.17.0"
+    },
+    "scikit-learn": {
+      "version": "1.9.1",
+      "source": "https://pypi.org/project/scikit-learn/1.9.1/",
+      "installed": "1.8.0"
+    }
+  },
+  "execution_boundary": "New targets verified but not installed; results use explicitly recorded available host versions. No pandas/xarray dependency declared. Transitive isolated lock remains unverified."
+}

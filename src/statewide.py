@@ -285,9 +285,9 @@ def evaluate(sites: list[Site], parameters: Parameters | None = None) -> dict[st
     return result
 
 
-def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
-        parameters: Parameters | None = None, effect_mode: str = 'attenuated') -> dict[str, Any]:
-    """Common state-wide draws preserve systematic uncertainty at all scales."""
+def sample_inputs(parameters: Parameters | None = None, n: int = 20_000,
+                  seed: int = 20261027, effect_mode: str = 'attenuated') -> dict[str, np.ndarray]:
+    """Sample the unchanged v2/v4 common parameter distribution for paired strategies."""
     if type(n) is not int:
         raise ValueError('n must be an integer')
     if n < 2 or n > 1_000_000:
@@ -332,6 +332,14 @@ def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
     x['workflow_per_call'] = rng.triangular(0, 75, 175, n) * p.workflow_per_call / 75
     x['birth_growth'] = rng.triangular(.8, 1, 1.2, n) * p.birth_growth
     x['mode_air_shift'] = np.clip(rng.normal(p.mode_air_shift, .10, n), -.6, .6)
+    return x
+
+
+def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
+        parameters: Parameters | None = None, effect_mode: str = 'attenuated') -> dict[str, Any]:
+    """Common state-wide draws preserve systematic uncertainty at all scales."""
+    p = parameters or Parameters()
+    x = sample_inputs(p, n=n, seed=seed, effect_mode=effect_mode)
     draws = _kernel(sites, p, x)
     draws['effect_or'] = x['odds_ratio']
     draws['marginal_fraction'] = x['marginal_fraction']

@@ -1,0 +1,62 @@
+[
+  {
+    "figure": "01_deterministic",
+    "caption": "Three-site pilot; equal video effects/reliability assumed. Complete OBSBOT kit cost is unquoted. Not cash savings."
+  },
+  {
+    "figure": "02_paired_psa",
+    "caption": "20,000 paired draws; points = means, bars = 95% model uncertainty intervals. These are not observed clinical confidence intervals."
+  },
+  {
+    "figure": "03_decision_contexts",
+    "caption": "All five arms considered; prototype may be infeasible until technical approval. Cost-optimal is not clinically best."
+  },
+  {
+    "figure": "04_one_way",
+    "caption": "21 exact values per parameter, others fixed at reference. Interval = deterministic range, not a probability interval."
+  },
+  {
+    "figure": "05_surface_activity_effect",
+    "caption": "31 \u00d7 31 exact grid; remaining inputs fixed. Colours denote cost-optimal configurations, not clinical outcomes or probabilities."
+  },
+  {
+    "figure": "06_surface_kit_delivery",
+    "caption": "31 \u00d7 31 exact grid; remaining inputs fixed. Colours denote cost-optimal configurations, not clinical outcomes or probabilities."
+  },
+  {
+    "figure": "07_surface_shared_cart",
+    "caption": "31 \u00d7 31 exact grid; remaining inputs fixed. Colours denote cost-optimal configurations, not clinical outcomes or probabilities."
+  },
+  {
+    "figure": "08_surface_life_marginal",
+    "caption": "31 \u00d7 31 exact grid; remaining inputs fixed. Colours denote cost-optimal configurations, not clinical outcomes or probabilities."
+  },
+  {
+    "figure": "09_surface_state",
+    "caption": "31 \u00d7 31 exact grid; remaining inputs fixed. Colours denote cost-optimal configurations, not clinical outcomes or probabilities."
+  },
+  {
+    "figure": "10_five_way",
+    "caption": "3,125 equally spaced design points in five selected dimensions. Counts depend on the design and ARE NOT probability-best estimates."
+  },
+  {
+    "figure": "11_sobol",
+    "caption": "Independent uniform 12-dimensional design; not decomposition of the correlated PSA prior. Monte Carlo estimates can stray below zero."
+  },
+  {
+    "figure": "12_clusters",
+    "caption": "Held-out design projection; first two components explain 16.7%. Silhouette 0.052 and weak seed agreement: not patient subgroups."
+  },
+  {
+    "figure": "13_decision_importance",
+    "caption": "Independent holdout, six permutations. Bars are predictive importance; whiskers show permutation SD, not causal effects or EVPPI."
+  },
+  {
+    "figure": "14_surrogate_regret",
+    "caption": "4,096 fresh held-out model evaluations. Even the selected classifier has worst-case regret of $8,970: exact model remains authoritative."
+  },
+  {
+    "figure": "15_classifier_confusion",
+    "caption": "95.0% accuracy; 93.3% balanced accuracy. This validates agreement with synthetic model decisions, not real-world clinical effectiveness."
+  }
+]

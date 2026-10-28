@@ -1,3 +1,11 @@
+# Panda Vision evaluation — v5 working handoff
+
+Five complete neonatal consultation configurations: telephone, mobile teleconference, Panda Vision, fixed PTZ and proposed tablet/OBSBOT. A small NumPy cohort engine remains authoritative. Offline SciPy/scikit-learn analysis explores sensitivity and explains decisions; it does not produce clinical evidence.
+
+Start with `conductor/runbook.md`. Current outputs are under `outputs/v5/`; original analyses remain under `outputs/v4/`. See the two-page plan, comparative supplement and publication strategy. No public deployment, hosted CI or independent review is claimed. Latest-toolchain acceptance remains incomplete.
+
+## Preserved project documentation
+
 # Panda Vision evaluation — v4
 
 An existing-evidence neonatal video-versus-telephone economic evaluation, with an intentionally small numerical model and explicit assumptions. **Preliminary; not a clinical prediction tool or proof of savings.**

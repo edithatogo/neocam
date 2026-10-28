@@ -1,3 +1,13 @@
+# Current v5 entrypoint
+
+Read `conductor/current-state.json`, then the relevant active track only. Exact analysis: `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python scripts/analyse_v5.py`. Do not change original scientific parameters merely to obtain a preferred option. Reference equal video effects are hypothetical. Keep new procurement, existing capital and shared allocation distinct.
+
+Run `python -m quality.cli --profile full` for acceptance. Current receipts go to `verification/v5`; the ordinary suite runs once under coverage. Optional research targets are checked but not installed in this host; actual analysis versions are in results_v5.json. Missing tools, missing lock or unpopulated submodule cannot be passed. Existing source/plots and prototype assumptions are not clinical validation.
+
+Journal strategy: `docs/publication_strategy_v5.md`. Corporate template assets and the ELC pack must not be published without redistribution permission. Do not submit to a journal or publish a repository without author approval.
+
+## Retained v4 runbook (historical profile paths are superseded above)
+
 # Single-developer runbook — v4
 
 ## Authority and scope

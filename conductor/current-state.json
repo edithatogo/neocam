@@ -1,31 +1,22 @@
 {
-  "version": 4,
-  "updated_on": "2026-10-28",
-  "branch": "conductor/panda-vision-v4-fast-assurance",
-  "active_track": "v4-01-fast-feedback",
+  "version": "5.0.0",
+  "date": "2026-10-28",
+  "branch": "conductor/panda-vision-v5-comparative-sensitivity",
   "active_tracks": [
-    "v4-01-fast-feedback",
-    "v4-02-cached-development",
-    "v4-03-reusable-skill",
-    "v4-04-analysis-delivery"
+    "v5-01-comparators",
+    "v5-02-sensitivity",
+    "v5-03-publication"
   ],
   "release_ready": false,
-  "status": "Implemented scoped efficiency/skill/analysis refinements; external-tool acceptance remains blocked",
-  "next_command": "uv lock --upgrade",
-  "full_command": "uv run --frozen --no-sync python -m quality.cli --profile full",
-  "conductor_checkout": "Pinned gitlink only; network checkout unavailable",
-  "remote_push": "Not performed",
-  "clinical_or_economic_parameters_added": 0,
+  "implementation": "Five-arm exact adapter; paired PSA; deterministic/global sensitivity; explanatory learning; publication shortlist and artifacts implemented",
+  "analysis_receipt": "outputs/v5/results_v5.json",
+  "verification_receipt": "verification/v5/full/receipt.json",
+  "ordinary_test_result": "Read current receipt/log; do not infer from checklist",
   "protected_scientific_files": 9,
-  "analysis_receipt": "verification/v4/analysis_audit.json",
-  "verification_receipt": "verification/v4/full/receipt.json",
-  "skill_validation": "Executable contract tests and author review; independent agent pressure evaluation not performed",
-  "next_action": "Resolve/review actual lock in authorised network-enabled checkout; install frozen stack and native tools, populate submodule, run full harness and fix actual diagnostics without blanket suppression.",
-  "bundle_and_zip_restoration": "317 ordinary tests passed in each separate restoration",
-  "ordinary_tests": 317,
-  "full_acceptance": {
-    "passed": 6,
-    "blocked": 22,
-    "failed": 1
-  }
+  "original_core_parameters_changed": 0,
+  "new_assumptions": "Complete comparator costs, capital attribution and prototype delivery/cost scenarios in data/v5; all explicitly hypothetical",
+  "conductor_checkout": "Pinned gitlink; not populated",
+  "remote_push": "Not performed",
+  "independent_review": "Not performed",
+  "next_action": "Complete connected latest-toolchain/hosted acceptance and independent evidence/structural review; no new recruitment is required."
 }
