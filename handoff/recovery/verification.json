@@ -1,0 +1,44 @@
+{
+  "source_commit": "7242e7f7e12d807c52e1d250a388541ada033c51",
+  "source_tree": "0ef76ee21360db34af07a281712ce2f75dc97bd8",
+  "source_entries": 893,
+  "source_history_commits": 31,
+  "ordinary_tests_passed": 497,
+  "zip_source_tree_matches_bundle": true,
+  "local_end_to_end_import_test": "passed; all source entries and both histories preserved",
+  "local_restored_zip_push_test": "passed against a separate local bare remote",
+  "remote_import_complete": false,
+  "hosted_import_attempts": [
+    {"run_id": 40729381504, "runner": "ubuntu-24.04", "conclusion": "failure", "allocated_runner_id": 0, "executed_steps": 0},
+    {"run_id": 40730856006, "runner": "ubuntu-slim", "conclusion": "failure", "allocated_runner_id": 0, "executed_steps": 0}
+  ],
+  "hosted_failure_cause": "not established beyond failure before runner allocation",
+  "private_backups": {
+    "ready_to_push_zip": {
+      "url": "https://drive.google.com/file/d/1G3viHjF-QGYGKU3_YrZkkitz50d7l0BX/view",
+      "bytes": 77184933,
+      "sha256": "c6b00c6a67ff34ed546ad7cee058bc56bca73859a354370b5051dbee700da9b2",
+      "contains_complete_git_history": true,
+      "initial_checkout": "compact; run git sparse-checkout disable to populate every tracked file",
+      "shared": false
+    },
+    "source_zip": {
+      "url": "https://drive.google.com/file/d/15E2QVVoFtvRIrvdtrFdk7pb81Up0TbF-/view",
+      "bytes": 99087687,
+      "sha256": "cc25cbb561bb637c99daac2ef42525f807a66fe14ad555f309e3c6442ebbc95d",
+      "shared": false
+    },
+    "git_bundle": {
+      "url": "https://drive.google.com/file/d/12u7z5Hb9_7puJjFYqXgoyjeACbGYHHH9/view",
+      "bytes": 76718081,
+      "sha256": "df495af954ce94f2acf1049cec7358bd348d12ca5d235c6b8b1f5948142737be",
+      "roundtrip_sha256_verified": true,
+      "shared": false
+    }
+  },
+  "scientific_parameters_changed": false,
+  "full_ci_certified": false,
+  "gitleaks_passed": false,
+  "force_push_used": false,
+  "repository_visibility_changed": false
+}
