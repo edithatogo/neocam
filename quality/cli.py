@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def _native(name: str) -> str:
     local = ROOT / '.tools/bin' / name
-    return str(local) if local.exists() else (shutil.which(name) or name)
+    return str(local) if local.exists() else (shutil.which(name) or str(local))
 
 
 def gates_for_profile(profile: str) -> list[Gate]:

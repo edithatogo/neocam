@@ -1,16 +1,16 @@
 {
-  "version": 7,
-  "date": "2026-10-28",
+  "version": 8,
+  "date": "2026-10-29",
   "active_tracks": [
-    "v7-perspectives"
+    "v8-assurance-publish"
   ],
-  "branch": "conductor/panda-vision-v7-perspectives",
-  "parent_commit": "95faeb6ad8792dac4b9d7cb5b5e9b2914aba5c08",
+  "branch": "conductor/neocam-v8-assurance-publish",
+  "parent_commit": "eabbb6b",
   "release_ready": false,
   "independent_validation": false,
   "review": "four simulated author roles; not independent agents",
   "analysis": "outputs/v7/results_v7.json",
-  "receipt": "verification/v7/full/receipt.json",
+  "receipt": "verification/v8/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [
@@ -22,5 +22,13 @@
     "original public PDF/XLSX files not acquired",
     "Gitleaks/latest stack/real lock/hosted CI/Conductor checkout unverified"
   ],
-  "next_acceptance": "Resolve actual source/licence and connected environment gates; retain demonstrated uncertainty rather than forcing positive results."
+  "next_acceptance": "Complete the private source import, then resolve a real lock and execute the pinned toolchain. No missing tool is a pass.",
+  "remote": "edithatogo/neocam",
+  "remote_visibility": "private",
+  "remote_import": "partial bootstrap; full Git transport failed DNS",
+  "hosted_environment_check": {
+    "run_id": 40721279349,
+    "conclusion": "failure",
+    "executed_steps_reported": 0
+  }
 }

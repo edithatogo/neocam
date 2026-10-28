@@ -37,23 +37,23 @@ jobs:
           uv run --frozen --no-sync python -m quality.bootstrap
       - name: PR assurance (one covered suite)
         if: github.event_name == 'pull_request'
-        run: uv run --frozen --no-sync python -m quality.cli --profile pr
+        run: uv run --frozen --no-sync python -m quality.cli --profile pr --evidence-version v8
       - name: Full fresh acceptance (trusted push, scheduled, manual or reusable)
         if: github.event_name != 'pull_request'
-        run: uv run --frozen --no-sync python -m quality.cli --profile full
+        run: uv run --frozen --no-sync python -m quality.cli --profile full --evidence-version v8
       - name: Retain only verification evidence, not corporate templates
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: assurance-${{ github.sha }}
           path: |
-            verification/v7/pr/
-            verification/v7/full/
-            verification/v7/coverage.json
-            verification/v7/scalene.json
-            verification/v7/gitleaks-*.json
-            verification/v7/pip-audit.json
-            verification/v7/sbom.json
+            verification/v8/pr/
+            verification/v8/full/
+            verification/v8/coverage.json
+            verification/v8/scalene.json
+            verification/v8/gitleaks-*.json
+            verification/v8/pip-audit.json
+            verification/v8/sbom.json
             coverage/gremlins/
           if-no-files-found: error
           retention-days: 14
@@ -82,11 +82,11 @@ jobs:
           uv lock --check
           uv sync --frozen --group test
       - name: Ordinary suite and input/context contracts
-        run: uv run --frozen --no-sync python -m quality.cli --profile quick
+        run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version v8
       - if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: compatibility-${{ matrix.python }}-${{ github.sha }}
-          path: verification/v7/quick/
+          path: verification/v8/quick/
           if-no-files-found: error
           retention-days: 14

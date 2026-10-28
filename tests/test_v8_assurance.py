@@ -66,3 +66,9 @@ def test_evidence_version_rejects_path_or_invalid_name(monkeypatch,bad,tmp_path)
     with pytest.raises(SystemExit) as error:
         cli.main()
     assert error.value.code==2
+
+
+def test_missing_native_tool_has_explicit_missing_path(monkeypatch, tmp_path):
+    monkeypatch.setattr(cli, "ROOT", tmp_path)
+    monkeypatch.setattr(cli.shutil, "which", lambda name: None)
+    assert cli._native("gitleaks") == str(tmp_path / ".tools/bin/gitleaks")
