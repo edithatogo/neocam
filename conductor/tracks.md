@@ -1,3 +1,11 @@
+# Current v6 tracks
+
+- [Explicit pathways and workload-based hub costing](tracks/v6-01-pathways/plan.md) — implemented; acceptance gaps retained
+- [Evidence verification and transparent validation boundaries](tracks/v6-02-evidence-validation/plan.md) — implemented; acceptance gaps retained
+- [Current analysis artifacts and reproducible handoff](tracks/v6-03-delivery-assurance/plan.md) — implemented; acceptance gaps retained
+
+## Historical tracks
+
 # Active v5 tracks
 
 - [v5-01-comparators](tracks/v5-01-comparators/plan.md): Five complete service configurations

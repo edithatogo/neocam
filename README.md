@@ -1,3 +1,15 @@
+# Panda Vision v6 — explicit clinical pathways
+
+Early model-based cost–consequence and investment-threshold evaluation. Current model: `src/pathways_v6.py`. Start with `conductor/runbook.md`. Main outputs are in `outputs/v6`. Version 5 and older code/results are retained only for reproducibility and comparison.
+
+The site-count hub trigger is removed. Hospital origin, receiving, final-local and additional pre-rescue care are reported separately. Eventual transfers are partitioned into immediate and rescue pathways; alternative endpoint interpretation and harm scenarios are explicit. Resource costs, funding proxies and cash budgets remain different ledgers.
+
+**Acceptance boundary:** independent subagent panel NOT executed; four critical full-text papers still inaccessible; clean latest-toolchain/hosted release not certified. This is not procurement approval or proof of savings. See `docs/validation/v6` and the actual harness receipt.
+
+Corporate templates and historic internal source material in this private handoff must not be publicly redistributed without permission. A clean research release is a separate action. No GitHub push or publication was performed.
+
+## Historical README
+
 # Panda Vision evaluation — v5 working handoff
 
 Five complete neonatal consultation configurations: telephone, mobile teleconference, Panda Vision, fixed PTZ and proposed tablet/OBSBOT. A small NumPy cohort engine remains authoritative. Offline SciPy/scikit-learn analysis explores sensitivity and explains decisions; it does not produce clinical evidence.

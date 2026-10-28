@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def test_current_receipts_do_not_overwrite_previous_version():
     commands=[' '.join(g.command) for g in gates_for_profile('full')]
     assert not any('verification/v4/' in c for c in commands)
-    assert any('verification/v5/scalene.json' in c for c in commands)
+    assert any('verification/v6/scalene.json' in c for c in commands)
 
 
 def test_new_numerical_modules_are_mutation_targets():

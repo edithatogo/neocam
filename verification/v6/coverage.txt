@@ -1,0 +1,20 @@
+Name                         Stmts   Miss Branch BrPart   Cover   Missing
+-------------------------------------------------------------------------
+quality/__init__.py              0      0      0      0 100.00%
+quality/analysis_checks.py      45      0     20      0 100.00%
+quality/assurance.py           107      0     38      0 100.00%
+quality/benchmark.py            76     29     22      4  60.20%   26, 52-54, 62-63, 65, 72-93, 97
+quality/bootstrap.py            60      2     18      2  94.87%   34, 78
+quality/checks.py              145      5     80      5  94.67%   58->57, 66->65, 90->83, 140-143, 169
+quality/cli.py                  60      1     18      1  97.44%   122
+quality/contracts.py           118      0     66      0 100.00%
+quality/feedback.py             87     20     26      1  81.42%   34-38, 107-122, 126
+quality/hooks.py                34     14     16      1  62.00%   30-42, 46
+src/__init__.py                  0      0      0      0 100.00%
+src/panda_model.py             101      0      8      0 100.00%
+src/pathways_v6.py             220     11     64     11  92.25%   56, 70, 88, 92, 106, 162, 164, 172, 174, 176, 182
+src/sensitivity.py              86      0     26      0 100.00%
+src/statewide.py               300      0    114      0 100.00%
+src/strategies.py               96      0     40      0 100.00%
+-------------------------------------------------------------------------
+TOTAL                         1535     82    556     25  94.31%

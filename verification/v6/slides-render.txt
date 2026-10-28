@@ -1,0 +1,1 @@
+Slides rendered to /mnt/data/panda-v6/verification/v6/slides-render

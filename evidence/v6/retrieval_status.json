@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-28",
+  "complete_critical_full_text_review": false,
+  "core_full_text_gaps": [
+    "HAY2020",
+    "ARM2012",
+    "YOO2022",
+    "THAO2022"
+  ],
+  "additional_gap": "HAY2021",
+  "full_articles_reviewed": [
+    "LIETZ2026",
+    "MADDOX2021",
+    "FOX2024"
+  ],
+  "not_substitutes_for_missing_papers": [
+    "ARMPOSTER2009"
+  ],
+  "automated_independent_panel_executed": false,
+  "additional_provider_attempt": {
+    "provider": "Elicit",
+    "result": "api_access_denied",
+    "consequence": "No paper content returned; no verification credit"
+  }
+}

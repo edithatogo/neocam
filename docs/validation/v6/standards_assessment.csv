@@ -1,0 +1,16 @@
+domain,status,evidence,limitation
+ISPOR face validity,PARTIAL_SELF_REVIEW,"Explicit pathways, target population and outcome boundary documented",Independent neonatal/retrieval/health-economic reviewers have not assessed the model
+ISPOR internal verification,EXECUTED,"Separate scalar oracle, hand calculation, mass conservation, null/boundary and cost-ledger tests",Same author wrote implementation and oracle; no independent authorship
+ISPOR cross validation,PARTIAL,Numerical v5-v6 bridge and comparison of model structures with published precedents,Not an independent replication of missing full-text economic models
+ISPOR external validation,NOT_AVAILABLE,No external episode-level calibration data used,Not a validated clinical forecast
+ISPOR predictive validation,NOT_PERFORMED,No prospective predictions tested,Not required to begin early modelling; cannot claim demonstrated performance
+AdViSHE conceptual structure,DOCUMENTED; independent review pending,"Spec, pathway equations and absolute counts",Formal independent face-validity sign-off absent
+AdViSHE input data,PARTIAL,"Historical source register, newly separated assumptions, full-text audit",Four core papers and local costs/capability not fully verified
+AdViSHE implementation,TECHNICALLY_CHECKED,Regression and scalar-oracle tests; separate site aggregation test,Latest locked environment and independent code reviewer remain pending
+AdViSHE outcomes,PARTIAL,Scenario/PSA checks and historical bridge,No empirical validation of predicted avoided transfers
+TECH-VER input calculations,EXECUTED_WITH_LIMITS,"Bounds, component sums, unadjusted price weights, missing QEP retained",Benchmarks are not patient-level DRG classification
+TECH-VER patient flow,EXECUTED,Arm/stratum conservation; initial/local/rescue/final counts; failure fallback,Timing shares and rescues are assumptions
+TECH-VER result calculations,EXECUTED,Hospital components counted once; separate economic/cash ledgers; hand example655,Cash release is not inferred from resource benefit
+TECH-VER uncertainty calculations,EXECUTED,"Paired PSA, null and harmful-effect scenarios, coherent shared draws",Researcher priors; not posterior uncertainty
+TECH-VER overall independent verification,PENDING,Four reviewer briefs and acceptance schema provided,No available subagent runner; not independently reviewed
+CHEERS reporting,PARTIAL,"Decision, comparators, perspective, horizon, assumptions, uncertainty and results reported","Manuscript abstract, authorship, governance, conflicts, consumer involvement statements await author approval"

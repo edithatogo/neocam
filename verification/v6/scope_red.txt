@@ -1,0 +1,24 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________ test_receipts_and_core_gate_target_current_model _______________
+
+    def test_receipts_and_core_gate_target_current_model():
+        gates=gates_for_profile('full');commands=[' '.join(g.command) for g in gates]
+>       assert not any('verification/v5/' in c for c in commands)
+E       assert not True
+E        +  where True = any(<generator object test_receipts_and_core_gate_target_current_model.<locals>.<genexpr> at 0x7fe519771080>)
+
+tests/test_v6_assurance_scope.py:9: AssertionError
+___________________ test_current_type_mutation_profile_scope ___________________
+
+    def test_current_type_mutation_profile_scope():
+        cfg=tomllib.loads((ROOT/'pyproject.toml').read_text())
+>       assert 'src/pathways_v6.py' in cfg['tool']['pytest-gremlins']['paths']
+E       AssertionError: assert 'src/pathways_v6.py' in ['src/statewide.py', 'src/strategies.py', 'src/sensitivity.py', 'quality/contracts.py', 'quality/assurance.py']
+
+tests/test_v6_assurance_scope.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v6_assurance_scope.py::test_receipts_and_core_gate_target_current_model - assert not True
+ +  where True = any(<generator object test_receipts_and_core_gate_target_current_model.<locals>.<genexpr> at 0x7fe519771080>)
+FAILED tests/test_v6_assurance_scope.py::test_current_type_mutation_profile_scope - AssertionError: assert 'src/pathways_v6.py' in ['src/statewide.py', 'src/strategies.py', 'src/sensitivity.py', 'quality/contracts.py', 'quality/assurance.py']
+2 failed in 0.06s

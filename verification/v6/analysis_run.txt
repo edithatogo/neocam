@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "psa_structures": 22,
+    "draws_each": 20000,
+    "one_way_arm_rows": 2520,
+    "two_way_points": 2646,
+    "four_way_points": 625,
+    "budget_rows": 70
+  },
+  "checks": {
+    "max_mass_residual": 6.821210263296962e-13,
+    "all_outputs_finite": true
+  },
+  "bridge": [
+    {
+      "portfolio": "pilot",
+      "v5_net_saving": 4167.437050011353,
+      "remove_site_count_hub_charge": 0.0,
+      "after_hub_only_repair": 4167.437050011353,
+      "joint_pathway_and_hospital_pricing_change": 4348.315514742017,
+      "v6_net_saving": 8515.75256475337
+    },
+    {
+      "portfolio": "spokes",
+      "v5_net_saving": 137912.47984373342,
+      "remove_site_count_hub_charge": 120000.0,
+      "after_hub_only_repair": 257912.47984373342,
+      "joint_pathway_and_hospital_pricing_change": 129514.13692113239,
+      "v6_net_saving": 387426.6167648658
+    }
+  ]
+}

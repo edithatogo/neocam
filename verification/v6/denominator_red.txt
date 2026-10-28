@@ -1,0 +1,25 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________ test_rescue_scenario_identifies_retained_infant_denominator __________
+
+    def test_rescue_scenario_identifies_retained_infant_denominator():
+        text = (ROOT/'scripts/analyse_v6.py').read_text()
+>       assert 'excess_rescue_2pct_retained' in text
+E       assert 'excess_rescue_2pct_retained' in '"""Reproducible v6 pathway analyses. No learned surrogate or new patient data."""\nfrom __future__ import annotations...ts\':metadata[\'analysis_counts\'],\'checks\':checks,\'bridge\':bridge},indent=2))\nif __name__==\'__main__\':main()\n'
+
+tests/test_v6_documentation_contract.py:8: AssertionError
+________ test_reference_parameter_export_is_labelled_not_a_live_config _________
+
+    def test_reference_parameter_export_is_labelled_not_a_live_config():
+>       assert 'reference snapshot, not a live configuration input' in (ROOT/'conductor/runbook.md').read_text()
+E       AssertionError: assert 'reference snapshot, not a live configuration input' in '# Current v6 runbook\n\nRead `current-state.json`, the active track and `docs/validation/v6/README.md` before making ...ed benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.\n'
+E        +  where '# Current v6 runbook\n\nRead `current-state.json`, the active track and `docs/validation/v6/README.md` before making ...ed benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.\n' = read_text()
+E        +    where read_text = (PosixPath('/mnt/data/panda-v6') / 'conductor/runbook.md').read_text
+
+tests/test_v6_documentation_contract.py:12: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v6_documentation_contract.py::test_rescue_scenario_identifies_retained_infant_denominator - assert 'excess_rescue_2pct_retained' in '"""Reproducible v6 pathway analyses. No learned surrogate or new patient data."""\nfrom __future__ import annotations...ts\':metadata[\'analysis_counts\'],\'checks\':checks,\'bridge\':bridge},indent=2))\nif __name__==\'__main__\':main()\n'
+FAILED tests/test_v6_documentation_contract.py::test_reference_parameter_export_is_labelled_not_a_live_config - AssertionError: assert 'reference snapshot, not a live configuration input' in '# Current v6 runbook\n\nRead `current-state.json`, the active track and `docs/validation/v6/README.md` before making ...ed benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.\n'
+ +  where '# Current v6 runbook\n\nRead `current-state.json`, the active track and `docs/validation/v6/README.md` before making ...ed benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.\n' = read_text()
+ +    where read_text = (PosixPath('/mnt/data/panda-v6') / 'conductor/runbook.md').read_text
+2 failed in 0.06s

@@ -47,13 +47,13 @@ jobs:
         with:
           name: assurance-${{ github.sha }}
           path: |
-            verification/v5/pr/
-            verification/v5/full/
-            verification/v5/coverage.json
-            verification/v5/scalene.json
-            verification/v5/gitleaks-*.json
-            verification/v5/pip-audit.json
-            verification/v5/sbom.json
+            verification/v6/pr/
+            verification/v6/full/
+            verification/v6/coverage.json
+            verification/v6/scalene.json
+            verification/v6/gitleaks-*.json
+            verification/v6/pip-audit.json
+            verification/v6/sbom.json
             coverage/gremlins/
           if-no-files-found: error
           retention-days: 14
@@ -87,6 +87,6 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: compatibility-${{ matrix.python }}-${{ github.sha }}
-          path: verification/v5/quick/
+          path: verification/v6/quick/
           if-no-files-found: error
           retention-days: 14

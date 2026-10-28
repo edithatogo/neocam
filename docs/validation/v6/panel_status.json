@@ -1,0 +1,34 @@
+{
+  "requested": true,
+  "executed": false,
+  "reason": "No native subagent runner or agent CLI available; no reviewer tool execution occurred",
+  "members": [
+    {
+      "role": "clinical",
+      "status": "pending",
+      "run_id": null,
+      "report": null
+    },
+    {
+      "role": "economics",
+      "status": "pending",
+      "run_id": null,
+      "report": null
+    },
+    {
+      "role": "evidence",
+      "status": "pending",
+      "run_id": null,
+      "report": null
+    },
+    {
+      "role": "software",
+      "status": "pending",
+      "run_id": null,
+      "report": null
+    }
+  ],
+  "author_self_review": true,
+  "separate_arithmetic_expression": true,
+  "independent_clinical_validation": false
+}

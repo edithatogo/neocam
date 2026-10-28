@@ -1,22 +1,22 @@
 {
-  "version": "5.0.0",
+  "version": "6.0.0",
   "date": "2026-10-28",
-  "branch": "conductor/panda-vision-v5-comparative-sensitivity",
+  "branch": "conductor/panda-vision-v6-pathway-validation",
   "active_tracks": [
-    "v5-01-comparators",
-    "v5-02-sensitivity",
-    "v5-03-publication"
+    "v6-01-pathways",
+    "v6-02-evidence-validation",
+    "v6-03-delivery-assurance"
   ],
   "release_ready": false,
-  "implementation": "Five-arm exact adapter; paired PSA; deterministic/global sensitivity; explanatory learning; publication shortlist and artifacts implemented",
-  "analysis_receipt": "outputs/v5/results_v5.json",
-  "verification_receipt": "verification/v5/full/receipt.json",
-  "ordinary_test_result": "Read current receipt/log; do not infer from checklist",
-  "protected_scientific_files": 9,
-  "original_core_parameters_changed": 0,
-  "new_assumptions": "Complete comparator costs, capital attribution and prototype delivery/cost scenarios in data/v5; all explicitly hypothetical",
+  "implementation": "Explicit arm-level pathways, separate hospital components, workload hub, cash replacement and paired analysis",
+  "analysis_receipt": "outputs/v6/results_v6.json",
+  "verification_receipt": "verification/v6/full/receipt.json",
+  "original_scientific_files": "Preserved; historical kernel explicitly superseded",
+  "new_assumptions": "data/v6/structural_assumptions.csv; no observation claims",
+  "full_text_verification": "Partial: three complete article bodies reviewed; four core articles remain inaccessible",
+  "independent_review": "Not executed; panel briefs pending, no agent runner available",
+  "author_arithmetic_check": "Separately expressed scalar oracle; not independent authorship",
   "conductor_checkout": "Pinned gitlink; not populated",
   "remote_push": "Not performed",
-  "independent_review": "Not performed",
-  "next_action": "Complete connected latest-toolchain/hosted acceptance and independent evidence/structural review; no new recruitment is required."
+  "next_action": "Obtain core full texts, execute real independent review panel, reconcile findings, and complete connected locked-environment/hosted acceptance."
 }

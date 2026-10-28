@@ -1,3 +1,15 @@
+# Current v6 runbook
+
+Read `current-state.json`, the active track and `docs/validation/v6/README.md` before making claims. The active numerical API is `src.pathways_v6.compare_v6`; `src.statewide` and v2/v5 outputs are historical, not the current pathway specification.
+
+Run `python -m pytest -q` for the ordinary suite; `python scripts/analyse_v6.py` regenerates the five-option pathway analysis. Plotting uses `scripts/plot_v6.py`. The workbook uses `scripts/build_workbook_v6.py` with artifact_tool; it is a results workbook, not a spreadsheet PSA engine. Document and slide builds use `scripts/build_documents_v6.py` and `scripts/build_slides_v6.js`.
+
+`python -m quality.cli --profile full` records current evidence at `verification/v6/full/receipt.json`. It runs the ordinary suite once under coverage. Missing external tools or the genuine lock remain failures/blockers, never passes. Do not relax a gate to obtain a green badge. New kernel is included in mutation/type/profiler scope.
+
+The requested independent panel is NOT executed. Four briefs and null run IDs are in `docs/validation/v6`. An independently worded arithmetic implementation by the author is not independent clinical review. Critical paper retrieval remains partial: see `evidence/v6/full_text_verification.csv`. No new patient data or structured elicitation is required to use the preliminary model.
+
+## Historical runbook (commands/results below are not current acceptance)
+
 # Current v5 entrypoint
 
 Read `conductor/current-state.json`, then the relevant active track only. Exact analysis: `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python scripts/analyse_v5.py`. Do not change original scientific parameters merely to obtain a preferred option. Reference equal video effects are hypothetical. Keep new procurement, existing capital and shared allocation distinct.
@@ -62,3 +74,5 @@ Authoring requires the recorded document/plot/office-tool environment. Do not si
 Commit bounded changes, update Conductor implementation/acceptance separately, and deliver a versioned ZIP plus Git bundle. Restore the bundle and rerun tests. No remote push, app installation or publication follows from a local archive.
 
 Current limits: external tools unavailable, missing real lock, Conductor gitlink not populated, no hosted CI, no independent agent pressure test, historical population/effect/cost uncertainty and unverified QEP. Read the current receipt rather than inheriting a previous pass. Combined repeated benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.
+
+`data/v6/spec.json` is a reference snapshot, not a live configuration input. The authoritative default specification is `PathwaySpec`; supply an explicit instance to the API or change the documented analysis driver to run alternatives. `extra_rescue` is conditional on otherwise locally retained infants after a successful video connection, not an absolute percentage-point increment among all consultations.

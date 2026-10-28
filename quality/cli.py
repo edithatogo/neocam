@@ -39,9 +39,9 @@ def gates_for_profile(profile: str) -> list[Gate]:
         raise ValueError('Unknown assurance profile')
     gates[0] = Gate('pytest', (python, '-m', 'coverage', 'run', '-m', 'pytest', '-q'), 180, 'coverage')
     gates.extend([
-        Gate('coverage', (python, '-m', 'coverage', 'json', '-o', 'verification/v5/coverage.json'), 60, 'coverage'),
+        Gate('coverage', (python, '-m', 'coverage', 'json', '-o', 'verification/v6/coverage.json'), 60, 'coverage'),
         Gate('coverage_threshold', (python, '-m', 'coverage', 'report', '--fail-under=90'), 60, 'coverage'),
-        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/statewide.py', '--fail-under=95'), 60, 'coverage'),
+        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/pathways_v6.py', '--fail-under=95'), 60, 'coverage'),
         Gate('ruff_lint', (python, '-m', 'ruff', 'check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ruff_format', (python, '-m', 'ruff', 'format', '--check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ty', (python, '-m', 'ty', 'check'), 180, 'ty'),
@@ -49,17 +49,17 @@ def gates_for_profile(profile: str) -> list[Gate]:
         Gate('hypothesis', (python, '-m', 'pytest', 'quality/hypothesis_properties.py', '-q'), 180, 'hypothesis'),
         Gate('gremlins', (python, '-m', 'pytest', 'tests', 'quality/hypothesis_properties.py', '--gremlins', '--gremlin-workers=2', '--gremlin-clear-cache', '--gremlin-report=json', '--gremlin-report=html', '--strict-pardons'), 1800, 'pytest_gremlins'),
         Gate('mutation_score', (python, '-m', 'quality.checks', 'mutation'), allow_unavailable=True),
-        Gate('scalene', (python, '-m', 'scalene', 'run', '-o', 'verification/v5/scalene.json', 'quality/profile_workload.py'), 180, 'scalene'),
+        Gate('scalene', (python, '-m', 'scalene', 'run', '-o', 'verification/v6/scalene.json', 'quality/profile_workload.py'), 180, 'scalene'),
         Gate('scalene_output', (python, '-m', 'quality.checks', 'scalene_output'), allow_unavailable=True),
-        Gate('gitleaks_history', (_native('gitleaks'), 'git', '--log-opts=--all', '--redact=100', '--report-format=json', '--report-path=verification/v5/gitleaks-history.json', '.'), 180),
-        Gate('gitleaks_tree', (_native('gitleaks'), 'dir', '--redact=100', '--report-format=json', '--report-path=verification/v5/gitleaks-tree.json', '.'), 180),
+        Gate('gitleaks_history', (_native('gitleaks'), 'git', '--log-opts=--all', '--redact=100', '--report-format=json', '--report-path=verification/v6/gitleaks-history.json', '.'), 180),
+        Gate('gitleaks_tree', (_native('gitleaks'), 'dir', '--redact=100', '--report-format=json', '--report-path=verification/v6/gitleaks-tree.json', '.'), 180),
         Gate('vale', (_native('vale'), '--minAlertLevel=warning', 'README.md', 'AGENTS.md', 'GEMINI.md', 'conductor/runbook.md', 'conductor/decisions-v3.md'), 120),
         Gate('dependency_consistency', ('uv', 'lock', '--check', '--offline'), 30),
         Gate('dependency_lock', (python, '-m', 'quality.checks', 'lock'), allow_unavailable=True),
         Gate('native_versions', (python, '-m', 'quality.checks', 'native_versions'), allow_unavailable=True),
         Gate('locked_versions', (python, '-m', 'quality.checks', 'versions'), allow_unavailable=True),
-        Gate('pip_audit', (python, '-m', 'pip_audit', '--local', '--format=json', '--output=verification/v5/pip-audit.json'), 300, 'pip_audit'),
-        Gate('sbom', (python, '-m', 'pip_audit', '--local', '--format=cyclonedx-json', '--output=verification/v5/sbom.json'), 300, 'pip_audit'),
+        Gate('pip_audit', (python, '-m', 'pip_audit', '--local', '--format=json', '--output=verification/v6/pip-audit.json'), 300, 'pip_audit'),
+        Gate('sbom', (python, '-m', 'pip_audit', '--local', '--format=cyclonedx-json', '--output=verification/v6/sbom.json'), 300, 'pip_audit'),
         Gate('conductor_checkout', (python, '-m', 'quality.checks', 'submodule'), allow_unavailable=True),
         Gate('polars_consistency', (python, '-m', 'quality.polars_probe'), 60, 'polars'),
     ])
@@ -79,11 +79,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--profile', choices=('quick', 'pr', 'full'), default='quick')
     args = parser.parse_args()
-    directory = ROOT / 'verification/v5' / args.profile
+    directory = ROOT / 'verification/v6' / args.profile
     directory.mkdir(parents=True, exist_ok=True)
     if args.profile in {'pr', 'full'}:
         # Prevent an old report from satisfying a newly failed execution gate.
-        for stale in ('coverage/gremlins/gremlins.json', 'verification/v5/scalene.json', '.coverage'):
+        for stale in ('coverage/gremlins/gremlins.json', 'verification/v6/scalene.json', '.coverage'):
             (ROOT / stale).unlink(missing_ok=True)
     fingerprint = input_fingerprint(ROOT)
     receipts: list[Receipt] = []

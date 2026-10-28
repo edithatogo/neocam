@@ -1,4 +1,8 @@
-"""Panda Vision v2: auditable, assumption-based cohort evaluation.
+"""HISTORICAL V2-V5 kernel, retained for reproducibility only.
+
+Active evaluation: src.pathways_v6.compare_v6. Do not use evaluate/psa here
+for current decisions: this historical implementation contains the superseded
+site-count hub charge and net-transfer rescue approximation.
 
 This is not a clinical prediction tool. All current effect and cost projections
 are conditional on explicitly labelled, mostly non-local priors.
