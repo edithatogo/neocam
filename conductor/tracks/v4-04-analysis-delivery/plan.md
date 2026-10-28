@@ -51,9 +51,9 @@ Files: `verification/v4/visual`
 
 ## Task 6: Run final checks; commit, bundle and restore repository
 
-**Status:** pending final restoration. **Evidence:** `package_v4.py; final bundle restore test follows commit`.
+**Status:** accepted within package/ordinary-test scope. **Evidence:** `bundle_restore_tests.txt and zip_restore_tests.txt: 317 passed each`.
 Files: `verification/v4`
-- [ ] Write/reproduce the relevant failure or inventory gap.
-- [ ] Implement the smallest repair without changing economic assumptions.
-- [ ] Run `python -m pytest -q; git bundle verify` and inspect its actual outcome.
-- [ ] Record implemented / accepted / blocked separately and commit.
+- [x] Write/reproduce the relevant failure or inventory gap.
+- [x] Implement the smallest repair without changing economic assumptions.
+- [x] Run `python -m pytest -q; git bundle verify` and inspect its actual outcome.
+- [x] Record implemented / accepted / blocked separately and commit.

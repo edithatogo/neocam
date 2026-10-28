@@ -35,3 +35,7 @@ Connected lock resolution/install; all requested unavailable lint/type/property/
 ## Source and handoff
 
 Canonical commands: conductor/runbook.md. Actual receipts: verification/v4/full/receipt.json. Four Conductor tracks separate implementation from acceptance. Analysis audit: verification/v4/analysis_audit.json. Reusable skill: .agents/skills/maintaining-lean-ci. No remote push or automatic publication was performed.
+
+## Restoration checks
+
+Both a separate Git-bundle clone and extracted source ZIP (no .git) passed317 ordinary tests. Four workbook formulas and cached values were inspected in exported XML; no formula-error cells were found. Full external-tool acceptance remains incomplete.

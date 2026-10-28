@@ -26,8 +26,8 @@
       "evidence": "document/slide renders and workbook inspection"
     },
     "6": {
-      "status": "pending final restoration",
-      "evidence": "package_v4.py; final bundle restore test follows commit"
+      "status": "accepted within ordinary-test/package scope; full external gates remain blocked",
+      "evidence": "verification/v4/bundle_restore_tests.txt; verification/v4/zip_restore_tests.txt"
     }
   }
 }

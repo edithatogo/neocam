@@ -20,5 +20,12 @@
   "analysis_receipt": "verification/v4/analysis_audit.json",
   "verification_receipt": "verification/v4/full/receipt.json",
   "skill_validation": "Executable contract tests and author review; independent agent pressure evaluation not performed",
-  "next_action": "Resolve/review actual lock in authorised network-enabled checkout; install frozen stack and native tools, populate submodule, run full harness and fix actual diagnostics without blanket suppression."
+  "next_action": "Resolve/review actual lock in authorised network-enabled checkout; install frozen stack and native tools, populate submodule, run full harness and fix actual diagnostics without blanket suppression.",
+  "bundle_and_zip_restoration": "317 ordinary tests passed in each separate restoration",
+  "ordinary_tests": 317,
+  "full_acceptance": {
+    "passed": 6,
+    "blocked": 22,
+    "failed": 1
+  }
 }
