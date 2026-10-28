@@ -2,41 +2,46 @@
 
 Private working destination for the Queensland neonatal teleconsultation economic evaluation.
 
-## Import is PARTIAL
+## Complete model import: still blocked
 
-This repository currently contains the import bootstrap, a connected dependency-resolution workflow, the **v8 assurance repair patch**, and the verification-status summary. **The complete model source, data, artifacts and Git history have not been uploaded.** Direct Git transport from the execution environment failed because github.com could not be resolved. The full source ZIP and Git bundle are supplied in the conversation handoff.
+**This GitHub main branch does not yet contain the full model.** It contains recovery/import tooling, the v8 assurance repair patch, and verification records. The complete source and history have been restored locally and backed up privately in the owner's Google Drive; they have not been transferred into this repository's Git object graph.
+
+### Working private recovery downloads
+
+- **Recommended:** [Ready-to-push ZIP: complete Git repository, compact initial working folder](https://drive.google.com/file/d/1G3viHjF-QGYGKU3_YrZkkitz50d7l0BX/view) — 77,184,933 bytes. Includes the full source tree and all 31 source-history commits in Git. This is a standard ZIP, not a bundle requiring conversion.
+- [Full source-file ZIP](https://drive.google.com/file/d/15E2QVVoFtvRIrvdtrFdk7pb81Up0TbF-/view) — 99,087,687 bytes.
+- [Original full Git bundle](https://drive.google.com/file/d/12u7z5Hb9_7puJjFYqXgoyjeACbGYHHH9/view) — 76,718,081 bytes.
+
+The Drive files remain private; repository visibility was not changed. Source ZIP bytes match every tracked blob in the restored bundle. The compact ZIP was extracted, expanded to a full checkout, checked with `git fsck`, and pushed to a separate LOCAL bare remote. Those checks passed; they are not a GitHub-upload claim.
+
+After extracting the recommended ZIP, use an authenticated, network-connected Git terminal inside its `neocam` folder:
+
+```bash
+git sparse-checkout disable
+git push -u origin recovery/complete-v8
+```
+
+The first command materialises all tracked outputs and sources. The second transfers all files and source history to a recovery branch without force-pushing or overwriting `main`. No `git init` or bundle conversion is needed. The archive already has the correct private GitHub remote configured. Keep credentials in your normal credential manager, never in the repository or chat.
+
+### Exact transfer acceptance
+
+- Source commit: `7242e7f7e12d807c52e1d250a388541ada033c51`
+- Source tree: `0ef76ee21360db34af07a281712ce2f75dc97bd8`
+- Source entries: **893**, including the Conductor submodule gitlink.
+- Complete source history: **31 commits**.
+- [Machine-readable recovery checks and hashes](handoff/recovery/verification.json)
+- [Locally tested complete-history importer](scripts/import_repository.py)
+- [Open transfer blocker](https://github.com/edithatogo/neocam/issues/2)
+
+The automated importer verifies archive size/SHA-256, source commit/tree and every tracked entry; it preserves both the source and bootstrap histories and uses no force push. Hosted attempts on [Ubuntu 24.04](https://github.com/edithatogo/neocam/actions/runs/40729381504) and [Ubuntu Slim](https://github.com/edithatogo/neocam/actions/runs/40730856006) both failed before runner allocation (`runner_id=0`, `steps=[]`). The underlying account/platform cause is not established. A working runner or authenticated connected Git terminal is still needed. Temporary download credentials were removed from the current import issue body.
+
+## Actual model assurance
+
+The v8 full local harness finished all 30 required gates: **7 passed, 22 blocked, 1 failed**. The restored ordinary suite again passed **497 tests**. This is not full pinned-toolchain certification. The genuine `uv.lock`, unavailable external lint/type/property/mutation/profiling/security tools, and populated Conductor checkout remain unresolved. **Gitleaks has not passed.**
 
 - [Assurance repair patch](handoff/v8/assurance-repairs.patch)
-- [Machine-readable status](handoff/v8/status.json)
-- [Environment-check run](https://github.com/edithatogo/neocam/actions/runs/40721279349)
-
-## Actual verification
-
-The full local harness finished all 30 required gates: **7 passed, 22 blocked, 1 failed**. The ordinary suite passed **497 tests**. This is a completed unsuccessful assurance run, not a clean toolchain or release certification. The failed gate is the absent genuine uv.lock. Required external lint/type/property/mutation/profiling/security tools and the actual Conductor checkout remain unavailable. Gitleaks has not passed.
-
-The connected environment workflow failed before any reported steps; its cause has not been established. No hosted model test pass is claimed.
-
-## Repairs
-
-Executable launch errors now produce a failed receipt rather than aborting the whole run. Invalid output bytes are retained. Evidence is atomically checkpointed before and after every gate, with run identifiers and explicit incomplete state. Missing native binaries are distinguished from permission failures. Nine regression tests cover these changes. Clinical/economic inputs and numerical model code are unchanged.
-
-## Complete the import from the supplied bundle
-
-```bash
-git clone Panda_Vision_project_v8.bundle neocam-source
-cd neocam-source
-git remote set-url origin https://github.com/edithatogo/neocam.git
-git push -u origin HEAD:refs/heads/conductor/neocam-v8-assurance-publish
-```
-
-This uses a separate branch, does not overwrite main, and preserves the supplied project history. The complete unified command in that source tree is:
-
-```bash
-OAI_IS_JUPYTER_KERNEL=false PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -u -m quality.cli --profile full --evidence-version v8
-```
-
-The notebook flag avoids unrelated host warm-up; explicit property/mutation gates are still mandatory. Install and verify the locked toolchain in an authorised connected environment before expecting full acceptance.
+- [Prior assurance status](handoff/v8/status.json)
 
 ## Privacy and scientific boundary
 
-No patient-level data were added. Restricted corporate originals remain in the private local handoff rather than this partial upload. Keep the repository private. This is a preliminary economic model, not clinical validation, a procurement recommendation or a production system.
+The project includes restricted corporate sources and templates and must remain private. No patient-level data were added. Recovery work has not changed clinical/economic parameters. This is a preliminary model, not clinical validation, procurement approval or a production system. Complete scientific evidence review, independent validation and clean toolchain acceptance remain separate from successful transfer.
