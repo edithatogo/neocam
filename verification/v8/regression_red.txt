@@ -1,0 +1,315 @@
+[31mF[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31m                                                                 [100%][0m
+=================================== FAILURES ===================================
+[31m[1m________ test_permission_denied_is_a_failed_receipt_not_an_aborted_run _________[0m
+
+tmp_path = PosixPath('/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0')
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_permission_denied_is_a_failed_receipt_not_an_aborted_run[39;49;00m(tmp_path):[90m[39;49;00m
+        executable = tmp_path / [33m"[39;49;00m[33mnot-executable[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        executable.write_text([33m"[39;49;00m[33m#!/bin/sh[39;49;00m[33m\n[39;49;00m[33mexit 0[39;49;00m[33m\n[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        executable.chmod([94m0o600[39;49;00m)[90m[39;49;00m
+>       result = run_gate(Gate([33m"[39;49;00m[33mpermission_probe[39;49;00m[33m"[39;49;00m, ([96mstr[39;49;00m(executable),)), tmp_path, [33m"[39;49;00m[33mfp[39;49;00m[33m"[39;49;00m, tmp_path / [33m"[39;49;00m[33mlogs[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtests/test_v8_assurance.py[0m:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mquality/assurance.py[0m:78: in run_gate
+    [0mresult = subprocess.run([90m[39;49;00m
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:554: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:1039: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ('/tmp/pytest-of-oai/pytest-2/test_permission_...>
+args = ['/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0/not-executable']
+executable = b'/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0/not-executable'
+preexec_fn = None, close_fds = True, pass_fds = ()
+cwd = PosixPath('/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0')
+env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 11, c2pwrite = 12, errread = 13, errwrite = 14
+restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m ([95mnot[39;49;00m close_fds [95mor[39;49;00m _HAVE_POSIX_SPAWN_CLOSEFROM)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals, close_fds,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   PermissionError: [Errno 13] Permission denied: '/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0/not-executable'[0m
+
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:1972: PermissionError
+[31m[1m_______________ test_other_launch_oserror_is_failed_not_missing ________________[0m
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f0f8f4ac4a0>
+tmp_path = PosixPath('/tmp/pytest-of-oai/pytest-2/test_other_launch_oserror_is_f0')
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_other_launch_oserror_is_failed_not_missing[39;49;00m(monkeypatch, tmp_path):[90m[39;49;00m
+        [94mdef[39;49;00m[90m [39;49;00m[92mfail[39;49;00m(*args, **kwargs):[90m[39;49;00m
+            [94mraise[39;49;00m [96mOSError[39;49;00m(errno.ENOEXEC, [33m"[39;49;00m[33mExec format error[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        monkeypatch.setattr([33m"[39;49;00m[33mquality.assurance.subprocess.run[39;49;00m[33m"[39;49;00m, fail)[90m[39;49;00m
+>       result = run_gate(Gate([33m"[39;49;00m[33mformat_probe[39;49;00m[33m"[39;49;00m, ([33m"[39;49;00m[33mbad-binary[39;49;00m[33m"[39;49;00m,)), tmp_path, [33m"[39;49;00m[33mfp[39;49;00m[33m"[39;49;00m, tmp_path / [33m"[39;49;00m[33mlogs[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtests/test_v8_assurance.py[0m:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mquality/assurance.py[0m:78: in run_gate
+    [0mresult = subprocess.run([90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (('bad-binary',),)
+kwargs = {'capture_output': True, 'check': False, 'cwd': PosixPath('/tmp/pytest-of-oai/pytest-2/test_other_launch_oserror_is_f0'), 'shell': False, ...}
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mfail[39;49;00m(*args, **kwargs):[90m[39;49;00m
+>       [94mraise[39;49;00m [96mOSError[39;49;00m(errno.ENOEXEC, [33m"[39;49;00m[33mExec format error[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE       OSError: [Errno 8] Exec format error[0m
+
+[1m[31mtests/test_v8_assurance.py[0m:25: OSError
+[31m[1m___________________ test_undecodable_tool_output_is_retained ___________________[0m
+
+tmp_path = PosixPath('/tmp/pytest-of-oai/pytest-2/test_undecodable_tool_output_i0')
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_undecodable_tool_output_is_retained[39;49;00m(tmp_path):[90m[39;49;00m
+>       result = run_gate(Gate([33m"[39;49;00m[33mbytes_probe[39;49;00m[33m"[39;49;00m, (sys.executable, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mimport os;os.write(1,b[39;49;00m[33m'[39;49;00m[33m\\[39;49;00m[33mxff[39;49;00m[33m\\[39;49;00m[33mn[39;49;00m[33m'[39;49;00m[33m)[39;49;00m[33m"[39;49;00m)),[90m[39;49;00m
+                          tmp_path, [33m"[39;49;00m[33mfp[39;49;00m[33m"[39;49;00m, tmp_path / [33m"[39;49;00m[33mlogs[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+
+[1m[31mtests/test_v8_assurance.py[0m:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mquality/assurance.py[0m:78: in run_gate
+    [0mresult = subprocess.run([90m[39;49;00m
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:556: in run
+    [0mstdout, stderr = process.communicate([96minput[39;49;00m, timeout=timeout)[90m[39;49;00m
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:1222: in communicate
+    [0mstdout, stderr = [96mself[39;49;00m._communicate([96minput[39;49;00m, endtime, timeout)[90m[39;49;00m
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:2169: in _communicate
+    [0mstdout = [96mself[39;49;00m._translate_newlines(stdout,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 0 args: ('/opt/pyvenv/bin/python', '-c', "import os;os.w...>
+data = b'\xff\n', encoding = 'UTF-8', errors = 'strict'
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_translate_newlines[39;49;00m([96mself[39;49;00m, data, encoding, errors):[90m[39;49;00m
+>       data = data.decode(encoding, errors)[90m[39;49;00m
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte[0m
+
+[1m[31m/usr/lib/python3.13/subprocess.py[0m:1099: UnicodeDecodeError
+[31m[1m____________ test_checkpoint_survives_unexpected_later_gate_failure ____________[0m
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f0f8f587f20>
+tmp_path = PosixPath('/tmp/pytest-of-oai/pytest-2/test_checkpoint_survives_unexp0')
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_checkpoint_survives_unexpected_later_gate_failure[39;49;00m(monkeypatch,tmp_path):[90m[39;49;00m
+        monkeypatch.setattr(cli,[33m"[39;49;00m[33mROOT[39;49;00m[33m"[39;49;00m,tmp_path)[90m[39;49;00m
+        monkeypatch.setattr(sys,[33m"[39;49;00m[33margv[39;49;00m[33m"[39;49;00m,[[33m"[39;49;00m[33mquality.cli[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33m--profile[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33mfull[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33m--evidence-version[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33mv8[39;49;00m[33m"[39;49;00m])[90m[39;49;00m
+        monkeypatch.setattr(cli,[33m"[39;49;00m[33minput_fingerprint[39;49;00m[33m"[39;49;00m,[94mlambda[39;49;00m root:[33m"[39;49;00m[33mfp[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        monkeypatch.setattr(cli,[33m"[39;49;00m[33mgates_for_profile[39;49;00m[33m"[39;49;00m,[94mlambda[39;49;00m profile:[[90m[39;49;00m
+            Gate([33m"[39;49;00m[33mfirst[39;49;00m[33m"[39;49;00m,(sys.executable,[33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33mpass[39;49;00m[33m"[39;49;00m)),Gate([33m"[39;49;00m[33msecond[39;49;00m[33m"[39;49;00m,(sys.executable,[33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33mpass[39;49;00m[33m"[39;49;00m))])[90m[39;49;00m
+        [94mdef[39;49;00m[90m [39;49;00m[92mrun[39;49;00m(gate, root, fp, logdir):[90m[39;49;00m
+            [94mif[39;49;00m gate.name==[33m"[39;49;00m[33msecond[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                saved=json.loads((logdir/[33m"[39;49;00m[33mreceipt.json[39;49;00m[33m"[39;49;00m).read_text())[90m[39;49;00m
+                [94massert[39;49;00m saved[[33m"[39;49;00m[33mrun_finished[39;49;00m[33m"[39;49;00m] [95mis[39;49;00m [94mFalse[39;49;00m[90m[39;49;00m
+                [94massert[39;49;00m saved[[33m"[39;49;00m[33mfull_local_assurance[39;49;00m[33m"[39;49;00m] [95mis[39;49;00m [94mFalse[39;49;00m[90m[39;49;00m
+                [94massert[39;49;00m [96mlen[39;49;00m(saved[[33m"[39;49;00m[33mreceipts[39;49;00m[33m"[39;49;00m])==[94m1[39;49;00m[90m[39;49;00m
+                [94mraise[39;49;00m [96mRuntimeError[39;49;00m([33m"[39;49;00m[33msimulated runner interruption[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            p=logdir/[33m"[39;49;00m[33mfirst.txt[39;49;00m[33m"[39;49;00m;p.write_text([33m"[39;49;00m[33mok[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94mreturn[39;49;00m Receipt([33m"[39;49;00m[33mfirst[39;49;00m[33m"[39;49;00m,[33m"[39;49;00m[33mpassed[39;49;00m[33m"[39;49;00m,[94m0[39;49;00m,fp,gate.command,[94m.01[39;49;00m,[90m[39;49;00m
+                           [96mstr[39;49;00m(p.relative_to(root)),hashlib.sha256(p.read_bytes()).hexdigest())[90m[39;49;00m
+        monkeypatch.setattr(cli,[33m"[39;49;00m[33mrun_gate[39;49;00m[33m"[39;49;00m,run)[90m[39;49;00m
+        [94mwith[39;49;00m pytest.raises([96mRuntimeError[39;49;00m,match=[33m"[39;49;00m[33msimulated runner interruption[39;49;00m[33m"[39;49;00m):[90m[39;49;00m
+>           cli.main()[90m[39;49;00m
+
+[1m[31mtests/test_v8_assurance.py[0m:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mquality/cli.py[0m:82: in main
+    [0margs = parser.parse_args()[90m[39;49;00m
+           ^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.13/argparse.py[0m:1916: in parse_args
+    [0m[96mself[39;49;00m.error(msg)[90m[39;49;00m
+[1m[31m/usr/lib/python3.13/argparse.py[0m:2672: in error
+    [0m[96mself[39;49;00m.exit([94m2[39;49;00m, _([33m'[39;49;00m[33m%(prog)s[39;49;00m[33m: error: [39;49;00m[33m%(message)s[39;49;00m[33m\n[39;49;00m[33m'[39;49;00m) % args)[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = ArgumentParser(prog='quality.cli', usage=None, description='One explicit assurance command for a solo developer and ho...d GitHub Actions result.\n', formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=True)
+status = 2
+message = 'quality.cli: error: unrecognized arguments: --evidence-version v8\n'
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mexit[39;49;00m([96mself[39;49;00m, status=[94m0[39;49;00m, message=[94mNone[39;49;00m):[90m[39;49;00m
+        [94mif[39;49;00m message:[90m[39;49;00m
+            [96mself[39;49;00m._print_message(message, _sys.stderr)[90m[39;49;00m
+>       _sys.exit(status)[90m[39;49;00m
+[1m[31mE       SystemExit: 2[0m
+
+[1m[31m/usr/lib/python3.13/argparse.py[0m:2659: SystemExit
+----------------------------- Captured stderr call -----------------------------
+usage: quality.cli [-h] [--profile {quick,pr,full}]
+quality.cli: error: unrecognized arguments: --evidence-version v8
+[36m[1m=========================== short test summary info ============================[0m
+[31mFAILED[0m tests/test_v8_assurance.py::[1mtest_permission_denied_is_a_failed_receipt_not_an_aborted_run[0m - PermissionError: [Errno 13] Permission denied: '/tmp/pytest-of-oai/pytest-2/test_permission_denied_is_a_fa0/not-executable'
+[31mFAILED[0m tests/test_v8_assurance.py::[1mtest_other_launch_oserror_is_failed_not_missing[0m - OSError: [Errno 8] Exec format error
+[31mFAILED[0m tests/test_v8_assurance.py::[1mtest_undecodable_tool_output_is_retained[0m - UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+[31mFAILED[0m tests/test_v8_assurance.py::[1mtest_checkpoint_survives_unexpected_later_gate_failure[0m - SystemExit: 2
+[31m[31m[1m4 failed[0m, [32m4 passed[0m[31m in 4.83s[0m[0m

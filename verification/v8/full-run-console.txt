@@ -1,0 +1,60 @@
+START   pytest
+PASSED  pytest: 
+START   inputs
+PASSED  inputs: 
+START   context
+PASSED  context: 
+START   source_integrity
+PASSED  source_integrity: 
+START   coverage
+PASSED  coverage: 
+START   coverage_threshold
+PASSED  coverage_threshold: 
+START   core_coverage
+PASSED  core_coverage: 
+START   ruff_lint
+BLOCKED ruff_lint: Required Python tool is unavailable: ruff
+START   ruff_format
+BLOCKED ruff_format: Required Python tool is unavailable: ruff
+START   ty
+BLOCKED ty: Required Python tool is unavailable: ty
+START   basedpyright
+BLOCKED basedpyright: Required Python tool is unavailable: basedpyright
+START   hypothesis
+BLOCKED hypothesis: Required Python tool is unavailable: hypothesis
+START   gremlins
+BLOCKED gremlins: Required Python tool is unavailable: pytest_gremlins
+START   mutation_score
+BLOCKED mutation_score: Command exited 69
+START   scalene
+BLOCKED scalene: Required Python tool is unavailable: scalene
+START   scalene_output
+BLOCKED scalene_output: Command exited 69
+START   gitleaks_history
+FAILED  gitleaks_history: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'gitleaks'
+START   gitleaks_tree
+FAILED  gitleaks_tree: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'gitleaks'
+START   vale
+FAILED  vale: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'vale'
+START   dependency_consistency
+FAILED  dependency_consistency: Command exited 2
+START   dependency_lock
+BLOCKED dependency_lock: Command exited 69
+START   native_versions
+BLOCKED native_versions: Command exited 69
+START   locked_versions
+BLOCKED locked_versions: Command exited 69
+START   pip_audit
+BLOCKED pip_audit: Required Python tool is unavailable: pip_audit
+START   sbom
+BLOCKED sbom: Required Python tool is unavailable: pip_audit
+START   conductor_checkout
+BLOCKED conductor_checkout: Command exited 69
+START   polars_consistency
+BLOCKED polars_consistency: Required Python tool is unavailable: polars
+START   actionlint
+FAILED  actionlint: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'actionlint'
+START   zizmor
+FAILED  zizmor: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'zizmor'
+START   prek_config
+FAILED  prek_config: Executable launch failed: PermissionError: [Errno 13] Permission denied: 'prek'

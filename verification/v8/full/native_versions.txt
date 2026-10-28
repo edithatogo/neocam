@@ -1,0 +1,3 @@
+gitleaks: unavailable: [Errno 13] Permission denied: 'gitleaks'
+vale: unavailable: [Errno 13] Permission denied: 'vale'
+actionlint: unavailable: [Errno 13] Permission denied: 'actionlint'

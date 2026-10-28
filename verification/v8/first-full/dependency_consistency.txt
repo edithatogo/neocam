@@ -1,0 +1,2 @@
+Using CPython 3.13.5 interpreter at: [36m/usr/bin/python3[39m
+[1m[31merror[39m[0m: Unable to find lockfile at `uv.lock`, but `--check` was provided. To create a lockfile, run `uv lock` or `uv sync` without the flag.

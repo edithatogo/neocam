@@ -1,0 +1,39 @@
+{
+  "run_id": "37b23e38-f2ca-45d6-9426-1b08c8f30439",
+  "source_commit": "7f8cf5a7594ef5dce1f63579041cca1956166cfe",
+  "input_fingerprint": "3cd4727f50e98c89594beab0156c2cd3ed53f1a0570f5c00acfbd277c6e31a88",
+  "ordinary_tests_passed": 497,
+  "gate_counts": {
+    "passed": 7,
+    "blocked": 22,
+    "failed": 1
+  },
+  "all_required_gates_have_terminal_receipts": true,
+  "overall_pass": false,
+  "exit_code": 1,
+  "coverage_combined_percent": 94.33391003460207,
+  "scientific_model_input_diff_against_v7": "empty",
+  "remote": {
+    "repository": "edithatogo/neocam",
+    "visibility": "private",
+    "remote_commit": "5655915c3e5df30805dafc7eca56cc8772880985",
+    "import_status": "partial",
+    "uploaded": [
+      "README.md",
+      ".github/workflows/environment-check.yml",
+      "environment/pyproject.toml",
+      "handoff/v8/assurance-repairs.patch",
+      "handoff/v8/status.json"
+    ],
+    "not_uploaded": "Complete model source/data/artifacts and local Git history",
+    "direct_push_exit": 128,
+    "direct_push_error": "Could not resolve host: github.com",
+    "hosted_environment_run_id": 40721279349,
+    "hosted_environment_conclusion": "failure",
+    "reported_steps": [],
+    "runner_id": 0,
+    "failure_cause": "not established",
+    "remote_patch_blob_sha_verified": "8c4f96b5b59df58f3724503231396d2b3093fa8d"
+  },
+  "independent_review": false
+}

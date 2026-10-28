@@ -1,0 +1,6 @@
+{
+  "source": "current host; not the requested latest pinned environment",
+  "notebook_flag_disabled": "OAI_IS_JUPYTER_KERNEL=false prevents unrelated spreadsheet warm-up",
+  "pytest_autoload_disabled": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1; all dedicated extension gates remain mandatory",
+  "internet": "Direct DNS to pypi.org/github.com/api.github.com failed; no fabricated lock"
+}

@@ -1,0 +1,23 @@
+[31mF[0m[31m                                                                        [100%][0m
+=================================== FAILURES ===================================
+[31m[1m______________ test_missing_native_tool_has_explicit_missing_path ______________[0m
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7ff6b9a6e3a0>
+tmp_path = PosixPath('/tmp/pytest-of-oai/pytest-7/test_missing_native_tool_has_e0')
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_missing_native_tool_has_explicit_missing_path[39;49;00m(monkeypatch, tmp_path):[90m[39;49;00m
+        monkeypatch.setattr(cli, [33m"[39;49;00m[33mROOT[39;49;00m[33m"[39;49;00m, tmp_path)[90m[39;49;00m
+        monkeypatch.setattr(cli.shutil, [33m"[39;49;00m[33mwhich[39;49;00m[33m"[39;49;00m, [94mlambda[39;49;00m name: [94mNone[39;49;00m)[90m[39;49;00m
+>       [94massert[39;49;00m cli._native([33m"[39;49;00m[33mgitleaks[39;49;00m[33m"[39;49;00m) == [96mstr[39;49;00m(tmp_path / [33m"[39;49;00m[33m.tools/bin/gitleaks[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE       AssertionError: assert 'gitleaks' == '/tmp/pytest-.../bin/gitleaks'[0m
+[1m[31mE         [0m
+[1m[31mE         [0m[91m- /tmp/pytest-of-oai/pytest-7/test_missing_native_tool_has_e0/.tools/bin/gitleaks[39;49;00m[90m[39;49;00m[0m
+[1m[31mE         [92m+ gitleaks[39;49;00m[90m[39;49;00m[0m
+
+[1m[31mtests/test_v8_assurance.py[0m:74: AssertionError
+[36m[1m=========================== short test summary info ============================[0m
+[31mFAILED[0m tests/test_v8_assurance.py::[1mtest_missing_native_tool_has_explicit_missing_path[0m - AssertionError: assert 'gitleaks' == '/tmp/pytest-.../bin/gitleaks'
+  
+  [0m[91m- /tmp/pytest-of-oai/pytest-7/test_missing_native_tool_has_e0/.tools/bin/gitleaks[39;49;00m[90m[39;49;00m
+  [92m+ gitleaks[39;49;00m[90m[39;49;00m
+[31m[31m[1m1 failed[0m[31m in 0.08s[0m[0m

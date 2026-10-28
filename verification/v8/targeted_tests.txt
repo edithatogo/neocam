@@ -1,0 +1,97 @@
+[1m============================= test session starts ==============================[0m
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+rootdir: /mnt/data/neocam-work/repo
+configfile: pyproject.toml
+[1mcollecting ... [0mcollected 88 items
+
+tests/test_v8_assurance.py::test_permission_denied_is_a_failed_receipt_not_an_aborted_run [32mPASSED[0m[32m [  1%][0m
+tests/test_v8_assurance.py::test_other_launch_oserror_is_failed_not_missing [32mPASSED[0m[32m [  2%][0m
+tests/test_v8_assurance.py::test_undecodable_tool_output_is_retained [32mPASSED[0m[32m [  3%][0m
+tests/test_v8_assurance.py::test_checkpoint_survives_unexpected_later_gate_failure [32mPASSED[0m[32m [  4%][0m
+tests/test_v8_assurance.py::test_evidence_version_rejects_path_or_invalid_name[../other] [32mPASSED[0m[32m [  5%][0m
+tests/test_v8_assurance.py::test_evidence_version_rejects_path_or_invalid_name[v8/../x] [32mPASSED[0m[32m [  6%][0m
+tests/test_v8_assurance.py::test_evidence_version_rejects_path_or_invalid_name[8] [32mPASSED[0m[32m [  7%][0m
+tests/test_v8_assurance.py::test_evidence_version_rejects_path_or_invalid_name[] [32mPASSED[0m[32m [  9%][0m
+tests/test_assurance_v3.py::test_real_success_has_log_hash [32mPASSED[0m[32m        [ 10%][0m
+tests/test_assurance_v3.py::test_program_error_is_failure_even_for_missing_module_text [32mPASSED[0m[32m [ 11%][0m
+tests/test_assurance_v3.py::test_missing_executable_is_blocked [32mPASSED[0m[32m    [ 12%][0m
+tests/test_assurance_v3.py::test_timeout_is_failure_not_unavailability [32mPASSED[0m[32m [ 13%][0m
+tests/test_assurance_v3.py::test_missing_python_tool_is_blocked [32mPASSED[0m[32m   [ 14%][0m
+tests/test_assurance_v3.py::test_no_shell_interpolation [32mPASSED[0m[32m           [ 15%][0m
+tests/test_assurance_v3.py::test_valid_receipts_accepted [32mPASSED[0m[32m          [ 17%][0m
+tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[fingerprint-stale] [32mPASSED[0m[32m [ 18%][0m
+tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[status-blocked] [32mPASSED[0m[32m [ 19%][0m
+tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[returncode-1] [32mPASSED[0m[32m [ 20%][0m
+tests/test_assurance_v3.py::test_stale_or_failed_or_tampered_receipts_rejected[log_sha256-0000000000000000000000000000000000000000000000000000000000000000] [32mPASSED[0m[32m [ 21%][0m
+tests/test_assurance_v3.py::test_duplicate_receipts_rejected [32mPASSED[0m[32m      [ 22%][0m
+tests/test_assurance_v3.py::test_missing_gate_rejected [32mPASSED[0m[32m            [ 23%][0m
+tests/test_assurance_v3.py::test_extra_failed_gate_rejected [32mPASSED[0m[32m       [ 25%][0m
+tests/test_assurance_v3.py::test_log_cannot_escape_project [32mPASSED[0m[32m        [ 26%][0m
+tests/test_assurance_v3.py::test_deleted_log_rejected [32mPASSED[0m[32m             [ 27%][0m
+tests/test_assurance_v3.py::test_negative_duration_rejected [32mPASSED[0m[32m       [ 28%][0m
+tests/test_assurance_v3.py::test_fingerprint_changes_with_source_not_report [32mPASSED[0m[32m [ 29%][0m
+tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[import pandas as pd] [32mPASSED[0m[32m [ 30%][0m
+tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[from xarray import Dataset] [32mPASSED[0m[32m [ 31%][0m
+tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[import pandas.core] [32mPASSED[0m[32m [ 32%][0m
+tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[importlib.import_module("pandas")] [32mPASSED[0m[32m [ 34%][0m
+tests/test_assurance_v3.py::test_pandas_and_xarray_imports_blocked[__import__("xarray")] [32mPASSED[0m[32m [ 35%][0m
+tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import polars as pl] [32mPASSED[0m[32m [ 36%][0m
+tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import numpy as np] [32mPASSED[0m[32m [ 37%][0m
+tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[import csv] [32mPASSED[0m[32m [ 38%][0m
+tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[text = "import pandas"] [32mPASSED[0m[32m [ 39%][0m
+tests/test_assurance_v3.py::test_policy_does_not_ban_numerics_or_documentation[# from xarray import Dataset] [32mPASSED[0m[32m [ 40%][0m
+tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names0] [32mPASSED[0m[32m [ 42%][0m
+tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names1] [32mPASSED[0m[32m [ 43%][0m
+tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names2] [32mPASSED[0m[32m [ 44%][0m
+tests/test_assurance_v3.py::test_resolved_graph_bans_packages[names3] [32mPASSED[0m[32m [ 45%][0m
+tests/test_assurance_v3.py::test_resolved_graph_allows_polars_numpy [32mPASSED[0m[32m [ 46%][0m
+tests/test_assurance_v3.py::test_missing_lock_is_not_accepted [32mPASSED[0m[32m     [ 47%][0m
+tests/test_assurance_v3.py::test_lock_rejects_banned_transitive [32mPASSED[0m[32m   [ 48%][0m
+tests/test_assurance_v3.py::test_lock_requires_download_hashes [32mPASSED[0m[32m    [ 50%][0m
+tests/test_assurance_v3.py::test_empty_lock_rejected [32mPASSED[0m[32m              [ 51%][0m
+tests/test_assurance_v3.py::test_hashed_lock_accepted [32mPASSED[0m[32m             [ 52%][0m
+tests/test_assurance_v3.py::test_current_input_register_complete [32mPASSED[0m[32m  [ 53%][0m
+tests/test_assurance_v3.py::test_exit_69_from_a_program_is_not_automatically_a_missing_tool [32mPASSED[0m[32m [ 54%][0m
+tests/test_assurance_v3.py::test_invalid_gate_spec_rejected[kwargs0] [32mPASSED[0m[32m [ 55%][0m
+tests/test_assurance_v3.py::test_invalid_gate_spec_rejected[kwargs1] [32mPASSED[0m[32m [ 56%][0m
+tests/test_assurance_v3.py::test_invalid_gate_spec_rejected[kwargs2] [32mPASSED[0m[32m [ 57%][0m
+tests/test_assurance_v3.py::test_external_log_directory_rejected [32mPASSED[0m[32m  [ 59%][0m
+tests/test_quality_integration.py::test_clean_context_fixture [32mPASSED[0m[32m     [ 60%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[entry] [32mPASSED[0m[32m [ 61%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[oversized] [32mPASSED[0m[32m [ 62%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[track] [32mPASSED[0m[32m [ 63%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[state] [32mPASSED[0m[32m [ 64%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[reference] [32mPASSED[0m[32m [ 65%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[pin] [32mPASSED[0m[32m [ 67%][0m
+tests/test_quality_integration.py::test_context_regressions_rejected[bypass] [32mPASSED[0m[32m [ 68%][0m
+tests/test_quality_integration.py::test_missing_prerequisite_returns_unavailable[lock] [32mPASSED[0m[32m [ 69%][0m
+tests/test_quality_integration.py::test_missing_prerequisite_returns_unavailable[mutation] [32mPASSED[0m[32m [ 70%][0m
+tests/test_quality_integration.py::test_missing_prerequisite_returns_unavailable[scalene_output] [32mPASSED[0m[32m [ 71%][0m
+tests/test_quality_integration.py::test_inputs_command_reconciles_real_inputs [32mPASSED[0m[32m [ 72%][0m
+tests/test_quality_integration.py::test_context_command [32mPASSED[0m[32m           [ 73%][0m
+tests/test_quality_integration.py::test_invalid_existing_lock_is_failure [32mPASSED[0m[32m [ 75%][0m
+tests/test_quality_integration.py::test_mutation_command_checks_report[True] [32mPASSED[0m[32m [ 76%][0m
+tests/test_quality_integration.py::test_mutation_command_checks_report[False] [32mPASSED[0m[32m [ 77%][0m
+tests/test_quality_integration.py::test_scalene_report_cannot_be_empty[True] [32mPASSED[0m[32m [ 78%][0m
+tests/test_quality_integration.py::test_scalene_report_cannot_be_empty[False] [32mPASSED[0m[32m [ 79%][0m
+tests/test_quality_integration.py::test_submodule_requires_checkout_and_pin[missing] [32mPASSED[0m[32m [ 80%][0m
+tests/test_quality_integration.py::test_submodule_requires_checkout_and_pin[wrong] [32mPASSED[0m[32m [ 81%][0m
+tests/test_quality_integration.py::test_submodule_requires_checkout_and_pin[ok] [32mPASSED[0m[32m [ 82%][0m
+tests/test_quality_integration.py::test_shared_host_not_treated_as_project_environment [32mPASSED[0m[32m [ 84%][0m
+tests/test_quality_integration.py::test_versions_command_explicit_blocker [32mPASSED[0m[32m [ 85%][0m
+tests/test_quality_integration.py::test_versions_command_pass_path [32mPASSED[0m[32m [ 86%][0m
+tests/test_quality_integration.py::test_explicit_preflight_may_report_unavailable [32mPASSED[0m[32m [ 87%][0m
+tests/test_quality_integration.py::test_invalid_module_spec_is_blocked [32mPASSED[0m[32m [ 88%][0m
+tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[0] [32mPASSED[0m[32m [ 89%][0m
+tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[1] [32mPASSED[0m[32m [ 90%][0m
+tests/test_quality_integration.py::test_cli_exit_matches_actual_child_and_never_implies_release[69] [32mPASSED[0m[32m [ 92%][0m
+tests/test_quality_integration.py::test_cli_detects_mid_run_change [32mPASSED[0m[32m [ 93%][0m
+tests/test_quality_integration.py::test_full_cli_removes_old_reports_before_execution [32mPASSED[0m[32m [ 94%][0m
+tests/test_quality_integration.py::test_project_environment_rejects_forbidden_installed_package [32mPASSED[0m[32m [ 95%][0m
+tests/test_v4_profiles.py::test_full_suite_runs_once_under_coverage [32mPASSED[0m[32m [ 96%][0m
+tests/test_v4_profiles.py::test_pr_has_covered_tests_without_expensive_mutation_or_profiler [32mPASSED[0m[32m [ 97%][0m
+tests/test_v4_profiles.py::test_full_retains_fresh_mutation_and_all_required_checks [32mPASSED[0m[32m [ 98%][0m
+tests/test_v4_profiles.py::test_profile_gates_are_unique [32mPASSED[0m[32m          [100%][0m
+
+[32m============================= [32m[1m88 passed[0m[32m in 33.18s[0m[32m ==============================[0m
