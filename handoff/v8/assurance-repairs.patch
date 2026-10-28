@@ -1,0 +1,258 @@
+diff --git a/quality/assurance.py b/quality/assurance.py
+index aa66a53..a650c6e 100644
+--- a/quality/assurance.py
++++ b/quality/assurance.py
+@@ -77,7 +77,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
+         try:
+             result = subprocess.run(
+                 gate.command, cwd=root, capture_output=True, text=True,
+-                timeout=gate.timeout, check=False, shell=False,
++                timeout=gate.timeout, check=False, shell=False, encoding='utf-8', errors='replace',
+             )
+             returncode = result.returncode
+             output = result.stdout + result.stderr
+@@ -88,6 +88,10 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
+         except FileNotFoundError as error:
+             status, reason = 'blocked', f'Executable unavailable: {error.filename}'
+             output = reason + '\n'
++        except OSError as error:
++            status = 'failed'
++            reason = f'Executable launch failed: {type(error).__name__}: {error}'
++            output = reason + '\n'
+         except subprocess.TimeoutExpired as error:
+             status, reason = 'failed', f'Check timeout after {gate.timeout:g} seconds'
+             fragments = (error.stdout or b'', error.stderr or b'')
+diff --git a/quality/checks.py b/quality/checks.py
+index 120e04d..f46ec00 100644
+--- a/quality/checks.py
++++ b/quality/checks.py
+@@ -119,7 +119,10 @@ def main() -> int:
+     """Run a named check; EX_UNAVAILABLE explicitly distinguishes prerequisites."""
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('check', choices=('inputs', 'context', 'lock', 'versions', 'submodule', 'mutation', 'scalene_output', 'native_versions'))
++    parser.add_argument('--evidence-version', default='v7')
+     args = parser.parse_args()
++    if not re.fullmatch(r'v[1-9][0-9]*', args.evidence_version):
++        parser.error('Invalid evidence version')
+     if args.check == 'inputs':
+         report = audit_inputs(ROOT)
+         print(json.dumps(report, indent=2))
+@@ -155,7 +158,7 @@ def main() -> int:
+             return 69
+         errors = mutation_errors(json.loads(path.read_text(encoding='utf-8')))
+     else:
+-        path = ROOT / 'verification/v7/scalene.json'
++        path = ROOT / 'verification' / args.evidence_version / 'scalene.json'
+         if not path.exists():
+             print('No Scalene profile was produced')
+             return 69
+diff --git a/quality/cli.py b/quality/cli.py
+index 95c1a47..4f200f3 100644
+--- a/quality/cli.py
++++ b/quality/cli.py
+@@ -6,10 +6,13 @@ release or assumes that a local run is a hosted GitHub Actions result.
+ from __future__ import annotations
+ 
+ import argparse
+-from dataclasses import asdict
++from dataclasses import asdict, replace
+ from datetime import datetime, timezone
+ import importlib.metadata
+ import json
++import re
++import uuid
++import os
+ from pathlib import Path
+ import shutil
+ import subprocess
+@@ -22,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
+ 
+ def _native(name: str) -> str:
+     local = ROOT / '.tools/bin' / name
+-    return str(local) if local.exists() else (shutil.which(name) or name)
++    return str(local) if local.exists() else (shutil.which(name) or str(local))
+ 
+ 
+ def gates_for_profile(profile: str) -> list[Gate]:
+@@ -76,46 +79,79 @@ def gates_for_profile(profile: str) -> list[Gate]:
+ 
+ 
+ def main() -> int:
+-    """Collect all gate results, then return nonzero for any blocker or failure."""
++    """Execute all declared gates and atomically checkpoint evidence after each gate."""
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--profile', choices=('quick', 'pr', 'full'), default='quick')
++    parser.add_argument('--evidence-version', default='v7',
++                        help='Versioned evidence directory, for example v8; older evidence is preserved.')
+     args = parser.parse_args()
+-    directory = ROOT / 'verification/v7' / args.profile
++    if not re.fullmatch(r'v[1-9][0-9]*', args.evidence_version):
++        parser.error('--evidence-version must be v followed by a positive integer')
++    evidence_root = f'verification/{args.evidence_version}'
++    directory = ROOT / evidence_root / args.profile
+     directory.mkdir(parents=True, exist_ok=True)
++    gates = [replace(g, command=tuple(s.replace('verification/v7/', evidence_root + '/')
++                                    for s in g.command))
++             for g in gates_for_profile(args.profile)]
++    gates = [replace(g, command=g.command + ('--evidence-version', args.evidence_version))
++             if g.name == 'scalene_output' else g for g in gates]
+     if args.profile in {'pr', 'full'}:
+-        # Prevent an old report from satisfying a newly failed execution gate.
+-        for stale in ('coverage/gremlins/gremlins.json', 'verification/v7/scalene.json', '.coverage'):
++        for stale in ('coverage/gremlins/gremlins.json', f'{evidence_root}/scalene.json', '.coverage'):
+             (ROOT / stale).unlink(missing_ok=True)
+     fingerprint = input_fingerprint(ROOT)
+     receipts: list[Receipt] = []
+-    for gate in gates_for_profile(args.profile):
+-        receipt = run_gate(gate, ROOT, fingerprint, directory)
+-        receipts.append(receipt)
+-        print(f'{receipt.status.upper():7} {gate.name}: {receipt.reason}', flush=True)
+-    current = input_fingerprint(ROOT)
+-    problems = validate_receipts(receipts, {gate.name for gate in gates_for_profile(args.profile)}, current, ROOT)
+-    if fingerprint != current:
+-        problems.append('Inputs changed during verification')
+     versions: dict[str, str | None] = {}
+-    for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty', 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv', 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
++    for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty',
++                 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv',
++                 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
+         try:
+             versions[name] = importlib.metadata.version(name)
+         except importlib.metadata.PackageNotFoundError:
+             versions[name] = None
+-    commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip()
++    commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True,
++                            capture_output=True, timeout=10, check=False).stdout.strip()
+     report = {
+-        'generated_at': datetime.now(timezone.utc).isoformat(), 'profile': args.profile,
++        'generated_at': datetime.now(timezone.utc).isoformat(),
++        'run_id': str(uuid.uuid4()), 'profile': args.profile,
+         'source_commit_at_execution': commit, 'input_fingerprint': fingerprint,
+-        'complete_within_profile': not problems,
+-        'full_local_assurance': args.profile == 'full' and not problems,
+-        'release_ready': False, 'hosted_assurance': 'Not independently verified by this local runner',
+-        'environment': {'python': sys.version, 'executable': sys.executable, 'packages': versions},
+-        'receipts': [asdict(receipt) for receipt in receipts], 'problems': problems,
++        'run_finished': False, 'active_gate': None,
++        'complete_within_profile': False, 'full_local_assurance': False,
++        'release_ready': False,
++        'hosted_assurance': 'Not independently verified by this local runner',
++        'environment': {'python': sys.version, 'executable': sys.executable, 'packages': versions,
++                        'pytest_plugin_autoload': os.environ.get('PYTEST_DISABLE_PLUGIN_AUTOLOAD'),
++                        'notebook_startup_flag': os.environ.get('OAI_IS_JUPYTER_KERNEL')},
++        'receipts': [], 'problems': ['Execution has not completed'],
+         'review': 'Author review; not an independent review',
+         'evidence_reuse': 'pytest and coverage derive from one covered suite in PR/full profiles',
+-        'required_gates': [g.name for g in gates_for_profile(args.profile)],
++        'required_gates': [g.name for g in gates],
+     }
+-    (directory / 'receipt.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
++
++    def checkpoint() -> None:
++        """Never leave a truncated JSON receipt after a failed/interrupted write."""
++        report['updated_at'] = datetime.now(timezone.utc).isoformat()
++        report['receipts'] = [asdict(receipt) for receipt in receipts]
++        temporary = directory / 'receipt.json.tmp'
++        temporary.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
++        temporary.replace(directory / 'receipt.json')
++
++    checkpoint()
++    for gate in gates:
++        report['active_gate'] = gate.name
++        checkpoint()
++        print(f'START   {gate.name}', flush=True)
++        receipt = run_gate(gate, ROOT, fingerprint, directory)
++        receipts.append(receipt)
++        checkpoint()
++        print(f'{receipt.status.upper():7} {gate.name}: {receipt.reason}', flush=True)
++    current = input_fingerprint(ROOT)
++    problems = validate_receipts(receipts, {g.name for g in gates}, current, ROOT)
++    if fingerprint != current:
++        problems.append('Inputs changed during verification')
++    report.update(run_finished=True, active_gate=None, problems=problems,
++                  complete_within_profile=not problems,
++                  full_local_assurance=args.profile == 'full' and not problems)
++    checkpoint()
+     return int(bool(problems))
+ 
+ 
+diff --git a/tests/test_v8_assurance.py b/tests/test_v8_assurance.py
+new file mode 100644
+index 0000000..e05235f
+--- /dev/null
++++ b/tests/test_v8_assurance.py
+@@ -0,0 +1,74 @@
++"""Regression tests for complete, interruption-resilient assurance evidence."""
++from pathlib import Path
++from types import SimpleNamespace
++import errno
++import hashlib
++import json
++import sys
++import pytest
++
++from quality.assurance import Gate, Receipt, run_gate
++import quality.cli as cli
++
++def test_permission_denied_is_a_failed_receipt_not_an_aborted_run(tmp_path):
++    executable = tmp_path / "not-executable"
++    executable.write_text("#!/bin/sh\nexit 0\n")
++    executable.chmod(0o600)
++    result = run_gate(Gate("permission_probe", (str(executable),)), tmp_path, "fp", tmp_path / "logs")
++    assert result.status == "failed"
++    assert result.returncode != 0
++    assert "permission" in result.reason.lower()
++    assert (tmp_path / result.log).is_file()
++
++def test_other_launch_oserror_is_failed_not_missing(monkeypatch, tmp_path):
++    def fail(*args, **kwargs):
++        raise OSError(errno.ENOEXEC, "Exec format error")
++    monkeypatch.setattr("quality.assurance.subprocess.run", fail)
++    result = run_gate(Gate("format_probe", ("bad-binary",)), tmp_path, "fp", tmp_path / "logs")
++    assert result.status == "failed"
++    assert "Exec format" in result.reason
++
++def test_undecodable_tool_output_is_retained(tmp_path):
++    result = run_gate(Gate("bytes_probe", (sys.executable, "-c", "import os;os.write(1,b'\\xff\\n')")),
++                      tmp_path, "fp", tmp_path / "logs")
++    assert result.status == "passed"
++    assert "\ufffd" in (tmp_path / result.log).read_text()
++
++def test_checkpoint_survives_unexpected_later_gate_failure(monkeypatch,tmp_path):
++    monkeypatch.setattr(cli,"ROOT",tmp_path)
++    monkeypatch.setattr(sys,"argv",["quality.cli","--profile","full","--evidence-version","v8"])
++    monkeypatch.setattr(cli,"input_fingerprint",lambda root:"fp")
++    monkeypatch.setattr(cli,"gates_for_profile",lambda profile:[
++        Gate("first",(sys.executable,"-c","pass")),Gate("second",(sys.executable,"-c","pass"))])
++    def run(gate, root, fp, logdir):
++        if gate.name=="second":
++            saved=json.loads((logdir/"receipt.json").read_text())
++            assert saved["run_finished"] is False
++            assert saved["full_local_assurance"] is False
++            assert len(saved["receipts"])==1
++            raise RuntimeError("simulated runner interruption")
++        p=logdir/"first.txt";p.write_text("ok")
++        return Receipt("first","passed",0,fp,gate.command,.01,
++                       str(p.relative_to(root)),hashlib.sha256(p.read_bytes()).hexdigest())
++    monkeypatch.setattr(cli,"run_gate",run)
++    with pytest.raises(RuntimeError,match="simulated runner interruption"):
++        cli.main()
++    data=json.loads((tmp_path/"verification/v8/full/receipt.json").read_text())
++    assert data["run_finished"] is False
++    assert data["run_id"]
++    assert data["active_gate"]=="second"
++    assert data["receipts"][0]["gate"]=="first"
++
++@pytest.mark.parametrize("bad",["../other","v8/../x","8",""])
++def test_evidence_version_rejects_path_or_invalid_name(monkeypatch,bad,tmp_path):
++    monkeypatch.setattr(cli,"ROOT",tmp_path)
++    monkeypatch.setattr(sys,"argv",["quality.cli","--evidence-version",bad])
++    with pytest.raises(SystemExit) as error:
++        cli.main()
++    assert error.value.code==2
++
++
++def test_missing_native_tool_has_explicit_missing_path(monkeypatch, tmp_path):
++    monkeypatch.setattr(cli, "ROOT", tmp_path)
++    monkeypatch.setattr(cli.shutil, "which", lambda name: None)
++    assert cli._native("gitleaks") == str(tmp_path / ".tools/bin/gitleaks")
