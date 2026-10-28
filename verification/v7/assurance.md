@@ -39,3 +39,7 @@ Gitleaks and the other requested pinned developer tools remain unavailable. The 
 ## Artifact verification
 
 Plan2pages; supplement10pages; slides10, rendered/visually reviewed, overflow check passed. Workbook20sheets,40 cached accounting formulas, no formula-error cells; maximum formula residual1.82e-12. It is a results export, not an editable spreadsheet PSA engine. Cohort/perspective residuals remain within floating-point tolerance. Final restoration result is recorded separately after packaging. No remote push, deployment, submission or global skill installation was performed.
+
+## Packaged restoration
+
+A separately cloned Git bundle passed **488 ordinary tests in31.78seconds** with shared-host third-party plugin autoload disabled. This verifies restored source on the same available host, not a newer pinned stack or another operating system. The last receipt-only commit does not alter code, inputs, configuration or the analysis outputs. Git bundle verification passed.

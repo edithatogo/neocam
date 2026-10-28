@@ -1,0 +1,10 @@
+/mnt/data/Panda_Vision_project_v7.bundle is okay
+The bundle contains these 6 refs:
+95faeb6ad8792dac4b9d7cb5b5e9b2914aba5c08 refs/heads/conductor/panda-vision-v6-pathway-validation
+57872eff0959cd36c7fa02395ec4523f6c554950 refs/heads/conductor/panda-vision-v7-perspectives
+95faeb6ad8792dac4b9d7cb5b5e9b2914aba5c08 refs/remotes/origin/HEAD
+39525356a122f372e3afd83e1dd8dbce16edf32e refs/remotes/origin/conductor/panda-vision-v5-comparative-sensitivity
+95faeb6ad8792dac4b9d7cb5b5e9b2914aba5c08 refs/remotes/origin/conductor/panda-vision-v6-pathway-validation
+57872eff0959cd36c7fa02395ec4523f6c554950 HEAD
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
