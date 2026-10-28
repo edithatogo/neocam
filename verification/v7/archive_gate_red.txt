@@ -1,0 +1,14 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_full_acceptance_requires_source_byte_integrity_gate ___________
+
+    def test_full_acceptance_requires_source_byte_integrity_gate():
+        from quality.cli import gates_for_profile
+        gates = {g.name: g for g in gates_for_profile('full')}
+>       assert 'source_integrity' in gates
+E       AssertionError: assert 'source_integrity' in {'actionlint': Gate(name='actionlint', command=('actionlint', '-color'), timeout=60, module=None, allow_unavailable=Fa...=('/opt/pyvenv/bin/python', '-m', 'quality.checks', 'context'), timeout=60, module=None, allow_unavailable=False), ...}
+
+tests/test_v7_source_archive.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v7_source_archive.py::test_full_acceptance_requires_source_byte_integrity_gate - AssertionError: assert 'source_integrity' in {'actionlint': Gate(name='actionlint', command=('actionlint', '-color'), timeout=60, module=None, allow_unavailable=Fa...=('/opt/pyvenv/bin/python', '-m', 'quality.checks', 'context'), timeout=60, module=None, allow_unavailable=False), ...}
+1 failed in 0.08s

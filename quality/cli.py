@@ -39,6 +39,7 @@ def gates_for_profile(profile: str) -> list[Gate]:
         raise ValueError('Unknown assurance profile')
     gates[0] = Gate('pytest', (python, '-m', 'coverage', 'run', '-m', 'pytest', '-q'), 180, 'coverage')
     gates.extend([
+        Gate('source_integrity', (python, '-m', 'quality.source_archive'), 60),
         Gate('coverage', (python, '-m', 'coverage', 'json', '-o', 'verification/v7/coverage.json'), 60, 'coverage'),
         Gate('coverage_threshold', (python, '-m', 'coverage', 'report', '--fail-under=90'), 60, 'coverage'),
         Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py', '--fail-under=95'), 60, 'coverage'),

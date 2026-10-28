@@ -30,3 +30,10 @@ def test_source_change_invalidates_assurance_fingerprint(tmp_path):
     folder=tmp_path/'sources';folder.mkdir();path=folder/'evidence.csv';path.write_text('a,1')
     before=input_fingerprint(tmp_path);path.write_text('a,2')
     assert before!=input_fingerprint(tmp_path)
+
+
+def test_full_acceptance_requires_source_byte_integrity_gate():
+    from quality.cli import gates_for_profile
+    gates = {g.name: g for g in gates_for_profile('full')}
+    assert 'source_integrity' in gates
+    assert 'quality.source_archive' in gates['source_integrity'].command
