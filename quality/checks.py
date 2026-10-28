@@ -73,7 +73,9 @@ def context_errors(root: Path) -> list[str]:
 def version_errors(root: Path) -> list[str]:
     """Require an isolated environment and all declared direct assurance pins."""
     cfg = tomllib.loads((root / 'pyproject.toml').read_text(encoding='utf-8'))
-    declarations = cfg['project']['dependencies'] + cfg['project']['optional-dependencies']['tabular']
+    declarations = list(cfg['project']['dependencies'])
+    for group in cfg['project']['optional-dependencies'].values():
+        declarations += group
     declarations += cfg['dependency-groups']['test']
     declarations += [value for value in cfg['dependency-groups']['assurance'] if isinstance(value, str)]
     project_environment = Path(sys.prefix).resolve() == (root / '.venv').resolve()

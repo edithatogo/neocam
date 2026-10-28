@@ -96,7 +96,7 @@ def main() -> int:
     if fingerprint != current:
         problems.append('Inputs changed during verification')
     versions: dict[str, str | None] = {}
-    for name in ('numpy', 'polars', 'pytest', 'coverage', 'ruff', 'ty', 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv', 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
+    for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty', 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv', 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
         try:
             versions[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:

@@ -25,3 +25,19 @@ def test_analysis_script_is_in_both_typecheck_scopes():
 def test_lock_validation_does_not_try_network_resolution():
     gate=next(g for g in gates_for_profile('full') if g.name=='dependency_consistency')
     assert '--offline' in gate.command
+
+
+def test_version_gate_covers_optional_research_dependencies(monkeypatch):
+    from quality import checks
+    queried=[]
+    def installed(name):
+        queried.append(name)
+        return '0.0.0'
+    monkeypatch.setattr(checks.importlib.metadata,'version',installed)
+    checks.version_errors(ROOT)
+    assert {'scipy','scikit-learn'} <= set(queried)
+
+
+def test_full_ci_installs_research_extra_for_analysis_reproduction():
+    text=(ROOT/'.github/workflows/ci.yml').read_text()
+    assert '--group assurance --extra tabular --extra research' in text
