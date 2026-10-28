@@ -1,0 +1,19 @@
+{
+  "source_commit": "7f8cf5a7594ef5dce1f63579041cca1956166cfe",
+  "receipt_run_id": "37b23e38-f2ca-45d6-9426-1b08c8f30439",
+  "full_run_finished": true,
+  "full_assurance_pass": false,
+  "ordinary_tests": 497,
+  "restoration_tests": 497,
+  "restoration_exit_code": 0,
+  "restored_snapshot": "3365ec3b425d9443153766f2468c972a967bb55e",
+  "verified_fingerprint": "3cd4727f50e98c89594beab0156c2cd3ed53f1a0570f5c00acfbd277c6e31a88",
+  "conductor_task_completion": {
+    "final_bundle_restoration": "accepted; 497 tests from separate clone",
+    "complete_github_import": "not completed",
+    "connected_toolchain": "not completed"
+  },
+  "git_tree_science_diff": "unchanged src/data/evidence relative to eabbb6b",
+  "remote_commit": "5655915c3e5df30805dafc7eca56cc8772880985",
+  "remote_import": "partial"
+}

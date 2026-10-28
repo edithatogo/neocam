@@ -92,5 +92,6 @@ tables and plots remain the current analytical outputs.
 ## Packaging check
 
 The complete source ZIP and Git bundle include all tracked project material and history as
-appropriate. A separate restoration test is recorded in `bundle_restore.txt`; its outcome must
-be read rather than assumed.
+appropriate. A separately restored bundle passed **497 ordinary tests** (exit 0). The log is
+`verification/v8/bundle_restore.txt`. This is the same available host, not the pinned newer environment.
+The restored code/input fingerprint matches the full-run fingerprint.
