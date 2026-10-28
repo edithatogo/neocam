@@ -1,0 +1,593 @@
+{
+  "generated_at": "2026-10-28T08:13:32.822325+00:00",
+  "profile": "full",
+  "source_commit_at_execution": "7fc83399db6ebd8eb50c7aea9ba81b94e25f4988",
+  "input_fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+  "complete_within_profile": false,
+  "full_local_assurance": false,
+  "release_ready": false,
+  "hosted_assurance": "Not independently verified by this local runner",
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "executable": "/opt/pyvenv/bin/python",
+    "packages": {
+      "numpy": "2.3.5",
+      "polars": null,
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "pytest": "9.0.2",
+      "coverage": "7.13.3",
+      "ruff": null,
+      "ty": null,
+      "basedpyright": null,
+      "hypothesis": null,
+      "pytest-gremlins": null,
+      "scalene": null,
+      "pip-audit": null,
+      "uv": "0.10.0",
+      "prek": null,
+      "zizmor": null,
+      "pytest-xdist": null,
+      "pytest-testmon": null
+    }
+  },
+  "receipts": [
+    {
+      "gate": "pytest",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "run",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "duration_seconds": 19.74723042200003,
+      "log": "verification/v6/full/pytest.txt",
+      "log_sha256": "96797a642213cd0bae0eb4d0a8172bf8b8168ab87defacc11c747364e10689ea",
+      "reason": ""
+    },
+    {
+      "gate": "inputs",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "inputs"
+      ],
+      "duration_seconds": 0.9382094019997567,
+      "log": "verification/v6/full/inputs.txt",
+      "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
+      "reason": ""
+    },
+    {
+      "gate": "context",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "context"
+      ],
+      "duration_seconds": 0.7201662160000524,
+      "log": "verification/v6/full/context.txt",
+      "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
+      "reason": ""
+    },
+    {
+      "gate": "coverage",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "json",
+        "-o",
+        "verification/v6/coverage.json"
+      ],
+      "duration_seconds": 1.052386591999948,
+      "log": "verification/v6/full/coverage.txt",
+      "log_sha256": "81861253d377cd393c93882b88f31d816f087fdec7f565b9701c5883facf354c",
+      "reason": ""
+    },
+    {
+      "gate": "coverage_threshold",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "report",
+        "--fail-under=90"
+      ],
+      "duration_seconds": 1.0069204699998409,
+      "log": "verification/v6/full/coverage_threshold.txt",
+      "log_sha256": "c5b5bb8758629f4d86d2c882198788e61f8fb45b949132e8158be1e7a72f0467",
+      "reason": ""
+    },
+    {
+      "gate": "core_coverage",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "coverage",
+        "report",
+        "--include=src/pathways_v6.py",
+        "--fail-under=95"
+      ],
+      "duration_seconds": 0.8047941700001502,
+      "log": "verification/v6/full/core_coverage.txt",
+      "log_sha256": "e1b373c6775e14b330b8795ddbc6218add0433374a3778178120ca2cc99f3abf",
+      "reason": ""
+    },
+    {
+      "gate": "ruff_lint",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "scripts",
+        "quality",
+        "tests"
+      ],
+      "duration_seconds": 0.0002964660002362507,
+      "log": "verification/v6/full/ruff_lint.txt",
+      "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
+      "reason": "Required Python tool is unavailable: ruff"
+    },
+    {
+      "gate": "ruff_format",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "scripts",
+        "quality",
+        "tests"
+      ],
+      "duration_seconds": 0.00015963999976520427,
+      "log": "verification/v6/full/ruff_format.txt",
+      "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
+      "reason": "Required Python tool is unavailable: ruff"
+    },
+    {
+      "gate": "ty",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "ty",
+        "check"
+      ],
+      "duration_seconds": 0.000198498999907315,
+      "log": "verification/v6/full/ty.txt",
+      "log_sha256": "1e359eee876da93f8c0444b0873c3813da7dc5f50fa33be47f9d25ee6ebf0c0f",
+      "reason": "Required Python tool is unavailable: ty"
+    },
+    {
+      "gate": "basedpyright",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "basedpyright"
+      ],
+      "duration_seconds": 0.0001794199997675605,
+      "log": "verification/v6/full/basedpyright.txt",
+      "log_sha256": "abb986f75d76f0e7d6b1fc48d1c06843f47cb950e15baa6baba3a7b8907b641a",
+      "reason": "Required Python tool is unavailable: basedpyright"
+    },
+    {
+      "gate": "hypothesis",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "quality/hypothesis_properties.py",
+        "-q"
+      ],
+      "duration_seconds": 0.00017097799991461216,
+      "log": "verification/v6/full/hypothesis.txt",
+      "log_sha256": "802ea6ef6bfa8bde7ee36bffba1716c4103cbe702ed5a4e4a08bacf8d6874d01",
+      "reason": "Required Python tool is unavailable: hypothesis"
+    },
+    {
+      "gate": "gremlins",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "quality/hypothesis_properties.py",
+        "--gremlins",
+        "--gremlin-workers=2",
+        "--gremlin-clear-cache",
+        "--gremlin-report=json",
+        "--gremlin-report=html",
+        "--strict-pardons"
+      ],
+      "duration_seconds": 0.00014301499959401553,
+      "log": "verification/v6/full/gremlins.txt",
+      "log_sha256": "000d3e1cd3449471977f80cc15b64f4a8627b29c568f093cb9391e49f315b14d",
+      "reason": "Required Python tool is unavailable: pytest_gremlins"
+    },
+    {
+      "gate": "mutation_score",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "mutation"
+      ],
+      "duration_seconds": 0.7297983190001105,
+      "log": "verification/v6/full/mutation_score.txt",
+      "log_sha256": "6236904d6d78f0da3cb47f7da8880409179d7f4373fb2ea8aa669f7457e29d93",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "scalene",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "scalene",
+        "run",
+        "-o",
+        "verification/v6/scalene.json",
+        "quality/profile_workload.py"
+      ],
+      "duration_seconds": 0.0002207119996455731,
+      "log": "verification/v6/full/scalene.txt",
+      "log_sha256": "8f506c78f480d4101942e3e285307aed5d58581d3ffeca851e6ee3e2248aceb5",
+      "reason": "Required Python tool is unavailable: scalene"
+    },
+    {
+      "gate": "scalene_output",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "scalene_output"
+      ],
+      "duration_seconds": 0.6870423889999984,
+      "log": "verification/v6/full/scalene_output.txt",
+      "log_sha256": "388dbb3badf7dabc71ba17f9df04836e1c68d6d18a5a99ada9d442b101e03c0f",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "gitleaks_history",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "gitleaks",
+        "git",
+        "--log-opts=--all",
+        "--redact=100",
+        "--report-format=json",
+        "--report-path=verification/v6/gitleaks-history.json",
+        "."
+      ],
+      "duration_seconds": 0.0005319759998201334,
+      "log": "verification/v6/full/gitleaks_history.txt",
+      "log_sha256": "1b9b1bfa0b4fe4c52b1bd093b788351775abc223da64ccad69f01017f09503f2",
+      "reason": "Executable unavailable: gitleaks"
+    },
+    {
+      "gate": "gitleaks_tree",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "gitleaks",
+        "dir",
+        "--redact=100",
+        "--report-format=json",
+        "--report-path=verification/v6/gitleaks-tree.json",
+        "."
+      ],
+      "duration_seconds": 0.000398098999994545,
+      "log": "verification/v6/full/gitleaks_tree.txt",
+      "log_sha256": "1b9b1bfa0b4fe4c52b1bd093b788351775abc223da64ccad69f01017f09503f2",
+      "reason": "Executable unavailable: gitleaks"
+    },
+    {
+      "gate": "vale",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "vale",
+        "--minAlertLevel=warning",
+        "README.md",
+        "AGENTS.md",
+        "GEMINI.md",
+        "conductor/runbook.md",
+        "conductor/decisions-v3.md"
+      ],
+      "duration_seconds": 0.00033057800010283245,
+      "log": "verification/v6/full/vale.txt",
+      "log_sha256": "74ca57ff64cc81fd0a89c3b6adda9f0ae9983900e8fbcaba82e710586784b1ff",
+      "reason": "Executable unavailable: vale"
+    },
+    {
+      "gate": "dependency_consistency",
+      "status": "failed",
+      "returncode": 2,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "uv",
+        "lock",
+        "--check",
+        "--offline"
+      ],
+      "duration_seconds": 2.5293833199998517,
+      "log": "verification/v6/full/dependency_consistency.txt",
+      "log_sha256": "71be3c069a7459087bc110b4ff135457535509f197113e6a7bf7d5b95eefa266",
+      "reason": "Command exited 2"
+    },
+    {
+      "gate": "dependency_lock",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "lock"
+      ],
+      "duration_seconds": 0.6937359059998016,
+      "log": "verification/v6/full/dependency_lock.txt",
+      "log_sha256": "d3c775d9c0703a8ae6e6f8a2f1b84573d18c3efc2f96e0f564f2242661a8ab94",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "native_versions",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "native_versions"
+      ],
+      "duration_seconds": 0.6721475370000007,
+      "log": "verification/v6/full/native_versions.txt",
+      "log_sha256": "550a02f7362da352e3c56c04e8f101b30d70ace2f66baad27cfc6410d44334be",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "locked_versions",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "versions"
+      ],
+      "duration_seconds": 0.7425834470000154,
+      "log": "verification/v6/full/locked_versions.txt",
+      "log_sha256": "53984ed4b6097cfa59a27b9e7ad6e49e68678bae13379f73c5977b0fa17d0467",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "pip_audit",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pip_audit",
+        "--local",
+        "--format=json",
+        "--output=verification/v6/pip-audit.json"
+      ],
+      "duration_seconds": 0.00034729299977698247,
+      "log": "verification/v6/full/pip_audit.txt",
+      "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
+      "reason": "Required Python tool is unavailable: pip_audit"
+    },
+    {
+      "gate": "sbom",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pip_audit",
+        "--local",
+        "--format=cyclonedx-json",
+        "--output=verification/v6/sbom.json"
+      ],
+      "duration_seconds": 0.00019407199988563661,
+      "log": "verification/v6/full/sbom.txt",
+      "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
+      "reason": "Required Python tool is unavailable: pip_audit"
+    },
+    {
+      "gate": "conductor_checkout",
+      "status": "blocked",
+      "returncode": 69,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.checks",
+        "submodule"
+      ],
+      "duration_seconds": 0.7353119160002279,
+      "log": "verification/v6/full/conductor_checkout.txt",
+      "log_sha256": "03f5bb6e9015712ba26344c637fae5089c7cc66e1dcafefbf5b2ec4620551dac",
+      "reason": "Command exited 69"
+    },
+    {
+      "gate": "polars_consistency",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "quality.polars_probe"
+      ],
+      "duration_seconds": 0.00022297500026979833,
+      "log": "verification/v6/full/polars_consistency.txt",
+      "log_sha256": "f1247ed5f96cf6924d7d25e1a51e6380f2599f9827d3af77ca3243817eb48701",
+      "reason": "Required Python tool is unavailable: polars"
+    },
+    {
+      "gate": "actionlint",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "actionlint",
+        "-color"
+      ],
+      "duration_seconds": 0.0008767389999775332,
+      "log": "verification/v6/full/actionlint.txt",
+      "log_sha256": "3b8b4da6409c1bcba31bf8c5cc9d57e7878c188580e0908205c2895505dde3e3",
+      "reason": "Executable unavailable: actionlint"
+    },
+    {
+      "gate": "zizmor",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "zizmor",
+        "--offline",
+        "--persona=pedantic",
+        ".github/workflows"
+      ],
+      "duration_seconds": 0.0004909089998363925,
+      "log": "verification/v6/full/zizmor.txt",
+      "log_sha256": "494f804300af631f6ef80bb3b4cb742cf5cf109aac28bc2ccbaac40849e018c2",
+      "reason": "Executable unavailable: zizmor"
+    },
+    {
+      "gate": "prek_config",
+      "status": "blocked",
+      "returncode": null,
+      "fingerprint": "acea5cdd130757a5dc94c6fa97caee879eaed507cb382e34aed1083141a7a4d0",
+      "command": [
+        "prek",
+        "validate-config",
+        ".pre-commit-config.yaml"
+      ],
+      "duration_seconds": 0.0004752949998874101,
+      "log": "verification/v6/full/prek_config.txt",
+      "log_sha256": "932d491a2abddbca51ed5b953ceebba8100ab7fda9574aaac92e17164713ff76",
+      "reason": "Executable unavailable: prek"
+    }
+  ],
+  "problems": [
+    "Gate not passed: ruff_lint",
+    "Gate not passed: ruff_format",
+    "Gate not passed: ty",
+    "Gate not passed: basedpyright",
+    "Gate not passed: hypothesis",
+    "Gate not passed: gremlins",
+    "Gate not passed: mutation_score",
+    "Gate not passed: scalene",
+    "Gate not passed: scalene_output",
+    "Gate not passed: gitleaks_history",
+    "Gate not passed: gitleaks_tree",
+    "Gate not passed: vale",
+    "Gate not passed: dependency_consistency",
+    "Gate not passed: dependency_lock",
+    "Gate not passed: native_versions",
+    "Gate not passed: locked_versions",
+    "Gate not passed: pip_audit",
+    "Gate not passed: sbom",
+    "Gate not passed: conductor_checkout",
+    "Gate not passed: polars_consistency",
+    "Gate not passed: actionlint",
+    "Gate not passed: zizmor",
+    "Gate not passed: prek_config"
+  ],
+  "review": "Author review; not an independent review",
+  "evidence_reuse": "pytest and coverage derive from one covered suite in PR/full profiles",
+  "required_gates": [
+    "pytest",
+    "inputs",
+    "context",
+    "coverage",
+    "coverage_threshold",
+    "core_coverage",
+    "ruff_lint",
+    "ruff_format",
+    "ty",
+    "basedpyright",
+    "hypothesis",
+    "gremlins",
+    "mutation_score",
+    "scalene",
+    "scalene_output",
+    "gitleaks_history",
+    "gitleaks_tree",
+    "vale",
+    "dependency_consistency",
+    "dependency_lock",
+    "native_versions",
+    "locked_versions",
+    "pip_audit",
+    "sbom",
+    "conductor_checkout",
+    "polars_consistency",
+    "actionlint",
+    "zizmor",
+    "prek_config"
+  ]
+}

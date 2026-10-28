@@ -1,235 +1,241 @@
 {
-  "xlsx_sheets": 18,
+  "sheets": 18,
   "formulas": 38,
-  "formula_error_cells": [],
-  "formula_cached_values": [
-    [
-      "xl/worksheets/sheet2.xml",
-      "L5",
-      "SUM(H5:H9)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L6",
-      "SUM(H10:H14)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L7",
-      "SUM(H15:H19)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L8",
-      "SUM(H20:H24)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L9",
-      "SUM(H25:H29)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L10",
-      "SUM(H30:H34)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L11",
-      "SUM(H35:H39)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet2.xml",
-      "L12",
-      "SUM(H40:H44)",
-      "1"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G5",
-      "C5-SUM(D5:F5)",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J5",
-      "H5-I5",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L5",
-      "J5-K5",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G6",
-      "C6-SUM(D6:F6)",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J6",
-      "H6-I6",
-      "-15736.601238714786"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L6",
-      "J6-K6",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G7",
-      "C7-SUM(D7:F7)",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J7",
-      "H7-I7",
-      "8515.75256475337"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L7",
-      "J7-K7",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G8",
-      "C8-SUM(D8:F8)",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J8",
-      "H8-I8",
-      "-17122.450027484396"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L8",
-      "J8-K8",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G9",
-      "C9-SUM(D9:F9)",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J9",
-      "H9-I9",
-      "12326.836733869794"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L9",
-      "J9-K9",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G10",
-      "C10-SUM(D10:F10)",
-      "2.2737367544323206e-13"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J10",
-      "H10-I10",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L10",
-      "J10-K10",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G11",
-      "C11-SUM(D11:F11)",
-      "2.2737367544323206e-13"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J11",
-      "H11-I11",
-      "120650.72492671612"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L11",
-      "J11-K11",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G12",
-      "C12-SUM(D12:F12)",
-      "2.2737367544323206e-13"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J12",
-      "H12-I12",
-      "387426.6167648658"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L12",
-      "J12-K12",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G13",
-      "C13-SUM(D13:F13)",
-      "2.2737367544323206e-13"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J13",
-      "H13-I13",
-      "105406.38825025043"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L13",
-      "J13-K13",
-      "0"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "G14",
-      "C14-SUM(D14:F14)",
-      "2.2737367544323206e-13"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "J14",
-      "H14-I14",
-      "429348.5426251465"
-    ],
-    [
-      "xl/worksheets/sheet3.xml",
-      "L14",
-      "J14-K14",
-      "0"
-    ]
-  ]
+  "formula_errors": [],
+  "formula_records": [
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L5",
+      "formula": "SUM(H5:H9)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L6",
+      "formula": "SUM(H10:H14)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L7",
+      "formula": "SUM(H15:H19)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L8",
+      "formula": "SUM(H20:H24)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L9",
+      "formula": "SUM(H25:H29)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L10",
+      "formula": "SUM(H30:H34)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L11",
+      "formula": "SUM(H35:H39)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet2.xml",
+      "cell": "L12",
+      "formula": "SUM(H40:H44)",
+      "value": "1"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G5",
+      "formula": "C5-SUM(D5:F5)",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J5",
+      "formula": "H5-I5",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L5",
+      "formula": "J5-K5",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G6",
+      "formula": "C6-SUM(D6:F6)",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J6",
+      "formula": "H6-I6",
+      "value": "-15736.601238714786"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L6",
+      "formula": "J6-K6",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G7",
+      "formula": "C7-SUM(D7:F7)",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J7",
+      "formula": "H7-I7",
+      "value": "8515.75256475337"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L7",
+      "formula": "J7-K7",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G8",
+      "formula": "C8-SUM(D8:F8)",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J8",
+      "formula": "H8-I8",
+      "value": "-17122.450027484396"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L8",
+      "formula": "J8-K8",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G9",
+      "formula": "C9-SUM(D9:F9)",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J9",
+      "formula": "H9-I9",
+      "value": "12326.836733869794"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L9",
+      "formula": "J9-K9",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G10",
+      "formula": "C10-SUM(D10:F10)",
+      "value": "2.2737367544323206e-13"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J10",
+      "formula": "H10-I10",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L10",
+      "formula": "J10-K10",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G11",
+      "formula": "C11-SUM(D11:F11)",
+      "value": "2.2737367544323206e-13"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J11",
+      "formula": "H11-I11",
+      "value": "120650.72492671612"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L11",
+      "formula": "J11-K11",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G12",
+      "formula": "C12-SUM(D12:F12)",
+      "value": "2.2737367544323206e-13"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J12",
+      "formula": "H12-I12",
+      "value": "387426.6167648658"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L12",
+      "formula": "J12-K12",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G13",
+      "formula": "C13-SUM(D13:F13)",
+      "value": "2.2737367544323206e-13"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J13",
+      "formula": "H13-I13",
+      "value": "105406.38825025043"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L13",
+      "formula": "J13-K13",
+      "value": "0"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "G14",
+      "formula": "C14-SUM(D14:F14)",
+      "value": "2.2737367544323206e-13"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "J14",
+      "formula": "H14-I14",
+      "value": "429348.5426251465"
+    },
+    {
+      "sheet": "xl/worksheets/sheet3.xml",
+      "cell": "L14",
+      "formula": "J14-K14",
+      "value": "0"
+    }
+  ],
+  "plots_png": 10,
+  "plots_svg": 10,
+  "plan_pages": 2,
+  "supplement_pages": 9,
+  "slides": 10,
+  "visual_review": "Author visually inspected all page/slide render sets; independent visual review not performed"
 }
