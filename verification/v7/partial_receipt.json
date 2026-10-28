@@ -1,0 +1,86 @@
+{
+  "schema": "partial-execution-evidence-v1",
+  "generated_at": "2026-10-28T15:06:27.291912+00:00",
+  "source_commit_at_execution": "112abb02e026fef251dcf16a0735665309ed6fc7",
+  "input_fingerprint": "80c671177e7bcff9d825063e722aa25f03e8677aa3df724c59fd4137e32f4faa",
+  "profile": "full",
+  "execution_status": "interrupted after pytest and input gates; no complete unified receipt was produced",
+  "completed_emitted_gates": [
+    "pytest",
+    "inputs"
+  ],
+  "required_gates": [
+    "pytest",
+    "inputs",
+    "context",
+    "source_integrity",
+    "coverage",
+    "coverage_threshold",
+    "core_coverage",
+    "ruff_lint",
+    "ruff_format",
+    "ty",
+    "basedpyright",
+    "hypothesis",
+    "gremlins",
+    "mutation_score",
+    "scalene",
+    "scalene_output",
+    "gitleaks_history",
+    "gitleaks_tree",
+    "vale",
+    "dependency_consistency",
+    "dependency_lock",
+    "native_versions",
+    "locked_versions",
+    "pip_audit",
+    "sbom",
+    "conductor_checkout",
+    "polars_consistency",
+    "actionlint",
+    "zizmor",
+    "prek_config"
+  ],
+  "ordinary_tests": 488,
+  "ordinary_tests_passed": true,
+  "full_local_assurance": false,
+  "release_ready": false,
+  "coverage": {
+    "scoped_statement_branch_percent": 94.34,
+    "active_core_combined_percent": 96.4,
+    "pathway_module_percent": 100
+  },
+  "separately_executed": "Context, source-byte integrity, coverage reports, artifact checks and bounded privacy/tool probes; these are not a completed full run.",
+  "unavailable": "Gitleaks, Ruff, ty, basedpyright, Hypothesis, Gremlins, Scalene, Vale, actionlint, zizmor, prek and other pinned extras; genuine uv.lock and populated Conductor checkout absent.",
+  "simulated_review": "Same-author role-based passes; not independent validation",
+  "evidence": {
+    "verification/v7/full/pytest.txt": {
+      "sha256": "2b33018f83662f62c201b5a8d1e90f748787dc073e43ee21f4dd53cbcbe182e4",
+      "bytes": 581
+    },
+    "verification/v7/full/inputs.txt": {
+      "sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
+      "bytes": 265
+    },
+    "verification/v7/coverage_summary.txt": {
+      "sha256": "d54e8ad35790ee03bd6550a4689a5ba1c55b30ebedb1cea36c9a788436d4c734",
+      "bytes": 1779
+    },
+    "verification/v7/core_coverage_final.txt": {
+      "sha256": "bf3d904856a2eb88a4e6d8ce26347641d69f36a317a4ddad982acf565096f627",
+      "bytes": 574
+    },
+    "verification/v7/source_archive.json": {
+      "sha256": "cb4e62edf383d30deb1bb69d5a307869668fbe927cf6738d4d984e8c92170adc",
+      "bytes": 130
+    },
+    "verification/v7/privacy_security.json": {
+      "sha256": "646770e5246911dc70497efc7499d31b8519a6981110a9bacfe9fc0f5124e4e5",
+      "bytes": 1206
+    },
+    "verification/v7/artifact_audit.json": {
+      "sha256": "613aa7fcc428d271bbb2cca8e74b5755d97ed928a425dc48fb8b6ee40b2b40fd",
+      "bytes": 1478
+    }
+  }
+}

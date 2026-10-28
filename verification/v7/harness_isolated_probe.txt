@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+rootdir: /mnt/data/panda-v7
+configfile: pyproject.toml
+collecting ... collected 1 item
+
+tests/test_quality_integration.py::test_full_cli_removes_old_reports_before_execution FAILED  probe: Command exited 1
+PASSED
+
+============================== 1 passed in 1.65s ===============================

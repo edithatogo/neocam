@@ -1,0 +1,2 @@
+usage: cli.py [-h] [--profile {quick,pr,full}]
+cli.py: error: unrecognized arguments: --out verification/v7/full
