@@ -23,7 +23,7 @@ def unpack_binary(payload: bytes, expected: str, name: str, destination: Path) -
     """Extract only the exact regular executable from a checksum-matched archive."""
     if hashlib.sha256(payload).hexdigest() != expected:
         raise ValueError('Native archive checksum mismatch')
-    if name not in {'gitleaks', 'vale'}:
+    if name not in {'gitleaks', 'vale', 'actionlint'}:
         raise ValueError('Unknown native tool')
     with tarfile.open(fileobj=io.BytesIO(payload), mode='r:gz') as archive:
         matches = [item for item in archive.getmembers() if item.name == name and item.isfile()]

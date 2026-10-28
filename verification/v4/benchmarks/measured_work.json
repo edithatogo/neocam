@@ -1,0 +1,12 @@
+{
+  "test_count": 304,
+  "plain_test_stage_seconds": 17.15,
+  "covered_test_stage_seconds": 19.48,
+  "former_two_stage_work_seconds": 36.63,
+  "new_single_stage_work_seconds": 19.48,
+  "avoidable_seconds": 17.15,
+  "reduction_fraction": 0.4681954681954682,
+  "measurement": "One sequential /usr/bin/time measurement per command, same host and unchanged 304-test suite; sum is former stage workload, not a complete end-to-end CI benchmark.",
+  "logs": ["verification/v4/benchmarks/plain_final.txt", "verification/v4/benchmarks/plain_final_time.txt", "verification/v4/benchmarks/covered_final.txt", "verification/v4/benchmarks/covered_final_time.txt"],
+  "limit": "Combined multi-repeat drivers were interrupted by the execution sandbox; not accepted as completed timing samples. No xdist/testmon speed claim. Later added tests are outside this timed 304-test snapshot."
+}

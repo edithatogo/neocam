@@ -1,57 +1,54 @@
-# Single-developer runbook
+# Single-developer runbook — v4
 
-## Scope and authority
+## Authority and scope
+Read `current-state.json`, the active track and `.agents/skills/maintaining-lean-ci/SKILL.md`. Explicit user instructions and source/parameter registers control the work. Engineering v4 adds no clinical parameter. The economic specification remains v2/v3, rerun into `outputs/v4`; diagnostics use existing parameters. Source checks establish consistency, not empirical truth of estimated effects/costs.
 
-This branch refines the existing model, inputs and assurance. It adds no clinical parameters or model features. The v2 economic artifacts remain historical outputs; default-result parity is checked in `verification/v3/default_output_parity.json`.
+## Environments: pin, resolve, review, then freeze
+`pyproject.toml` controls Python pins. `quality/native-tools.json` controls checksum-pinned native tools. Polars is the sole DataFrame engine; NumPy/CSV remain appropriate for this small model. Do not install pandas/xarray or Hypothesis extras that introduce them.
 
-Use this precedence: explicit user request; current design/specification; parameter/source registers; implementation plan; code; generated reports. An estimated input is not an observed value. Tests certify implementation behaviour, not clinical effectiveness or local cost validity.
-
-## Minimal development loop
-
-1. Read `conductor/current-state.json`, `conductor/tracks.md`, and only the next track's spec/plan. Do not load old reports or whole external repositories by default.
-2. Check Git status and preserve unrelated work. Add a failing regression test before changing behaviour.
-3. Implement the smallest repair, then run `python -m quality.cli --profile quick`.
-4. For a pre-push/release review, run the full profile below. Read every failed and blocked gate. Missing executables never count as successful checks.
-5. Update the track with exact commands, actual receipts, unresolved issues and the next step. Commit changes with a clear scope. No remote push or publication is implied.
-
-## Reproducible environment
-
-`pyproject.toml` is the only active source for Python dependency pins. `quality/native-tools.json` pins Gitleaks/Vale release binaries and their hashes. NumPy handles numerical vectors; the optional Polars extra provides independent table reconciliation. Do not install Hypothesis `all`/`pandas` extras.
-
-On a connected development machine, create and review the missing lock once:
+The current runtime cannot download packages. No real `uv.lock` exists. On a connected authorised checkout:
 
 ```bash
 python -m pip install uv==0.13.6
 uv lock --upgrade
 python -m quality.checks lock
+# Review lock and compatibility; commit the actual resolved lock before normal CI.
 uv sync --frozen --group assurance --extra tabular
-uv run --frozen --group assurance --extra tabular python -m quality.bootstrap
+uv run --frozen --no-sync python -m quality.bootstrap
 git submodule update --init --recursive
-uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full
+uv run --frozen --no-sync python -m quality.cli --profile full
 ```
 
-Normal CI never re-resolves dependencies. Commit the reviewed real `uv.lock`; do not fabricate a lock from direct pins. Any latest-version conflict is a blocker to resolve, not permission to silently downgrade or bypass the requested tool.
+Normal CI executes `uv lock --check` before `uv sync --frozen`. Pins/configuration are not successful installation. Resolve conflicts explicitly; do not fabricate lock hashes, silently downgrade, or suppress whole families of diagnostics. Hosted CI is unexecuted until an actual exact-commit run passes.
 
-## Gates and acceptance
+## Execution scopes
+- **Edit loop:** `python -m quality.cli --profile quick`. Complete ordinary tests plus input/context checks; no release claim.
+- **Hooks:** `uv run --frozen --no-sync prek install`; thin hooks call canonical tool configuration. No mutation/profiling in every commit. Installation not performed here.
+- **Optional local selection:** install the feedback group in a controlled environment, then `python -m quality.feedback --mode tests`. Testmon absence falls back to all ordinary tests, not a selection-speed claim.
+- **Optional local mutation:** `python -m quality.feedback --mode mutation`. Gremlins absence is blocked. Valid incremental caches are local-only; source/data/config/dependency/interpreter/test changes invalidate evidence.
+- **PR:** `python -m quality.cli --profile pr`. One covered ordinary suite, complete relevant static/security/input checks. Coverage report reuses the same execution.
+- **Full acceptance:** `python -m quality.cli --profile full`. All mandatory gates, clean mutation evidence, exact installed versions, real lock, native binary integrity, profiling and tabular reconciliation. Every required gate must pass.
 
-The **quick** profile checks all ordinary tests, input-register reconciliation and context integrity. It is a feedback loop, not release certification.
+Keep serial testing until measured xdist benefit is established. Testmon and xdist remain optional and unbenchmarked here. Cache downloaded artifacts, not whole environments or acceptance receipts. Cancel obsolete PR jobs, not full acceptance. One reviewed Renovate configuration replaces the duplicate updater; bot activation is not claimed.
 
-The **full** profile adds branch coverage, Ruff ALL/preview plus formatter checks, ty all-errors, basedpyright all-rules, Hypothesis, all five Gremlins operators, explicit mutation-score validation, Scalene CPU/memory profiling, Gitleaks history and tree scans, Vale prose checks, exact dependency versions, a hashed lock, vulnerability audit/SBOM, the Conductor checkout, and a Polars reconciliation.
+## Verification policy
+Coverage: 90% scoped model/harness and 95% active numerical module. Mutation: nonzero mutants, at least90% killed, no unexplained timeout/error/pardon. These thresholds are unchanged. Ruff selects ALL/preview with formatter-conflict exemptions only. ty/basedpyright retain strict configurations. Scalene uses reproducible CPU/memory workloads without code upload. Gitleaks logs are redacted; Vale uses local styles; actionlint and zizmor inspect CI itself.
 
-Coverage targets are acceptance criteria, not achieved claims: 90% overall for model/harness and 95% for the active numerical module. Mutation acceptance requires at least 90% zapped, nonzero mutations, and no errors, timeouts or pardons. These are choices for this project. Any later exception requires a documented decision and a test, not an ignore-all baseline.
+Receipts contain actual commands, exit status, source/input fingerprints, elapsed times and log hashes. Blocked is not passed. Source changes invalidate old receipts. The portable skill checker tests receipt consistency, not cryptographic authenticity or hosted execution.
 
-Ruff global exceptions are only COM812/ISC001 formatter conflicts. Test assertions and literal expectations are allowed only in test files. Unsafe automatic fixes are disabled. Experimental typing semantics are disabled because they are unrelated to the model; strict checking remains enabled.
+## Analysis and artifacts
+```bash
+python scripts/run_v2.py --out outputs/v4 --iterations 20000
+python scripts/complete_analysis_v4.py
+python scripts/build_documents_v4.py
+node scripts/build_slides_v4.js
+# Workbook authoring uses artifact_tool, outside the numerical model environment:
+python scripts/build_workbook_v4.py
+```
 
-Scalene runs a fixed existing PSA workload, without AI suggestions, uploading code or hardware-specific performance promises. Do not infer a performance regression from unlike hosts.
+Authoring requires the recorded document/plot/office-tool environment. Do not silently add those tools to runtime dependencies. Render the two-page plan and supplement, inspect charts/tables and slides, verify workbook formulas and preserve the actual output manifest. Full CSV/PNG/SVG data live in `outputs/v4`. Re-running analysis must precede relabelling artifacts.
 
-## Evidence and context hygiene
+## Handoff and remaining gates
+Commit bounded changes, update Conductor implementation/acceptance separately, and deliver a versioned ZIP plus Git bundle. Restore the bundle and rerun tests. No remote push, app installation or publication follows from a local archive.
 
-The harness stores command, exit code, duration, input fingerprint, log digest and installed versions. It rejects duplicate, missing, failed, stale or altered receipts. Logs are evidence, not cryptographic attestation. Source and input hashes do not validate unknown clinical assumptions.
-
-Keep AGENTS/GEMINI under 6 KB each. The task ledger, decision record and evidence register are authoritative; conversation memory is not. Do not mark blocked external-tool acceptance complete merely because configuration exists.
-
-## Current execution boundary
-
-The supplied environment runs Python 3.13.5 with older numerical/test packages. DNS/package downloads are unavailable. Full dependency installation, Ruff/type/generative/mutation/profiling/security/prose execution and hosted CI remain unverified until their actual receipts pass. The full runner returns nonzero while these are blocked.
-
-The 2022 source births, assumed cost/effect inputs and unresolved QEP remain visible. No assumptions are upgraded to evidence during this engineering pass.
+Current limits: external tools unavailable, missing real lock, Conductor gitlink not populated, no hosted CI, no independent agent pressure test, historical population/effect/cost uncertainty and unverified QEP. Read the current receipt rather than inheriting a previous pass. Combined repeated benchmark drivers were interrupted by the sandbox; single-command timings are reported with their narrower scope.

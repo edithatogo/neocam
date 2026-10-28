@@ -1,0 +1,19 @@
+portfolio,calls_per_pilot_site,avoidable_fraction,break_even_transfer_odds_ratio,interpretation
+pilot,10,0.25,0.5617136567244929,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,10,0.5,0.7122037868708246,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,10,1,0.8296137862793402,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,12.5,0.25,0.6197231879338909,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,12.5,0.5,0.753906466387247,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,12.5,1,0.8558690521866632,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,15,0.25,0.6611933264835821,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,15,0.5,0.7829566440235964,Conditional threshold; other parameters fixed; not a treatment recommendation
+pilot,15,1,0.8738198172429998,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,10,0.25,0.6341734973741939,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,10,0.5,0.7587608069333547,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,10,1,0.8566307186196154,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,12.5,0.25,0.6540612644616468,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,12.5,0.5,0.7729361721816563,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,12.5,1,0.8655311764006555,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,15,0.25,0.6898720311041715,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,15,0.5,0.798118918615965,Conditional threshold; other parameters fixed; not a treatment recommendation
+spokes,15,1,0.8811857688122151,Conditional threshold; other parameters fixed; not a treatment recommendation

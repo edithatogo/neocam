@@ -1,0 +1,33 @@
+{
+  "title": "Regenerated decision analysis and publication artifacts",
+  "status": "in_progress",
+  "implementation": "implemented",
+  "acceptance": "scoped local checks passed; integration blockers explicit",
+  "task_count": 6,
+  "tasks": {
+    "1": {
+      "status": "accepted",
+      "evidence": "analysis_run.txt; 8\u00d720,000 draws, 58 scenarios"
+    },
+    "2": {
+      "status": "accepted",
+      "evidence": "analysis_audit.json: input preservation and default-output parity"
+    },
+    "3": {
+      "status": "accepted",
+      "evidence": "mc_precision.csv and six independent seeds; diagnostic only"
+    },
+    "4": {
+      "status": "accepted",
+      "evidence": "two-page plan, supplement, workbook, 14 figures and 14 slides"
+    },
+    "5": {
+      "status": "accepted within rendered scope",
+      "evidence": "document/slide renders and workbook inspection"
+    },
+    "6": {
+      "status": "pending final restoration",
+      "evidence": "package_v4.py; final bundle restore test follows commit"
+    }
+  }
+}

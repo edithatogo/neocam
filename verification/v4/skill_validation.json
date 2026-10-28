@@ -1,0 +1,7 @@
+{
+  "contract_tests": 16,
+  "scope": "portable verifier adversarial contracts; not behavioural agent trials",
+  "baseline": "observed repository failures plus executable red tests",
+  "independent_agent_tests": "not available",
+  "global_chatgpt_installation": false
+}

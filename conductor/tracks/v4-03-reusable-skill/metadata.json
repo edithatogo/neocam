@@ -1,0 +1,33 @@
+{
+  "title": "Reusable lean assurance skill",
+  "status": "in_progress",
+  "implementation": "implemented",
+  "acceptance": "scoped local checks passed; integration blockers explicit",
+  "task_count": 6,
+  "tasks": {
+    "1": {
+      "status": "accepted as observed-history baseline",
+      "evidence": "skill_baseline.md; no fresh-agent baseline claimed"
+    },
+    "2": {
+      "status": "accepted within author/contract scope",
+      "evidence": "bounded SKILL.md and scenario guide"
+    },
+    "3": {
+      "status": "accepted",
+      "evidence": "skill_scope_red.txt \u2192 skill_scope_green.txt"
+    },
+    "4": {
+      "status": "accepted",
+      "evidence": "AGENTS.md/GEMINI.md link one canonical skill"
+    },
+    "5": {
+      "status": "partial validation",
+      "evidence": "16 contract tests; independent fresh-agent pressure evaluation blocked"
+    },
+    "6": {
+      "status": "packaged; restoration verified at handoff",
+      "evidence": "versioned standalone skill ZIP; no global install"
+    }
+  }
+}

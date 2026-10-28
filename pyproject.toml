@@ -1,6 +1,6 @@
 [project]
 name = "panda-vision-evaluation"
-version = "3.0.0"
+version = "4.0.0"
 description = "Preliminary neonatal economic model with explicit evidence and developer assurance"
 requires-python = ">=3.13,<3.16"
 dependencies = ["numpy==2.5.4"]
@@ -17,7 +17,10 @@ assurance = [
   "ruff==0.17.3", "ty==0.0.92", "basedpyright==1.40.2",
   "hypothesis==6.170.12", "pytest-gremlins==1.12.2", "scalene==2.4.0",
   "pip-audit==2.10.1", "uv==0.13.6",
+  "prek==0.5.7", "zizmor==1.31.1",
 ]
+
+feedback = ["pytest-testmon==2.2.0", "pytest-xdist==3.8.0"]
 
 [tool.uv]
 package = false

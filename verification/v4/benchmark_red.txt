@@ -1,0 +1,129 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________ test_only_successful_equivalent_samples_can_be_compared ____________
+
+    def api():
+>       try:return importlib.import_module('quality.benchmark')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_benchmark.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.benchmark', import_ = <function _gcd_import at 0x7fee35d0c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.benchmark'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_only_successful_equivalent_samples_can_be_compared():
+>       m=api()
+          ^^^^^
+
+tests/test_v4_benchmark.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('quality.benchmark')
+>       except ModuleNotFoundError:pytest.fail('Benchmark implementation missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: Benchmark implementation missing
+
+tests/test_v4_benchmark.py:8: Failed
+________________ test_failing_samples_are_not_silently_dropped _________________
+
+    def api():
+>       try:return importlib.import_module('quality.benchmark')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_benchmark.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.benchmark', import_ = <function _gcd_import at 0x7fee35d0c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.benchmark'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_failing_samples_are_not_silently_dropped():
+>       with pytest.raises(ValueError):api().summarise([{'variant':'old','duration_seconds':4,'returncode':1,'passed':10}])
+                                       ^^^^^
+
+tests/test_v4_benchmark.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('quality.benchmark')
+>       except ModuleNotFoundError:pytest.fail('Benchmark implementation missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: Benchmark implementation missing
+
+tests/test_v4_benchmark.py:8: Failed
+_____________________ test_different_test_counts_rejected ______________________
+
+    def api():
+>       try:return importlib.import_module('quality.benchmark')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_benchmark.py:7: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.benchmark', import_ = <function _gcd_import at 0x7fee35d0c4a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.benchmark'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_different_test_counts_rejected():
+        rows=[{'variant':'old','duration_seconds':4,'returncode':0,'passed':10},
+              {'variant':'new','duration_seconds':2,'returncode':0,'passed':9}]
+>       with pytest.raises(ValueError):api().summarise(rows)
+                                       ^^^^^
+
+tests/test_v4_benchmark.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:return importlib.import_module('quality.benchmark')
+>       except ModuleNotFoundError:pytest.fail('Benchmark implementation missing')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: Benchmark implementation missing
+
+tests/test_v4_benchmark.py:8: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v4_benchmark.py::test_only_successful_equivalent_samples_can_be_compared - Failed: Benchmark implementation missing
+FAILED tests/test_v4_benchmark.py::test_failing_samples_are_not_silently_dropped - Failed: Benchmark implementation missing
+FAILED tests/test_v4_benchmark.py::test_different_test_counts_rejected - Failed: Benchmark implementation missing
+3 failed in 0.07s

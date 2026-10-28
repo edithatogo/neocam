@@ -1,47 +1,19 @@
-name: Model and full developer assurance
+name: Lean model and developer assurance
 on:
   pull_request:
   push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 20 * * 0'
   workflow_dispatch:
   workflow_call:
 permissions:
   contents: read
 concurrency:
   group: panda-assurance-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  model-matrix:
-    strategy:
-      fail-fast: false
-      matrix:
-        python: ['3.13', '3.14', '3.15']
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-          submodules: true
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with:
-          python-version: ${{ matrix.python }}
-      - name: Install pinned resolver and frozen reviewed dependencies
-        run: |
-          python -m pip install uv==0.13.6
-          test -f uv.lock
-          uv sync --frozen --group test
-      - name: Same quick model checks as local development
-        run: uv run --frozen --group test python -m quality.cli --profile quick
-      - name: Preserve scoped receipts
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: model-${{ matrix.python }}-${{ github.sha }}
-          path: verification/v3/quick/
-          if-no-files-found: error
-          retention-days: 14
-  full-assurance:
+  assurance:
     runs-on: ubuntu-24.04
     timeout-minutes: 50
     steps:
@@ -50,29 +22,71 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           submodules: true
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
-          python-version: '3.15'
-      - name: Install complete frozen toolchain
+          version: '0.13.6'
+          python-version: '3.13'
+          # Package cache only on trusted non-PR events; never cache a virtualenv or acceptance receipt.
+          enable-cache: ${{ github.event_name != 'pull_request' }}
+          cache-dependency-glob: uv.lock
+      - name: Require reviewed, current lock and install frozen dependencies
         run: |
-          python -m pip install uv==0.13.6
           test -f uv.lock
+          uv lock --check
           uv sync --frozen --group assurance --extra tabular
-          uv run --frozen --group assurance --extra tabular python -m quality.bootstrap
-      - name: Run exactly the local full gate set
-        run: uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full
-      - name: Preserve evidence including failures; never private clinical templates
+          uv run --frozen --no-sync python -m quality.bootstrap
+      - name: PR assurance (one covered suite)
+        if: github.event_name == 'pull_request'
+        run: uv run --frozen --no-sync python -m quality.cli --profile pr
+      - name: Full fresh acceptance (trusted push, scheduled, manual or reusable)
+        if: github.event_name != 'pull_request'
+        run: uv run --frozen --no-sync python -m quality.cli --profile full
+      - name: Retain only verification evidence, not corporate templates
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: full-assurance-${{ github.sha }}
+          name: assurance-${{ github.sha }}
           path: |
-            verification/v3/full/
-            verification/v3/scalene.json
-            verification/v3/gitleaks-*.json
-            verification/v3/pip-audit.json
-            verification/v3/sbom.json
+            verification/v4/pr/
+            verification/v4/full/
+            verification/v4/coverage.json
+            verification/v4/scalene.json
+            verification/v4/gitleaks-*.json
+            verification/v4/pip-audit.json
+            verification/v4/sbom.json
             coverage/gremlins/
-            uv.lock
+          if-no-files-found: error
+          retention-days: 14
+  compatibility:
+    if: github.event_name != 'pull_request'
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.14', '3.15']
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: '0.13.6'
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Frozen compatibility environment
+        run: |
+          test -f uv.lock
+          uv lock --check
+          uv sync --frozen --group test
+      - name: Ordinary suite and input/context contracts
+        run: uv run --frozen --no-sync python -m quality.cli --profile quick
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: compatibility-${{ matrix.python }}-${{ github.sha }}
+          path: verification/v4/quick/
           if-no-files-found: error
           retention-days: 14

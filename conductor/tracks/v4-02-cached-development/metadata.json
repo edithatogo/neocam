@@ -1,0 +1,33 @@
+{
+  "title": "Safe incremental feedback without incremental acceptance",
+  "status": "in_progress",
+  "implementation": "implemented",
+  "acceptance": "scoped local checks passed; integration blockers explicit",
+  "task_count": 6,
+  "tasks": {
+    "1": {
+      "status": "accepted",
+      "evidence": "cache_red.txt; refinement_green.txt"
+    },
+    "2": {
+      "status": "implemented; plugin integration blocked",
+      "evidence": "test_v4_feedback.py passes; testmon unavailable"
+    },
+    "3": {
+      "status": "accepted within contract scope",
+      "evidence": "tests cover failed, stale, deleted-input and changed-environment seals"
+    },
+    "4": {
+      "status": "accepted within contract scope",
+      "evidence": "clean full command retained; no-tests status not promoted"
+    },
+    "5": {
+      "status": "blocked; serial retained",
+      "evidence": "xdist/testmon not installed; no speed claims"
+    },
+    "6": {
+      "status": "accepted",
+      "evidence": "runbook + current-state document actual bounds"
+    }
+  }
+}

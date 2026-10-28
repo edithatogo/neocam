@@ -100,7 +100,7 @@ def native_version_errors(root: Path) -> list[str]:
     for name, entries in manifest.items():
         local = root / '.tools/bin' / name
         executable = str(local) if local.is_file() else name
-        flag = 'version' if name == 'gitleaks' else '--version'
+        flag = 'version' if name == 'gitleaks' else '-version' if name == 'actionlint' else '--version'
         try:
             result = subprocess.run([executable, flag], cwd=root, capture_output=True,
                                     text=True, timeout=10, check=False)
@@ -153,7 +153,7 @@ def main() -> int:
             return 69
         errors = mutation_errors(json.loads(path.read_text(encoding='utf-8')))
     else:
-        path = ROOT / 'verification/v3/scalene.json'
+        path = ROOT / 'verification/v4/scalene.json'
         if not path.exists():
             print('No Scalene profile was produced')
             return 69

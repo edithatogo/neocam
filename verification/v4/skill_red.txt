@@ -1,0 +1,335 @@
+FFFFFFFFFFFFF                                                            [100%]
+=================================== FAILURES ===================================
+_________________________ test_skill_trigger_and_size __________________________
+
+    def test_skill_trigger_and_size():
+>       path=SKILL/'SKILL.md';assert path.exists()
+                              ^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/SKILL.md').exists
+
+tests/test_v4_skill.py:29: AssertionError
+____________ test_valid_full_receipt_is_scoped_not_hosted_assurance ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_valid_full_receipt_is_sco0')
+
+    def test_valid_full_receipt_is_scoped_not_hosted_assurance(tmp_path):
+>       assert checker().audit(receipt(tmp_path),tmp_path,{'tests'},'abc') == []
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______ test_partial_or_cached_evidence_cannot_certify_acceptance[change0] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_partial_or_cached_evidenc0')
+change = {'profile': 'quick'}
+
+    @pytest.mark.parametrize('change',[{'profile':'quick'},{'full_local_assurance':False},{'cache_reused':True}])
+    def test_partial_or_cached_evidence_cannot_certify_acceptance(tmp_path,change):
+        r=receipt(tmp_path);r.update(change)
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______ test_partial_or_cached_evidence_cannot_certify_acceptance[change1] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_partial_or_cached_evidenc1')
+change = {'full_local_assurance': False}
+
+    @pytest.mark.parametrize('change',[{'profile':'quick'},{'full_local_assurance':False},{'cache_reused':True}])
+    def test_partial_or_cached_evidence_cannot_certify_acceptance(tmp_path,change):
+        r=receipt(tmp_path);r.update(change)
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______ test_partial_or_cached_evidence_cannot_certify_acceptance[change2] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_partial_or_cached_evidenc2')
+change = {'cache_reused': True}
+
+    @pytest.mark.parametrize('change',[{'profile':'quick'},{'full_local_assurance':False},{'cache_reused':True}])
+    def test_partial_or_cached_evidence_cannot_certify_acceptance(tmp_path,change):
+        r=receipt(tmp_path);r.update(change)
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______________ test_missing_gate_not_overridden_by_claimed_green _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_missing_gate_not_overridd0')
+
+    def test_missing_gate_not_overridden_by_claimed_green(tmp_path):
+        r=receipt(tmp_path);r['release_ready']=True
+>       assert checker().audit(r,tmp_path,{'tests','mutation'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______________ test_adversarial_evidence_rejected[status-blocked] ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje0')
+field = 'status', value = 'blocked'
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+_______________ test_adversarial_evidence_rejected[returncode-5] _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje1')
+field = 'returncode', value = 5
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+____________ test_adversarial_evidence_rejected[fingerprint-stale] _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje2')
+field = 'fingerprint', value = 'stale'
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+_ test_adversarial_evidence_rejected[log_sha256-0000000000000000000000000000000000000000000000000000000000000000] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje3')
+field = 'log_sha256'
+value = '0000000000000000000000000000000000000000000000000000000000000000'
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+______________ test_adversarial_evidence_rejected[log-../outside] ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje4')
+field = 'log', value = '../outside'
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+___________ test_adversarial_evidence_rejected[duration_seconds--1] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_adversarial_evidence_reje5')
+field = 'duration_seconds', value = -1
+
+    @pytest.mark.parametrize('field,value',[('status','blocked'),('returncode',5),('fingerprint','stale'),('log_sha256','0'*64),('log','../outside'),('duration_seconds',-1)])
+    def test_adversarial_evidence_rejected(tmp_path,field,value):
+        r=receipt(tmp_path);r['receipts'][0][field]=value
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+_________________________ test_duplicate_gate_rejected _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-4/test_duplicate_gate_rejected0')
+
+    def test_duplicate_gate_rejected(tmp_path):
+        r=receipt(tmp_path);r['receipts']*=2
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+               ^^^^^^^^^
+
+tests/test_v4_skill.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def checker():
+        p=SKILL/'scripts/audit_evidence.py'
+>       assert p.exists(), 'Portable evidence checker has not been created'
+E       AssertionError: Portable evidence checker has not been created
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+
+tests/test_v4_skill.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v4_skill.py::test_skill_trigger_and_size - AssertionError: assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/SKILL.md').exists
+FAILED tests/test_v4_skill.py::test_valid_full_receipt_is_scoped_not_hosted_assurance - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_partial_or_cached_evidence_cannot_certify_acceptance[change0] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_partial_or_cached_evidence_cannot_certify_acceptance[change1] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_partial_or_cached_evidence_cannot_certify_acceptance[change2] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_missing_gate_not_overridden_by_claimed_green - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[status-blocked] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[returncode-5] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[fingerprint-stale] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[log_sha256-0000000000000000000000000000000000000000000000000000000000000000] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[log-../outside] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_adversarial_evidence_rejected[duration_seconds--1] - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+FAILED tests/test_v4_skill.py::test_duplicate_gate_rejected - AssertionError: Portable evidence checker has not been created
+assert False
+ +  where False = exists()
+ +    where exists = PosixPath('/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py').exists
+13 failed in 0.10s

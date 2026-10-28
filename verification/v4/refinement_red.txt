@@ -1,0 +1,48 @@
+.FF......................F                                               [100%]
+=================================== FAILURES ===================================
+_________________ test_filename_options_are_terminated[prose] __________________
+
+kind = 'prose'
+
+    @pytest.mark.parametrize('kind',['python','prose','workflow'])
+    def test_filename_options_are_terminated(kind):
+        commands=hook_commands(kind,['--misleading.py'])
+>       assert all('--' in command for command in commands)
+E       assert False
+E        +  where False = all(<generator object test_filename_options_are_terminated.<locals>.<genexpr> at 0x7f8c17bf9220>)
+
+tests/test_v4_hooks.py:9: AssertionError
+________________ test_filename_options_are_terminated[workflow] ________________
+
+kind = 'workflow'
+
+    @pytest.mark.parametrize('kind',['python','prose','workflow'])
+    def test_filename_options_are_terminated(kind):
+        commands=hook_commands(kind,['--misleading.py'])
+>       assert all('--' in command for command in commands)
+E       assert False
+E        +  where False = all(<generator object test_filename_options_are_terminated.<locals>.<genexpr> at 0x7f8c17bfb850>)
+
+tests/test_v4_hooks.py:9: AssertionError
+___________ test_deleted_source_file_invalidates_selection_inventory ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-7/test_deleted_source_file_inval0')
+
+    def test_deleted_source_file_invalidates_selection_inventory(tmp_path):
+        sample(tmp_path);m=api();before=m.cache_key(tmp_path,'tests',{})
+        (tmp_path/'src/a.py').unlink()
+>       assert m.cache_key(tmp_path,'tests',{}) != before
+E       AssertionError: assert '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245' != '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245'
+E        +  where '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245' = <function cache_key at 0x7f8c17caeac0>(PosixPath('/tmp/pytest-of-root/pytest-7/test_deleted_source_file_inval0'), 'tests', {})
+E        +    where <function cache_key at 0x7f8c17caeac0> = <module 'quality.feedback' from '/mnt/data/panda-vision-v4/quality/feedback.py'>.cache_key
+
+tests/test_v4_feedback.py:98: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v4_hooks.py::test_filename_options_are_terminated[prose] - assert False
+ +  where False = all(<generator object test_filename_options_are_terminated.<locals>.<genexpr> at 0x7f8c17bf9220>)
+FAILED tests/test_v4_hooks.py::test_filename_options_are_terminated[workflow] - assert False
+ +  where False = all(<generator object test_filename_options_are_terminated.<locals>.<genexpr> at 0x7f8c17bfb850>)
+FAILED tests/test_v4_feedback.py::test_deleted_source_file_invalidates_selection_inventory - AssertionError: assert '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245' != '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245'
+ +  where '6d0de564dfdbf0a3f8e17fc53848e512c44ca0165da11dd5ca10cf2f111cd245' = <function cache_key at 0x7f8c17caeac0>(PosixPath('/tmp/pytest-of-root/pytest-7/test_deleted_source_file_inval0'), 'tests', {})
+ +    where <function cache_key at 0x7f8c17caeac0> = <module 'quality.feedback' from '/mnt/data/panda-vision-v4/quality/feedback.py'>.cache_key
+3 failed, 23 passed in 0.11s

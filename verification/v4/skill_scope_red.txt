@@ -1,0 +1,58 @@
+.............FFF                                                         [100%]
+=================================== FAILURES ===================================
+_____________________ test_required_scope_cannot_be_empty ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_required_scope_cannot_be_0')
+
+    def test_required_scope_cannot_be_empty(tmp_path):
+>       assert checker().audit(receipt(tmp_path),tmp_path,set(),'abc')
+E       AssertionError: assert []
+E        +  where [] = <function audit at 0x7f0e58badd00>({'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_required_scope_cannot_be_0'), set(), 'abc')
+E        +    where <function audit at 0x7f0e58badd00> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+E        +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+E        +    and   {'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]} = receipt(PosixPath('/tmp/pytest-of-root/pytest-34/test_required_scope_cannot_be_0'))
+E        +    and   set() = set()
+
+tests/test_v4_skill.py:64: AssertionError
+_______________ test_conflicting_top_level_fingerprint_rejected ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_conflicting_top_level_fin0')
+
+    def test_conflicting_top_level_fingerprint_rejected(tmp_path):
+        r=receipt(tmp_path);r['input_fingerprint']='wrong'
+>       assert checker().audit(r,tmp_path,{'tests'},'abc')
+E       AssertionError: assert []
+E        +  where [] = <function audit at 0x7f0e58bae7a0>({'full_local_assurance': True, 'input_fingerprint': 'wrong', 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_conflicting_top_level_fin0'), {'tests'}, 'abc')
+E        +    where <function audit at 0x7f0e58bae7a0> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+E        +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+
+tests/test_v4_skill.py:69: AssertionError
+__________________ test_expected_fingerprint_cannot_be_empty ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_expected_fingerprint_cann0')
+
+    def test_expected_fingerprint_cannot_be_empty(tmp_path):
+        r=receipt(tmp_path);r['receipts'][0]['fingerprint']=''
+>       assert checker().audit(r,tmp_path,{'tests'},'')
+E       AssertionError: assert []
+E        +  where [] = <function audit at 0x7f0e58b3b6a0>({'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': '', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_expected_fingerprint_cann0'), {'tests'}, '')
+E        +    where <function audit at 0x7f0e58b3b6a0> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+E        +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+
+tests/test_v4_skill.py:74: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v4_skill.py::test_required_scope_cannot_be_empty - AssertionError: assert []
+ +  where [] = <function audit at 0x7f0e58badd00>({'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_required_scope_cannot_be_0'), set(), 'abc')
+ +    where <function audit at 0x7f0e58badd00> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+ +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+ +    and   {'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]} = receipt(PosixPath('/tmp/pytest-of-root/pytest-34/test_required_scope_cannot_be_0'))
+ +    and   set() = set()
+FAILED tests/test_v4_skill.py::test_conflicting_top_level_fingerprint_rejected - AssertionError: assert []
+ +  where [] = <function audit at 0x7f0e58bae7a0>({'full_local_assurance': True, 'input_fingerprint': 'wrong', 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': 'abc', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_conflicting_top_level_fin0'), {'tests'}, 'abc')
+ +    where <function audit at 0x7f0e58bae7a0> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+ +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+FAILED tests/test_v4_skill.py::test_expected_fingerprint_cannot_be_empty - AssertionError: assert []
+ +  where [] = <function audit at 0x7f0e58b3b6a0>({'full_local_assurance': True, 'profile': 'full', 'receipts': [{'duration_seconds': 1, 'fingerprint': '', 'gate': 'tests', 'log': 'run.txt', ...}]}, PosixPath('/tmp/pytest-of-root/pytest-34/test_expected_fingerprint_cann0'), {'tests'}, '')
+ +    where <function audit at 0x7f0e58b3b6a0> = <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'>.audit
+ +      where <module 'portable_audit' from '/mnt/data/panda-vision-v4/.agents/skills/maintaining-lean-ci/scripts/audit_evidence.py'> = checker()
+3 failed, 13 passed in 0.09s

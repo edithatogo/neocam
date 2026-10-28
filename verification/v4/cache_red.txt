@@ -1,0 +1,692 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+___________ test_code_change_preserves_testmon_key_but_not_mutation ____________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_code_change_preserves_tes0')
+
+    def test_code_change_preserves_testmon_key_but_not_mutation(tmp_path):
+>       sample(tmp_path); m=api()
+                            ^^^^^
+
+tests/test_v4_feedback.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_________ test_static_or_policy_change_invalidates_testmon[data/x.csv] _________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i0')
+path = 'data/x.csv'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_______ test_static_or_policy_change_invalidates_testmon[pyproject.toml] _______
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i1')
+path = 'pyproject.toml'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+__________ test_static_or_policy_change_invalidates_testmon[uv.lock] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i2')
+path = 'uv.lock'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_____ test_static_or_policy_change_invalidates_testmon[tests/conftest.py] ______
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i3')
+path = 'tests/conftest.py'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_____ test_static_or_policy_change_invalidates_testmon[quality/policy.py] ______
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i4')
+path = 'quality/policy.py'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+__ test_static_or_policy_change_invalidates_testmon[.pre-commit-config.yaml] ___
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_static_or_policy_change_i5')
+path = '.pre-commit-config.yaml'
+
+    @pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
+    def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+___________________ test_deletion_and_environment_invalidate ___________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_deletion_and_environment_0')
+
+    def test_deletion_and_environment_invalidate(tmp_path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{'python':'A'})
+                            ^^^^^
+
+tests/test_v4_feedback.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_________________ test_outputs_and_receipts_do_not_invalidate __________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_outputs_and_receipts_do_n0')
+
+    def test_outputs_and_receipts_do_not_invalidate(tmp_path):
+>       sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
+                            ^^^^^
+
+tests/test_v4_feedback.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+________________ test_cold_tests_clear_database_not_other_files ________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_cold_tests_clear_database0')
+
+    def test_cold_tests_clear_database_not_other_files(tmp_path):
+>       sample(tmp_path); m=api(); (tmp_path/'.testmondata').write_text('stale')
+                            ^^^^^
+
+tests/test_v4_feedback.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_____________________ test_cache_only_sealed_after_success _____________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_cache_only_sealed_after_s0')
+
+    def test_cache_only_sealed_after_success(tmp_path):
+>       sample(tmp_path); m=api(); plan=m.prepare(tmp_path,'tests',available=True,environment={})
+                            ^^^^^
+
+tests/test_v4_feedback.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_____________________ test_mutation_clean_then_incremental _____________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_mutation_clean_then_incre0')
+
+    def test_mutation_clean_then_incremental(tmp_path):
+>       sample(tmp_path);m=api();first=m.prepare(tmp_path,'mutation',available=True,environment={})
+                           ^^^^^
+
+tests/test_v4_feedback.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_______ test_missing_selection_tool_explicitly_falls_back_to_full_tests ________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_missing_selection_tool_ex0')
+
+    def test_missing_selection_tool_explicitly_falls_back_to_full_tests(tmp_path):
+>       sample(tmp_path);plan=api().prepare(tmp_path,'tests',available=False,environment={})
+                              ^^^^^
+
+tests/test_v4_feedback.py:80: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_________ test_missing_mutation_tool_is_not_replaced_by_ordinary_tests _________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_missing_mutation_tool_is_0')
+
+    def test_missing_mutation_tool_is_not_replaced_by_ordinary_tests(tmp_path):
+        sample(tmp_path)
+>       with pytest.raises(ModuleNotFoundError): api().prepare(tmp_path,'mutation',available=False,environment={})
+                                                 ^^^^^
+
+tests/test_v4_feedback.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+_________________________ test_invalid_modes_rejected __________________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.feedback')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_feedback.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.feedback', import_ = <function _gcd_import at 0x7f95d4ae04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.feedback'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_modes_rejected0')
+
+    def test_invalid_modes_rejected(tmp_path):
+>       with pytest.raises(ValueError): api().cache_key(tmp_path,'release',{})
+                                        ^^^^^
+
+tests/test_v4_feedback.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.feedback')
+        except ModuleNotFoundError:
+>           pytest.fail('Guarded development feedback implementation is missing')
+E           Failed: Guarded development feedback implementation is missing
+
+tests/test_v4_feedback.py:15: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v4_feedback.py::test_code_change_preserves_testmon_key_but_not_mutation - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[data/x.csv] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[pyproject.toml] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[uv.lock] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[tests/conftest.py] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[quality/policy.py] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_static_or_policy_change_invalidates_testmon[.pre-commit-config.yaml] - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_deletion_and_environment_invalidate - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_outputs_and_receipts_do_not_invalidate - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_cold_tests_clear_database_not_other_files - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_cache_only_sealed_after_success - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_mutation_clean_then_incremental - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_missing_selection_tool_explicitly_falls_back_to_full_tests - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_missing_mutation_tool_is_not_replaced_by_ordinary_tests - Failed: Guarded development feedback implementation is missing
+FAILED tests/test_v4_feedback.py::test_invalid_modes_rejected - Failed: Guarded development feedback implementation is missing
+15 failed in 0.21s

@@ -79,7 +79,7 @@ def test_mutation_command_checks_report(monkeypatch,tmp_path,valid):
 
 @pytest.mark.parametrize('valid',[True,False])
 def test_scalene_report_cannot_be_empty(monkeypatch,tmp_path,valid):
-    folder=tmp_path/'verification/v3';folder.mkdir(parents=True)
+    folder=tmp_path/'verification/v4';folder.mkdir(parents=True)
     (folder/'scalene.json').write_text(json.dumps({'files':{'src/statewide.py':{}}} if valid else {}))
     assert invoke_check(monkeypatch,tmp_path,'scalene_output')==int(not valid)
 
@@ -129,7 +129,7 @@ def test_cli_exit_matches_actual_child_and_never_implies_release(monkeypatch,tmp
     monkeypatch.setattr(sys,'argv',['cli','--profile','quick'])
     monkeypatch.setattr(cli,'gates_for_profile',lambda profile:[Gate('probe',(sys.executable,'-c',f'raise SystemExit({exitcode})'))])
     assert cli.main()==int(exitcode!=0)
-    report=json.loads((tmp_path/'verification/v3/quick/receipt.json').read_text())
+    report=json.loads((tmp_path/'verification/v4/quick/receipt.json').read_text())
     assert report['release_ready'] is False
     assert report['full_local_assurance'] is False
     assert report['complete_within_profile']==(exitcode==0)

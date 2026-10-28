@@ -1,0 +1,11 @@
+analysis,count,scope,file
+Primary deterministic comparisons,58,complete,scenario_results.csv
+Probabilistic structures,8,complete; 20000 draws each,results_v2.json
+Independent-seed reruns,6,complete; 20000 draws each,independent_seed_checks.csv
+Nested precision comparisons,8,complete; overlapping prefixes,mc_precision.csv
+Equipment life checks,6,complete; existing parameter,equipment_life_checks.csv
+Conditional break-even thresholds,18,complete; existing parameters,break_even_thresholds.csv
+Survival/morbidity combinations,108,exploratory; not calibrated lifetime CEA,survival_morbidity_frontier.csv
+Funding ratio comparisons,9,hypothetical; QEP unknown,funding_sensitivity.csv
+Budget horizons,2,5 years each; cash separate,pilot_five_year_budget.csv;spokes_five_year_budget.csv
+Historical site projections,65,"2022 public roster, not current census",site_projection.csv

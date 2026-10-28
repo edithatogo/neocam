@@ -1,0 +1,34 @@
+{
+  "artifact_release": "v4",
+  "model": "unchanged v2/v3 economic specification",
+  "as_of": "2026-10-28",
+  "primary_deterministic_scenarios": 58,
+  "psa_structures": 8,
+  "draws_per_structure": 20000,
+  "additional_precision_draws": 120000,
+  "clinical_frontier_combinations": 108,
+  "equipment_life_checks": 6,
+  "break_even_thresholds": 18,
+  "figures": 14,
+  "parameters_added": 0,
+  "analysis_audit": {
+    "scenario_rows": 58,
+    "clinical_frontier_rows": 108,
+    "site_rows": 65,
+    "psa_structures": 8,
+    "economic_defaults_unchanged": true,
+    "protected_inputs_unchanged": true,
+    "protected_input_hashes": {
+      "data/parameters.json": "9c1e4608532268e537c9b1956451142b5de396e2c46fd0454bace7735716780d",
+      "data/births_queensland_2022.csv": "13ec6ec2e94d05560aa9562c158b6cf72f64d9c44c4e2ac731c3bfb15a6a6bcc",
+      "data/site_classification.json": "b959213df5770cd75f3c43ec9cf99f9fcd15d7318910c599b1468e86ce77db0b",
+      "data/population_totals.json": "b19047b9387f12d742819f6b1428f8687be13737cea73930d8f5d0dde62190ed",
+      "evidence/sources.csv": "b33f72cd83b0ebf90f9e9517e9cf1494965239a343e87f5a23d4c3f38f74a7fc",
+      "evidence/parameter_register.csv": "bbfdc27525693074301a4035b93600fae1f2269d26ee493394bdd5b144cc02e6",
+      "evidence/literature_parameter_map.csv": "88934dee3f527c6b957a88c8fefeb6fb2f0bfe387fd8b7da3246e9c27cacfe7b",
+      "evidence/search_log.md": "19826313e7453d6098d5965999ccc96b636712241bd325d24b1a7d66e3b10dc5",
+      "evidence/transport_mode_comparison.csv": "914da27b83f33422cbbcdc0d94b28635497b7ca5ebca0992a6f2feeba5bf46bc"
+    },
+    "interpretation": "Numerical/provenance checks; not empirical validation of assumed effects/costs."
+  }
+}

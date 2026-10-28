@@ -1,0 +1,37 @@
+{
+  "verified_on": "2026-10-28",
+  "prior_pins": "dependency_targets_v3.json; unchanged",
+  "new_pins": [
+    {
+      "name": "prek",
+      "version": "0.5.7",
+      "source": "https://pypi.org/project/prek/0.5.7/"
+    },
+    {
+      "name": "zizmor",
+      "version": "1.31.1",
+      "source": "https://pypi.org/project/zizmor/1.31.1/"
+    },
+    {
+      "name": "pytest-testmon",
+      "version": "2.2.0",
+      "source": "https://pypi.org/project/pytest-testmon/"
+    },
+    {
+      "name": "pytest-xdist",
+      "version": "3.8.0",
+      "source": "https://pypi.org/project/pytest-xdist/"
+    },
+    {
+      "name": "actionlint",
+      "version": "1.7.12",
+      "source": "https://api.github.com/repos/rhysd/actionlint/releases/latest"
+    },
+    {
+      "name": "setup-uv",
+      "version": "10.3.2",
+      "source": "https://api.github.com/repos/astral-sh/setup-uv/releases/latest"
+    }
+  ],
+  "policy": "Latest located stable releases; prerelease zizmor1.32.0rc1 excluded deliberately. Targets are not installed-version evidence."
+}

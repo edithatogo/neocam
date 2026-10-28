@@ -1,0 +1,88 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+___________________ test_full_suite_runs_once_under_coverage ___________________
+
+    def test_full_suite_runs_once_under_coverage():
+        commands = [g.command for g in gates_for_profile('full')]
+        ordinary = [c for c in commands if 'pytest' in c and '--gremlins' not in c
+                    and 'quality/hypothesis_properties.py' not in c]
+>       assert len(ordinary) == 1
+E       AssertionError: assert 2 == 1
+E        +  where 2 = len([('/opt/pyvenv/bin/python', '-m', 'pytest', '-q'), ('/opt/pyvenv/bin/python', '-m', 'coverage', 'run', '-m', 'pytest', ...)])
+
+tests/test_v4_profiles.py:14: AssertionError
+_______ test_pr_has_covered_tests_without_expensive_mutation_or_profiler _______
+
+    def test_pr_has_covered_tests_without_expensive_mutation_or_profiler():
+>       gates = gates_for_profile('pr')
+                ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_profiles.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile = 'pr'
+
+    def gates_for_profile(profile: str) -> list[Gate]:
+        """Declare every gate once; full is a strict superset of quick checks."""
+        python = sys.executable
+        gates = [
+            Gate('pytest', (python, '-m', 'pytest', '-q'), 180),
+            Gate('inputs', (python, '-m', 'quality.checks', 'inputs')),
+            Gate('context', (python, '-m', 'quality.checks', 'context')),
+        ]
+        if profile == 'quick':
+            return gates
+        if profile != 'full':
+>           raise ValueError('Unknown assurance profile')
+E           ValueError: Unknown assurance profile
+
+quality/cli.py:39: ValueError
+___________ test_full_retains_fresh_mutation_and_all_required_checks ___________
+
+    def test_full_retains_fresh_mutation_and_all_required_checks():
+        gates = {g.name:g for g in gates_for_profile('full')}
+        assert '--gremlin-clear-cache' in gates['gremlins'].command
+>       assert {'ruff_lint','ty','basedpyright','hypothesis','mutation_score','scalene',
+                'gitleaks_history','gitleaks_tree','vale','dependency_lock','actionlint',
+                'zizmor','prek_config','polars_consistency'} <= gates.keys()
+E       AssertionError: assert {'actionlint', 'basedpyright', 'dependency_lock', 'gitleaks_history', 'gitleaks_tree', 'hypothesis', ...} <= dict_keys(['pytest', 'inputs', 'context', 'coverage', 'coverage_threshold', 'core_coverage', 'ruff_lint', 'ruff_format...pendency_lock', 'native_versions', 'locked_versions', 'pip_audit', 'sbom', 'conductor_checkout', 'polars_consistency'])
+E        +  where dict_keys(['pytest', 'inputs', 'context', 'coverage', 'coverage_threshold', 'core_coverage', 'ruff_lint', 'ruff_format...pendency_lock', 'native_versions', 'locked_versions', 'pip_audit', 'sbom', 'conductor_checkout', 'polars_consistency']) = <built-in method keys of dict object at 0x7fb32c716400>()
+E        +    where <built-in method keys of dict object at 0x7fb32c716400> = {'basedpyright': Gate(name='basedpyright', command=('/opt/pyvenv/bin/python', '-m', 'basedpyright'), timeout=180, modu...eport', '--include=src/statewide.py', '--fail-under=95'), timeout=60, module='coverage', allow_unavailable=False), ...}.keys
+
+tests/test_v4_profiles.py:27: AssertionError
+________________________ test_profile_gates_are_unique _________________________
+
+    def test_profile_gates_are_unique():
+        for profile in ('quick','pr','full'):
+>           gates = gates_for_profile(profile)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_profiles.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+profile = 'pr'
+
+    def gates_for_profile(profile: str) -> list[Gate]:
+        """Declare every gate once; full is a strict superset of quick checks."""
+        python = sys.executable
+        gates = [
+            Gate('pytest', (python, '-m', 'pytest', '-q'), 180),
+            Gate('inputs', (python, '-m', 'quality.checks', 'inputs')),
+            Gate('context', (python, '-m', 'quality.checks', 'context')),
+        ]
+        if profile == 'quick':
+            return gates
+        if profile != 'full':
+>           raise ValueError('Unknown assurance profile')
+E           ValueError: Unknown assurance profile
+
+quality/cli.py:39: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_v4_profiles.py::test_full_suite_runs_once_under_coverage - AssertionError: assert 2 == 1
+ +  where 2 = len([('/opt/pyvenv/bin/python', '-m', 'pytest', '-q'), ('/opt/pyvenv/bin/python', '-m', 'coverage', 'run', '-m', 'pytest', ...)])
+FAILED tests/test_v4_profiles.py::test_pr_has_covered_tests_without_expensive_mutation_or_profiler - ValueError: Unknown assurance profile
+FAILED tests/test_v4_profiles.py::test_full_retains_fresh_mutation_and_all_required_checks - AssertionError: assert {'actionlint', 'basedpyright', 'dependency_lock', 'gitleaks_history', 'gitleaks_tree', 'hypothesis', ...} <= dict_keys(['pytest', 'inputs', 'context', 'coverage', 'coverage_threshold', 'core_coverage', 'ruff_lint', 'ruff_format...pendency_lock', 'native_versions', 'locked_versions', 'pip_audit', 'sbom', 'conductor_checkout', 'polars_consistency'])
+ +  where dict_keys(['pytest', 'inputs', 'context', 'coverage', 'coverage_threshold', 'core_coverage', 'ruff_lint', 'ruff_format...pendency_lock', 'native_versions', 'locked_versions', 'pip_audit', 'sbom', 'conductor_checkout', 'polars_consistency']) = <built-in method keys of dict object at 0x7fb32c716400>()
+ +    where <built-in method keys of dict object at 0x7fb32c716400> = {'basedpyright': Gate(name='basedpyright', command=('/opt/pyvenv/bin/python', '-m', 'basedpyright'), timeout=180, modu...eport', '--include=src/statewide.py', '--fail-under=95'), timeout=60, module='coverage', allow_unavailable=False), ...}.keys
+FAILED tests/test_v4_profiles.py::test_profile_gates_are_unique - ValueError: Unknown assurance profile
+4 failed in 0.09s

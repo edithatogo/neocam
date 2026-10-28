@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "new",
+    "repeat": 0,
+    "duration_seconds": 18.17028424299997,
+    "returncode": 0,
+    "passed": 304,
+    "log": "verification/v4/benchmarks/new_0.txt"
+  },
+  {
+    "variant": "old",
+    "repeat": 1,
+    "duration_seconds": 33.14270272600004,
+    "returncode": 0,
+    "passed": 304,
+    "log": "verification/v4/benchmarks/old_1.txt"
+  },
+  {
+    "variant": "new",
+    "repeat": 1,
+    "duration_seconds": 16.44017832999998,
+    "returncode": 0,
+    "passed": 304,
+    "log": "verification/v4/benchmarks/new_1.txt"
+  }
+]

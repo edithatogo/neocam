@@ -1,0 +1,11 @@
+{
+  "plan_pages": 2,
+  "supplement_pages": 12,
+  "presentation_slides": 14,
+  "workbook_sheets": 17,
+  "formula_cells": 0,
+  "formula_error_cells": [],
+  "figures_png": 14,
+  "figures_svg": 14,
+  "visual_review": "Plan pages, supplement page montages, all 14 slide thumbnails and workbook summary inspected; render/overflow checks passed. Final revisions alter counts/text only."
+}

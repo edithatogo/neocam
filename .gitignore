@@ -24,3 +24,8 @@ coverage.json
 coverage.xml
 htmlcov/
 .basedpyright/
+
+.feedback-cache/
+.testmondata*
+outputs/v4/qa*/
+outputs/v4/slide_render/

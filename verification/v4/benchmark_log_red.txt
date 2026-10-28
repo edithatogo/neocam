@@ -1,0 +1,80 @@
+...FF                                                                    [100%]
+=================================== FAILURES ===================================
+____________ test_benchmark_streams_logs_and_accepts_relative_path _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_streams_logs_an0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7d1d3250f0>
+
+    def test_benchmark_streams_logs_and_accepts_relative_path(tmp_path,monkeypatch):
+        m=api();monkeypatch.setattr(m,'ROOT',tmp_path)
+        class Completed:
+            returncode=0
+        def run(command,**kwargs):
+            assert not kwargs.get('capture_output',False)
+            kwargs['stdout'].write('10 passed in 0.1s\n')
+            kwargs['stdout'].flush()
+            return Completed()
+        monkeypatch.setattr(m.subprocess,'run',run)
+>       row=m.timed([('pytest',)],__import__('pathlib').Path('result.txt'))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_benchmark.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+quality/benchmark.py:38: in timed
+    result=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,check=False,timeout=180)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+command = ('pytest',)
+kwargs = {'capture_output': True, 'check': False, 'cwd': PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_streams_logs_an0'), 'text': True, ...}
+@py_assert1 = <built-in method get of dict object at 0x7f7d1d19a7c0>
+@py_assert3 = 'capture_output', @py_assert5 = False, @py_assert7 = True
+@py_assert9 = False
+@py_format10 = "assert not True\n{True = <built-in method get of dict object at 0x7f7d1d19a7c0>\n{<built-in method get of dict object.../tmp/pytest-of-root/pytest-29/test_benchmark_streams_logs_an0'), 'text': True, ...}.get\n}('capture_output', False)\n}"
+
+    def run(command,**kwargs):
+>       assert not kwargs.get('capture_output',False)
+E       AssertionError: assert not True
+E        +  where True = <built-in method get of dict object at 0x7f7d1d19a7c0>('capture_output', False)
+E        +    where <built-in method get of dict object at 0x7f7d1d19a7c0> = {'capture_output': True, 'check': False, 'cwd': PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_streams_logs_an0'), 'text': True, ...}.get
+
+tests/test_v4_benchmark.py:38: AssertionError
+_________________ test_benchmark_empty_command_list_is_invalid _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_empty_command_l0')
+
+    def test_benchmark_empty_command_list_is_invalid(tmp_path):
+>       with pytest.raises(ValueError):api().timed([],tmp_path/'result.txt')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_benchmark.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+commands = []
+log = PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_empty_command_l0/result.txt')
+
+    def timed(commands: list[tuple[str,...]], log: Path) -> dict:
+        """Time serial commands and require matching positive passed-test counts."""
+        start=time.perf_counter();outputs=[];counts=[];exitcode=0
+        for command in commands:
+            result=subprocess.run(command,cwd=ROOT,capture_output=True,text=True,check=False,timeout=180)
+            outputs.append('COMMAND: '+repr(command)+'\n'+result.stdout+result.stderr)
+            found=re.search(r'(\d+) passed',result.stdout)
+            counts.append(int(found.group(1)) if found else 0)
+            if result.returncode or not found:
+                exitcode=result.returncode or 1;break
+        if len(set(counts))!=1:exitcode=1
+        elapsed=time.perf_counter()-start
+        log.write_text('\n'.join(outputs),encoding='utf-8')
+>       return {'duration_seconds':elapsed,'returncode':exitcode,'passed':counts[-1],
+                                                                          ^^^^^^^^^^
+                'log':str(log.relative_to(ROOT))}
+E       IndexError: list index out of range
+
+quality/benchmark.py:47: IndexError
+=========================== short test summary info ============================
+FAILED tests/test_v4_benchmark.py::test_benchmark_streams_logs_and_accepts_relative_path - AssertionError: assert not True
+ +  where True = <built-in method get of dict object at 0x7f7d1d19a7c0>('capture_output', False)
+ +    where <built-in method get of dict object at 0x7f7d1d19a7c0> = {'capture_output': True, 'check': False, 'cwd': PosixPath('/tmp/pytest-of-root/pytest-29/test_benchmark_streams_logs_an0'), 'text': True, ...}.get
+FAILED tests/test_v4_benchmark.py::test_benchmark_empty_command_list_is_invalid - IndexError: list index out of range
+2 failed, 3 passed in 0.07s

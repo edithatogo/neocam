@@ -1,0 +1,33 @@
+{
+  "title": "One authoritative, non-duplicating assurance workflow",
+  "status": "in_progress",
+  "implementation": "implemented",
+  "acceptance": "scoped local checks passed; integration blockers explicit",
+  "task_count": 6,
+  "tasks": {
+    "1": {
+      "status": "accepted",
+      "evidence": "profiles_red.txt; full/pytest.txt"
+    },
+    "2": {
+      "status": "accepted",
+      "evidence": "test_v4_profiles; full/pytest.txt + full/coverage.txt"
+    },
+    "3": {
+      "status": "implemented; external execution blocked",
+      "evidence": "checksum metadata and unit tests; actionlint/zizmor unavailable"
+    },
+    "4": {
+      "status": "implemented; integration blocked",
+      "evidence": "hook/config tests pass; prek/Renovate activation unverified"
+    },
+    "5": {
+      "status": "partial measurement",
+      "evidence": "benchmarks/measured_work.json; combined repeated driver interrupted"
+    },
+    "6": {
+      "status": "attempt complete; acceptance unsuccessful",
+      "evidence": "full/receipt.json: blocked tools and missing-lock failure"
+    }
+  }
+}

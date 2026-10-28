@@ -1,0 +1,327 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+_________________ test_nested_mc_diagnostics_use_actual_draws __________________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_nested_mc_diagnostics_use_actual_draws():
+>       rows=api().prefix_diagnostics(np.array([-3.,-2.,1.,4.]),(2,4))
+             ^^^^^
+
+tests/test_v4_analysis_checks.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_mc_diagnostics_reject_invalid_inputs[draws0-sizes0] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+draws = array([nan]), sizes = (1,)
+
+    @pytest.mark.parametrize('draws,sizes',[(np.array([np.nan]),(1,)),(np.array([]),(1,)),(np.array([1.,2.]),(3,)),(np.array([1.,2.]),(True,)),(np.array([1.,2.]),(0,))])
+    def test_mc_diagnostics_reject_invalid_inputs(draws,sizes):
+>       with pytest.raises(ValueError):api().prefix_diagnostics(draws,sizes)
+                                       ^^^^^
+
+tests/test_v4_analysis_checks.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_mc_diagnostics_reject_invalid_inputs[draws1-sizes1] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+draws = array([], dtype=float64), sizes = (1,)
+
+    @pytest.mark.parametrize('draws,sizes',[(np.array([np.nan]),(1,)),(np.array([]),(1,)),(np.array([1.,2.]),(3,)),(np.array([1.,2.]),(True,)),(np.array([1.,2.]),(0,))])
+    def test_mc_diagnostics_reject_invalid_inputs(draws,sizes):
+>       with pytest.raises(ValueError):api().prefix_diagnostics(draws,sizes)
+                                       ^^^^^
+
+tests/test_v4_analysis_checks.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_mc_diagnostics_reject_invalid_inputs[draws2-sizes2] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+draws = array([1., 2.]), sizes = (3,)
+
+    @pytest.mark.parametrize('draws,sizes',[(np.array([np.nan]),(1,)),(np.array([]),(1,)),(np.array([1.,2.]),(3,)),(np.array([1.,2.]),(True,)),(np.array([1.,2.]),(0,))])
+    def test_mc_diagnostics_reject_invalid_inputs(draws,sizes):
+>       with pytest.raises(ValueError):api().prefix_diagnostics(draws,sizes)
+                                       ^^^^^
+
+tests/test_v4_analysis_checks.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_mc_diagnostics_reject_invalid_inputs[draws3-sizes3] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+draws = array([1., 2.]), sizes = (True,)
+
+    @pytest.mark.parametrize('draws,sizes',[(np.array([np.nan]),(1,)),(np.array([]),(1,)),(np.array([1.,2.]),(3,)),(np.array([1.,2.]),(True,)),(np.array([1.,2.]),(0,))])
+    def test_mc_diagnostics_reject_invalid_inputs(draws,sizes):
+>       with pytest.raises(ValueError):api().prefix_diagnostics(draws,sizes)
+                                       ^^^^^
+
+tests/test_v4_analysis_checks.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_mc_diagnostics_reject_invalid_inputs[draws4-sizes4] ___________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+draws = array([1., 2.]), sizes = (0,)
+
+    @pytest.mark.parametrize('draws,sizes',[(np.array([np.nan]),(1,)),(np.array([]),(1,)),(np.array([1.,2.]),(3,)),(np.array([1.,2.]),(True,)),(np.array([1.,2.]),(0,))])
+    def test_mc_diagnostics_reject_invalid_inputs(draws,sizes):
+>       with pytest.raises(ValueError):api().prefix_diagnostics(draws,sizes)
+                                       ^^^^^
+
+tests/test_v4_analysis_checks.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+___________ test_analysis_release_has_expected_inventory_and_parity ____________
+
+    def api():
+        try:
+>           return importlib.import_module('quality.analysis_checks')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:9: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'quality.analysis_checks'
+import_ = <function _gcd_import at 0x7fc72fa304a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'quality.analysis_checks'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_analysis_release_has_expected_inventory_and_parity():
+>       result=api().audit_outputs()
+               ^^^^^
+
+tests/test_v4_analysis_checks.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+        try:
+            return importlib.import_module('quality.analysis_checks')
+        except ModuleNotFoundError:
+>           pytest.fail('Analysis diagnostic module missing')
+E           Failed: Analysis diagnostic module missing
+
+tests/test_v4_analysis_checks.py:11: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v4_analysis_checks.py::test_nested_mc_diagnostics_use_actual_draws - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_mc_diagnostics_reject_invalid_inputs[draws0-sizes0] - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_mc_diagnostics_reject_invalid_inputs[draws1-sizes1] - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_mc_diagnostics_reject_invalid_inputs[draws2-sizes2] - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_mc_diagnostics_reject_invalid_inputs[draws3-sizes3] - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_mc_diagnostics_reject_invalid_inputs[draws4-sizes4] - Failed: Analysis diagnostic module missing
+FAILED tests/test_v4_analysis_checks.py::test_analysis_release_has_expected_inventory_and_parity - Failed: Analysis diagnostic module missing
+7 failed in 0.10s

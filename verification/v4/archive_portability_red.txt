@@ -1,0 +1,32 @@
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+_____________ test_output_audit_is_portable_without_git_executable _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f983cfad220>
+
+    def test_output_audit_is_portable_without_git_executable(monkeypatch):
+        m=api()
+        def unavailable(*args,**kwargs):
+            raise AssertionError('A packaged source archive must not require Git for analysis tests')
+        if hasattr(m,'subprocess'):
+            monkeypatch.setattr(m.subprocess,'run',unavailable)
+>       result=m.audit_outputs()
+               ^^^^^^^^^^^^^^^^^
+
+tests/test_v4_analysis_checks.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+quality/analysis_checks.py:58: in audit_outputs
+    original = subprocess.run(['git','show',f'725f92b:{path}'],cwd=root,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (['git', 'show', '725f92b:data/parameters.json'],)
+kwargs = {'capture_output': True, 'check': True, 'cwd': PosixPath('/mnt/data/panda-vision-v4')}
+
+    def unavailable(*args,**kwargs):
+>       raise AssertionError('A packaged source archive must not require Git for analysis tests')
+E       AssertionError: A packaged source archive must not require Git for analysis tests
+
+tests/test_v4_analysis_checks.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v4_analysis_checks.py::test_output_audit_is_portable_without_git_executable - AssertionError: A packaged source archive must not require Git for analysis tests
+1 failed, 7 passed in 0.19s

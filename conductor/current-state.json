@@ -1,26 +1,24 @@
 {
-  "version": 3,
+  "version": 4,
   "updated_on": "2026-10-28",
-  "branch": "conductor/panda-vision-v3-assurance",
-  "active_track": "v3-02-dependencies-and-dataframe-policy",
+  "branch": "conductor/panda-vision-v4-fast-assurance",
+  "active_track": "v4-01-fast-feedback",
   "active_tracks": [
-    "v3-01-input-and-numerical-integrity",
-    "v3-02-dependencies-and-dataframe-policy",
-    "v3-03-solo-assurance-harness",
-    "v3-04-context-and-ci",
-    "v3-05-final-verification-and-packaging"
+    "v4-01-fast-feedback",
+    "v4-02-cached-development",
+    "v4-03-reusable-skill",
+    "v4-04-analysis-delivery"
   ],
   "release_ready": false,
-  "status": "Scoped engineering repairs and harness implemented; external-tool/full CI acceptance remains incomplete",
+  "status": "Implemented scoped efficiency/skill/analysis refinements; external-tool acceptance remains blocked",
   "next_command": "uv lock --upgrade",
-  "full_command": "uv run --frozen --group assurance --extra tabular python -m quality.cli --profile full",
-  "scope": "No new economic parameters/features; no remote publication",
-  "conductor_checkout": "gitlink retained; not populated",
-  "next_action": "On a connected authorised checkout, resolve and review the real lock; frozen-install the pinned stack, populate Conductor and run the full harness. Fix real diagnostics without broad suppressions.",
-  "verification_receipt": "verification/v3/full/receipt.json",
-  "input_audit": "verification/v3/input_audit.json",
-  "result_parity": "verification/v3/default_output_parity.json",
-  "review": "Author self-review, not independent",
+  "full_command": "uv run --frozen --no-sync python -m quality.cli --profile full",
+  "conductor_checkout": "Pinned gitlink only; network checkout unavailable",
   "remote_push": "Not performed",
-  "clinical_or_economic_features_added": false
+  "clinical_or_economic_parameters_added": 0,
+  "protected_scientific_files": 9,
+  "analysis_receipt": "verification/v4/analysis_audit.json",
+  "verification_receipt": "verification/v4/full/receipt.json",
+  "skill_validation": "Executable contract tests and author review; independent agent pressure evaluation not performed",
+  "next_action": "Resolve/review actual lock in authorised network-enabled checkout; install frozen stack and native tools, populate submodule, run full harness and fix actual diagnostics without blanket suppression."
 }
