@@ -1,0 +1,24 @@
+..........FF                                                             [100%]
+=================================== FAILURES ===================================
+______________ test_decision_metrics_measure_cost_of_wrong_choice ______________
+
+    def test_decision_metrics_measure_cost_of_wrong_choice():
+        m=api();truth=np.array([[0,5,4,3,2],[0,1,4,3,2]],dtype=float)
+        pred=np.array([[0,9,1,2,3],[0,1,1,9,2]],dtype=float)
+>       r=m.decision_quality(pred,truth)
+          ^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.sensitivity' has no attribute 'decision_quality'
+
+tests/test_v5_sensitivity.py:84: AttributeError
+__________________ test_decision_metrics_reject_misalignment ___________________
+
+    def test_decision_metrics_reject_misalignment():
+>       with pytest.raises(ValueError):api().decision_quality(np.zeros((2,5)),np.zeros((3,5)))
+                                       ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.sensitivity' has no attribute 'decision_quality'
+
+tests/test_v5_sensitivity.py:92: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_v5_sensitivity.py::test_decision_metrics_measure_cost_of_wrong_choice - AttributeError: module 'src.sensitivity' has no attribute 'decision_quality'
+FAILED tests/test_v5_sensitivity.py::test_decision_metrics_reject_misalignment - AttributeError: module 'src.sensitivity' has no attribute 'decision_quality'
+2 failed, 10 passed in 0.13s

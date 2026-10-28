@@ -1,0 +1,38 @@
+....FF                                                                   [100%]
+=================================== FAILURES ===================================
+___________ test_version_gate_covers_optional_research_dependencies ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f5c9bb41220>
+
+    def test_version_gate_covers_optional_research_dependencies(monkeypatch):
+        from quality import checks
+        queried=[]
+        def installed(name):
+            queried.append(name)
+            return '0.0.0'
+        monkeypatch.setattr(checks.importlib.metadata,'version',installed)
+        checks.version_errors(ROOT)
+>       assert {'scipy','scikit-learn'} <= set(queried)
+E       AssertionError: assert {'scikit-learn', 'scipy'} <= {'basedpyrigh...'polars', ...}
+E         
+E         Extra items in the left set:
+E         'scikit-learn'
+E         'scipy'
+
+tests/test_v5_assurance_scope.py:38: AssertionError
+________ test_full_ci_installs_research_extra_for_analysis_reproduction ________
+
+    def test_full_ci_installs_research_extra_for_analysis_reproduction():
+        text=(ROOT/'.github/workflows/ci.yml').read_text()
+>       assert '--group assurance --extra tabular --extra research' in text
+E       AssertionError: assert '--group assurance --extra tabular --extra research' in 'name: Lean model and developer assurance\non:\n  pull_request:\n  push:\n    branches: [main, master]\n  schedule:\n ...hub.sha }}\n          path: verification/v5/quick/\n          if-no-files-found: error\n          retention-days: 14\n'
+
+tests/test_v5_assurance_scope.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v5_assurance_scope.py::test_version_gate_covers_optional_research_dependencies - AssertionError: assert {'scikit-learn', 'scipy'} <= {'basedpyrigh...'polars', ...}
+  
+  Extra items in the left set:
+  'scikit-learn'
+  'scipy'
+FAILED tests/test_v5_assurance_scope.py::test_full_ci_installs_research_extra_for_analysis_reproduction - AssertionError: assert '--group assurance --extra tabular --extra research' in 'name: Lean model and developer assurance\non:\n  pull_request:\n  push:\n    branches: [main, master]\n  schedule:\n ...hub.sha }}\n          path: verification/v5/quick/\n          if-no-files-found: error\n          retention-days: 14\n'
+2 failed, 4 passed in 0.06s

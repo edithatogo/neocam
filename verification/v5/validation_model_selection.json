@@ -1,0 +1,25 @@
+{
+  "scope": "selection sample seed502 only; final holdout will be refreshed to504",
+  "candidates": [
+    {
+      "accuracy": 0.953125,
+      "mean_regret": 62.197188164526224,
+      "max_regret": 8957.460421278385,
+      "regret_95th": 0.0,
+      "near_optimal_100": 0.9560546875,
+      "near_optimal_1000": 0.9775390625,
+      "balanced_accuracy": 0.9382185320865067,
+      "method": "hist_gradient_classifier"
+    },
+    {
+      "accuracy": 0.91064453125,
+      "mean_regret": 242.3876039102334,
+      "max_regret": 22818.017429816762,
+      "regret_95th": 1470.1036179742098,
+      "near_optimal_100": 0.91455078125,
+      "near_optimal_1000": 0.9384765625,
+      "balanced_accuracy": 0.9023767232237541,
+      "method": "extra_trees_classifier"
+    }
+  ]
+}

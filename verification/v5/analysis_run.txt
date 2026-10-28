@@ -1,0 +1,16 @@
+PSA pilot_new obsbot
+PSA state_new obsbot
+PSA pilot_retain_panda panda
+PSA pilot_existing_mobile mobile
+PSA pilot_existing_fixed fixed
+PSA pilot_shared_mobile mobile
+PSA pilot_shared_fixed obsbot
+PSA pilot_obsbot_7500 obsbot
+PSA pilot_obsbot_reliability80 obsbot
+INPUT CLUSTER SILHOUETTE 0.05192560818116486 ARI [0.0014428038582861556, 0.10906709427284539]
+FITTING REGRESSOR 6.666908828000032
+FITTING CLASSIFIER 8.349014028000056
+SELECTION IMPORTANCE 10.026957328000208
+HELDOUT IMPORTANCE 15.415177944000334
+HELDOUT_CLASSIFIER {'accuracy': 0.949951171875, 'mean_regret': 60.38721743574756, 'max_regret': 8970.469840112626, 'regret_95th': 5.0033001783181135, 'near_optimal_100': 0.953369140625, 'near_optimal_1000': 0.98046875, 'balanced_accuracy': 0.9326536712039589, 'confusion_matrix': [[2386, 11, 9, 4, 31], [4, 178, 0, 2, 5], [12, 0, 392, 1, 25], [4, 0, 0, 163, 7], [40, 13, 22, 15, 772]]} SELECTED ['odds_ratio', 'downstream_delta', 'marginal_fraction', 'fixed_capital_share', 'mobile_capital_share']
+COMPLETED 30.746782113000336

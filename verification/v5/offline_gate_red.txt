@@ -1,0 +1,15 @@
+...F                                                                     [100%]
+=================================== FAILURES ===================================
+_____________ test_lock_validation_does_not_try_network_resolution _____________
+
+    def test_lock_validation_does_not_try_network_resolution():
+        gate=next(g for g in gates_for_profile('full') if g.name=='dependency_consistency')
+>       assert '--offline' in gate.command
+E       AssertionError: assert '--offline' in ('uv', 'lock', '--check')
+E        +  where ('uv', 'lock', '--check') = Gate(name='dependency_consistency', command=('uv', 'lock', '--check'), timeout=120, module=None, allow_unavailable=False).command
+
+tests/test_v5_assurance_scope.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v5_assurance_scope.py::test_lock_validation_does_not_try_network_resolution - AssertionError: assert '--offline' in ('uv', 'lock', '--check')
+ +  where ('uv', 'lock', '--check') = Gate(name='dependency_consistency', command=('uv', 'lock', '--check'), timeout=120, module=None, allow_unavailable=False).command
+1 failed, 3 passed in 0.06s

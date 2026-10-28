@@ -1,0 +1,220 @@
+FFFFFFFF..                                                               [100%]
+=================================== FAILURES ===================================
+___________ test_reference_design_matches_all_five_exact_strategies ____________
+
+    def test_reference_design_matches_all_five_exact_strategies():
+>       m=api();sites=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_sensitivity.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+____________________________ test_design_validation ____________________________
+
+    def test_design_validation():
+>       m=api();sites=select_sites(load_sites(),'pilot');r=m.reference_design()
+          ^^^^^
+
+tests/test_v5_sensitivity.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+___________________ test_unit_transform_roundtrip_and_bounds ___________________
+
+    def test_unit_transform_roundtrip_and_bounds():
+>       m=api();u=np.vstack([np.zeros(len(m.VARIABLES)),np.ones(len(m.VARIABLES)),np.full(len(m.VARIABLES),.5)])
+          ^^^^^
+
+tests/test_v5_sensitivity.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+______________________ test_one_way_and_two_way_inventory ______________________
+
+    def test_one_way_and_two_way_inventory():
+>       m=api();s=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_sensitivity.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+________________ test_joint_grid_size_and_duplicate_dimensions _________________
+
+    def test_joint_grid_size_and_duplicate_dimensions():
+>       m=api();s=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_sensitivity.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_______________ test_kway_full_grid_not_conditional_probability ________________
+
+    def test_kway_full_grid_not_conditional_probability():
+>       rows=api().k_way(select_sites(load_sites(),'pilot'),['odds_ratio','calls_per_site'],levels=3)
+             ^^^^^
+
+tests/test_v5_sensitivity.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+____________ test_zero_benefit_telephone_wins_regardless_of_device _____________
+
+    def test_zero_benefit_telephone_wins_regardless_of_device():
+>       m=api();s=select_sites(load_sites(),'pilot');d=m.reference_design();d[0]=1
+          ^^^^^
+
+tests/test_v5_sensitivity.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+______ test_shared_cart_can_win_when_neonatal_capital_allocation_is_small ______
+
+    def test_shared_cart_can_win_when_neonatal_capital_allocation_is_small():
+>       m=api();d=m.reference_design();d[m.NAMES.index('mobile_capital_share')]=.05
+          ^^^^^
+
+tests/test_v5_sensitivity.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_sensitivity.py:10: in api
+    def api():return importlib.import_module('src.sensitivity')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.sensitivity', import_ = <function _gcd_import at 0x7f269fc444a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.sensitivity'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_v5_sensitivity.py::test_reference_design_matches_all_five_exact_strategies - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_design_validation - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_unit_transform_roundtrip_and_bounds - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_one_way_and_two_way_inventory - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_joint_grid_size_and_duplicate_dimensions - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_kway_full_grid_not_conditional_probability - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_zero_benefit_telephone_wins_regardless_of_device - ModuleNotFoundError: No module named 'src.sensitivity'
+FAILED tests/test_v5_sensitivity.py::test_shared_cart_can_win_when_neonatal_capital_allocation_is_small - ModuleNotFoundError: No module named 'src.sensitivity'
+8 failed, 2 passed in 0.12s

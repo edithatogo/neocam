@@ -1,0 +1,478 @@
+FFFFFFFFFFFFFFFFF                                                        [100%]
+=================================== FAILURES ===================================
+__________________ test_five_distinct_complete_configurations __________________
+
+    def test_five_distinct_complete_configurations():
+>       m = api()
+            ^^^^^
+
+tests/test_v5_strategies.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+____________ test_telephone_is_incremental_zero_not_no_consultation ____________
+
+    def test_telephone_is_incremental_zero_not_no_consultation():
+>       m=api(); s=select_sites(load_sites(),'pilot'); r=m.compare(s)
+          ^^^^^
+
+tests/test_v5_strategies.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_______________ test_panda_exactly_reproduces_existing_reference _______________
+
+    def test_panda_exactly_reproduces_existing_reference():
+>       m=api(); s=select_sites(load_sites(),'pilot'); old=evaluate(s); new=m.compare(s)['panda']
+          ^^^^^
+
+tests/test_v5_strategies.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+___________________ test_equal_video_effects_and_cost_order ____________________
+
+    def test_equal_video_effects_and_cost_order():
+>       r=api().compare(select_sites(load_sites(),'pilot'))
+          ^^^^^
+
+tests/test_v5_strategies.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+___________________ test_psa_preserves_previous_panda_draws ____________________
+
+    def test_psa_preserves_previous_panda_draws():
+>       m=api(); s=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_strategies.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+____________ test_psa_shared_effects_not_independent_unpaired_draws ____________
+
+    def test_psa_shared_effects_not_independent_unpaired_draws():
+>       r=api().compare_psa(select_sites(load_sites(),'pilot'),n=256,seed=811)
+          ^^^^^
+
+tests/test_v5_strategies.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+____________ test_sunk_panda_capital_does_not_make_new_obsbot_free _____________
+
+    def test_sunk_panda_capital_does_not_make_new_obsbot_free():
+>       m=api(); s=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_strategies.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+__________________ test_no_video_benefit_costs_still_positive __________________
+
+    def test_no_video_benefit_costs_still_positive():
+>       r=api().compare(select_sites(load_sites(),'pilot'),parameters=replace(Parameters(),odds_ratio=1))
+          ^^^^^
+
+tests/test_v5_strategies.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+___________ test_unusable_video_falls_back_to_phone_not_free_service ___________
+
+    def test_unusable_video_falls_back_to_phone_not_free_service():
+>       m=api(); s=select_sites(load_sites(),'pilot')
+          ^^^^^
+
+tests/test_v5_strategies.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________ test_invalid_strategy_overrides_rejected[override0] ______________
+
+override = {'bogus': 1}
+
+    @pytest.mark.parametrize('override',[{'bogus':1},{'reliability':1.1},{'capital_share':-1},{'installed_cost':-5},{'workflow_per_call':True}])
+    def test_invalid_strategy_overrides_rejected(override):
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),overrides={'obsbot':override})
+                                       ^^^^^
+
+tests/test_v5_strategies.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________ test_invalid_strategy_overrides_rejected[override1] ______________
+
+override = {'reliability': 1.1}
+
+    @pytest.mark.parametrize('override',[{'bogus':1},{'reliability':1.1},{'capital_share':-1},{'installed_cost':-5},{'workflow_per_call':True}])
+    def test_invalid_strategy_overrides_rejected(override):
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),overrides={'obsbot':override})
+                                       ^^^^^
+
+tests/test_v5_strategies.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________ test_invalid_strategy_overrides_rejected[override2] ______________
+
+override = {'capital_share': -1}
+
+    @pytest.mark.parametrize('override',[{'bogus':1},{'reliability':1.1},{'capital_share':-1},{'installed_cost':-5},{'workflow_per_call':True}])
+    def test_invalid_strategy_overrides_rejected(override):
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),overrides={'obsbot':override})
+                                       ^^^^^
+
+tests/test_v5_strategies.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________ test_invalid_strategy_overrides_rejected[override3] ______________
+
+override = {'installed_cost': -5}
+
+    @pytest.mark.parametrize('override',[{'bogus':1},{'reliability':1.1},{'capital_share':-1},{'installed_cost':-5},{'workflow_per_call':True}])
+    def test_invalid_strategy_overrides_rejected(override):
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),overrides={'obsbot':override})
+                                       ^^^^^
+
+tests/test_v5_strategies.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________ test_invalid_strategy_overrides_rejected[override4] ______________
+
+override = {'workflow_per_call': True}
+
+    @pytest.mark.parametrize('override',[{'bogus':1},{'reliability':1.1},{'capital_share':-1},{'installed_cost':-5},{'workflow_per_call':True}])
+    def test_invalid_strategy_overrides_rejected(override):
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),overrides={'obsbot':override})
+                                       ^^^^^
+
+tests/test_v5_strategies.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+______ test_shared_capital_allocation_does_not_reduce_full_purchase_cost _______
+
+    def test_shared_capital_allocation_does_not_reduce_full_purchase_cost():
+>       m=api();r=m.compare(select_sites(load_sites(),'pilot'),overrides={'mobile':{'capital_share':.1}})
+          ^^^^^
+
+tests/test_v5_strategies.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+_____________________ test_unknown_sunk_strategy_rejected ______________________
+
+    def test_unknown_sunk_strategy_rejected():
+>       with pytest.raises(ValueError):api().compare(select_sites(load_sites(),'pilot'),sunk=('unknown',))
+                                       ^^^^^
+
+tests/test_v5_strategies.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+__________________________ test_empty_sites_rejected ___________________________
+
+    def test_empty_sites_rejected():
+>       with pytest.raises(ValueError):api().compare([])
+                                       ^^^^^
+
+tests/test_v5_strategies.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v5_strategies.py:10: in api
+    return importlib.import_module('src.strategies')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'src.strategies', import_ = <function _gcd_import at 0x7f5f838d04a0>
+
+>   ???
+E   ModuleNotFoundError: No module named 'src.strategies'
+
+<frozen importlib._bootstrap>:1324: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_v5_strategies.py::test_five_distinct_complete_configurations - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_telephone_is_incremental_zero_not_no_consultation - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_panda_exactly_reproduces_existing_reference - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_equal_video_effects_and_cost_order - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_psa_preserves_previous_panda_draws - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_psa_shared_effects_not_independent_unpaired_draws - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_sunk_panda_capital_does_not_make_new_obsbot_free - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_no_video_benefit_costs_still_positive - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_unusable_video_falls_back_to_phone_not_free_service - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_invalid_strategy_overrides_rejected[override0] - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_invalid_strategy_overrides_rejected[override1] - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_invalid_strategy_overrides_rejected[override2] - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_invalid_strategy_overrides_rejected[override3] - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_invalid_strategy_overrides_rejected[override4] - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_shared_capital_allocation_does_not_reduce_full_purchase_cost - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_unknown_sunk_strategy_rejected - ModuleNotFoundError: No module named 'src.strategies'
+FAILED tests/test_v5_strategies.py::test_empty_sites_rejected - ModuleNotFoundError: No module named 'src.strategies'
+17 failed in 0.19s

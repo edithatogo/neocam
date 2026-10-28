@@ -1,0 +1,30 @@
+F.F                                                                      [100%]
+=================================== FAILURES ===================================
+___________ test_analysis_manifest_excludes_its_own_mutating_digest ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_analysis_manifest_exclude0')
+
+    def test_analysis_manifest_excludes_its_own_mutating_digest(tmp_path):
+        spec=importlib.util.spec_from_file_location('analysis_v5',ROOT/'scripts/analyse_v5.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        d=tmp_path/'outputs';d.mkdir();(d/'table.csv').write_text('x\n1\n')
+        (d/'analysis_manifest.json').write_text('{}')
+>       module.write_manifest(d,root=tmp_path)
+        ^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'analysis_v5' has no attribute 'write_manifest'
+
+tests/test_v5_analysis_integrity.py:15: AttributeError
+________________ test_all_recorded_analysis_hashes_are_current _________________
+
+    def test_all_recorded_analysis_hashes_are_current():
+        manifest=json.loads((ROOT/'outputs/v5/analysis_manifest.json').read_text())
+>       assert not any(k.endswith('analysis_manifest.json') for k in manifest)
+E       assert not True
+E        +  where True = any(<generator object test_all_recorded_analysis_hashes_are_current.<locals>.<genexpr> at 0x7f8db5e4bd30>)
+
+tests/test_v5_analysis_integrity.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v5_analysis_integrity.py::test_analysis_manifest_excludes_its_own_mutating_digest - AttributeError: module 'analysis_v5' has no attribute 'write_manifest'
+FAILED tests/test_v5_analysis_integrity.py::test_all_recorded_analysis_hashes_are_current - assert not True
+ +  where True = any(<generator object test_all_recorded_analysis_hashes_are_current.<locals>.<genexpr> at 0x7f8db5e4bd30>)
+2 failed, 1 passed in 0.09s

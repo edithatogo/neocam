@@ -1,0 +1,10 @@
+PSA pilot_new obsbot
+PSA state_new obsbot
+PSA pilot_retain_panda panda
+PSA pilot_existing_mobile mobile
+PSA pilot_existing_fixed fixed
+PSA pilot_shared_mobile mobile
+PSA pilot_shared_fixed obsbot
+PSA pilot_obsbot_7500 obsbot
+PSA pilot_obsbot_reliability80 obsbot
+INPUT CLUSTER SILHOUETTE 0.05192560818116486 ARI [0.0014428038582861556, 0.10906709427284539]

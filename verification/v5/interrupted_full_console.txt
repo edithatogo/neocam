@@ -1,0 +1,18 @@
+FAILED  pytest: Command exited 1
+PASSED  inputs: 
+PASSED  context: 
+PASSED  coverage: 
+PASSED  coverage_threshold: 
+PASSED  core_coverage: 
+BLOCKED ruff_lint: Required Python tool is unavailable: ruff
+BLOCKED ruff_format: Required Python tool is unavailable: ruff
+BLOCKED ty: Required Python tool is unavailable: ty
+BLOCKED basedpyright: Required Python tool is unavailable: basedpyright
+BLOCKED hypothesis: Required Python tool is unavailable: hypothesis
+BLOCKED gremlins: Required Python tool is unavailable: pytest_gremlins
+BLOCKED mutation_score: Command exited 69
+BLOCKED scalene: Required Python tool is unavailable: scalene
+BLOCKED scalene_output: Command exited 69
+BLOCKED gitleaks_history: Executable unavailable: gitleaks
+BLOCKED gitleaks_tree: Executable unavailable: gitleaks
+BLOCKED vale: Executable unavailable: vale

@@ -1,0 +1,67 @@
+{
+  "csv_rows": {
+    "one_way.csv": 2520,
+    "two_way.csv": 7688,
+    "five_way_selected_grid.csv": 3125,
+    "four_way_equipment_grid.csv": 2401,
+    "psa_strategy_summary.csv": 90,
+    "heldout_predictions.csv": 4096,
+    "sobol_indices.csv": 144
+  },
+  "errors": [],
+  "workbook": {
+    "sheets": 18,
+    "formulas": 50,
+    "formula_errors": [],
+    "sum_checks": [
+      [
+        "xl/worksheets/sheet2.xml",
+        "K5",
+        "SUM(G5:G9)",
+        "1"
+      ],
+      [
+        "xl/worksheets/sheet2.xml",
+        "K6",
+        "SUM(G10:G14)",
+        "1"
+      ],
+      [
+        "xl/worksheets/sheet2.xml",
+        "K7",
+        "SUM(G15:G19)",
+        "1"
+      ],
+      [
+        "xl/worksheets/sheet2.xml",
+        "K8",
+        "SUM(G20:G24)",
+        "1"
+      ],
+      [
+        "xl/worksheets/sheet2.xml",
+        "K9",
+        "SUM(G25:G29)",
+        "1"
+      ]
+    ]
+  },
+  "Panda_Vision_two_page_plan_v5.pdf": {
+    "pages": 2
+  },
+  "Panda_Vision_comparative_supplement_v5.pdf": {
+    "pages": 11
+  },
+  "slides": 12,
+  "figures": {
+    "png": 15,
+    "svg": 15
+  },
+  "visual_review": {
+    "plan": "Both pages individually reviewed",
+    "supplement": "All eleven pages individually reviewed",
+    "presentation": "All twelve slides reviewed in montage; overflow test passed",
+    "figures": "All fifteen reviewed; misleading five-way title corrected",
+    "workbook": "Readme preview reviewed; XML checks above"
+  }
+}

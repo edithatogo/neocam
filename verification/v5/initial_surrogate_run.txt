@@ -1,0 +1,12 @@
+PSA pilot_new obsbot
+PSA state_new obsbot
+PSA pilot_retain_panda panda
+PSA pilot_existing_mobile mobile
+PSA pilot_existing_fixed fixed
+PSA pilot_shared_mobile mobile
+PSA pilot_shared_fixed obsbot
+PSA pilot_obsbot_7500 obsbot
+PSA pilot_obsbot_reliability80 obsbot
+INPUT CLUSTER SILHOUETTE 0.05329579911708026 ARI [0.0007797005253149143, 0.104014775211619]
+HELDOUT {'accuracy': 0.7890625, 'mean_regret': 690.0469513256677, 'max_regret': 21959.08023157525, 'regret_95th': 4724.458765315569, 'near_optimal_100': 0.794189453125, 'near_optimal_1000': 0.834228515625, 'balanced_accuracy': 0.4452832705979681, 'r2_by_arm': {'telephone': 1.0, 'mobile': 0.953274001556307, 'panda': 0.9740807287198237, 'fixed': 0.9541881682518678, 'obsbot': 0.9651248215133115}, 'mae_by_arm': {'telephone': 0.0, 'mobile': 4629.436381485624, 'panda': 3202.6638975015067, 'fixed': 4535.717930161323, 'obsbot': 3538.7707216506883}, 'confusion_matrix': [[2352, 0, 0, 0, 86], [10, 0, 62, 0, 114], [5, 0, 216, 0, 232], [11, 0, 55, 0, 107], [61, 0, 121, 0, 664]]} SELECTED ['odds_ratio', 'downstream_delta', 'marginal_fraction', 'calls_per_site', 'obsbot_reliability']
+COMPLETED 18.080611793000116
