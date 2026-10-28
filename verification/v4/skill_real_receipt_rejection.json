@@ -1,0 +1,44 @@
+{
+  "command": [
+    "/opt/pyvenv/bin/python",
+    ".agents/skills/maintaining-lean-ci/scripts/audit_evidence.py",
+    "verification/v4/full/receipt.json",
+    "--root",
+    ".",
+    "--required",
+    "pytest,inputs,context,coverage,coverage_threshold,core_coverage,ruff_lint,ruff_format,ty,basedpyright,hypothesis,gremlins,mutation_score,scalene,scalene_output,gitleaks_history,gitleaks_tree,vale,dependency_consistency,dependency_lock,native_versions,locked_versions,pip_audit,sbom,conductor_checkout,polars_consistency,actionlint,zizmor,prek_config",
+    "--fingerprint",
+    "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287"
+  ],
+  "exit": 1,
+  "expected_rejection": true,
+  "checker_output": {
+    "errors": [
+      "Not a complete full-local receipt",
+      "Not passed: ruff_lint",
+      "Not passed: ruff_format",
+      "Not passed: ty",
+      "Not passed: basedpyright",
+      "Not passed: hypothesis",
+      "Not passed: gremlins",
+      "Not passed: mutation_score",
+      "Not passed: scalene",
+      "Not passed: scalene_output",
+      "Not passed: gitleaks_history",
+      "Not passed: gitleaks_tree",
+      "Not passed: vale",
+      "Not passed: dependency_consistency",
+      "Not passed: dependency_lock",
+      "Not passed: native_versions",
+      "Not passed: locked_versions",
+      "Not passed: pip_audit",
+      "Not passed: sbom",
+      "Not passed: conductor_checkout",
+      "Not passed: polars_consistency",
+      "Not passed: actionlint",
+      "Not passed: zizmor",
+      "Not passed: prek_config"
+    ],
+    "hosted_ci_verified": false
+  }
+}

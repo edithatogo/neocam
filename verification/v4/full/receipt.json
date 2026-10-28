@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-28T00:16:58.557011+00:00",
+  "generated_at": "2026-10-28T00:21:12.824469+00:00",
   "profile": "full",
-  "source_commit_at_execution": "725f92b3aa513dfbccec6bbba69ee3f7af0dd978",
-  "input_fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+  "source_commit_at_execution": "4d89f8c8ba8e1727aabf0bca8fd35fcd57c83070",
+  "input_fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
   "complete_within_profile": false,
   "full_local_assurance": false,
   "release_ready": false,
@@ -34,7 +34,7 @@
       "gate": "pytest",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -44,23 +44,23 @@
         "pytest",
         "-q"
       ],
-      "duration_seconds": 20.534577235000143,
+      "duration_seconds": 19.666937963000237,
       "log": "verification/v4/full/pytest.txt",
-      "log_sha256": "73dc8a9edaad87420ebd7f43cdea032329f00ea1a256606ab7d9729985fac1bf",
+      "log_sha256": "7455b5e5befa0b58a457eea9656a052e66a52732e7360bd73a3048f2d20aa179",
       "reason": ""
     },
     {
       "gate": "inputs",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "inputs"
       ],
-      "duration_seconds": 0.8606543659998351,
+      "duration_seconds": 0.8364877579997483,
       "log": "verification/v4/full/inputs.txt",
       "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
       "reason": ""
@@ -69,14 +69,14 @@
       "gate": "context",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "context"
       ],
-      "duration_seconds": 0.7902057890000833,
+      "duration_seconds": 0.7225499869996383,
       "log": "verification/v4/full/context.txt",
       "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
       "reason": ""
@@ -85,7 +85,7 @@
       "gate": "coverage",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -94,7 +94,7 @@
         "-o",
         "verification/v4/coverage.json"
       ],
-      "duration_seconds": 1.2022740639999938,
+      "duration_seconds": 0.9756474129999333,
       "log": "verification/v4/full/coverage.txt",
       "log_sha256": "824c52dc552cce9b6f2533c10e0892f0053002a3810b1ffe33e49dcd6904074c",
       "reason": ""
@@ -103,7 +103,7 @@
       "gate": "coverage_threshold",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -111,7 +111,7 @@
         "report",
         "--fail-under=90"
       ],
-      "duration_seconds": 1.0081118970001626,
+      "duration_seconds": 0.9130383040001107,
       "log": "verification/v4/full/coverage_threshold.txt",
       "log_sha256": "0369d8d4de9fef019b7a2056dbd81199c510480178a18edaa894ecbfb0824853",
       "reason": ""
@@ -120,7 +120,7 @@
       "gate": "core_coverage",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -129,7 +129,7 @@
         "--include=src/statewide.py",
         "--fail-under=95"
       ],
-      "duration_seconds": 0.8691221719996065,
+      "duration_seconds": 0.8596317090000412,
       "log": "verification/v4/full/core_coverage.txt",
       "log_sha256": "da65d2d7c45cf327c1f900967b2052fc8ae0aa5144ddd57e1c53ba9085a64198",
       "reason": ""
@@ -138,7 +138,7 @@
       "gate": "ruff_lint",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -149,7 +149,7 @@
         "quality",
         "tests"
       ],
-      "duration_seconds": 0.00018366699987382162,
+      "duration_seconds": 0.0001932519999172655,
       "log": "verification/v4/full/ruff_lint.txt",
       "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
       "reason": "Required Python tool is unavailable: ruff"
@@ -158,7 +158,7 @@
       "gate": "ruff_format",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -170,7 +170,7 @@
         "quality",
         "tests"
       ],
-      "duration_seconds": 0.00011479300019345828,
+      "duration_seconds": 0.00012060100016242359,
       "log": "verification/v4/full/ruff_format.txt",
       "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
       "reason": "Required Python tool is unavailable: ruff"
@@ -179,14 +179,14 @@
       "gate": "ty",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "ty",
         "check"
       ],
-      "duration_seconds": 0.00013175899994166684,
+      "duration_seconds": 0.00018113300029654056,
       "log": "verification/v4/full/ty.txt",
       "log_sha256": "1e359eee876da93f8c0444b0873c3813da7dc5f50fa33be47f9d25ee6ebf0c0f",
       "reason": "Required Python tool is unavailable: ty"
@@ -195,13 +195,13 @@
       "gate": "basedpyright",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "basedpyright"
       ],
-      "duration_seconds": 0.00011486299990792759,
+      "duration_seconds": 0.00011704700000336743,
       "log": "verification/v4/full/basedpyright.txt",
       "log_sha256": "abb986f75d76f0e7d6b1fc48d1c06843f47cb950e15baa6baba3a7b8907b641a",
       "reason": "Required Python tool is unavailable: basedpyright"
@@ -210,7 +210,7 @@
       "gate": "hypothesis",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -218,7 +218,7 @@
         "quality/hypothesis_properties.py",
         "-q"
       ],
-      "duration_seconds": 0.00012070100001437822,
+      "duration_seconds": 0.00011390200006644591,
       "log": "verification/v4/full/hypothesis.txt",
       "log_sha256": "802ea6ef6bfa8bde7ee36bffba1716c4103cbe702ed5a4e4a08bacf8d6874d01",
       "reason": "Required Python tool is unavailable: hypothesis"
@@ -227,7 +227,7 @@
       "gate": "gremlins",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -241,7 +241,7 @@
         "--gremlin-report=html",
         "--strict-pardons"
       ],
-      "duration_seconds": 0.00011987100015176111,
+      "duration_seconds": 0.00011017599990736926,
       "log": "verification/v4/full/gremlins.txt",
       "log_sha256": "000d3e1cd3449471977f80cc15b64f4a8627b29c568f093cb9391e49f315b14d",
       "reason": "Required Python tool is unavailable: pytest_gremlins"
@@ -250,14 +250,14 @@
       "gate": "mutation_score",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "mutation"
       ],
-      "duration_seconds": 0.8043418029997156,
+      "duration_seconds": 0.8039858040001491,
       "log": "verification/v4/full/mutation_score.txt",
       "log_sha256": "6236904d6d78f0da3cb47f7da8880409179d7f4373fb2ea8aa669f7457e29d93",
       "reason": "Command exited 69"
@@ -266,7 +266,7 @@
       "gate": "scalene",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -276,7 +276,7 @@
         "verification/v4/scalene.json",
         "quality/profile_workload.py"
       ],
-      "duration_seconds": 0.0002262809998683224,
+      "duration_seconds": 0.00022634100014329306,
       "log": "verification/v4/full/scalene.txt",
       "log_sha256": "8f506c78f480d4101942e3e285307aed5d58581d3ffeca851e6ee3e2248aceb5",
       "reason": "Required Python tool is unavailable: scalene"
@@ -285,14 +285,14 @@
       "gate": "scalene_output",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "scalene_output"
       ],
-      "duration_seconds": 0.6832245609998608,
+      "duration_seconds": 0.7561674220000896,
       "log": "verification/v4/full/scalene_output.txt",
       "log_sha256": "388dbb3badf7dabc71ba17f9df04836e1c68d6d18a5a99ada9d442b101e03c0f",
       "reason": "Command exited 69"
@@ -301,7 +301,7 @@
       "gate": "gitleaks_history",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "gitleaks",
         "git",
@@ -311,7 +311,7 @@
         "--report-path=verification/v4/gitleaks-history.json",
         "."
       ],
-      "duration_seconds": 0.0005871749999641906,
+      "duration_seconds": 0.000490399000227626,
       "log": "verification/v4/full/gitleaks_history.txt",
       "log_sha256": "1b9b1bfa0b4fe4c52b1bd093b788351775abc223da64ccad69f01017f09503f2",
       "reason": "Executable unavailable: gitleaks"
@@ -320,7 +320,7 @@
       "gate": "gitleaks_tree",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "gitleaks",
         "dir",
@@ -329,7 +329,7 @@
         "--report-path=verification/v4/gitleaks-tree.json",
         "."
       ],
-      "duration_seconds": 0.000298180000299908,
+      "duration_seconds": 0.0004020960000161722,
       "log": "verification/v4/full/gitleaks_tree.txt",
       "log_sha256": "1b9b1bfa0b4fe4c52b1bd093b788351775abc223da64ccad69f01017f09503f2",
       "reason": "Executable unavailable: gitleaks"
@@ -338,7 +338,7 @@
       "gate": "vale",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "vale",
         "--minAlertLevel=warning",
@@ -348,7 +348,7 @@
         "conductor/runbook.md",
         "conductor/decisions-v3.md"
       ],
-      "duration_seconds": 0.0003027259999726084,
+      "duration_seconds": 0.0004212140001982334,
       "log": "verification/v4/full/vale.txt",
       "log_sha256": "74ca57ff64cc81fd0a89c3b6adda9f0ae9983900e8fbcaba82e710586784b1ff",
       "reason": "Executable unavailable: vale"
@@ -357,13 +357,13 @@
       "gate": "dependency_consistency",
       "status": "failed",
       "returncode": 2,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "uv",
         "lock",
         "--check"
       ],
-      "duration_seconds": 0.04390444499995283,
+      "duration_seconds": 0.041278344999682304,
       "log": "verification/v4/full/dependency_consistency.txt",
       "log_sha256": "71be3c069a7459087bc110b4ff135457535509f197113e6a7bf7d5b95eefa266",
       "reason": "Command exited 2"
@@ -372,14 +372,14 @@
       "gate": "dependency_lock",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "lock"
       ],
-      "duration_seconds": 0.725484619999861,
+      "duration_seconds": 0.7256780079997043,
       "log": "verification/v4/full/dependency_lock.txt",
       "log_sha256": "d3c775d9c0703a8ae6e6f8a2f1b84573d18c3efc2f96e0f564f2242661a8ab94",
       "reason": "Command exited 69"
@@ -388,14 +388,14 @@
       "gate": "native_versions",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "native_versions"
       ],
-      "duration_seconds": 0.7024004790000618,
+      "duration_seconds": 0.7503830000000562,
       "log": "verification/v4/full/native_versions.txt",
       "log_sha256": "550a02f7362da352e3c56c04e8f101b30d70ace2f66baad27cfc6410d44334be",
       "reason": "Command exited 69"
@@ -404,14 +404,14 @@
       "gate": "locked_versions",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "versions"
       ],
-      "duration_seconds": 0.7101889989999108,
+      "duration_seconds": 0.7380822959999023,
       "log": "verification/v4/full/locked_versions.txt",
       "log_sha256": "dfaec8a10eafad52fb436f8d061bb4eb648690db793db870d64d65a5f29ca5d8",
       "reason": "Command exited 69"
@@ -420,7 +420,7 @@
       "gate": "pip_audit",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -429,7 +429,7 @@
         "--format=json",
         "--output=verification/v4/pip-audit.json"
       ],
-      "duration_seconds": 0.00029042699998171884,
+      "duration_seconds": 0.00018695200014917646,
       "log": "verification/v4/full/pip_audit.txt",
       "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
       "reason": "Required Python tool is unavailable: pip_audit"
@@ -438,7 +438,7 @@
       "gate": "sbom",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -447,7 +447,7 @@
         "--format=cyclonedx-json",
         "--output=verification/v4/sbom.json"
       ],
-      "duration_seconds": 0.00018143299985240446,
+      "duration_seconds": 0.00010857400002350914,
       "log": "verification/v4/full/sbom.txt",
       "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
       "reason": "Required Python tool is unavailable: pip_audit"
@@ -456,14 +456,14 @@
       "gate": "conductor_checkout",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "submodule"
       ],
-      "duration_seconds": 0.757201041999906,
+      "duration_seconds": 0.8230299710003237,
       "log": "verification/v4/full/conductor_checkout.txt",
       "log_sha256": "03f5bb6e9015712ba26344c637fae5089c7cc66e1dcafefbf5b2ec4620551dac",
       "reason": "Command exited 69"
@@ -472,13 +472,13 @@
       "gate": "polars_consistency",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.polars_probe"
       ],
-      "duration_seconds": 0.00028058299994881963,
+      "duration_seconds": 0.00014302599993243348,
       "log": "verification/v4/full/polars_consistency.txt",
       "log_sha256": "f1247ed5f96cf6924d7d25e1a51e6380f2599f9827d3af77ca3243817eb48701",
       "reason": "Required Python tool is unavailable: polars"
@@ -487,12 +487,12 @@
       "gate": "actionlint",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "actionlint",
         "-color"
       ],
-      "duration_seconds": 0.00041805999990174314,
+      "duration_seconds": 0.00043702899984054966,
       "log": "verification/v4/full/actionlint.txt",
       "log_sha256": "3b8b4da6409c1bcba31bf8c5cc9d57e7878c188580e0908205c2895505dde3e3",
       "reason": "Executable unavailable: actionlint"
@@ -501,14 +501,14 @@
       "gate": "zizmor",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "zizmor",
         "--offline",
         "--persona=pedantic",
         ".github/workflows"
       ],
-      "duration_seconds": 0.0003849609997814696,
+      "duration_seconds": 0.000251709000167466,
       "log": "verification/v4/full/zizmor.txt",
       "log_sha256": "494f804300af631f6ef80bb3b4cb742cf5cf109aac28bc2ccbaac40849e018c2",
       "reason": "Executable unavailable: zizmor"
@@ -517,13 +517,13 @@
       "gate": "prek_config",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "a72ba717fa0745a95dce7b4cab558a764d9b83597422bec4f6de7203b8811395",
+      "fingerprint": "3dc7ac8fecfa8cd2c48dce042f1a77f75ae41498fb2b841941da274ae3a97287",
       "command": [
         "prek",
         "validate-config",
         ".pre-commit-config.yaml"
       ],
-      "duration_seconds": 0.00029546499990829034,
+      "duration_seconds": 0.00030183499984559603,
       "log": "verification/v4/full/prek_config.txt",
       "log_sha256": "932d491a2abddbca51ed5b953ceebba8100ab7fda9574aaac92e17164713ff76",
       "reason": "Executable unavailable: prek"
