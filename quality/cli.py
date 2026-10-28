@@ -6,10 +6,13 @@ release or assumes that a local run is a hosted GitHub Actions result.
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import datetime, timezone
 import importlib.metadata
 import json
+import re
+import uuid
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -76,46 +79,79 @@ def gates_for_profile(profile: str) -> list[Gate]:
 
 
 def main() -> int:
-    """Collect all gate results, then return nonzero for any blocker or failure."""
+    """Execute all declared gates and atomically checkpoint evidence after each gate."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--profile', choices=('quick', 'pr', 'full'), default='quick')
+    parser.add_argument('--evidence-version', default='v7',
+                        help='Versioned evidence directory, for example v8; older evidence is preserved.')
     args = parser.parse_args()
-    directory = ROOT / 'verification/v7' / args.profile
+    if not re.fullmatch(r'v[1-9][0-9]*', args.evidence_version):
+        parser.error('--evidence-version must be v followed by a positive integer')
+    evidence_root = f'verification/{args.evidence_version}'
+    directory = ROOT / evidence_root / args.profile
     directory.mkdir(parents=True, exist_ok=True)
+    gates = [replace(g, command=tuple(s.replace('verification/v7/', evidence_root + '/')
+                                    for s in g.command))
+             for g in gates_for_profile(args.profile)]
+    gates = [replace(g, command=g.command + ('--evidence-version', args.evidence_version))
+             if g.name == 'scalene_output' else g for g in gates]
     if args.profile in {'pr', 'full'}:
-        # Prevent an old report from satisfying a newly failed execution gate.
-        for stale in ('coverage/gremlins/gremlins.json', 'verification/v7/scalene.json', '.coverage'):
+        for stale in ('coverage/gremlins/gremlins.json', f'{evidence_root}/scalene.json', '.coverage'):
             (ROOT / stale).unlink(missing_ok=True)
     fingerprint = input_fingerprint(ROOT)
     receipts: list[Receipt] = []
-    for gate in gates_for_profile(args.profile):
-        receipt = run_gate(gate, ROOT, fingerprint, directory)
-        receipts.append(receipt)
-        print(f'{receipt.status.upper():7} {gate.name}: {receipt.reason}', flush=True)
-    current = input_fingerprint(ROOT)
-    problems = validate_receipts(receipts, {gate.name for gate in gates_for_profile(args.profile)}, current, ROOT)
-    if fingerprint != current:
-        problems.append('Inputs changed during verification')
     versions: dict[str, str | None] = {}
-    for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty', 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv', 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
+    for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty',
+                 'basedpyright', 'hypothesis', 'pytest-gremlins', 'scalene', 'pip-audit', 'uv',
+                 'prek', 'zizmor', 'pytest-xdist', 'pytest-testmon'):
         try:
             versions[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
             versions[name] = None
-    commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True, capture_output=True, check=False).stdout.strip()
+    commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True,
+                            capture_output=True, timeout=10, check=False).stdout.strip()
     report = {
-        'generated_at': datetime.now(timezone.utc).isoformat(), 'profile': args.profile,
+        'generated_at': datetime.now(timezone.utc).isoformat(),
+        'run_id': str(uuid.uuid4()), 'profile': args.profile,
         'source_commit_at_execution': commit, 'input_fingerprint': fingerprint,
-        'complete_within_profile': not problems,
-        'full_local_assurance': args.profile == 'full' and not problems,
-        'release_ready': False, 'hosted_assurance': 'Not independently verified by this local runner',
-        'environment': {'python': sys.version, 'executable': sys.executable, 'packages': versions},
-        'receipts': [asdict(receipt) for receipt in receipts], 'problems': problems,
+        'run_finished': False, 'active_gate': None,
+        'complete_within_profile': False, 'full_local_assurance': False,
+        'release_ready': False,
+        'hosted_assurance': 'Not independently verified by this local runner',
+        'environment': {'python': sys.version, 'executable': sys.executable, 'packages': versions,
+                        'pytest_plugin_autoload': os.environ.get('PYTEST_DISABLE_PLUGIN_AUTOLOAD'),
+                        'notebook_startup_flag': os.environ.get('OAI_IS_JUPYTER_KERNEL')},
+        'receipts': [], 'problems': ['Execution has not completed'],
         'review': 'Author review; not an independent review',
         'evidence_reuse': 'pytest and coverage derive from one covered suite in PR/full profiles',
-        'required_gates': [g.name for g in gates_for_profile(args.profile)],
+        'required_gates': [g.name for g in gates],
     }
-    (directory / 'receipt.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+
+    def checkpoint() -> None:
+        """Never leave a truncated JSON receipt after a failed/interrupted write."""
+        report['updated_at'] = datetime.now(timezone.utc).isoformat()
+        report['receipts'] = [asdict(receipt) for receipt in receipts]
+        temporary = directory / 'receipt.json.tmp'
+        temporary.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+        temporary.replace(directory / 'receipt.json')
+
+    checkpoint()
+    for gate in gates:
+        report['active_gate'] = gate.name
+        checkpoint()
+        print(f'START   {gate.name}', flush=True)
+        receipt = run_gate(gate, ROOT, fingerprint, directory)
+        receipts.append(receipt)
+        checkpoint()
+        print(f'{receipt.status.upper():7} {gate.name}: {receipt.reason}', flush=True)
+    current = input_fingerprint(ROOT)
+    problems = validate_receipts(receipts, {g.name for g in gates}, current, ROOT)
+    if fingerprint != current:
+        problems.append('Inputs changed during verification')
+    report.update(run_finished=True, active_gate=None, problems=problems,
+                  complete_within_profile=not problems,
+                  full_local_assurance=args.profile == 'full' and not problems)
+    checkpoint()
     return int(bool(problems))
 
 

@@ -1,0 +1,8 @@
+{
+  "id": "v8-assurance-publish",
+  "status": "in_progress",
+  "parent": "eabbb6b",
+  "scope": "engineering only; preserve model assumptions",
+  "remote": "edithatogo/neocam",
+  "visibility_verified": "private"
+}

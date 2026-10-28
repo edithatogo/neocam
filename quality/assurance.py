@@ -77,7 +77,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
         try:
             result = subprocess.run(
                 gate.command, cwd=root, capture_output=True, text=True,
-                timeout=gate.timeout, check=False, shell=False,
+                timeout=gate.timeout, check=False, shell=False, encoding='utf-8', errors='replace',
             )
             returncode = result.returncode
             output = result.stdout + result.stderr
@@ -87,6 +87,10 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
                 reason = f'Command exited {returncode}'
         except FileNotFoundError as error:
             status, reason = 'blocked', f'Executable unavailable: {error.filename}'
+            output = reason + '\n'
+        except OSError as error:
+            status = 'failed'
+            reason = f'Executable launch failed: {type(error).__name__}: {error}'
             output = reason + '\n'
         except subprocess.TimeoutExpired as error:
             status, reason = 'failed', f'Check timeout after {gate.timeout:g} seconds'

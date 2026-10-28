@@ -119,7 +119,10 @@ def main() -> int:
     """Run a named check; EX_UNAVAILABLE explicitly distinguishes prerequisites."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('check', choices=('inputs', 'context', 'lock', 'versions', 'submodule', 'mutation', 'scalene_output', 'native_versions'))
+    parser.add_argument('--evidence-version', default='v7')
     args = parser.parse_args()
+    if not re.fullmatch(r'v[1-9][0-9]*', args.evidence_version):
+        parser.error('Invalid evidence version')
     if args.check == 'inputs':
         report = audit_inputs(ROOT)
         print(json.dumps(report, indent=2))
@@ -155,7 +158,7 @@ def main() -> int:
             return 69
         errors = mutation_errors(json.loads(path.read_text(encoding='utf-8')))
     else:
-        path = ROOT / 'verification/v7/scalene.json'
+        path = ROOT / 'verification' / args.evidence_version / 'scalene.json'
         if not path.exists():
             print('No Scalene profile was produced')
             return 69
