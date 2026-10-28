@@ -1,0 +1,42 @@
+name: Resolve requested assurance environment
+on:
+  push:
+    paths:
+      - '.github/workflows/environment-check.yml'
+      - 'environment/pyproject.toml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  environment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e
+        with:
+          version: '0.13.6'
+          python-version: '3.13'
+          enable-cache: false
+      - name: Resolve exact requested versions without inventing a lock
+        working-directory: environment
+        run: |
+          uv --version
+          uv lock
+          uv sync --frozen --group assurance --extra tabular --extra research
+          uv pip freeze > installed-versions.txt
+          uv export --frozen --group assurance --extra tabular --extra research --no-emit-project --format requirements-txt > requirements-resolved.txt
+      - name: Preserve real resolver evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: neocam-environment-${{ github.sha }}
+          path: |
+            environment/pyproject.toml
+            environment/uv.lock
+            environment/installed-versions.txt
+            environment/requirements-resolved.txt
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,23 @@
+[project]
+name = "panda-vision-evaluation"
+version = "7.0.0"
+requires-python = ">=3.13,<3.16"
+dependencies = ["numpy==2.5.4"]
+
+[project.optional-dependencies]
+tabular = ["polars==2.1.0"]
+research = ["scipy==1.18.1", "scikit-learn==1.9.1"]
+
+[dependency-groups]
+test = ["pytest==9.1.1", "coverage==7.17.0"]
+assurance = [
+  {include-group = "test"},
+  "ruff==0.17.3", "ty==0.0.92", "basedpyright==1.40.2",
+  "hypothesis==6.170.12", "pytest-gremlins==1.12.2", "scalene==2.4.0",
+  "pip-audit==2.10.1", "uv==0.13.6", "prek==0.5.7", "zizmor==1.31.1",
+]
+feedback = ["pytest-testmon==2.2.0", "pytest-xdist==3.8.0"]
+
+[tool.uv]
+package = false
+default-groups = ["test"]
