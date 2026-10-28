@@ -15,7 +15,7 @@ jobs:
       github.actor == 'edithatogo' &&
       github.event.issue.user.login == 'edithatogo' &&
       github.event.issue.title == 'neocam: complete repository import'
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-slim
     timeout-minutes: 15
     steps:
       - name: Fetch trusted importer and import checksum-verified private archive
