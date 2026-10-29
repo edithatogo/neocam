@@ -7,7 +7,7 @@ Starting remote PR head 126c385d5894a2f3c8b9534a4095cd784b8bf18e.
 
 Execute in this order and commit each implementation with fresh scoped evidence:
 1. [x] Dependencies/native security: reject unapproved redirects and oversized extracted executables.
-2. [ ] Cached development: consume previous success seals before starting a new run; fail closed on malformed cache metadata.
+2. [x] Cached development: consume previous success seals before starting a new run; fail closed on malformed cache metadata.
 3. [ ] Source provenance: validate manifest fields and failure reports without exception leaks or unsupported completeness.
 4. [ ] Historical tracks: reconcile existing requirements in sequence; preserve explicit unresolved external/scientific acceptance.
 5. [ ] Repository recovery: transfer missing original tests/supporting source, plus tested repairs, into the existing private PR. Compare remote blob hashes.
