@@ -11,7 +11,7 @@
     "independent clinical/economic review",
     "critical full texts and public originals"
   ],
-  "ordinary_tests": 513,
+  "ordinary_tests": 516,
   "full_run_completed": true,
   "full_gates": {
     "passed": 7,
@@ -19,5 +19,9 @@
     "failed": 1
   },
   "receipt": "verification/v10/full/receipt.json",
-  "remote_import_complete": false
+  "remote_import_complete": false,
+  "restoration_tests": 516,
+  "restoration_source_commit": "b90814c",
+  "concurrent_plugin_fix_preserved": true,
+  "remote_receipts_commit": "737b5e9deae49cf32f4dd0a8aa9aafed5809f64a"
 }

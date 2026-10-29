@@ -13,3 +13,9 @@ Task 4 complete as an execution, not successful acceptance. The completed unifie
 Task 5 partial. Imported original native-tool/bootstrap/prek/Vale/Gitleaks/Renovate configuration and the source-audit repairs into draft PR #3 using two verified ref updates. The full source/history/binary migration is not complete. Latest hosted attempt failed before runner allocation; no cause inferred.
 
 Concurrent change reconciled. The feature branch advanced to cb01184 (correct testmon.pytest_testmon import and three tests) and then 3021017 (additional recovered source/tests). Both updates were preserved in remote commit 737b5e9 with a non-force leased update. The four plugin-change files match the remote Git blob IDs. One failing and two passing new tests were reproduced before integrating the plugin fix; all 35 selected integration regressions then passed. This is a configuration/contract check, not execution of the unavailable testmon package.
+
+Integrated verification complete. The full run on 28aa7b6 completed all 30 gates: 7 passed, 22 blocked, 1 failed. The ordinary suite passed 516 tests; all referenced log hashes matched. This supersedes the earlier 513-test scoped run after preserving the three concurrent regressions.
+
+Task 5 complete within authorised incremental-push scope. Remote commit737b5e9 contains this continuation's repairs, twenty track receipts/logs and supporting quality modules while preserving concurrent source. Full source/binary/history migration remains incomplete. A later concurrent documentation-only commit40c0c81 was observed and is retained.
+
+Task 6 complete within restoration scope. Bundle at b90814c was cloned to a separate directory, git fsck completed, and 516 tests passed. Final packaging preserves this tested code and its history; final archive hashes are recorded separately to avoid recursive manifests. No hosted, pinned-toolchain or independent-validation claim.
