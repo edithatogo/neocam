@@ -1,22 +1,17 @@
-# Neocam v9: authoritative assurance and private repository handoff
+# Neocam v10: authoritative assurance and private repository handoff
 
-Read conductor/current-state.json and tracks/v9-reconciliation/{spec,plan}.md.
+Read conductor/current-state.json and tracks/v10-acceptance-reconciliation/{spec,plan}.md.
 For CI and dependency work also read .agents/skills/maintaining-lean-ci/SKILL.md.
 
 ## Scientific scope
-The primary financial model, parameters and source tables are unchanged. The secondary utility generator is corrected to age11; outputs/v9/utility_bridge_corrected.csv supersedes the historical v7 utility table. Historical figures/documents are not newly regenerated or revalidated in this engineering pass.
+The active model, parameters, source tables and v7 numerical results are unchanged.
 Use src/pathways_v6.py with the regional/perspective adapters documented in conductor/runbook-v7-history.md.
 data/v6/spec.json is a reference snapshot, not a live configuration input.
 Sources and estimates retain the v7 evidence limitations. Do not recast cost-only results as health benefits.
 
 ## Authoritative verification
-In a connected, reviewed-lock environment:
-uv sync --frozen --group assurance --extra tabular --extra research
-uv run --frozen --no-sync python -m quality.cli --profile full --evidence-version v9
-
-Available-host diagnostic command (not pinned-stack acceptance):
-python -m quality.cli --profile full --evidence-version v9
-The v7 default path is retained for backward-compatible fixture callers; explicitly select v9 for this handoff.
+python -m quality.cli --profile full --evidence-version v10
+The v7 default path is retained for backward-compatible fixture callers; explicitly select v10 for this handoff.
 The same full gate set remains mandatory. Atomic receipts are checkpointed before and after every gate.
 run_finished=true means all gates were enumerated, not that they all passed.
 complete_within_profile and full_local_assurance require every required gate to pass.
@@ -44,4 +39,4 @@ Preserve exact source commit, input fingerprint, log digests, full terminal rece
 Restore and test the complete Git bundle. Report blocked, failed and passed gates separately.
 Do not rerun clinical analyses when no scientific input or numerical implementation changed.
 
-Sequential reconciliation: conductor/reconciliation-v9.md. Full acceptance remains open.
+Source integrity now accepts an explicit versioned --output; malformed rows fail closed. See conductor/reconciliation-v10.md for twenty scoped track checks and remaining acceptance. Existing draft PR #3 remains partial; do not merge as a complete migration.
