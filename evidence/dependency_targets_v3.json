@@ -1,0 +1,93 @@
+{
+  "checked_on": "2026-10-28",
+  "policy": "Latest located non-yanked releases; Ruff preview enabled; ty and gremlins maturity retained explicitly; no unreviewed resolver upgrades in CI",
+  "packages": [
+    {
+      "name": "numpy",
+      "target_version": "2.5.4",
+      "source": "https://pypi.org/project/numpy/2.5.4/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "polars",
+      "target_version": "2.1.0",
+      "source": "https://pypi.org/project/polars/2.1.0/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pytest",
+      "target_version": "9.1.1",
+      "source": "https://pypi.org/project/pytest/9.1.1/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "coverage",
+      "target_version": "7.17.0",
+      "source": "https://pypi.org/project/coverage/7.17.0/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "ruff",
+      "target_version": "0.17.3",
+      "source": "https://pypi.org/project/ruff/0.17.3/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "ty",
+      "target_version": "0.0.92",
+      "source": "https://pypi.org/project/ty/0.0.92/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "basedpyright",
+      "target_version": "1.40.2",
+      "source": "https://pypi.org/project/basedpyright/1.40.2/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "hypothesis",
+      "target_version": "6.170.12",
+      "source": "https://api.github.com/repos/HypothesisWorks/hypothesis/releases/latest",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pytest-gremlins",
+      "target_version": "1.12.2",
+      "source": "https://pypi.org/project/pytest-gremlins/1.12.2/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "scalene",
+      "target_version": "2.4.0",
+      "source": "https://pypi.org/project/scalene/2.4.0/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pip-audit",
+      "target_version": "2.10.1",
+      "source": "https://pypi.org/project/pip-audit/2.10.1/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "uv",
+      "target_version": "0.13.6",
+      "source": "https://pypi.org/project/uv/0.13.6/",
+      "checked_on": "2026-10-28",
+      "installation": "not certified; see execution receipt"
+    }
+  ],
+  "native_manifest": "quality/native-tools.json",
+  "transitive_lock_status": "BLOCKED; no uv.lock fabricated",
+  "historical_report_builders": "Not rebuilt or re-certified; historical reporting environment remains separate from numerical and assurance groups"
+}

@@ -1,0 +1,4 @@
+mode,sample_count,sample_share,model_metro_prior,model_regional_prior,model_remote_prior,source_id,note
+Road,25,0.5555555555555556,0.85,0.6,0.15,NEOSTRESS2020,Prior shares are analyst geographic scenarios
+Rotary,9,0.2,0.1,0.25,0.35,NEOSTRESS2020,Source counted outbound non-patient legs
+Fixed,11,0.24444444444444444,0.05,0.15,0.5,NEOSTRESS2020,Not population mode prevalence
