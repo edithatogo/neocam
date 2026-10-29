@@ -1,0 +1,21 @@
+{
+  "track": "v3-04-context-and-ci",
+  "order": 6,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_quality_integration.py",
+    "tests/test_toolchain_contracts.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 42,
+  "source_commit": "f57df3f6e079f0369e7dea4fb124fa604a3658ee",
+  "checked_at_utc": "2026-10-29T20:42:44.358212+00:00",
+  "log": "verification/v11/tracks/06-v3-04-context-and-ci.txt",
+  "log_sha256": "a74a2e5a53018a4b3e060fe854230bc35b0e93d06c9eda919e642fa63e20897c",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Hosted acceptance, full upload and submodule checkout incomplete."
+}

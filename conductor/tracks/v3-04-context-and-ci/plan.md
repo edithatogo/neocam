@@ -119,3 +119,7 @@ Preserve the existing 27 model parameters and default results. No new clinical f
 **Acceptance and limits:** Handoff identifies the connected dependency-install acceptance task; authoring, economic validity and hosted execution remain separate.
 
 **Repair rule:** For a newly discovered behaviour defect, add the reproducing test first, retain its failing output, apply the smallest repair, and rerun the complete ordinary suite. Never lower thresholds or add blanket suppressions to obtain a green status.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
