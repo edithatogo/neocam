@@ -1,0 +1,13 @@
+name,label,low,high,reference,rationale
+odds_ratio,Video transfer odds ratio,0.35,1.3,0.6928203230275509,"Common clinical-effect uncertainty, including no effect/increased transfer"
+calls_per_site,Calls per pilot site/year,5,25,12.5,Wider deterministic utilisation stress test than 10–15 forecast
+marginal_fraction,Avoidable retrieval fraction,0.1,1,0.5,"Resource fraction, not full reported tariff"
+downstream_delta,"Hospital cost difference, AUD",-4000,10000,2000,Additional local care may exceed receiving-hospital offset
+life_years,"Equipment life, years",3,7,5,Existing equipment-life range
+critical_share,Critical case share,0.05,0.4,0.15,Critical transfer unchanged; low/moderate remainder shares preserved
+common_reliability,Established-video usable connection,0.8,1,0.95,"Technical delivery assumption, not comparative clinical efficacy"
+workflow_per_call,"Extra video workflow, AUD/call",0,175,75,Increment above telephone workload
+obsbot_installed_cost,"Complete OBSBOT kit, AUD/site",2500,10000,4500,Unquoted complete-system range; includes tablet/mount/integration
+obsbot_reliability,Tablet/OBSBOT usable connection,0.7,1,0.95,Hypothetical alternative; not measured quality
+mobile_capital_share,Mobile neonatal capital attribution,0.05,1,1,Cross-use allocation only; does not reduce full procurement cash
+fixed_capital_share,Fixed PTZ neonatal capital attribution,0.05,1,1,Cross-use allocation only; may be infeasible at some sites
