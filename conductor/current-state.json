@@ -25,7 +25,7 @@
   "next_acceptance": "Complete the private source import, then resolve a real lock and execute the pinned toolchain. No missing tool is a pass.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "private",
-  "remote_import": "partial; core and track receipts uploaded, full binary/history migration remains open",
+  "remote_import": "partial; complete src/data/tests/quality verified, supporting artifacts and original ancestry remain open",
   "hosted_environment_check": {
     "run_id": 40721279349,
     "conclusion": "failure",
@@ -33,11 +33,11 @@
   },
   "remote_pr": 3,
   "remote_branch": "conductor/neocam-v9-track-reconciliation",
-  "tracks_reconciled": 20,
+  "tracks_reconciled": 22,
   "reconciled_remote_source_commit": "afd6c96456326f77f1f0f50a899c7495b632d609",
   "reconciled_remote_updates": [
     "cb01184fafe688c8a1cdfbbece60cff35f2eb90c",
     "3021017be5349faa4ea2cdcbdef89a4e37865b6d"
   ],
-  "remote_verified_incremental_commit": "126c385d5894a2f3c8b9534a4095cd784b8bf18e"
+  "remote_verified_incremental_commit": "ecdc2929653a1710a44ec348edc78be699ea5f74"
 }

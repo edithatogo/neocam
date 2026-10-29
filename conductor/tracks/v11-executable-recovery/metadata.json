@@ -1,6 +1,6 @@
 {
   "id": "v11-executable-recovery",
-  "status": "implementation_and_recovery_in_progress",
+  "status": "implemented_scoped_recovery_full_acceptance_open",
   "full_acceptance": false,
   "remote_pr": 3,
   "scientific_inputs_changed": false,
@@ -10,5 +10,14 @@
     "genuine dependency lock and installed tools",
     "Gitleaks and hosted CI",
     "original-source and independent clinical validation"
-  ]
+  ],
+  "prior_tracks_reconciled": 22,
+  "ordinary_tests_passed": 541,
+  "full_run_counts": {
+    "passed": 7,
+    "blocked": 22,
+    "failed": 1
+  },
+  "remote_tests_files": 39,
+  "remote_code_commit": "ecdc2929653a1710a44ec348edc78be699ea5f74"
 }

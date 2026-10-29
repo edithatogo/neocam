@@ -9,9 +9,9 @@ Execute in this order and commit each implementation with fresh scoped evidence:
 1. [x] Dependencies/native security: reject unapproved redirects and oversized extracted executables.
 2. [x] Cached development: consume previous success seals before starting a new run; fail closed on malformed cache metadata.
 3. [x] Source provenance: validate manifest fields and failure reports without exception leaks or unsupported completeness.
-4. [x] Historical tracks: reconcile existing requirements in sequence; preserve explicit unresolved external/scientific acceptance.
-5. [ ] Repository recovery: transfer missing original tests/supporting source, plus tested repairs, into the existing private PR. Compare remote blob hashes.
-6. [ ] Execute the full harness once on committed code; preserve every result. Restore and test the final package.
+4. [x] Historical tracks: reconcile the original twenty, then the two v10 follow-on records (one recovered from GitHub); preserve unresolved external/scientific acceptance.
+5. [x] Selected repository recovery: the complete 39-file tests directory and repaired quality code are pushed to PR #3 at ecdc292. Their subtree hashes match the tested local source. Supporting driver/evidence recovery is being completed separately; full migration remains open.
+6. [ ] Full run on 3140ed3 completed: 541 tests; 7 passed gates, 22 blocked, 1 failed. Recheck the final documented source, restore and test the final package.
 
 Dependencies: native mocks must still prove extraction without a network; cache tests never replace
 installed-plugin acceptance; source audit must remain unsuccessful for an empty scope; full

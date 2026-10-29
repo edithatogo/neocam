@@ -13,3 +13,9 @@ Task 3: complete within contract scope. Nine new malformed-manifest/CLI cases fa
 Task 4: twenty historical tracks checked in original order; every scoped run returned zero and was committed before the next. All exact commands, counts and SHA-256 log digests are recorded per track. Overlapping counts must not be summed. The v4 cached-feedback implementation checkboxes are now reconciled; installed plugin integration remains blocked.
 
 Integration finding: the first full attempt passed 541 tests but the context gate found a missing new-track metadata file; that file is now supplied. The outer execution timed out before all gates finished; the incomplete receipt/logs are preserved under verification/v11/interrupted-attempt. No full acceptance claim is based on that attempt.
+
+Completed full run: all 30 gates reached on 3140ed37c215fb2e4454faf5da3706d667ec44f7. 541 ordinary tests passed; 7 gates passed, 22 blocked and 1 failed (missing real lock). All receipt log digests matched. The earlier timed-out attempts remain labelled incomplete. This is not installed-tool, hosted or independent acceptance.
+
+Inventory correction: checked v10-acceptance-reconciliation as order21 (9 tests), then recovered the separate remote-only v10-revalidation plan/spec by exact Git blob hash and checked it as order22 (13 tests). Each has a separate commit and receipt. The previous twenty-track count did not include these follow-on records; all22 predecessor records are now reconciled.
+
+Actual remote update ecdc2929653a1710a44ec348edc78be699ea5f74 preserves src/data and contains the complete tests and quality directories. Hashes match the local source. GitHub still lacks some supporting outputs, assets and original ancestry; no complete-migration claim.
