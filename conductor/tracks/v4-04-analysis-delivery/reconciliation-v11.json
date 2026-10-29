@@ -1,0 +1,20 @@
+{
+  "track": "v4-04-analysis-delivery",
+  "order": 11,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v4_analysis_checks.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 8,
+  "source_commit": "370da6b6b8f4b1afe145a6765697423dd142982f",
+  "checked_at_utc": "2026-10-29T20:43:27.597106+00:00",
+  "log": "verification/v11/tracks/11-v4-04-analysis-delivery.txt",
+  "log_sha256": "3e581f92c5a63354a9091ee51e37e73e779045ac4069a73a069db9dd6f0cfef2",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Historical artifacts preserved; no fresh rendering claimed."
+}

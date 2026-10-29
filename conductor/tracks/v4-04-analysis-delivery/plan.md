@@ -57,3 +57,7 @@ Files: `verification/v4`
 - [x] Implement the smallest repair without changing economic assumptions.
 - [x] Run `python -m pytest -q; git bundle verify` and inspect its actual outcome.
 - [x] Record implemented / accepted / blocked separately and commit.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
