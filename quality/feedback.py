@@ -79,11 +79,11 @@ def prepare(root: Path, mode: str, *, available: bool,
         if not reused:
             for name in ('.testmondata', '.testmondata-wal', '.testmondata-shm'):
                 (root / name).unlink(missing_ok=True)
-        command = (sys.executable, '-m', 'pytest', '-q', '--testmon')
+        command = (sys.executable, '-m', 'pytest', '-p', 'testmon', '-q', '--testmon')
     else:
         if not available:
             raise ModuleNotFoundError('pytest-gremlins unavailable; mutation feedback is blocked')
-        command = (sys.executable, '-m', 'pytest', 'tests', 'quality/hypothesis_properties.py',
+        command = (sys.executable, '-m', 'pytest', '-p', 'gremlins', 'tests', 'quality/hypothesis_properties.py',
                    '--gremlins', '--gremlin-workers=2', '--gremlin-cache',
                    '--gremlin-report=json', '--strict-pardons')
         if not reused:

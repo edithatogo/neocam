@@ -80,7 +80,7 @@ jobs:
         run: |
           test -f uv.lock
           uv lock --check
-          uv sync --frozen --group test
+          uv sync --frozen --group test --extra research
       - name: Ordinary suite and input/context contracts
         run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version v8
       - if: always()

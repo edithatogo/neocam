@@ -51,7 +51,7 @@ def gates_for_profile(profile: str) -> list[Gate]:
         Gate('ty', (python, '-m', 'ty', 'check'), 180, 'ty'),
         Gate('basedpyright', (python, '-m', 'basedpyright'), 180, 'basedpyright'),
         Gate('hypothesis', (python, '-m', 'pytest', 'quality/hypothesis_properties.py', '-q'), 180, 'hypothesis'),
-        Gate('gremlins', (python, '-m', 'pytest', 'tests', 'quality/hypothesis_properties.py', '--gremlins', '--gremlin-workers=2', '--gremlin-clear-cache', '--gremlin-report=json', '--gremlin-report=html', '--strict-pardons'), 1800, 'pytest_gremlins'),
+        Gate('gremlins', (python, '-m', 'pytest', '-p', 'gremlins', 'tests', 'quality/hypothesis_properties.py', '--gremlins', '--gremlin-workers=2', '--gremlin-clear-cache', '--gremlin-report=json', '--gremlin-report=html', '--strict-pardons'), 1800, 'pytest_gremlins'),
         Gate('mutation_score', (python, '-m', 'quality.checks', 'mutation'), allow_unavailable=True),
         Gate('scalene', (python, '-m', 'scalene', 'run', '-o', 'verification/v7/scalene.json', 'quality/profile_workload.py'), 180, 'scalene'),
         Gate('scalene_output', (python, '-m', 'quality.checks', 'scalene_output'), allow_unavailable=True),

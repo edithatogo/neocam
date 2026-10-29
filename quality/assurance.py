@@ -15,7 +15,7 @@ import subprocess
 import time
 
 INPUT_DIRS = ('src', 'scripts', 'quality', 'tests', 'data', 'evidence', 'sources', 'conductor', '.github', '.vale', '.agents')
-INPUT_FILES = ('pyproject.toml', 'uv.lock', '.vale.ini', '.gitleaks.toml', 'AGENTS.md', 'GEMINI.md', 'README.md', '.pre-commit-config.yaml', 'renovate.json')
+INPUT_FILES = ('.gitmodules', 'pyproject.toml', 'uv.lock', '.vale.ini', '.gitleaks.toml', 'AGENTS.md', 'GEMINI.md', 'README.md', '.pre-commit-config.yaml', 'renovate.json')
 
 
 @dataclass(frozen=True)
@@ -108,9 +108,13 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
 def validate_receipts(receipts: list[Receipt], required: set[str], fingerprint: str, root: Path) -> list[str]:
     """Reject incomplete, stale, conflicting, failed or altered result sets."""
     errors: list[str] = []
+    if not required:
+        errors.append('Acceptance scope must be nonempty')
     names = [receipt.gate for receipt in receipts]
     if len(names) != len(set(names)):
         errors.append('Duplicate gate receipts')
+    for unexpected in sorted(set(names) - required):
+        errors.append(f'Unexpected gate: {unexpected}')
     for missing in sorted(required - set(names)):
         errors.append(f'Missing gate: {missing}')
     for receipt in receipts:

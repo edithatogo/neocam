@@ -10,6 +10,8 @@ def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     root = root.resolve()
     files = manifest.get('files', [])
+    if not isinstance(files, list) or not files:
+        return ['Stored-source verification requires a nonempty file scope']
     seen: set[str] = set()
     for item in files:
         name = item.get('path', '')

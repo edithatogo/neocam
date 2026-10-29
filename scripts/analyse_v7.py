@@ -73,6 +73,24 @@ def summary(a):
     q=np.quantile(a,[.025,.5,.975]);return {'mean':float(a.mean()),'lower':float(q[0]),'median':float(q[1]),'upper':float(q[2])}
 
 
+def utility_bridge_scenarios():
+    """Illustrative improvements from age 11, discounted back to birth.
+
+    Utility contrasts are observational, not effects of video on prematurity.
+    Durations and improved fractions remain assumptions. No effect is credited
+    before the age at which the source measured the utility contrast.
+    """
+    rows=[]
+    for u,label in ((.13,'EPICure2 adjusted UK HUI2 SI decrement'),(.28,'EPICure2 adjusted Canadian HUI3 decrement')):
+        for duration,rate,improved in itertools.product((1,5,10), (0.,.03,.05), (.001,.005,.01)):
+            per=discounted_health_years(np.ones(duration),np.full(duration,u),rate,start_year=11)
+            rows.append({'utility_difference':u,'source_metric':label,'duration_years_assumed':duration,
+              'start_age_years':11,'discount_rate':rate,
+              'fraction_consultations_improved_assumed':improved,'qalys_per_1000_consultations':1000*improved*per,
+              'warning':'illustrative disability-improvement bridge from age11; does not mean video prevents prematurity'})
+    return rows
+
+
 def main():
     p=Parameters();s=PathwaySpec();n=20000;seed=20261028
     inventories=regional_roster();write('regional_roster.csv',inventories)
@@ -149,14 +167,8 @@ def main():
                   **summary(matrix[:,j]),'probability_optimal':float(probs[j]),
                   'decision_set':'four established categories; local technical suitability still required'})
     write('established_options.csv',eligibility)
-    # Utility differences are OBSERVATIONAL cohorts at age11, not treatment effects.
-    health=[]
-    for u,label in ((.13,'EPICure2 adjusted UK HUI2 SI decrement'),(.28,'EPICure2 adjusted Canadian HUI3 decrement')):
-        for duration,rate,improved in itertools.product((1,5,10), (0.,.03,.05), (.001,.005,.01)):
-            per=discounted_health_years(np.ones(duration),np.full(duration,u),rate)
-            health.append({'utility_difference':u,'source_metric':label,'duration_years_assumed':duration,'discount_rate':rate,
-              'fraction_consultations_improved_assumed':improved,'qalys_per_1000_consultations':1000*improved*per,
-              'warning':'illustrative disability-improvement bridge; does not mean video prevents prematurity'})
+    # Age-11 observational utilities are not credited before their evidence age.
+    health=utility_bridge_scenarios()
     for name,rows in [('deterministic.csv',deterministic),('psa_perspectives.csv',summaries),('value_of_perspective.csv',regrets),
        ('reconciliation.csv',checks),('structural_scenarios.csv',scenarios),('health_thresholds.csv',thresholds),
        ('allocation_two_way.csv',allocation_sensitivity),('utility_bridge_scenarios.csv',health)]:write(name,rows)
