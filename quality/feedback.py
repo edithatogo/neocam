@@ -71,7 +71,11 @@ def prepare(root: Path, mode: str, *, available: bool,
         previous = json.loads(state_file.read_text(encoding='utf-8'))
     except (OSError, ValueError):
         previous = {}
+    if not isinstance(previous, dict):
+        previous = {}
     reused = previous.get('key') == key and previous.get('returncode') == 0
+    # Consume the old seal before starting: interruption must not preserve success.
+    state_file.unlink(missing_ok=True)
     if mode == 'tests':
         if not available:
             return FeedbackPlan(mode, (sys.executable, '-m', 'pytest', '-q'), key, False,

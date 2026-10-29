@@ -29,7 +29,7 @@ def test_source_change_invalidates_assurance_fingerprint(tmp_path):
     from quality.assurance import input_fingerprint
     folder=tmp_path/'sources';folder.mkdir();path=folder/'evidence.csv';path.write_text('a,1')
     before=input_fingerprint(tmp_path);path.write_text('a,2')
-    assert input_fingerprint(tmp_path)!=before
+    assert before!=input_fingerprint(tmp_path)
 
 
 def test_full_acceptance_requires_source_byte_integrity_gate():
