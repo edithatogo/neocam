@@ -1,0 +1,23 @@
+{
+  "track": "v4-01-fast-feedback",
+  "order": 8,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v4_profiles.py",
+    "tests/test_v4_hooks.py",
+    "tests/test_v4_config.py",
+    "tests/test_v4_benchmark.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 23,
+  "source_commit": "502064b65c7cd49fc62f167f82895f12a4e03fa3",
+  "checked_at_utc": "2026-10-29T20:42:46.922929+00:00",
+  "log": "verification/v11/tracks/08-v4-01-fast-feedback.txt",
+  "log_sha256": "1ce171b82a4488765d25787c5b3e4ffd3cfc97e8d66272e142c6b5e5da4e9fa8",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Actual prek/workflow-linter integration and repeated xdist benchmarks open."
+}
