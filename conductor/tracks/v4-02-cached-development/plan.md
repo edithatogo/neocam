@@ -17,10 +17,10 @@ Files: `tests/test_v4_feedback.py`
 
 **Status:** implemented; plugin integration blocked. **Evidence:** `test_v4_feedback.py passes; testmon unavailable`.
 Files: `quality/feedback.py`
-- [ ] Write/reproduce the relevant failure or inventory gap.
-- [ ] Implement the smallest repair without changing economic assumptions.
-- [ ] Run `python -m pytest tests/test_v4_feedback.py -q` and inspect its actual outcome.
-- [ ] Record implemented / accepted / blocked separately and commit.
+- [x] Write/reproduce the relevant failure or inventory gap.
+- [x] Implement the smallest repair without changing economic assumptions.
+- [x] Run `python -m pytest tests/test_v4_feedback.py -q` and inspect its actual outcome.
+- [x] Record implemented / accepted / blocked separately and commit.
 
 ## Task 3: Require pass-only cache seals; bind dependency and interpreter versions
 
@@ -57,3 +57,7 @@ Files: `conductor/runbook.md`
 - [x] Implement the smallest repair without changing economic assumptions.
 - [x] Run `python -m quality.checks context` and inspect its actual outcome.
 - [x] Record implemented / accepted / blocked separately and commit.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
