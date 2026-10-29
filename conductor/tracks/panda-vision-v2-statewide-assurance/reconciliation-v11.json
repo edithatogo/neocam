@@ -1,0 +1,20 @@
+{
+  "track": "panda-vision-v2-statewide-assurance",
+  "order": 2,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v2.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 67,
+  "source_commit": "7b0ffcb86ece49d5312529ab5f2447e2ae85db93",
+  "checked_at_utc": "2026-10-29T20:42:23.433136+00:00",
+  "log": "verification/v11/tracks/02-panda-vision-v2-statewide-assurance.txt",
+  "log_sha256": "38ba2a5ad05bb5a2365e321f9df36267e205e9c5191717af5b05985de351c935",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Pinned stack, source originals and hosted assurance remain open."
+}

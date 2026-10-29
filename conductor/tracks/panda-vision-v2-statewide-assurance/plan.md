@@ -14,3 +14,7 @@
 - [ ] Run all hosted CI/interpreter, lint, generative and security gates; retain receipt on exact SHA.
 - [ ] Verify current QEP/local weights and 2026 capability where available.
 - [ ] Extend route-specific/antenatal/common-outage structures before interpreting a complete state investment case.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
