@@ -1,10 +1,7 @@
-# Current Conductor tracks — v10
+# Current Conductor tracks
 
-- [Active sequential acceptance/recovery track](tracks/v10-acceptance-reconciliation/plan.md): local repairs and twenty scoped reviews implemented; full acceptance and full GitHub import remain incomplete.
-- [Twenty-track reconciliation](reconciliation-v10.md): ordered test counts, remaining requirements and links to the per-track records. Counts overlap and must not be summed.
-- [Prior remote v9 track](tracks/v9-reconciliation/plan.md): preserved as a historical record, not overwritten.
-- [Current regional/perspective analysis](tracks/v7-perspectives/plan.md): the primary numerical inputs and financial outputs are unchanged. The age-11 utility-generator correction is secondary and historical artifacts are not relabelled as fresh.
+- [v11 scoped repairs and recovery](tracks/v11-executable-recovery/plan.md): three tested assurance repairs; complete test-tree recovery; full external acceptance remains open.
+- [22-track sequential reconciliation](../handoff/v11/tracks.md): original twenty tracks followed by both v10 records. Scoped counts overlap and are not independent test counts.
+- [Prior acceptance reconciliation](tracks/v10-acceptance-reconciliation/plan.md) and [concurrent revalidation](tracks/v10-revalidation/plan.md): preserved, not treated as independent validation.
 
-Historical index: [v6 and prior](tracks-v6-history.md); [v8 execution](tracks/v8-assurance-publish/plan.md). Each track keeps implementation separate from external acceptance.
-
-Canonical verification: `python -m quality.cli --profile full --evidence-version v10`. Missing tools, unresolved source files, independent review and remote-transfer gaps cannot be marked passed.
+Canonical command: `python -m quality.cli --profile full --evidence-version v11`. All required gates remain mandatory. A finished run is not a passed run. PR #3 remains draft and the complete file/history migration remains open.

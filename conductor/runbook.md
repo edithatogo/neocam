@@ -39,6 +39,6 @@ Preserve exact source commit, input fingerprint, log digests, full terminal rece
 Restore and test the complete Git bundle. Report blocked, failed and passed gates separately.
 Do not rerun clinical analyses when no scientific input or numerical implementation changed.
 
-Source integrity now accepts an explicit versioned --output; malformed rows fail closed. See conductor/reconciliation-v10.md for twenty scoped track checks and remaining acceptance. Existing draft PR #3 remains partial; do not merge as a complete migration.
+Source integrity now accepts an explicit versioned --output; malformed rows fail closed. See handoff/v11/tracks.md for all22 predecessor-track checks and remaining acceptance; historical v10 records are preserved. Existing draft PR #3 remains partial; do not merge as a complete migration.
 
 V11 consumes old local cache seals before execution, checks native redirects before following, and emits source-audit failure reports for malformed metadata. These tests do not establish installed-tool, Gitleaks or complete remote migration acceptance.
