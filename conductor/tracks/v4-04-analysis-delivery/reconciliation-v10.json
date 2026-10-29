@@ -1,0 +1,26 @@
+{
+  "track": "v4-04-analysis-delivery",
+  "order": 11,
+  "checked_at_utc": "2026-10-29T17:37:44.745277+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "6cebf90e24fa8f1a9f6654df9a77ef243f884f50",
+  "plan_spec_sha256": {
+    "spec.md": "ab0c0771f75745a54940bf69eaa0ae5271049bfa86335fb6cd5a454129c3213d",
+    "plan.md": "7b2b7d45c5ce99e7d4e4d1deccd48435c1efc3b6f0df4a9d20f567d04e1eb70e"
+  },
+  "historical_status": "in_progress",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v4_analysis_checks.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 8,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Historical artifacts preserved; no fresh rendering claimed.",
+  "log": "verification/v10/tracks/11-v4-04-analysis-delivery.txt",
+  "log_sha256": "549382ad279450af426155555f4393fbda60e916b629a27e924475be124aeae4"
+}
