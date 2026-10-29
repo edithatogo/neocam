@@ -1,0 +1,20 @@
+{
+  "track": "v6-01-pathways",
+  "order": 15,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_pathways.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 18,
+  "source_commit": "bf84dd56c13c45d3c4396ad2c19e7092e71a6446",
+  "checked_at_utc": "2026-10-29T20:43:32.683621+00:00",
+  "log": "verification/v11/tracks/15-v6-01-pathways.txt",
+  "log_sha256": "ea7ed0516efe6736a8eaee426685e40a2393fbf3ae84104a743f394204c2ec33",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Clinical pathways and price assumptions not externally validated."
+}
