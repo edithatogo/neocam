@@ -1,0 +1,635 @@
+{
+  "interpretation": "Parsed historical task states, not new execution claims. Current scoped evidence is in per-track reconciliation records.",
+  "tasks": [
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "01 \u2014 Reproduce v2 baseline",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "02 \u2014 Freeze assumptions",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "03 \u2014 Reproduce integrity failures",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "04 \u2014 Repair data and numeric contracts",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "05 \u2014 Verify economic regression",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "06 \u2014 Audit provenance",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "task": "07 \u2014 Commit verified repairs",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-01-input-and-numerical-integrity/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "01 \u2014 Verify latest release targets",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "02 \u2014 Declare minimal dependency groups",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "03 \u2014 Reject forbidden dependencies",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "04 \u2014 Create reproducible lock workflow",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "05 \u2014 Resolve and install target stack",
+      "historical_status": "blocked",
+      "remaining_checkboxes": 2,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "06 \u2014 Verify compatibility",
+      "historical_status": "blocked",
+      "remaining_checkboxes": 2,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "task": "07 \u2014 Commit manifest and policy",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-02-dependencies-and-dataframe-policy/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "01 \u2014 Test failure semantics",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "02 \u2014 Configure Ruff comprehensively",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "03 \u2014 Configure two type checkers",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "04 \u2014 Add generative and mutation checks",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "05 \u2014 Add profiling and security/prose checks",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "06 \u2014 Run a fail-closed unified harness",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "07 \u2014 Verify receipts",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "task": "08 \u2014 Commit harness evidence",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-03-solo-assurance-harness/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "01 \u2014 Unify context entrypoints",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "02 \u2014 Maintain decision and uncertainty records",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "03 \u2014 Align CI with local gates",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "04 \u2014 Guard releases",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "05 \u2014 Validate context and workflow structure",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "06 \u2014 Attempt submodule materialisation",
+      "historical_status": "blocked",
+      "remaining_checkboxes": 2,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "task": "07 \u2014 Record handoff",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-04-context-and-ci/plan.md"
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "task": "01 \u2014 Run full local tests",
+      "historical_status": "implemented_verification_blocked",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-05-final-verification-and-packaging/plan.md"
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "task": "02 \u2014 Inspect result invariance",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-05-final-verification-and-packaging/plan.md"
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "task": "03 \u2014 Review all changes",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-05-final-verification-and-packaging/plan.md"
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "task": "04 \u2014 Complete track statuses",
+      "historical_status": "complete",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v3-05-final-verification-and-packaging/plan.md"
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "task": "05 \u2014 Package reproducible history",
+      "historical_status": "delivery_verification_recorded_separately",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v3-05-final-verification-and-packaging/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "1: Document and reproduce duplicate suite execution",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "2: Run ordinary tests once under coverage for PR/full acceptance",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "3: Add workflow linters and manifest-verified actionlint installation",
+      "historical_status": "implemented; external execution blocked. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "4: Integrate prek and one dependency-maintenance bot",
+      "historical_status": "implemented; integration blocked. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "5: Benchmark repeated serial suite versus single covered suite",
+      "historical_status": "partial measurement. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "task": "6: Attempt actual external tools and preserve blockers",
+      "historical_status": "attempt complete; acceptance unsuccessful. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-01-fast-feedback/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "1: Specify data/config/environment cache invalidation tests",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "2: Build guarded local testmon and incremental-mutation entrypoint",
+      "historical_status": "implemented; plugin integration blocked. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "3: Require pass-only cache seals; bind dependency and interpreter versions",
+      "historical_status": "accepted within contract scope. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "4: Keep fresh release evidence; do not treat no-tests-collected as a pass",
+      "historical_status": "accepted within contract scope. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "5: Benchmark optional xdist workers; retain serial default absent evidence",
+      "historical_status": "blocked; serial retained. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-02-cached-development",
+      "task": "6: Record local-only cache and environment limitations",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-02-cached-development/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "1: Record observed baseline failures and adversarial scenarios",
+      "historical_status": "accepted as observed-history baseline. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "2: Create bounded portable SKILL.md and scenario guide",
+      "historical_status": "accepted within author/contract scope. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "3: Provide executable portable evidence-contract verifier",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "4: Link one canonical skill from developer entrypoints",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "5: Verify pressure fixtures and distinguish static tests from agent evaluation",
+      "historical_status": "partial validation. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "task": "6: Package portable skill without claiming global ChatGPT installation",
+      "historical_status": "packaged; restoration verified at handoff. **Evidence:**",
+      "remaining_checkboxes": 4,
+      "source": "conductor/tracks/v4-03-reusable-skill/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "1: Rerun all existing analyses with unchanged protected inputs",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "2: Check default-result parity, scenario inventory and analysis coverage",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "3: Assess Monte Carlo numerical stability without changing priors",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "4: Create refreshed plots, tables, evidence report and two-page CHHHS plan",
+      "historical_status": "accepted. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "5: Render and visually inspect documents, figures and presentation",
+      "historical_status": "accepted within rendered scope. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "task": "6: Run final checks; commit, bundle and restore repository",
+      "historical_status": "accepted within package/ordinary-test scope. **Evidence:**",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v4-04-analysis-delivery/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "1. Restore and test v5 baseline",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "2. Specify endpoint, fallback, conservation and hospital component contracts",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "3. Replace site-count trigger with incremental hours and separate paid capacity",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "4. Implement mutually exclusive immediate/rescue/local pathways in both arms",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "5. Price origin, receiving, final-local and extra pre-rescue care without double count",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "6. Reconcile seven-year cash replacement and sunk capital",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "7. Rerun paired uncertainty, deterministic surfaces and historical-result bridge",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-01-pathways",
+      "task": "8. Keep historical numerical implementation explicitly superseded",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-01-pathways/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "1. Retrieve critical full articles through PubMed, publisher and repository routes",
+      "historical_status": "partial.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "2. Keep poster, abstract and complete article evidence distinct",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "3. Document selection, overlapping cohorts and clinical endpoint uncertainty",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "4. Compare a separately expressed scalar calculation and hand-worked case",
+      "historical_status": "accepted-author-only.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "5. Run clinical/economic/evidence/software subagent panel",
+      "historical_status": "blocked.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "task": "6. Map ISPOR/AdViSHE/TECH-VER/CHEERS domains without certification claims",
+      "historical_status": "accepted-author-assessment.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-02-evidence-validation/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "1. Migrate assurance, mutation, type and profiler scope to current kernel",
+      "historical_status": "accepted.",
+      "remaining_checkboxes": 0,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "2. Generate exact-result figures and inspectable tables/workbook",
+      "historical_status": "accepted within generated/rendered scope.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "3. Regenerate and inspect two-page CHHHS plan, supplement and presentation",
+      "historical_status": "accepted within generated/rendered scope.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "4. Run complete ordinary suite and scoped coverage",
+      "historical_status": "local suite accepted; final receipt and restoration logs govern handoff.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "5. Complete clean locked environment, all external tools and hosted CI",
+      "historical_status": "blocked.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "task": "6. Commit, bundle and restore the delivered project",
+      "historical_status": "local suite accepted; final receipt and restoration logs govern handoff.",
+      "remaining_checkboxes": 3,
+      "source": "conductor/tracks/v6-03-delivery-assurance/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "1: Regional roster and missingness",
+      "historical_status": "Implemented; current local capability approval remains open.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "2: Explicit workload overrides",
+      "historical_status": "Implemented; default historical arithmetic preserved.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "3: Government, family and provider ledgers",
+      "historical_status": "Implemented; payer/receiver/subsidy shares remain scenarios.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "4: Fixed-choice directional VoP and ties",
+      "historical_status": "Implemented; inspected upstream contract, not imported whole package.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "5: Parameter/distribution audit and beta repair",
+      "historical_status": "Implemented; 49 fields include retired inputs; no local model fit.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "6: Health thresholds and utility bridge",
+      "historical_status": "Implemented; causal QALY/DALY effects and complete burden data remain open.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "7: Receiving catchment and mixed-incumbent repair",
+      "historical_status": "Implemented after reproducing errors; only three pilot installations are treated as retained.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "8: Source archive and safe retrieval",
+      "historical_status": "Stored-byte validation implemented; original public downloads failed and remain incomplete.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "9: Simulated multidisciplinary review",
+      "historical_status": "Completed author role passes only. Independent review remains open.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "10: Rerun exact scenario/perspective analyses",
+      "historical_status": "Executed 44\u00d720,000 paired structures, 1,452 allocation rows, 48 thresholds and 54 utility bridges.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "11: Plots, tables and branded artifacts",
+      "historical_status": "Generated; final render and artifact receipts retained at handoff.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    },
+    {
+      "track": "v7-perspectives",
+      "task": "12: CI/security, commit and restoration",
+      "historical_status": "Ordinary tests/integrity checks executable. Gitleaks and external full-stack/lock/hosted acceptance remain blocked or failed, not waived.",
+      "remaining_checkboxes": 1,
+      "source": "conductor/tracks/v7-perspectives/plan.md"
+    }
+  ]
+}

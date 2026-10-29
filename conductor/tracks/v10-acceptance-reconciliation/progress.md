@@ -7,3 +7,7 @@ Ruling: update existing PR #3 rather than create a duplicate; keep draft and do 
 Task 2 complete within local-test scope. Six failing regressions reproduced malformed source-record crashes and historical audit overwrite. Source verification now fails closed on malformed records and accepts an explicit verification-directory output. The unified gate routes source evidence through the selected version. Existing source records/bytes and clinical inputs are unchanged. Combined source/v9 regressions pass; see source_red.txt and source_green.txt.
 
 Task 3 complete within current-host regression scope. Twenty historical tracks, including the newly discovered remote v9 track, were checked sequentially. Each record and its scoped log was committed before moving on. All selected test groups passed. Counts overlap; full-suite count is determined separately. Remaining clinical, archival, dependency, security and hosted requirements stay open.
+
+Task 4 complete as an execution, not successful acceptance. The completed unified run enumerated 30 required gates: 7 passed, 22 blocked, 1 failed; 513 ordinary tests passed. The failed gate rejects the absent real uv.lock. All receipt log digests matched. The prior interrupted run remains separately labelled.
+
+Task 5 partial. Imported original native-tool/bootstrap/prek/Vale/Gitleaks/Renovate configuration and the source-audit repairs into draft PR #3 using two verified ref updates. The full source/history/binary migration is not complete. Latest hosted attempt failed before runner allocation; no cause inferred.

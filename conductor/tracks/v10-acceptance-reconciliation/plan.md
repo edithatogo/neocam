@@ -13,10 +13,10 @@ Preserve newer remote work; nonempty source scope; malformed manifests; versione
 
 ## Tasks (execute in order)
 1. [x] Recover v8 and reconcile the v9 code from PR #3 by Git blob hash; execute its ten regression tests.
-2. [ ] Reproduce source-audit shape/version defects; fix with regression tests and preserve old reports.
-3. [ ] Inspect each historical plan, run its scoped tests, record remaining acceptance and commit before proceeding.
-4. [ ] Execute one full covered assurance run; record failed/blocked/passed gates without relaxing requirements.
-5. [ ] Upload repaired code, missing track/test material and receipts to the existing draft PR; verify remote blob hashes and exact import scope.
+2. [x] Reproduce source-audit shape/version defects; fix with regression tests and preserve old reports.
+3. [x] Inspect each historical plan, run its scoped tests, record remaining acceptance and commit before proceeding.
+4. [x] Execute one full covered assurance run; record failed/blocked/passed gates without relaxing requirements.
+5. [ ] PARTIAL: repaired code, missing tool configuration and reconciliation summary pushed to existing draft PR #3. Per-track receipts/supporting files and final remote hash reconciliation are in progress; full binary/history import remains blocked.
 6. [ ] Restore the final local bundle and verify its tests and integrity; update current state and handoff.
 
 Pre-flight: the full run consumes the same source-audit CLI checked in task 2. Per-track regression counts overlap and cannot be summed. Local v8 ancestry and remote bootstrap/v9 ancestry remain separate until full import can preserve both.

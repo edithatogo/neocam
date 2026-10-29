@@ -4,7 +4,10 @@
   "checked_at_utc": "2026-10-29T17:36:55.440486+00:00",
   "review": "author reconciliation; not independent validation",
   "source_commit": "971c87dd246247fac79763283030cdaa3ab3319f",
-  "plan_spec_sha256": {},
+  "plan_spec_sha256": {
+    "docs/superpowers/plans/2026-10-27-panda-vision-economic-evaluation.md": "b0c7d19753ad018913a6bc3f1ccca0b88cc62a4e26692b7d53a113e771771db6",
+    "docs/superpowers/specs/2026-10-27-panda-vision-economic-evaluation-design.md": "f999ee3abd88bc994767b8b740e089e529fef938d79d04221548784aef249f77"
+  },
   "historical_status": "complete",
   "command": [
     "/opt/pyvenv/bin/python",
@@ -19,5 +22,6 @@
   "full_acceptance": false,
   "remaining_acceptance": "Original Conductor checkout remains unpopulated.",
   "log": "verification/v10/tracks/01-panda-vision-model-v1.txt",
-  "log_sha256": "ad430bcd751b836a91fab4ff65c168e7e4f252c79243c40745308b866b554cb7"
+  "log_sha256": "ad430bcd751b836a91fab4ff65c168e7e4f252c79243c40745308b866b554cb7",
+  "reconciliation_note": "Original plan/spec are in docs/superpowers, not the track directory. Historical artifact checks retained; only five numerical regressions rerun in this track review."
 }

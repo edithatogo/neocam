@@ -1,6 +1,6 @@
 {
   "id": "v10-acceptance-reconciliation",
-  "status": "in_progress",
+  "status": "implemented_local_scope_pass_full_acceptance_incomplete",
   "tracks_checked_sequentially": 20,
   "full_acceptance": false,
   "remote_pr": 3,
@@ -10,5 +10,14 @@
     "hosted CI",
     "independent clinical/economic review",
     "critical full texts and public originals"
-  ]
+  ],
+  "ordinary_tests": 513,
+  "full_run_completed": true,
+  "full_gates": {
+    "passed": 7,
+    "blocked": 22,
+    "failed": 1
+  },
+  "receipt": "verification/v10/full/receipt.json",
+  "remote_import_complete": false
 }
