@@ -1,0 +1,4 @@
+{
+  "pytest-testmon": {"version": "2.2.0", "entry_point": "pytest-testmon", "module": "testmon.pytest_testmon", "source": "https://github.com/tarpas/pytest-testmon/blob/v2.2.0/pyproject.toml", "installed_execution": false},
+  "pytest-gremlins": {"version": "1.12.2", "entry_point": "gremlins", "module": "pytest_gremlins.plugin", "source": "https://github.com/mikelane/pytest-gremlins/blob/v1.12.2/pyproject.toml", "installed_execution": false}
+}

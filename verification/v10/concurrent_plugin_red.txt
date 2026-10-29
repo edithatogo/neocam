@@ -1,0 +1,22 @@
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_testmon_loads_actual_upstream_plugin_module _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-18/test_testmon_loads_actual_upst0')
+
+    def test_testmon_loads_actual_upstream_plugin_module(tmp_path):
+        """pytest-testmon 2.2.0 declares testmon.pytest_testmon, not testmon."""
+        plan = prepare(tmp_path, 'tests', available=True, environment={})
+>       assert ('-p', 'testmon.pytest_testmon') in tuple(zip(plan.command, plan.command[1:]))
+E       AssertionError: assert ('-p', 'testmon.pytest_testmon') in (('/opt/pyvenv/bin/python', '-m'), ('-m', 'pytest'), ('pytest', '-p'), ('-p', 'testmon'), ('testmon', '-q'), ('-q', '--testmon'))
+E        +  where (('/opt/pyvenv/bin/python', '-m'), ('-m', 'pytest'), ('pytest', '-p'), ('-p', 'testmon'), ('testmon', '-q'), ('-q', '--testmon')) = tuple(<zip object at 0x7f9481db1d80>)
+E        +    where <zip object at 0x7f9481db1d80> = zip(('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', ...), ('-m', 'pytest', '-p', 'testmon', '-q', '--testmon'))
+E        +      where ('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', ...) = FeedbackPlan(mode='tests', command=('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', '--testmon'), key...342c3120bb0b28dad7d', cache_reused=False, reason='Cold cache or changed inputs: rebuild local evidence', can_seal=True).command
+
+tests/test_v10_reconciliation.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v10_reconciliation.py::test_testmon_loads_actual_upstream_plugin_module - AssertionError: assert ('-p', 'testmon.pytest_testmon') in (('/opt/pyvenv/bin/python', '-m'), ('-m', 'pytest'), ('pytest', '-p'), ('-p', 'testmon'), ('testmon', '-q'), ('-q', '--testmon'))
+ +  where (('/opt/pyvenv/bin/python', '-m'), ('-m', 'pytest'), ('pytest', '-p'), ('-p', 'testmon'), ('testmon', '-q'), ('-q', '--testmon')) = tuple(<zip object at 0x7f9481db1d80>)
+ +    where <zip object at 0x7f9481db1d80> = zip(('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', ...), ('-m', 'pytest', '-p', 'testmon', '-q', '--testmon'))
+ +      where ('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', ...) = FeedbackPlan(mode='tests', command=('/opt/pyvenv/bin/python', '-m', 'pytest', '-p', 'testmon', '-q', '--testmon'), key...342c3120bb0b28dad7d', cache_reused=False, reason='Cold cache or changed inputs: rebuild local evidence', can_seal=True).command
+1 failed, 2 passed in 1.47s

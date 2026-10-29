@@ -1,0 +1,1 @@
+Executable unavailable: /mnt/data/neocam-work/.tools/bin/gitleaks

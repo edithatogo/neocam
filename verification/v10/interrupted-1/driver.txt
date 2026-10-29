@@ -1,0 +1,39 @@
+START   pytest
+PASSED  pytest: 
+START   inputs
+PASSED  inputs: 
+START   context
+PASSED  context: 
+START   source_integrity
+PASSED  source_integrity: 
+START   coverage
+PASSED  coverage: 
+START   coverage_threshold
+PASSED  coverage_threshold: 
+START   core_coverage
+PASSED  core_coverage: 
+START   ruff_lint
+BLOCKED ruff_lint: Required Python tool is unavailable: ruff
+START   ruff_format
+BLOCKED ruff_format: Required Python tool is unavailable: ruff
+START   ty
+BLOCKED ty: Required Python tool is unavailable: ty
+START   basedpyright
+BLOCKED basedpyright: Required Python tool is unavailable: basedpyright
+START   hypothesis
+BLOCKED hypothesis: Required Python tool is unavailable: hypothesis
+START   gremlins
+BLOCKED gremlins: Required Python tool is unavailable: pytest_gremlins
+START   mutation_score
+BLOCKED mutation_score: Command exited 69
+START   scalene
+BLOCKED scalene: Required Python tool is unavailable: scalene
+START   scalene_output
+BLOCKED scalene_output: Command exited 69
+START   gitleaks_history
+BLOCKED gitleaks_history: Executable unavailable: /mnt/data/neocam-work/.tools/bin/gitleaks
+START   gitleaks_tree
+BLOCKED gitleaks_tree: Executable unavailable: /mnt/data/neocam-work/.tools/bin/gitleaks
+START   vale
+BLOCKED vale: Executable unavailable: /mnt/data/neocam-work/.tools/bin/vale
+START   dependency_consistency

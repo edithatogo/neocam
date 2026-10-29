@@ -16,7 +16,7 @@ Preserve newer remote work; nonempty source scope; malformed manifests; versione
 2. [x] Reproduce source-audit shape/version defects; fix with regression tests and preserve old reports.
 3. [x] Inspect each historical plan, run its scoped tests, record remaining acceptance and commit before proceeding.
 4. [x] Execute one full covered assurance run; record failed/blocked/passed gates without relaxing requirements.
-5. [ ] PARTIAL: repaired code, missing tool configuration and reconciliation summary pushed to existing draft PR #3. Per-track receipts/supporting files and final remote hash reconciliation are in progress; full binary/history import remains blocked.
+5. [x] Push tested repairs, quality support, twenty reconciliation records and their logs into existing draft PR #3, preserving two concurrent updates. Full binary/history import remains open; final remote hashes and exact remaining scope are recorded in the handoff.
 6. [ ] Restore the final local bundle and verify its tests and integrity; update current state and handoff.
 
 Pre-flight: the full run consumes the same source-audit CLI checked in task 2. Per-track regression counts overlap and cannot be summed. Local v8 ancestry and remote bootstrap/v9 ancestry remain separate until full import can preserve both.

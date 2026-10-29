@@ -1,0 +1,3 @@
+-137c1e41ff9c1dc75ff277b9582460a0bd8c4768 extensions/conductor
+ 
+Conductor checkout unavailable; a gitlink alone is not a checkout

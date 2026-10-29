@@ -1,0 +1,6 @@
+{
+  "stored_file_integrity_passed": true,
+  "errors": [],
+  "public_original_archival_completeness": false,
+  "stored_files": 15
+}
