@@ -1,0 +1,28 @@
+{
+  "track": "v3-02-dependencies-and-dataframe-policy",
+  "order": 4,
+  "checked_at_utc": "2026-10-29T17:37:00.378069+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "57c8ae61e21f7aa3a7a46b9c88915472ef9f98ea",
+  "plan_spec_sha256": {
+    "spec.md": "2156ab7d9f8b9e966dcff9b01ec5eb340f29d1c83459ddf62a910f21cd04ab8e",
+    "plan.md": "61d8db1eafc20c181b128d69838ae567dc3c63240dd8cc204480f191992c714e"
+  },
+  "historical_status": "implementation_recorded_acceptance_incomplete",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_native_integrity.py",
+    "tests/test_toolchain_contracts.py",
+    "tests/test_quality_gates.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 44,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Real lock, installation and transitive dependency checks unavailable.",
+  "log": "verification/v10/tracks/04-v3-02-dependencies-and-dataframe-policy.txt",
+  "log_sha256": "e8fbaebd38b191f6b3fcadfb4bb50e8708629152c09f3c9d2fad41341e5b1fa7"
+}
