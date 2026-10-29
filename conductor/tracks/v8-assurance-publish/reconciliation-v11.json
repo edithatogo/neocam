@@ -1,0 +1,20 @@
+{
+  "track": "v8-assurance-publish",
+  "order": 19,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v8_assurance.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 9,
+  "source_commit": "b10e894c872c4a9c57c2c11334d0d47eb29f7879",
+  "checked_at_utc": "2026-10-29T20:43:38.217072+00:00",
+  "log": "verification/v11/tracks/19-v8-assurance-publish.txt",
+  "log_sha256": "99050b84d0c7f3b1300beaaf55822888d278f9ec5a007049aca331c11cfe82bb",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Complete import, genuine lock and external-tool acceptance remain open."
+}
