@@ -1,0 +1,21 @@
+{
+  "track": "v10-acceptance-reconciliation",
+  "order": 21,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v10_source_evidence.py",
+    "tests/test_v10_reconciliation.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 9,
+  "source_commit": "3140ed37c215fb2e4454faf5da3706d667ec44f7",
+  "checked_at_utc": "2026-10-29T21:09:16.887842+00:00",
+  "log": "verification/v11/tracks/21-v10-acceptance-reconciliation.txt",
+  "log_sha256": "5cbb1022ab50bbce9c4acaaaf48994a88e0827d02b119691b20dac1740926fe0",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Full private import, genuine lock, external tools, submodule checkout, hosted CI and independent scientific validation remain open."
+}

@@ -20,3 +20,6 @@ Preserve newer remote work; nonempty source scope; malformed manifests; versione
 6. [x] Restore the integrated local source bundle and verify its tests and integrity (516 passed); record the final evidence and package manifest at handoff. Full remote import remains a distinct open requirement.
 
 Pre-flight: the full run consumes the same source-audit CLI checked in task 2. Per-track regression counts overlap and cannot be summed. Local v8 ancestry and remote bootstrap/v9 ancestry remain separate until full import can preserve both.
+
+## v11 follow-on review
+Scoped regression check: 9 passed; see reconciliation-v11.json. Full private import, genuine lock, external tools, submodule checkout, hosted CI and independent scientific validation remain open.
