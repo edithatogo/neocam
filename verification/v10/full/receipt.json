@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-29T17:41:19.520745+00:00",
-  "run_id": "8ec2b47f-4626-4aea-a676-9945409919dd",
+  "generated_at": "2026-10-29T18:08:12.013062+00:00",
+  "run_id": "0506558d-9624-451a-86db-b5a6f515d2f4",
   "profile": "full",
-  "source_commit_at_execution": "c7d85a1656af080d938b88c8c94b194693d2259c",
-  "input_fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+  "source_commit_at_execution": "28aa7b61566e19b615e6b4d6edbe7e9e17b76c8b",
+  "input_fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
   "run_finished": true,
   "active_gate": null,
   "complete_within_profile": false,
@@ -41,7 +41,7 @@
       "gate": "pytest",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -51,23 +51,23 @@
         "pytest",
         "-q"
       ],
-      "duration_seconds": 20.10547753899982,
+      "duration_seconds": 23.30767034900009,
       "log": "verification/v10/full/pytest.txt",
-      "log_sha256": "068d04720f6e1d507a3d5e06bc5ec1dfe347c71311f85adc5da76c8bd9cba081",
+      "log_sha256": "c9bea03d725145fc060a337bdc327bac1b2e9aa68bbc75e9cc34802e659c619e",
       "reason": ""
     },
     {
       "gate": "inputs",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "inputs"
       ],
-      "duration_seconds": 0.8971363030000248,
+      "duration_seconds": 1.2474441219997061,
       "log": "verification/v10/full/inputs.txt",
       "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
       "reason": ""
@@ -76,14 +76,14 @@
       "gate": "context",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "context"
       ],
-      "duration_seconds": 0.6960058019999451,
+      "duration_seconds": 0.8089969930001644,
       "log": "verification/v10/full/context.txt",
       "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
       "reason": ""
@@ -92,7 +92,7 @@
       "gate": "source_integrity",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -100,7 +100,7 @@
         "--output",
         "verification/v10/source_archive.json"
       ],
-      "duration_seconds": 0.6516980760000024,
+      "duration_seconds": 0.7969000080001933,
       "log": "verification/v10/full/source_integrity.txt",
       "log_sha256": "03899e3236b97e0a14f9ecd238bbe5ee08de26886bd512f8aa7f870133099748",
       "reason": ""
@@ -109,7 +109,7 @@
       "gate": "coverage",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -118,7 +118,7 @@
         "-o",
         "verification/v10/coverage.json"
       ],
-      "duration_seconds": 1.3065070399998149,
+      "duration_seconds": 1.4274259349999738,
       "log": "verification/v10/full/coverage.txt",
       "log_sha256": "9d9ef5da9e5f838713954df483ba0972abc5c4ed24f110e1d50ffb4308ae3c86",
       "reason": ""
@@ -127,7 +127,7 @@
       "gate": "coverage_threshold",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -135,7 +135,7 @@
         "report",
         "--fail-under=90"
       ],
-      "duration_seconds": 1.1148407489999954,
+      "duration_seconds": 1.2375695979999364,
       "log": "verification/v10/full/coverage_threshold.txt",
       "log_sha256": "be8cbe521fc5904d2053c22afd16ccd1e7871c1f191ab3ed63f9f2ab0db82a5f",
       "reason": ""
@@ -144,7 +144,7 @@
       "gate": "core_coverage",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -153,7 +153,7 @@
         "--include=src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py",
         "--fail-under=95"
       ],
-      "duration_seconds": 0.8556171370000811,
+      "duration_seconds": 1.091350915000021,
       "log": "verification/v10/full/core_coverage.txt",
       "log_sha256": "bf3d904856a2eb88a4e6d8ce26347641d69f36a317a4ddad982acf565096f627",
       "reason": ""
@@ -162,7 +162,7 @@
       "gate": "ruff_lint",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -173,7 +173,7 @@
         "quality",
         "tests"
       ],
-      "duration_seconds": 0.00015847500003474124,
+      "duration_seconds": 0.0002818570001181797,
       "log": "verification/v10/full/ruff_lint.txt",
       "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
       "reason": "Required Python tool is unavailable: ruff"
@@ -182,7 +182,7 @@
       "gate": "ruff_format",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -194,7 +194,7 @@
         "quality",
         "tests"
       ],
-      "duration_seconds": 0.00020924099999319878,
+      "duration_seconds": 0.0001604529998076032,
       "log": "verification/v10/full/ruff_format.txt",
       "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda",
       "reason": "Required Python tool is unavailable: ruff"
@@ -203,14 +203,14 @@
       "gate": "ty",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "ty",
         "check"
       ],
-      "duration_seconds": 0.00010929200016107643,
+      "duration_seconds": 0.00011602600034166244,
       "log": "verification/v10/full/ty.txt",
       "log_sha256": "1e359eee876da93f8c0444b0873c3813da7dc5f50fa33be47f9d25ee6ebf0c0f",
       "reason": "Required Python tool is unavailable: ty"
@@ -219,13 +219,13 @@
       "gate": "basedpyright",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "basedpyright"
       ],
-      "duration_seconds": 0.00010797000004458823,
+      "duration_seconds": 0.00013046799995208858,
       "log": "verification/v10/full/basedpyright.txt",
       "log_sha256": "abb986f75d76f0e7d6b1fc48d1c06843f47cb950e15baa6baba3a7b8907b641a",
       "reason": "Required Python tool is unavailable: basedpyright"
@@ -234,7 +234,7 @@
       "gate": "hypothesis",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -242,7 +242,7 @@
         "quality/hypothesis_properties.py",
         "-q"
       ],
-      "duration_seconds": 0.000111205999928643,
+      "duration_seconds": 0.0001359259999844653,
       "log": "verification/v10/full/hypothesis.txt",
       "log_sha256": "802ea6ef6bfa8bde7ee36bffba1716c4103cbe702ed5a4e4a08bacf8d6874d01",
       "reason": "Required Python tool is unavailable: hypothesis"
@@ -251,7 +251,7 @@
       "gate": "gremlins",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -267,7 +267,7 @@
         "--gremlin-report=html",
         "--strict-pardons"
       ],
-      "duration_seconds": 0.0001026329998694564,
+      "duration_seconds": 0.000183247999757441,
       "log": "verification/v10/full/gremlins.txt",
       "log_sha256": "000d3e1cd3449471977f80cc15b64f4a8627b29c568f093cb9391e49f315b14d",
       "reason": "Required Python tool is unavailable: pytest_gremlins"
@@ -276,14 +276,14 @@
       "gate": "mutation_score",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "mutation"
       ],
-      "duration_seconds": 0.8108254409999063,
+      "duration_seconds": 0.879168705000211,
       "log": "verification/v10/full/mutation_score.txt",
       "log_sha256": "6236904d6d78f0da3cb47f7da8880409179d7f4373fb2ea8aa669f7457e29d93",
       "reason": "Command exited 69"
@@ -292,7 +292,7 @@
       "gate": "scalene",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -302,7 +302,7 @@
         "verification/v10/scalene.json",
         "quality/profile_workload.py"
       ],
-      "duration_seconds": 0.000431351000088398,
+      "duration_seconds": 0.0002574229997662769,
       "log": "verification/v10/full/scalene.txt",
       "log_sha256": "8f506c78f480d4101942e3e285307aed5d58581d3ffeca851e6ee3e2248aceb5",
       "reason": "Required Python tool is unavailable: scalene"
@@ -311,7 +311,7 @@
       "gate": "scalene_output",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -320,7 +320,7 @@
         "--evidence-version",
         "v10"
       ],
-      "duration_seconds": 0.7961132150001049,
+      "duration_seconds": 0.8237173140000777,
       "log": "verification/v10/full/scalene_output.txt",
       "log_sha256": "388dbb3badf7dabc71ba17f9df04836e1c68d6d18a5a99ada9d442b101e03c0f",
       "reason": "Command exited 69"
@@ -329,7 +329,7 @@
       "gate": "gitleaks_history",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/gitleaks",
         "git",
@@ -339,7 +339,7 @@
         "--report-path=verification/v10/gitleaks-history.json",
         "."
       ],
-      "duration_seconds": 0.0003187739998793404,
+      "duration_seconds": 0.00041659900034574093,
       "log": "verification/v10/full/gitleaks_history.txt",
       "log_sha256": "cb0cb64d2214120543a803b0ae407e4fd0db15129ad445441353cc8016466b34",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/gitleaks"
@@ -348,7 +348,7 @@
       "gate": "gitleaks_tree",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/gitleaks",
         "dir",
@@ -357,7 +357,7 @@
         "--report-path=verification/v10/gitleaks-tree.json",
         "."
       ],
-      "duration_seconds": 0.0005637879999085271,
+      "duration_seconds": 0.0003243619999011571,
       "log": "verification/v10/full/gitleaks_tree.txt",
       "log_sha256": "cb0cb64d2214120543a803b0ae407e4fd0db15129ad445441353cc8016466b34",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/gitleaks"
@@ -366,7 +366,7 @@
       "gate": "vale",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/vale",
         "--minAlertLevel=warning",
@@ -376,7 +376,7 @@
         "conductor/runbook.md",
         "conductor/decisions-v3.md"
       ],
-      "duration_seconds": 0.0003458640001099411,
+      "duration_seconds": 0.000304081999729533,
       "log": "verification/v10/full/vale.txt",
       "log_sha256": "29940fb44fa0b24c8122da2e0f128f91400bac5627a9126e6b39fdd0002528e6",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/vale"
@@ -385,14 +385,14 @@
       "gate": "dependency_consistency",
       "status": "failed",
       "returncode": 2,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "uv",
         "lock",
         "--check",
         "--offline"
       ],
-      "duration_seconds": 1.634006564999936,
+      "duration_seconds": 0.04421207099994717,
       "log": "verification/v10/full/dependency_consistency.txt",
       "log_sha256": "71be3c069a7459087bc110b4ff135457535509f197113e6a7bf7d5b95eefa266",
       "reason": "Command exited 2"
@@ -401,14 +401,14 @@
       "gate": "dependency_lock",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "lock"
       ],
-      "duration_seconds": 0.8104364509999868,
+      "duration_seconds": 0.9131890889998431,
       "log": "verification/v10/full/dependency_lock.txt",
       "log_sha256": "d3c775d9c0703a8ae6e6f8a2f1b84573d18c3efc2f96e0f564f2242661a8ab94",
       "reason": "Command exited 69"
@@ -417,14 +417,14 @@
       "gate": "native_versions",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "native_versions"
       ],
-      "duration_seconds": 0.6832792969998991,
+      "duration_seconds": 0.885698032000164,
       "log": "verification/v10/full/native_versions.txt",
       "log_sha256": "550a02f7362da352e3c56c04e8f101b30d70ace2f66baad27cfc6410d44334be",
       "reason": "Command exited 69"
@@ -433,14 +433,14 @@
       "gate": "locked_versions",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "versions"
       ],
-      "duration_seconds": 0.8511819259999811,
+      "duration_seconds": 0.7286130100001174,
       "log": "verification/v10/full/locked_versions.txt",
       "log_sha256": "53984ed4b6097cfa59a27b9e7ad6e49e68678bae13379f73c5977b0fa17d0467",
       "reason": "Command exited 69"
@@ -449,7 +449,7 @@
       "gate": "pip_audit",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -458,7 +458,7 @@
         "--format=json",
         "--output=verification/v10/pip-audit.json"
       ],
-      "duration_seconds": 0.00021414799994090572,
+      "duration_seconds": 0.00018878099990615738,
       "log": "verification/v10/full/pip_audit.txt",
       "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
       "reason": "Required Python tool is unavailable: pip_audit"
@@ -467,7 +467,7 @@
       "gate": "sbom",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
@@ -476,7 +476,7 @@
         "--format=cyclonedx-json",
         "--output=verification/v10/sbom.json"
       ],
-      "duration_seconds": 9.961799992197484e-05,
+      "duration_seconds": 0.0002826400000230933,
       "log": "verification/v10/full/sbom.txt",
       "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa",
       "reason": "Required Python tool is unavailable: pip_audit"
@@ -485,14 +485,14 @@
       "gate": "conductor_checkout",
       "status": "blocked",
       "returncode": 69,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.checks",
         "submodule"
       ],
-      "duration_seconds": 0.8428189999999631,
+      "duration_seconds": 0.769086636999873,
       "log": "verification/v10/full/conductor_checkout.txt",
       "log_sha256": "03f5bb6e9015712ba26344c637fae5089c7cc66e1dcafefbf5b2ec4620551dac",
       "reason": "Command exited 69"
@@ -501,13 +501,13 @@
       "gate": "polars_consistency",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/opt/pyvenv/bin/python",
         "-m",
         "quality.polars_probe"
       ],
-      "duration_seconds": 0.00015985699997145275,
+      "duration_seconds": 0.000178804999904969,
       "log": "verification/v10/full/polars_consistency.txt",
       "log_sha256": "f1247ed5f96cf6924d7d25e1a51e6380f2599f9827d3af77ca3243817eb48701",
       "reason": "Required Python tool is unavailable: polars"
@@ -516,12 +516,12 @@
       "gate": "actionlint",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/actionlint",
         "-color"
       ],
-      "duration_seconds": 0.0004444000001058157,
+      "duration_seconds": 0.00031958299996404094,
       "log": "verification/v10/full/actionlint.txt",
       "log_sha256": "eebf408b40e11925aedb30f1f1a9d573e38b37f172450c38b668192d8cea5c5d",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/actionlint"
@@ -530,14 +530,14 @@
       "gate": "zizmor",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/zizmor",
         "--offline",
         "--persona=pedantic",
         ".github/workflows"
       ],
-      "duration_seconds": 0.00032238900007541815,
+      "duration_seconds": 0.00025988500010498683,
       "log": "verification/v10/full/zizmor.txt",
       "log_sha256": "697f16bb4a2c59dc5d99f3af52baa00e6225db884a8de169e501994a2870528c",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/zizmor"
@@ -546,13 +546,13 @@
       "gate": "prek_config",
       "status": "blocked",
       "returncode": null,
-      "fingerprint": "aebc38ed013768b630a9cb2b34cf28573060f125e5bb8e0494c5658f86ae39be",
+      "fingerprint": "61a68928a33a76886eeb1aec162044c3e09089927cbd113c4574a3b70625a447",
       "command": [
         "/mnt/data/neocam-work/.tools/bin/prek",
         "validate-config",
         ".pre-commit-config.yaml"
       ],
-      "duration_seconds": 0.00022353200006364204,
+      "duration_seconds": 0.000262318000295636,
       "log": "verification/v10/full/prek_config.txt",
       "log_sha256": "9b7bd9506feb26762cce6131b8e61a0cf45d402f6282e0baa8188fff2d5990f3",
       "reason": "Executable unavailable: /mnt/data/neocam-work/.tools/bin/prek"
@@ -617,5 +617,5 @@
     "zizmor",
     "prek_config"
   ],
-  "updated_at": "2026-10-29T17:41:51.632330+00:00"
+  "updated_at": "2026-10-29T18:08:47.045878+00:00"
 }
