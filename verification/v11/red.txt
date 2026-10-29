@@ -1,0 +1,575 @@
+FFFFFFFFFFFFFF.FF.FFFFFF.                                                [100%]
+=================================== FAILURES ===================================
+_ test_native_redirect_denied_before_follow[https://untrusted.invalid/binary] __
+
+url = 'https://untrusted.invalid/binary'
+
+    @pytest.mark.parametrize('url', [
+        'https://untrusted.invalid/binary',
+        'http://release-assets.githubusercontent.com/binary',
+        'https://user:password@github.com/binary',
+        'https://release-assets.githubusercontent.com:444/binary',
+    ])
+    def test_native_redirect_denied_before_follow(url):
+        handler_type = getattr(bootstrap, 'TrustedReleaseRedirect', None)
+>       assert handler_type is not None, 'Native download lacks a redirect policy'
+E       AssertionError: Native download lacks a redirect policy
+E       assert None is not None
+
+tests/test_v11_native_security.py:19: AssertionError
+_ test_native_redirect_denied_before_follow[http://release-assets.githubusercontent.com/binary] _
+
+url = 'http://release-assets.githubusercontent.com/binary'
+
+    @pytest.mark.parametrize('url', [
+        'https://untrusted.invalid/binary',
+        'http://release-assets.githubusercontent.com/binary',
+        'https://user:password@github.com/binary',
+        'https://release-assets.githubusercontent.com:444/binary',
+    ])
+    def test_native_redirect_denied_before_follow(url):
+        handler_type = getattr(bootstrap, 'TrustedReleaseRedirect', None)
+>       assert handler_type is not None, 'Native download lacks a redirect policy'
+E       AssertionError: Native download lacks a redirect policy
+E       assert None is not None
+
+tests/test_v11_native_security.py:19: AssertionError
+_ test_native_redirect_denied_before_follow[https://user:password@github.com/binary] _
+
+url = 'https://user:password@github.com/binary'
+
+    @pytest.mark.parametrize('url', [
+        'https://untrusted.invalid/binary',
+        'http://release-assets.githubusercontent.com/binary',
+        'https://user:password@github.com/binary',
+        'https://release-assets.githubusercontent.com:444/binary',
+    ])
+    def test_native_redirect_denied_before_follow(url):
+        handler_type = getattr(bootstrap, 'TrustedReleaseRedirect', None)
+>       assert handler_type is not None, 'Native download lacks a redirect policy'
+E       AssertionError: Native download lacks a redirect policy
+E       assert None is not None
+
+tests/test_v11_native_security.py:19: AssertionError
+_ test_native_redirect_denied_before_follow[https://release-assets.githubusercontent.com:444/binary] _
+
+url = 'https://release-assets.githubusercontent.com:444/binary'
+
+    @pytest.mark.parametrize('url', [
+        'https://untrusted.invalid/binary',
+        'http://release-assets.githubusercontent.com/binary',
+        'https://user:password@github.com/binary',
+        'https://release-assets.githubusercontent.com:444/binary',
+    ])
+    def test_native_redirect_denied_before_follow(url):
+        handler_type = getattr(bootstrap, 'TrustedReleaseRedirect', None)
+>       assert handler_type is not None, 'Native download lacks a redirect policy'
+E       AssertionError: Native download lacks a redirect policy
+E       assert None is not None
+
+tests/test_v11_native_security.py:19: AssertionError
+_________________ test_native_github_asset_redirect_is_allowed _________________
+
+    def test_native_github_asset_redirect_is_allowed():
+        handler_type = getattr(bootstrap, 'TrustedReleaseRedirect', None)
+>       assert handler_type is not None
+E       assert None is not None
+
+tests/test_v11_native_security.py:27: AssertionError
+___________________ test_extracted_executable_has_size_limit ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc4b3394e90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_extracted_executable_has_0')
+
+    def test_extracted_executable_has_size_limit(monkeypatch, tmp_path):
+        monkeypatch.setattr(bootstrap, 'MAX_BINARY_BYTES', 3, raising=False)
+        payload = binary_tar()
+>       with pytest.raises(ValueError, match='size'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v11_native_security.py:37: Failed
+______________ test_success_seal_is_consumed_before_rerun[tests] _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_0')
+mode = 'tests'
+
+    @pytest.mark.parametrize('mode', ['tests', 'mutation'])
+    def test_success_seal_is_consumed_before_rerun(tmp_path, mode):
+        initial = feedback.prepare(tmp_path, mode, available=True, environment={})
+        feedback.complete(tmp_path, initial, 0)
+        second = feedback.prepare(tmp_path, mode, available=True, environment={})
+        assert second.cache_reused
+>       assert not (tmp_path / '.feedback-cache' / f'{mode}.json').exists()
+E       AssertionError: assert not True
+E        +  where True = exists()
+E        +    where exists = ((PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_0') / '.feedback-cache') / 'tests.json').exists
+
+tests/test_v11_feedback.py:15: AssertionError
+_____________ test_success_seal_is_consumed_before_rerun[mutation] _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_1')
+mode = 'mutation'
+
+    @pytest.mark.parametrize('mode', ['tests', 'mutation'])
+    def test_success_seal_is_consumed_before_rerun(tmp_path, mode):
+        initial = feedback.prepare(tmp_path, mode, available=True, environment={})
+        feedback.complete(tmp_path, initial, 0)
+        second = feedback.prepare(tmp_path, mode, available=True, environment={})
+        assert second.cache_reused
+>       assert not (tmp_path / '.feedback-cache' / f'{mode}.json').exists()
+E       AssertionError: assert not True
+E        +  where True = exists()
+E        +    where exists = ((PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_1') / '.feedback-cache') / 'mutation.json').exists
+
+tests/test_v11_feedback.py:15: AssertionError
+___________ test_malformed_cache_record_rebuilds_not_crashes[value0] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re0')
+value = []
+
+    @pytest.mark.parametrize('value', [[], None, 'not a mapping', 17])
+    def test_malformed_cache_record_rebuilds_not_crashes(tmp_path, value):
+        directory = tmp_path / '.feedback-cache'
+        directory.mkdir()
+        (directory / 'tests.json').write_text(json.dumps(value))
+>       plan = feedback.prepare(tmp_path, 'tests', available=True, environment={})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v11_feedback.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re0')
+mode = 'tests'
+
+    def prepare(root: Path, mode: str, *, available: bool,
+                environment: dict[str, str]) -> FeedbackPlan:
+        """Invalidate unknown/stale local state before an optional plugin is run."""
+        key = cache_key(root, mode, environment)
+        state_file = root / '.feedback-cache' / f'{mode}.json'
+        try:
+            previous = json.loads(state_file.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            previous = {}
+>       reused = previous.get('key') == key and previous.get('returncode') == 0
+                 ^^^^^^^^^^^^
+E       AttributeError: 'list' object has no attribute 'get'
+
+quality/feedback.py:74: AttributeError
+____________ test_malformed_cache_record_rebuilds_not_crashes[None] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re1')
+value = None
+
+    @pytest.mark.parametrize('value', [[], None, 'not a mapping', 17])
+    def test_malformed_cache_record_rebuilds_not_crashes(tmp_path, value):
+        directory = tmp_path / '.feedback-cache'
+        directory.mkdir()
+        (directory / 'tests.json').write_text(json.dumps(value))
+>       plan = feedback.prepare(tmp_path, 'tests', available=True, environment={})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v11_feedback.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re1')
+mode = 'tests'
+
+    def prepare(root: Path, mode: str, *, available: bool,
+                environment: dict[str, str]) -> FeedbackPlan:
+        """Invalidate unknown/stale local state before an optional plugin is run."""
+        key = cache_key(root, mode, environment)
+        state_file = root / '.feedback-cache' / f'{mode}.json'
+        try:
+            previous = json.loads(state_file.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            previous = {}
+>       reused = previous.get('key') == key and previous.get('returncode') == 0
+                 ^^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'get'
+
+quality/feedback.py:74: AttributeError
+_______ test_malformed_cache_record_rebuilds_not_crashes[not a mapping] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re2')
+value = 'not a mapping'
+
+    @pytest.mark.parametrize('value', [[], None, 'not a mapping', 17])
+    def test_malformed_cache_record_rebuilds_not_crashes(tmp_path, value):
+        directory = tmp_path / '.feedback-cache'
+        directory.mkdir()
+        (directory / 'tests.json').write_text(json.dumps(value))
+>       plan = feedback.prepare(tmp_path, 'tests', available=True, environment={})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v11_feedback.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re2')
+mode = 'tests'
+
+    def prepare(root: Path, mode: str, *, available: bool,
+                environment: dict[str, str]) -> FeedbackPlan:
+        """Invalidate unknown/stale local state before an optional plugin is run."""
+        key = cache_key(root, mode, environment)
+        state_file = root / '.feedback-cache' / f'{mode}.json'
+        try:
+            previous = json.loads(state_file.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            previous = {}
+>       reused = previous.get('key') == key and previous.get('returncode') == 0
+                 ^^^^^^^^^^^^
+E       AttributeError: 'str' object has no attribute 'get'
+
+quality/feedback.py:74: AttributeError
+_____________ test_malformed_cache_record_rebuilds_not_crashes[17] _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re3')
+value = 17
+
+    @pytest.mark.parametrize('value', [[], None, 'not a mapping', 17])
+    def test_malformed_cache_record_rebuilds_not_crashes(tmp_path, value):
+        directory = tmp_path / '.feedback-cache'
+        directory.mkdir()
+        (directory / 'tests.json').write_text(json.dumps(value))
+>       plan = feedback.prepare(tmp_path, 'tests', available=True, environment={})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v11_feedback.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_malformed_cache_record_re3')
+mode = 'tests'
+
+    def prepare(root: Path, mode: str, *, available: bool,
+                environment: dict[str, str]) -> FeedbackPlan:
+        """Invalidate unknown/stale local state before an optional plugin is run."""
+        key = cache_key(root, mode, environment)
+        state_file = root / '.feedback-cache' / f'{mode}.json'
+        try:
+            previous = json.loads(state_file.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            previous = {}
+>       reused = previous.get('key') == key and previous.get('returncode') == 0
+                 ^^^^^^^^^^^^
+E       AttributeError: 'int' object has no attribute 'get'
+
+quality/feedback.py:74: AttributeError
+_____________ test_unavailable_mutation_invalidates_previous_seal ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_unavailable_mutation_inva0')
+
+    def test_unavailable_mutation_invalidates_previous_seal(tmp_path):
+        plan = feedback.prepare(tmp_path, 'mutation', available=True, environment={})
+        feedback.complete(tmp_path, plan, 0)
+        with pytest.raises(ModuleNotFoundError):
+            feedback.prepare(tmp_path, 'mutation', available=False, environment={})
+>       assert not (tmp_path / '.feedback-cache/mutation.json').exists()
+E       AssertionError: assert not True
+E        +  where True = exists()
+E        +    where exists = (PosixPath('/tmp/pytest-of-root/pytest-1/test_unavailable_mutation_inva0') / '.feedback-cache/mutation.json').exists
+
+tests/test_v11_feedback.py:35: AssertionError
+_____________ test_invalid_original_source_scope_is_an_error[None] _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_original_source_s0')
+value = None
+
+    @pytest.mark.parametrize('value', [None, [None], [[]], ['S1', 'S1'], 'S1'])
+    def test_invalid_original_source_scope_is_an_error(tmp_path, value):
+        item = fixture(tmp_path)
+>       errors = verify_manifest(tmp_path, {'files': [item],
+            'original_public_downloads_complete': True, 'expected_original_source_ids': value})
+
+tests/test_v11_manifest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_original_source_s0')
+manifest = {'expected_original_source_ids': None, 'files': [{'bytes': 1, 'path': 'sample.txt', 'representation': 'original public... '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}], 'original_public_downloads_complete': True}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        if not isinstance(manifest, dict):
+            return ['Source manifest must be an object']
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for index, item in enumerate(files):
+            if not isinstance(item, dict):
+                errors.append(f'Invalid source record: {index}')
+                continue
+            name = item.get('path', '')
+            if not isinstance(name, str):
+                errors.append(f'Invalid source path type: {index}')
+                continue
+            path = (root / name).resolve()
+            if not name or path == root or root not in path.parents or name in seen:
+                errors.append(f'Unsafe or duplicate source path: {name}')
+                continue
+            seen.add(name)
+            if not path.is_file():
+                errors.append(f'Missing source bytes: {name}')
+                continue
+            if path.stat().st_size != item.get('bytes'):
+                errors.append(f'Source size mismatch: {name}')
+            if hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
+                errors.append(f'Source digest mismatch: {name}')
+        if manifest.get('original_public_downloads_complete'):
+>           expected = set(manifest.get('expected_original_source_ids', []))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: 'NoneType' object is not iterable
+
+quality/source_archive.py:39: TypeError
+____________ test_invalid_original_source_scope_is_an_error[value2] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_original_source_s2')
+value = [[]]
+
+    @pytest.mark.parametrize('value', [None, [None], [[]], ['S1', 'S1'], 'S1'])
+    def test_invalid_original_source_scope_is_an_error(tmp_path, value):
+        item = fixture(tmp_path)
+>       errors = verify_manifest(tmp_path, {'files': [item],
+            'original_public_downloads_complete': True, 'expected_original_source_ids': value})
+
+tests/test_v11_manifest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_original_source_s2')
+manifest = {'expected_original_source_ids': [[]], 'files': [{'bytes': 1, 'path': 'sample.txt', 'representation': 'original public... '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}], 'original_public_downloads_complete': True}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        if not isinstance(manifest, dict):
+            return ['Source manifest must be an object']
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for index, item in enumerate(files):
+            if not isinstance(item, dict):
+                errors.append(f'Invalid source record: {index}')
+                continue
+            name = item.get('path', '')
+            if not isinstance(name, str):
+                errors.append(f'Invalid source path type: {index}')
+                continue
+            path = (root / name).resolve()
+            if not name or path == root or root not in path.parents or name in seen:
+                errors.append(f'Unsafe or duplicate source path: {name}')
+                continue
+            seen.add(name)
+            if not path.is_file():
+                errors.append(f'Missing source bytes: {name}')
+                continue
+            if path.stat().st_size != item.get('bytes'):
+                errors.append(f'Source size mismatch: {name}')
+            if hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
+                errors.append(f'Source digest mismatch: {name}')
+        if manifest.get('original_public_downloads_complete'):
+>           expected = set(manifest.get('expected_original_source_ids', []))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: unhashable type: 'list'
+
+quality/source_archive.py:39: TypeError
+____________ test_invalid_original_source_scope_is_an_error[value3] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_invalid_original_source_s3')
+value = ['S1', 'S1']
+
+    @pytest.mark.parametrize('value', [None, [None], [[]], ['S1', 'S1'], 'S1'])
+    def test_invalid_original_source_scope_is_an_error(tmp_path, value):
+        item = fixture(tmp_path)
+        errors = verify_manifest(tmp_path, {'files': [item],
+            'original_public_downloads_complete': True, 'expected_original_source_ids': value})
+>       assert errors
+E       assert []
+
+tests/test_v11_manifest.py:25: AssertionError
+________________ test_boolean_byte_count_is_not_an_integer_size ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_boolean_byte_count_is_not0')
+
+    def test_boolean_byte_count_is_not_an_integer_size(tmp_path):
+        item = fixture(tmp_path)
+        item['bytes'] = True
+>       assert verify_manifest(tmp_path, {'files': [item]})
+E       AssertionError: assert []
+E        +  where [] = verify_manifest(PosixPath('/tmp/pytest-of-root/pytest-1/test_boolean_byte_count_is_not0'), {'files': [{'bytes': True, 'path': 'sample.txt', 'representation': 'original public bytes', 'sha256': '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}]})
+
+tests/test_v11_manifest.py:31: AssertionError
+___________________ test_original_source_id_must_be_a_string ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_original_source_id_must_b0')
+
+    def test_original_source_id_must_be_a_string(tmp_path):
+        item = fixture(tmp_path)
+        item['source_id'] = []
+>       assert verify_manifest(tmp_path, {'files': [item], 'original_public_downloads_complete': True,
+                                          'expected_original_source_ids': ['S1']})
+
+tests/test_v11_manifest.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_original_source_id_must_b0')
+manifest = {'expected_original_source_ids': ['S1'], 'files': [{'bytes': 1, 'path': 'sample.txt', 'representation': 'original publ... '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}], 'original_public_downloads_complete': True}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        if not isinstance(manifest, dict):
+            return ['Source manifest must be an object']
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for index, item in enumerate(files):
+            if not isinstance(item, dict):
+                errors.append(f'Invalid source record: {index}')
+                continue
+            name = item.get('path', '')
+            if not isinstance(name, str):
+                errors.append(f'Invalid source path type: {index}')
+                continue
+            path = (root / name).resolve()
+            if not name or path == root or root not in path.parents or name in seen:
+                errors.append(f'Unsafe or duplicate source path: {name}')
+                continue
+            seen.add(name)
+            if not path.is_file():
+                errors.append(f'Missing source bytes: {name}')
+                continue
+            if path.stat().st_size != item.get('bytes'):
+                errors.append(f'Source size mismatch: {name}')
+            if hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
+                errors.append(f'Source digest mismatch: {name}')
+        if manifest.get('original_public_downloads_complete'):
+            expected = set(manifest.get('expected_original_source_ids', []))
+>           acquired = {item.get('source_id') for item in files
+                        ^^^^^^^^^^^^^^^^^^^^^
+                        if isinstance(item, dict) and item.get('representation') == 'original public bytes'}
+E           TypeError: unhashable type: 'list'
+
+quality/source_archive.py:40: TypeError
+___________________ test_duplicate_canonical_paths_rejected ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_canonical_paths0')
+
+    def test_duplicate_canonical_paths_rejected(tmp_path):
+        item = fixture(tmp_path)
+        alias = dict(item, path='./sample.txt')
+>       assert verify_manifest(tmp_path, {'files': [item, alias]})
+E       AssertionError: assert []
+E        +  where [] = verify_manifest(PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_canonical_paths0'), {'files': [{'bytes': 1, 'path': 'sample.txt', 'representation': 'original public bytes', 'sha256': '2d711642b726b04401...ntation': 'original public bytes', 'sha256': '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}]})
+
+tests/test_v11_manifest.py:44: AssertionError
+______ test_cli_retains_a_failed_report_for_malformed_manifest[manifest0] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo0')
+manifest = []
+
+    @pytest.mark.parametrize('manifest', [[], None, {'files': None}, {'files': []}])
+    def test_cli_retains_a_failed_report_for_malformed_manifest(tmp_path, manifest):
+        (tmp_path/'quality').mkdir()
+        (tmp_path/'sources').mkdir()
+        (tmp_path/'quality/source_archive.py').write_text(Path('quality/source_archive.py').read_text())
+        (tmp_path/'sources/manifest.json').write_text(json.dumps(manifest))
+        result = subprocess.run([sys.executable, str(tmp_path/'quality/source_archive.py'),
+            '--output', 'verification/v11/source_archive.json'], capture_output=True, text=True)
+        assert result.returncode == 1
+        report_path = tmp_path/'verification/v11/source_archive.json'
+>       assert report_path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo0/verification/v11/source_archive.json').is_file
+
+tests/test_v11_manifest.py:57: AssertionError
+________ test_cli_retains_a_failed_report_for_malformed_manifest[None] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo1')
+manifest = None
+
+    @pytest.mark.parametrize('manifest', [[], None, {'files': None}, {'files': []}])
+    def test_cli_retains_a_failed_report_for_malformed_manifest(tmp_path, manifest):
+        (tmp_path/'quality').mkdir()
+        (tmp_path/'sources').mkdir()
+        (tmp_path/'quality/source_archive.py').write_text(Path('quality/source_archive.py').read_text())
+        (tmp_path/'sources/manifest.json').write_text(json.dumps(manifest))
+        result = subprocess.run([sys.executable, str(tmp_path/'quality/source_archive.py'),
+            '--output', 'verification/v11/source_archive.json'], capture_output=True, text=True)
+        assert result.returncode == 1
+        report_path = tmp_path/'verification/v11/source_archive.json'
+>       assert report_path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo1/verification/v11/source_archive.json').is_file
+
+tests/test_v11_manifest.py:57: AssertionError
+______ test_cli_retains_a_failed_report_for_malformed_manifest[manifest2] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo2')
+manifest = {'files': None}
+
+    @pytest.mark.parametrize('manifest', [[], None, {'files': None}, {'files': []}])
+    def test_cli_retains_a_failed_report_for_malformed_manifest(tmp_path, manifest):
+        (tmp_path/'quality').mkdir()
+        (tmp_path/'sources').mkdir()
+        (tmp_path/'quality/source_archive.py').write_text(Path('quality/source_archive.py').read_text())
+        (tmp_path/'sources/manifest.json').write_text(json.dumps(manifest))
+        result = subprocess.run([sys.executable, str(tmp_path/'quality/source_archive.py'),
+            '--output', 'verification/v11/source_archive.json'], capture_output=True, text=True)
+        assert result.returncode == 1
+        report_path = tmp_path/'verification/v11/source_archive.json'
+>       assert report_path.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo2/verification/v11/source_archive.json').is_file
+
+tests/test_v11_manifest.py:57: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v11_native_security.py::test_native_redirect_denied_before_follow[https://untrusted.invalid/binary] - AssertionError: Native download lacks a redirect policy
+assert None is not None
+FAILED tests/test_v11_native_security.py::test_native_redirect_denied_before_follow[http://release-assets.githubusercontent.com/binary] - AssertionError: Native download lacks a redirect policy
+assert None is not None
+FAILED tests/test_v11_native_security.py::test_native_redirect_denied_before_follow[https://user:password@github.com/binary] - AssertionError: Native download lacks a redirect policy
+assert None is not None
+FAILED tests/test_v11_native_security.py::test_native_redirect_denied_before_follow[https://release-assets.githubusercontent.com:444/binary] - AssertionError: Native download lacks a redirect policy
+assert None is not None
+FAILED tests/test_v11_native_security.py::test_native_github_asset_redirect_is_allowed - assert None is not None
+FAILED tests/test_v11_native_security.py::test_extracted_executable_has_size_limit - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_v11_feedback.py::test_success_seal_is_consumed_before_rerun[tests] - AssertionError: assert not True
+ +  where True = exists()
+ +    where exists = ((PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_0') / '.feedback-cache') / 'tests.json').exists
+FAILED tests/test_v11_feedback.py::test_success_seal_is_consumed_before_rerun[mutation] - AssertionError: assert not True
+ +  where True = exists()
+ +    where exists = ((PosixPath('/tmp/pytest-of-root/pytest-1/test_success_seal_is_consumed_1') / '.feedback-cache') / 'mutation.json').exists
+FAILED tests/test_v11_feedback.py::test_malformed_cache_record_rebuilds_not_crashes[value0] - AttributeError: 'list' object has no attribute 'get'
+FAILED tests/test_v11_feedback.py::test_malformed_cache_record_rebuilds_not_crashes[None] - AttributeError: 'NoneType' object has no attribute 'get'
+FAILED tests/test_v11_feedback.py::test_malformed_cache_record_rebuilds_not_crashes[not a mapping] - AttributeError: 'str' object has no attribute 'get'
+FAILED tests/test_v11_feedback.py::test_malformed_cache_record_rebuilds_not_crashes[17] - AttributeError: 'int' object has no attribute 'get'
+FAILED tests/test_v11_feedback.py::test_unavailable_mutation_invalidates_previous_seal - AssertionError: assert not True
+ +  where True = exists()
+ +    where exists = (PosixPath('/tmp/pytest-of-root/pytest-1/test_unavailable_mutation_inva0') / '.feedback-cache/mutation.json').exists
+FAILED tests/test_v11_manifest.py::test_invalid_original_source_scope_is_an_error[None] - TypeError: 'NoneType' object is not iterable
+FAILED tests/test_v11_manifest.py::test_invalid_original_source_scope_is_an_error[value2] - TypeError: unhashable type: 'list'
+FAILED tests/test_v11_manifest.py::test_invalid_original_source_scope_is_an_error[value3] - assert []
+FAILED tests/test_v11_manifest.py::test_boolean_byte_count_is_not_an_integer_size - AssertionError: assert []
+ +  where [] = verify_manifest(PosixPath('/tmp/pytest-of-root/pytest-1/test_boolean_byte_count_is_not0'), {'files': [{'bytes': True, 'path': 'sample.txt', 'representation': 'original public bytes', 'sha256': '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}]})
+FAILED tests/test_v11_manifest.py::test_original_source_id_must_be_a_string - TypeError: unhashable type: 'list'
+FAILED tests/test_v11_manifest.py::test_duplicate_canonical_paths_rejected - AssertionError: assert []
+ +  where [] = verify_manifest(PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_canonical_paths0'), {'files': [{'bytes': 1, 'path': 'sample.txt', 'representation': 'original public bytes', 'sha256': '2d711642b726b04401...ntation': 'original public bytes', 'sha256': '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881', ...}]})
+FAILED tests/test_v11_manifest.py::test_cli_retains_a_failed_report_for_malformed_manifest[manifest0] - AssertionError: assert False
+ +  where False = is_file()
+ +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo0/verification/v11/source_archive.json').is_file
+FAILED tests/test_v11_manifest.py::test_cli_retains_a_failed_report_for_malformed_manifest[None] - AssertionError: assert False
+ +  where False = is_file()
+ +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo1/verification/v11/source_archive.json').is_file
+FAILED tests/test_v11_manifest.py::test_cli_retains_a_failed_report_for_malformed_manifest[manifest2] - AssertionError: assert False
+ +  where False = is_file()
+ +    where is_file = PosixPath('/tmp/pytest-of-root/pytest-1/test_cli_retains_a_failed_repo2/verification/v11/source_archive.json').is_file
+22 failed, 3 passed in 3.25s

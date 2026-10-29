@@ -31,7 +31,7 @@ def use_fixture(monkeypatch, root: Path) -> None:
 def test_installer_matching_digest_installs_only_local_binary(monkeypatch, tmp_path: Path) -> None:
     payload = native_fixture(tmp_path)
     use_fixture(monkeypatch, tmp_path)
-    monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', lambda *a, **k: io.BytesIO(payload))
+    monkeypatch.setattr(bootstrap, 'open_release', lambda *a, **k: io.BytesIO(payload))
     assert bootstrap.main() == 0
     assert (tmp_path / '.tools/bin/vale').read_bytes() == b'binary'
 
@@ -39,7 +39,7 @@ def test_installer_matching_digest_installs_only_local_binary(monkeypatch, tmp_p
 def test_installer_checksum_failure_is_failure_not_unavailability(monkeypatch, tmp_path: Path) -> None:
     native_fixture(tmp_path)
     use_fixture(monkeypatch, tmp_path)
-    monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', lambda *a, **k: io.BytesIO(b'tampered'))
+    monkeypatch.setattr(bootstrap, 'open_release', lambda *a, **k: io.BytesIO(b'tampered'))
     assert bootstrap.main() == 1
     assert not (tmp_path / '.tools/bin/vale').exists()
 
@@ -50,7 +50,7 @@ def test_installer_rejects_unapproved_download_before_request(monkeypatch, tmp_p
     use_fixture(monkeypatch, tmp_path)
     def unexpected_request(*args, **kwargs):
         pytest.fail('Unsafe URL was fetched')
-    monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', unexpected_request)
+    monkeypatch.setattr(bootstrap, 'open_release', unexpected_request)
     assert bootstrap.main() == 1
 
 
@@ -59,7 +59,7 @@ def test_installer_dns_failure_reports_unavailability(monkeypatch, tmp_path: Pat
     use_fixture(monkeypatch, tmp_path)
     def network_failure(*args, **kwargs):
         raise urllib.error.URLError('DNS unavailable')
-    monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', network_failure)
+    monkeypatch.setattr(bootstrap, 'open_release', network_failure)
     assert bootstrap.main() == 69
 
 
@@ -73,7 +73,7 @@ def test_installer_unsupported_platform_does_not_guess_asset(monkeypatch, tmp_pa
 def test_installer_oversized_download_is_integrity_failure(monkeypatch, tmp_path: Path) -> None:
     native_fixture(tmp_path)
     use_fixture(monkeypatch, tmp_path)
-    monkeypatch.setattr(bootstrap.urllib.request, 'urlopen', lambda *a, **k: io.BytesIO(b'x'*50_000_001))
+    monkeypatch.setattr(bootstrap, 'open_release', lambda *a, **k: io.BytesIO(b'x'*50_000_001))
     assert bootstrap.main() == 1
 
 
