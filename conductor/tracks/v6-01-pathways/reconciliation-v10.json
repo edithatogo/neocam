@@ -1,0 +1,26 @@
+{
+  "track": "v6-01-pathways",
+  "order": 15,
+  "checked_at_utc": "2026-10-29T17:37:57.186681+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "170df21ddd47e8c3d15c788f63c93d4694b1a1d7",
+  "plan_spec_sha256": {
+    "spec.md": "f63de69ae3069b9f511db38fb1a12226cc4f70c6e67945245840f2eebab17e32",
+    "plan.md": "1967fcea56b0a361069799c924153835c901b83113cefccb9db0966269ffe1b9"
+  },
+  "historical_status": "implemented_with_open_acceptance_gates",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_pathways.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 18,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Clinical pathways and price assumptions not externally validated.",
+  "log": "verification/v10/tracks/15-v6-01-pathways.txt",
+  "log_sha256": "0616d6aa11496391686dcbd658123e51d8d057e1f02661af7ef8512554e404d8"
+}
