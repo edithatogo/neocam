@@ -1,0 +1,463 @@
+{
+  "scope": "22 sequential author technical checks; overlapping test groups, not independent validation",
+  "tracks": [
+    {
+      "track": "panda-vision-model-v1",
+      "order": 1,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_model.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 5,
+      "source_commit": "089dd90ed5b73f3d5cbceb738869e8e29bc3852d",
+      "checked_at_utc": "2026-10-29T20:42:22.052380+00:00",
+      "log": "verification/v11/tracks/01-panda-vision-model-v1.txt",
+      "log_sha256": "ef0e7ef49e71fa999842be0cb8d22ec1058d3a384ed5c0a2ec6efb8f434975ac",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Original Conductor checkout remains unpopulated."
+    },
+    {
+      "track": "panda-vision-v2-statewide-assurance",
+      "order": 2,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v2.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 67,
+      "source_commit": "7b0ffcb86ece49d5312529ab5f2447e2ae85db93",
+      "checked_at_utc": "2026-10-29T20:42:23.433136+00:00",
+      "log": "verification/v11/tracks/02-panda-vision-v2-statewide-assurance.txt",
+      "log_sha256": "38ba2a5ad05bb5a2365e321f9df36267e205e9c5191717af5b05985de351c935",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Pinned stack, source originals and hosted assurance remain open."
+    },
+    {
+      "track": "v3-01-input-and-numerical-integrity",
+      "order": 3,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v3_regressions.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 15,
+      "source_commit": "6e1c95402271b3236112875f66cb8d2e7c553376",
+      "checked_at_utc": "2026-10-29T20:42:24.614986+00:00",
+      "log": "verification/v11/tracks/03-v3-01-input-and-numerical-integrity.txt",
+      "log_sha256": "1112ff58c06500a279433c9cafd4e11cb1cadbee38c55d8e635b8eed5319bbaf",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "No further defect found within this numerical-integrity scope."
+    },
+    {
+      "track": "v3-02-dependencies-and-dataframe-policy",
+      "order": 4,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_native_integrity.py",
+        "tests/test_toolchain_contracts.py",
+        "tests/test_quality_gates.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 44,
+      "source_commit": "72431e3e57de7f05430a0f12ad34d82f380ed098",
+      "checked_at_utc": "2026-10-29T20:42:25.946512+00:00",
+      "log": "verification/v11/tracks/04-v3-02-dependencies-and-dataframe-policy.txt",
+      "log_sha256": "8aa582ee7d875736f26cc6960e4368af515f0f666614a670d98eb7868b913c94",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Real lock, installation and transitive dependency checks unavailable."
+    },
+    {
+      "track": "v3-03-solo-assurance-harness",
+      "order": 5,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_assurance_v3.py",
+        "tests/test_contract_adversaries.py",
+        "tests/test_assurance_scope.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 91,
+      "source_commit": "30ca882d0bc5a6a2b6cbfb0e7e78109c4366b615",
+      "checked_at_utc": "2026-10-29T20:42:38.461591+00:00",
+      "log": "verification/v11/tracks/05-v3-03-solo-assurance-harness.txt",
+      "log_sha256": "dd796e03ff43061e43a1891bd7a771e9a3eddf1fbbd85fcd41e0208fdb118452",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Required external tools unexecuted."
+    },
+    {
+      "track": "v3-04-context-and-ci",
+      "order": 6,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_quality_integration.py",
+        "tests/test_toolchain_contracts.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 42,
+      "source_commit": "f57df3f6e079f0369e7dea4fb124fa604a3658ee",
+      "checked_at_utc": "2026-10-29T20:42:44.358212+00:00",
+      "log": "verification/v11/tracks/06-v3-04-context-and-ci.txt",
+      "log_sha256": "a74a2e5a53018a4b3e060fe854230bc35b0e93d06c9eda919e642fa63e20897c",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Hosted acceptance, full upload and submodule checkout incomplete."
+    },
+    {
+      "track": "v3-05-final-verification-and-packaging",
+      "order": 7,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_quality_gates.py",
+        "tests/test_assurance_scope.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 22,
+      "source_commit": "6cd384f06099dad5dfcaeda16a6922762d8ae0b4",
+      "checked_at_utc": "2026-10-29T20:42:45.590080+00:00",
+      "log": "verification/v11/tracks/07-v3-05-final-verification-and-packaging.txt",
+      "log_sha256": "8cd449065033f435536d0367c1b8f789e79da23ab030f35a7ba6049dad06e2cf",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Full external assurance remains unsuccessful."
+    },
+    {
+      "track": "v4-01-fast-feedback",
+      "order": 8,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v4_profiles.py",
+        "tests/test_v4_hooks.py",
+        "tests/test_v4_config.py",
+        "tests/test_v4_benchmark.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 23,
+      "source_commit": "502064b65c7cd49fc62f167f82895f12a4e03fa3",
+      "checked_at_utc": "2026-10-29T20:42:46.922929+00:00",
+      "log": "verification/v11/tracks/08-v4-01-fast-feedback.txt",
+      "log_sha256": "1ce171b82a4488765d25787c5b3e4ffd3cfc97e8d66272e142c6b5e5da4e9fa8",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Actual prek/workflow-linter integration and repeated xdist benchmarks open."
+    },
+    {
+      "track": "v4-02-cached-development",
+      "order": 9,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v4_feedback.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 16,
+      "source_commit": "5ca94ddee9b2599055935ba6f132bf9754706694",
+      "checked_at_utc": "2026-10-29T20:42:48.309253+00:00",
+      "log": "verification/v11/tracks/09-v4-02-cached-development.txt",
+      "log_sha256": "a69d2990726df276b5a4cfaeacac7f9093820d18ffed4eb92ce996c1b18f0c44",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Actual testmon and mutation integration unexecuted."
+    },
+    {
+      "track": "v4-03-reusable-skill",
+      "order": 10,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v4_skill.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 16,
+      "source_commit": "39f8a9bc918e11d1babe115925834a045b45d25f",
+      "checked_at_utc": "2026-10-29T20:42:49.444531+00:00",
+      "log": "verification/v11/tracks/10-v4-03-reusable-skill.txt",
+      "log_sha256": "044af7835ebc0e80d6e13d203b5537ecf4f236c8dbcf40820ee786efac8e4bd0",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Contract tests are not independent fresh-agent validation."
+    },
+    {
+      "track": "v4-04-analysis-delivery",
+      "order": 11,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v4_analysis_checks.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 8,
+      "source_commit": "370da6b6b8f4b1afe145a6765697423dd142982f",
+      "checked_at_utc": "2026-10-29T20:43:27.597106+00:00",
+      "log": "verification/v11/tracks/11-v4-04-analysis-delivery.txt",
+      "log_sha256": "3e581f92c5a63354a9091ee51e37e73e779045ac4069a73a069db9dd6f0cfef2",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Historical artifacts preserved; no fresh rendering claimed."
+    },
+    {
+      "track": "v5-01-comparators",
+      "order": 12,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v5_strategies.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 34,
+      "source_commit": "337e6dd3eb0decf121a8d1b6d64b88d98c32e53d",
+      "checked_at_utc": "2026-10-29T20:43:28.931061+00:00",
+      "log": "verification/v11/tracks/12-v5-01-comparators.txt",
+      "log_sha256": "98d5e5c82f5d5dd6dfb17e2235b7eb1169279f397d407842f2316aebefc40e07",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Device equivalence, installed prices and feasibility remain conditional."
+    },
+    {
+      "track": "v5-02-sensitivity",
+      "order": 13,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v5_sensitivity.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 19,
+      "source_commit": "ea0c7c89be41f1ea258ddd02bb58e0824aad0f94",
+      "checked_at_utc": "2026-10-29T20:43:30.167063+00:00",
+      "log": "verification/v11/tracks/13-v5-02-sensitivity.txt",
+      "log_sha256": "75dd5011aaf0cfb47371b28ef247febe5563634e5776266aa1e79884fe1b0a0a",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Historical outputs not certified on a resolved pinned environment."
+    },
+    {
+      "track": "v5-03-publication",
+      "order": 14,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v5_analysis_integrity.py",
+        "tests/test_v5_assurance_scope.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 9,
+      "source_commit": "6101ed41fe077ff38292f5bd1561e5a2cd90b2c4",
+      "checked_at_utc": "2026-10-29T20:43:31.501282+00:00",
+      "log": "verification/v11/tracks/14-v5-03-publication.txt",
+      "log_sha256": "45abebc3866c7aaabc61d13e6cb2a483a865d3aaa6de60480622f0f782e9cac2",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Four critical full texts and independent review missing."
+    },
+    {
+      "track": "v6-01-pathways",
+      "order": 15,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v6_pathways.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 18,
+      "source_commit": "bf84dd56c13c45d3c4396ad2c19e7092e71a6446",
+      "checked_at_utc": "2026-10-29T20:43:32.683621+00:00",
+      "log": "verification/v11/tracks/15-v6-01-pathways.txt",
+      "log_sha256": "ea7ed0516efe6736a8eaee426685e40a2393fbf3ae84104a743f394204c2ec33",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Clinical pathways and price assumptions not externally validated."
+    },
+    {
+      "track": "v6-02-evidence-validation",
+      "order": 16,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v6_validation.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 50,
+      "source_commit": "13885072adc9b6b2edc5455ffb69ad653e1a5d08",
+      "checked_at_utc": "2026-10-29T20:43:34.015844+00:00",
+      "log": "verification/v11/tracks/16-v6-02-evidence-validation.txt",
+      "log_sha256": "097eecd8b1e615f61a152426f66b8e6ca91a0ab4bbb533a120b2fb438d8b8eb9",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Simulated author review is not an independent panel; source gaps remain."
+    },
+    {
+      "track": "v6-03-delivery-assurance",
+      "order": 17,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v6_assurance_scope.py",
+        "tests/test_v6_documentation_contract.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 4,
+      "source_commit": "ec4e1cba961127860dcc8eab57043668eaf3b52d",
+      "checked_at_utc": "2026-10-29T20:43:35.148724+00:00",
+      "log": "verification/v11/tracks/17-v6-03-delivery-assurance.txt",
+      "log_sha256": "99cef98de12a8b8a90abbcb2033d076bfc563ea7951d4da90263da27288d16f6",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Pinned and hosted acceptance incomplete."
+    },
+    {
+      "track": "v7-perspectives",
+      "order": 18,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v7_analysis_contracts.py",
+        "tests/test_v7_perspectives.py",
+        "tests/test_v7_regional.py",
+        "tests/test_v7_review_repairs.py",
+        "tests/test_v7_sampling_health.py",
+        "tests/test_v7_source_archive.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 37,
+      "source_commit": "e037e79cec71052da85a72a73877057c2b4f96f0",
+      "checked_at_utc": "2026-10-29T20:43:36.431828+00:00",
+      "log": "verification/v11/tracks/18-v7-perspectives.txt",
+      "log_sha256": "3e62137b8331e5093c598c5984f07ba7ebd335dbd23ed78b8568e911f7ffd001",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Funding/capability/outcome assumptions, original files, Gitleaks and external review open."
+    },
+    {
+      "track": "v8-assurance-publish",
+      "order": 19,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v8_assurance.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 9,
+      "source_commit": "b10e894c872c4a9c57c2c11334d0d47eb29f7879",
+      "checked_at_utc": "2026-10-29T20:43:38.217072+00:00",
+      "log": "verification/v11/tracks/19-v8-assurance-publish.txt",
+      "log_sha256": "99050b84d0c7f3b1300beaaf55822888d278f9ec5a007049aca331c11cfe82bb",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Complete import, genuine lock and external-tool acceptance remain open."
+    },
+    {
+      "track": "v9-reconciliation",
+      "order": 20,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v9_contracts.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 10,
+      "source_commit": "843870dde957204c484e55d237c20bb2b9807f73",
+      "checked_at_utc": "2026-10-29T20:43:39.448232+00:00",
+      "log": "verification/v11/tracks/20-v9-reconciliation.txt",
+      "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Original v9 handoff not fully imported; all external acceptance remains open."
+    },
+    {
+      "track": "v10-acceptance-reconciliation",
+      "order": 21,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v10_source_evidence.py",
+        "tests/test_v10_reconciliation.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 9,
+      "source_commit": "3140ed37c215fb2e4454faf5da3706d667ec44f7",
+      "checked_at_utc": "2026-10-29T21:09:16.887842+00:00",
+      "log": "verification/v11/tracks/21-v10-acceptance-reconciliation.txt",
+      "log_sha256": "5cbb1022ab50bbce9c4acaaaf48994a88e0827d02b119691b20dac1740926fe0",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Full private import, genuine lock, external tools, submodule checkout, hosted CI and independent scientific validation remain open."
+    },
+    {
+      "track": "v10-revalidation",
+      "order": 22,
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_v9_contracts.py",
+        "tests/test_v10_reconciliation.py",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed_tests": 13,
+      "source_commit": "75025e9e8b662debb66627d23041e2db826dc78f",
+      "checked_at_utc": "2026-10-29T21:09:50.697074+00:00",
+      "log": "verification/v11/tracks/22-v10-revalidation.txt",
+      "log_sha256": "1bf4be99a7d6d1ff8d69790e07e082fc2f1dbbf31be4b8542172bb11bf7ae38c",
+      "review": "same-assistant sequential technical verification; not independent validation",
+      "full_acceptance": false,
+      "remaining_acceptance": "Actual plugin execution, full private binary/history migration, original public sources and independent validation remain open. Historical record from concurrent remote work preserved."
+    }
+  ]
+}

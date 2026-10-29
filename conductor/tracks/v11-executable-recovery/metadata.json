@@ -1,6 +1,6 @@
 {
   "id": "v11-executable-recovery",
-  "status": "implemented_scoped_recovery_full_acceptance_open",
+  "status": "scoped_implementation_and_verification_complete_external_acceptance_open",
   "full_acceptance": false,
   "remote_pr": 3,
   "scientific_inputs_changed": false,
@@ -19,5 +19,8 @@
     "failed": 1
   },
   "remote_tests_files": 39,
-  "remote_code_commit": "ecdc2929653a1710a44ec348edc78be699ea5f74"
+  "remote_code_commit": "44cc6578d481d9bccf9c9b27e2d9eb057dfe1708",
+  "full_run_completed": true,
+  "source_commit_at_full_run": "a489f2d610510b822919165a6e3d47f02dfbcde1",
+  "restoration_tests_passed": 541
 }

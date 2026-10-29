@@ -19,3 +19,7 @@ Completed full run: all 30 gates reached on 3140ed37c215fb2e4454faf5da3706d667ec
 Inventory correction: checked v10-acceptance-reconciliation as order21 (9 tests), then recovered the separate remote-only v10-revalidation plan/spec by exact Git blob hash and checked it as order22 (13 tests). Each has a separate commit and receipt. The previous twenty-track count did not include these follow-on records; all22 predecessor records are now reconciled.
 
 Actual remote update ecdc2929653a1710a44ec348edc78be699ea5f74 preserves src/data and contains the complete tests and quality directories. Hashes match the local source. GitHub still lacks some supporting outputs, assets and original ancestry; no complete-migration claim.
+
+Task 6: full execution on committed local source a489f2d610510b822919165a6e3d47f02dfbcde1 reached all30 gates, with541 tests passed,7 gates passed,22 blocked and1 failed. All gate and22 track log digests matched. A separately cloned bundle of this source passed541 tests and git fsck. The local evidence and current status are not claims that the incomplete remote checkout passed.
+
+Task 5 scoped recovery: remote44cc6578d481d9bccf9c9b27e2d9eb057dfe1708 additionally contains exact copies of analyse_v5.py, analyse_v6.py, retrieve_originals.py and six original evidence/parameter files. All retrieved supporting-file hashes and complete src/data/tests/quality subtree hashes match local source. Full supporting artifacts and original ancestry are still not imported.

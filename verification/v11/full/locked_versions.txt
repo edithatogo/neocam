@@ -1,0 +1,17 @@
+The project .venv is required; the shared host environment is not certified
+Missing basedpyright==1.40.2
+coverage: installed 7.13.3; required 7.17.0
+Missing hypothesis==6.170.12
+numpy: installed 2.3.5; required 2.5.4
+Missing pip-audit==2.10.1
+Missing polars==2.1.0
+Missing prek==0.5.7
+Missing pytest-gremlins==1.12.2
+pytest: installed 9.0.2; required 9.1.1
+Missing ruff==0.17.3
+Missing scalene==2.4.0
+scikit-learn: installed 1.8.0; required 1.9.1
+scipy: installed 1.17.0; required 1.18.1
+Missing ty==0.0.92
+uv: installed 0.10.0; required 0.13.6
+Missing zizmor==1.31.1

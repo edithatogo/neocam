@@ -11,7 +11,7 @@ Execute in this order and commit each implementation with fresh scoped evidence:
 3. [x] Source provenance: validate manifest fields and failure reports without exception leaks or unsupported completeness.
 4. [x] Historical tracks: reconcile the original twenty, then the two v10 follow-on records (one recovered from GitHub); preserve unresolved external/scientific acceptance.
 5. [x] Selected repository recovery: the complete 39-file tests directory and repaired quality code are pushed to PR #3 at ecdc292. Their subtree hashes match the tested local source. Supporting driver/evidence recovery is being completed separately; full migration remains open.
-6. [ ] Full run on 3140ed3 completed: 541 tests; 7 passed gates, 22 blocked, 1 failed. Recheck the final documented source, restore and test the final package.
+6. [x] Full run on a489f2d completed all30 gates:541 tests;7 passed gates,22 blocked,1 failed. All log hashes matched. A separate restored bundle passed541 tests. Final evidence-only packaging is verified separately; full acceptance remains unsuccessful.
 
 Dependencies: native mocks must still prove extraction without a network; cache tests never replace
 installed-plugin acceptance; source audit must remain unsuccessful for an empty scope; full

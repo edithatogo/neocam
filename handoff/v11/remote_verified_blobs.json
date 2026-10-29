@@ -1,0 +1,16 @@
+{
+  "remote_commit": "44cc6578d481d9bccf9c9b27e2d9eb057dfe1708",
+  "verified_files": {
+    "evidence/dependency_targets_v3.json": "5f3653bf64f2ddc28479f536d556c248f20dda4a",
+    "evidence/literature_parameter_map.csv": "653bb36dcb705aa474386a15c558b0e6769a03d4",
+    "evidence/parameter_register.csv": "2fb8cde0411ed8b43ec393ff3c3001a308dd7ebf",
+    "evidence/protected_inputs_v4.json": "fc28e0a8033db5f85076de553241ccc3b8e2932f",
+    "evidence/search_log.md": "3867632b2e4fb0772bde7332c763149d9fcf74c2",
+    "evidence/sources.csv": "22d04c9cd4d267f0f3d0c3e9bfa681f55832ac53",
+    "evidence/transport_mode_comparison.csv": "df74a9df722419d5dc9ca9acc7d593001439438d",
+    "scripts/analyse_v5.py": "768b6fcc230d11369388dde359c36fad1dcbddd8",
+    "scripts/analyse_v6.py": "fab2cdc0af3688498e8e50e3e62045cbfb03ce60",
+    "scripts/analyse_v7.py": "be3c1a652d51a567af90e0e0a8e6aea3981bc685"
+  },
+  "remote_import_complete": false
+}

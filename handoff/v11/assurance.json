@@ -1,0 +1,212 @@
+{
+  "scope": "Complete local recovered project, not complete remote checkout",
+  "source_commit": "a489f2d610510b822919165a6e3d47f02dfbcde1",
+  "input_fingerprint": "b5217d2603a1022908c225ca5d9a2dc1316b58c67028644a99b8c1b8b60f7fd2",
+  "run_id": "895a68e3-fa5e-4032-b1ee-48d673a4161e",
+  "run_finished": true,
+  "ordinary_tests_passed": 541,
+  "counts": {
+    "passed": 7,
+    "blocked": 22,
+    "failed": 1
+  },
+  "full_local_assurance": false,
+  "release_ready": false,
+  "coverage_percent": 93.26446280991736,
+  "core_coverage_percent": 96.4,
+  "receipt_sha256": "7831402e95237b210148eb40e9b6b0bbca9a14aa69c381ea64e586ce114e0d8b",
+  "gate_results": [
+    {
+      "gate": "pytest",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "3683a0cad846ff56205a59a3783595c8f62ca6b004fa380f0592f32941c9cd40"
+    },
+    {
+      "gate": "inputs",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3"
+    },
+    {
+      "gate": "context",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e"
+    },
+    {
+      "gate": "source_integrity",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "03899e3236b97e0a14f9ecd238bbe5ee08de26886bd512f8aa7f870133099748"
+    },
+    {
+      "gate": "coverage",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "7964d3107edbef98e0b3fa5fc0168dd05f268bf0561b914403718a6b7eab941f"
+    },
+    {
+      "gate": "coverage_threshold",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "f4ecfb3ab86de18a2684a83dcf8c11b1d6e3108df5afb95b77317e8ff4f1bbca"
+    },
+    {
+      "gate": "core_coverage",
+      "status": "passed",
+      "returncode": 0,
+      "log_sha256": "bf3d904856a2eb88a4e6d8ce26347641d69f36a317a4ddad982acf565096f627"
+    },
+    {
+      "gate": "ruff_lint",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda"
+    },
+    {
+      "gate": "ruff_format",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "59616a2d4627bf5a1d13856506258c4f57d520809f4c868f4f75919012942cda"
+    },
+    {
+      "gate": "ty",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "1e359eee876da93f8c0444b0873c3813da7dc5f50fa33be47f9d25ee6ebf0c0f"
+    },
+    {
+      "gate": "basedpyright",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "abb986f75d76f0e7d6b1fc48d1c06843f47cb950e15baa6baba3a7b8907b641a"
+    },
+    {
+      "gate": "hypothesis",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "802ea6ef6bfa8bde7ee36bffba1716c4103cbe702ed5a4e4a08bacf8d6874d01"
+    },
+    {
+      "gate": "gremlins",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "000d3e1cd3449471977f80cc15b64f4a8627b29c568f093cb9391e49f315b14d"
+    },
+    {
+      "gate": "mutation_score",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "6236904d6d78f0da3cb47f7da8880409179d7f4373fb2ea8aa669f7457e29d93"
+    },
+    {
+      "gate": "scalene",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "8f506c78f480d4101942e3e285307aed5d58581d3ffeca851e6ee3e2248aceb5"
+    },
+    {
+      "gate": "scalene_output",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "388dbb3badf7dabc71ba17f9df04836e1c68d6d18a5a99ada9d442b101e03c0f"
+    },
+    {
+      "gate": "gitleaks_history",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "ed242bc052e800f6c2e4564e8c645354faa21278f3255848c4d3b3da4e341f9f"
+    },
+    {
+      "gate": "gitleaks_tree",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "ed242bc052e800f6c2e4564e8c645354faa21278f3255848c4d3b3da4e341f9f"
+    },
+    {
+      "gate": "vale",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "2a991bd83a664a0cf0fd28192bfdd90ee2b1174deca839dfa0822e5c5cdcd899"
+    },
+    {
+      "gate": "dependency_consistency",
+      "status": "failed",
+      "returncode": 2,
+      "log_sha256": "71be3c069a7459087bc110b4ff135457535509f197113e6a7bf7d5b95eefa266"
+    },
+    {
+      "gate": "dependency_lock",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "d3c775d9c0703a8ae6e6f8a2f1b84573d18c3efc2f96e0f564f2242661a8ab94"
+    },
+    {
+      "gate": "native_versions",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "550a02f7362da352e3c56c04e8f101b30d70ace2f66baad27cfc6410d44334be"
+    },
+    {
+      "gate": "locked_versions",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "53984ed4b6097cfa59a27b9e7ad6e49e68678bae13379f73c5977b0fa17d0467"
+    },
+    {
+      "gate": "pip_audit",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa"
+    },
+    {
+      "gate": "sbom",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "d12bccbd077bbd1c02e5714d2755dc439a5f9671102e3d93d64f30abd567f7fa"
+    },
+    {
+      "gate": "conductor_checkout",
+      "status": "blocked",
+      "returncode": 69,
+      "log_sha256": "03f5bb6e9015712ba26344c637fae5089c7cc66e1dcafefbf5b2ec4620551dac"
+    },
+    {
+      "gate": "polars_consistency",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "f1247ed5f96cf6924d7d25e1a51e6380f2599f9827d3af77ca3243817eb48701"
+    },
+    {
+      "gate": "actionlint",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "ac5e2d19acbd0b5df54a89ef23cf0689728dc99dd00025fe2e5c74e936cfa78a"
+    },
+    {
+      "gate": "zizmor",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "79913afd9722d6cd5af02a8ce0c789fa4b674a70f9b12d03541e7756381a702d"
+    },
+    {
+      "gate": "prek_config",
+      "status": "blocked",
+      "returncode": null,
+      "log_sha256": "05f7901e31825f0b177786818665ba312439eaa6372b2245706871922ce2f998"
+    }
+  ],
+  "independent_validation": false,
+  "remote_code_commit": "44cc6578d481d9bccf9c9b27e2d9eb057dfe1708",
+  "subtrees": {
+    "src": "cc0bbb89ece22b08f498937595d3f5c10846b0fd",
+    "data": "2530ae6e70fb2ff9c5d517014b85378764e5085e",
+    "tests": "beb69bc39b68d0260362210a7283044f8b98f926",
+    "quality": "6880fa6bf9c1c05c7f96a274a08f0a24b88218c2"
+  },
+  "prior_tracks_reconciled": 22,
+  "remote_import_complete": false,
+  "restoration_tests_passed": 541,
+  "restoration_source_commit": "a489f2d610510b822919165a6e3d47f02dfbcde1"
+}
