@@ -1,0 +1,26 @@
+{
+  "track": "v5-01-comparators",
+  "order": 12,
+  "checked_at_utc": "2026-10-29T17:37:46.333125+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "a7c5f3191a8d54007564cc64bfb059adc159e484",
+  "plan_spec_sha256": {
+    "spec.md": "47b3385fcbf6e7b23753b96b290ad074ba0643a4027d2b715d4d5bcab3462951",
+    "plan.md": "bbed348f85f33b08d4e6a023b41664505cc7e23731fcc4dc12c55d72cc439b07"
+  },
+  "historical_status": "implemented_with_acceptance_boundaries",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v5_strategies.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 34,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Device equivalence, installed prices and feasibility remain conditional.",
+  "log": "verification/v10/tracks/12-v5-01-comparators.txt",
+  "log_sha256": "5f364e68412e4ce0214f415ab5f0e680be1e4eb7ce5b0762dd025c5ffeacd935"
+}
