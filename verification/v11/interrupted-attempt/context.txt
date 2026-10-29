@@ -1,0 +1,6 @@
+{
+  "check": "context",
+  "errors": [
+    "Missing track artifact: v11-executable-recovery/metadata.json"
+  ]
+}

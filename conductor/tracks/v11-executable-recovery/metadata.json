@@ -1,0 +1,14 @@
+{
+  "id": "v11-executable-recovery",
+  "status": "implementation_and_recovery_in_progress",
+  "full_acceptance": false,
+  "remote_pr": 3,
+  "scientific_inputs_changed": false,
+  "independent_validation": false,
+  "remaining": [
+    "complete original repository file/history migration",
+    "genuine dependency lock and installed tools",
+    "Gitleaks and hosted CI",
+    "original-source and independent clinical validation"
+  ]
+}
