@@ -1,0 +1,20 @@
+{
+  "track": "panda-vision-model-v1",
+  "order": 1,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_model.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 5,
+  "source_commit": "089dd90ed5b73f3d5cbceb738869e8e29bc3852d",
+  "checked_at_utc": "2026-10-29T20:42:22.052380+00:00",
+  "log": "verification/v11/tracks/01-panda-vision-model-v1.txt",
+  "log_sha256": "ef0e7ef49e71fa999842be0cb8d22ec1058d3a384ed5c0a2ec6efb8f434975ac",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Original Conductor checkout remains unpopulated."
+}
