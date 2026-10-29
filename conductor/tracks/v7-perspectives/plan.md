@@ -160,3 +160,7 @@
 - [x] Retain actual outputs and tests available in this environment.
 - [ ] External clinical/connected acceptance where identified above; not implied by implementation.
 
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.

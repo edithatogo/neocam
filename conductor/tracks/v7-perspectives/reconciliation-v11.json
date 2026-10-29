@@ -1,0 +1,25 @@
+{
+  "track": "v7-perspectives",
+  "order": 18,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v7_analysis_contracts.py",
+    "tests/test_v7_perspectives.py",
+    "tests/test_v7_regional.py",
+    "tests/test_v7_review_repairs.py",
+    "tests/test_v7_sampling_health.py",
+    "tests/test_v7_source_archive.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 37,
+  "source_commit": "e037e79cec71052da85a72a73877057c2b4f96f0",
+  "checked_at_utc": "2026-10-29T20:43:36.431828+00:00",
+  "log": "verification/v11/tracks/18-v7-perspectives.txt",
+  "log_sha256": "3e62137b8331e5093c598c5984f07ba7ebd335dbd23ed78b8568e911f7ffd001",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Funding/capability/outcome assumptions, original files, Gitleaks and external review open."
+}
