@@ -1,0 +1,20 @@
+{
+  "track": "v5-01-comparators",
+  "order": 12,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v5_strategies.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 34,
+  "source_commit": "337e6dd3eb0decf121a8d1b6d64b88d98c32e53d",
+  "checked_at_utc": "2026-10-29T20:43:28.931061+00:00",
+  "log": "verification/v11/tracks/12-v5-01-comparators.txt",
+  "log_sha256": "98d5e5c82f5d5dd6dfb17e2235b7eb1169279f397d407842f2316aebefc40e07",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Device equivalence, installed prices and feasibility remain conditional."
+}

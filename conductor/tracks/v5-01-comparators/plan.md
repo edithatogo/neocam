@@ -68,3 +68,7 @@ Contract: Nine protected files unchanged; Panda pilot/state reference PSA matche
 Check: `python -m quality.checks inputs`
 
 Status/evidence: Primary verification recorded in verification/v5/full/inputs.txt.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
