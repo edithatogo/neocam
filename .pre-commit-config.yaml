@@ -1,0 +1,28 @@
+# Thin front end to the frozen project environment. Install via `prek install`.
+# It is deliberately not a second acceptance harness.
+minimum_pre_commit_version: '3.0.0'
+exclude: '^(outputs|verification|extensions|assets)/'
+repos:
+  - repo: local
+    hooks:
+      - id: python-style
+        name: Ruff check and format (changed Python)
+        language: system
+        entry: uv run --frozen --no-sync python -m quality.hooks python
+        types: [python]
+      - id: prose
+        name: Vale (active prose)
+        language: system
+        entry: uv run --frozen --no-sync python -m quality.hooks prose
+        files: '^(README.md|AGENTS.md|GEMINI.md|conductor/runbook.md|\.agents/skills/.*\.md)$'
+      - id: workflows
+        name: Actionlint and zizmor (changed workflows)
+        language: system
+        entry: uv run --frozen --no-sync python -m quality.hooks workflow
+        files: '^\.github/workflows/.*\.ya?ml$'
+      - id: staged-secrets
+        name: Gitleaks (staged changes)
+        language: system
+        entry: uv run --frozen --no-sync python -m quality.hooks secrets
+        pass_filenames: false
+        always_run: true
