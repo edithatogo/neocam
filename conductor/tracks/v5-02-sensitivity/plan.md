@@ -68,3 +68,7 @@ Contract: Manifest excludes self-hash; typed/finite inputs and eligibility check
 Check: `python -m pytest tests/test_v5_analysis_integrity.py tests/test_v5_strategies.py tests/test_v5_sensitivity.py -q`
 
 Status/evidence: Executed; RED/GREEN receipts retained.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
