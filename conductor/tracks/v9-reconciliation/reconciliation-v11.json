@@ -1,0 +1,20 @@
+{
+  "track": "v9-reconciliation",
+  "order": 20,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v9_contracts.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 10,
+  "source_commit": "843870dde957204c484e55d237c20bb2b9807f73",
+  "checked_at_utc": "2026-10-29T20:43:39.448232+00:00",
+  "log": "verification/v11/tracks/20-v9-reconciliation.txt",
+  "log_sha256": "06cdf8bcb89efbe1e002f486792f1f4e5041790a94a9ede6adf87e5214f877f9",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Original v9 handoff not fully imported; all external acceptance remains open."
+}

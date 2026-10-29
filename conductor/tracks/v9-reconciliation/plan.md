@@ -11,3 +11,7 @@
 Ruling: current-host tests do not certify unavailable pinned tools. Do not rerun scientific analyses when scientific inputs and numerical code are unchanged.
 
 10. [x] Reproduce and repair utility-generator age-origin mismatch and empty-source-scope acceptance. Preserve corrected secondary table separately from historical artifacts.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
