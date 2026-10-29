@@ -1,0 +1,181 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+___________ test_manifest_rows_fail_closed_without_crashing[files0] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed0')
+files = [None]
+
+    @pytest.mark.parametrize('files', [[None], ['not a record'], [42]])
+    def test_manifest_rows_fail_closed_without_crashing(tmp_path, files):
+>       assert verify_manifest(tmp_path, {'files': files})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v10_source_evidence.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed0')
+manifest = {'files': [None]}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for item in files:
+>           name = item.get('path', '')
+                   ^^^^^^^^
+E           AttributeError: 'NoneType' object has no attribute 'get'
+
+quality/source_archive.py:17: AttributeError
+___________ test_manifest_rows_fail_closed_without_crashing[files1] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed1')
+files = ['not a record']
+
+    @pytest.mark.parametrize('files', [[None], ['not a record'], [42]])
+    def test_manifest_rows_fail_closed_without_crashing(tmp_path, files):
+>       assert verify_manifest(tmp_path, {'files': files})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v10_source_evidence.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed1')
+manifest = {'files': ['not a record']}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for item in files:
+>           name = item.get('path', '')
+                   ^^^^^^^^
+E           AttributeError: 'str' object has no attribute 'get'
+
+quality/source_archive.py:17: AttributeError
+___________ test_manifest_rows_fail_closed_without_crashing[files2] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed2')
+files = [42]
+
+    @pytest.mark.parametrize('files', [[None], ['not a record'], [42]])
+    def test_manifest_rows_fail_closed_without_crashing(tmp_path, files):
+>       assert verify_manifest(tmp_path, {'files': files})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v10_source_evidence.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_manifest_rows_fail_closed2')
+manifest = {'files': [42]}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for item in files:
+>           name = item.get('path', '')
+                   ^^^^^^^^
+E           AttributeError: 'int' object has no attribute 'get'
+
+quality/source_archive.py:17: AttributeError
+_____________ test_non_string_manifest_path_is_a_validation_error ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_non_string_manifest_path_0')
+
+    def test_non_string_manifest_path_is_a_validation_error(tmp_path):
+>       assert verify_manifest(tmp_path, {'files': [{'path': 17}]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v10_source_evidence.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-root/pytest-1/test_non_string_manifest_path_0')
+manifest = {'files': [{'path': 17}]}
+
+    def verify_manifest(root: Path, manifest: dict[str, Any]) -> list[str]:
+        """Return bounded errors for escapes, missing bytes, digest and representation gaps."""
+        errors: list[str] = []
+        root = root.resolve()
+        files = manifest.get('files', [])
+        if not isinstance(files, list) or not files:
+            return ['Stored-source verification requires a nonempty file scope']
+        seen: set[str] = set()
+        for item in files:
+            name = item.get('path', '')
+>           path = (root / name).resolve()
+                    ^^^^^^^^^^^
+E           TypeError: unsupported operand type(s) for /: 'PosixPath' and 'int'
+
+quality/source_archive.py:18: TypeError
+__________________ test_source_gate_declares_versioned_output __________________
+
+    def test_source_gate_declares_versioned_output():
+        command = next(g.command for g in gates_for_profile('full') if g.name == 'source_integrity')
+>       assert '--output' in command
+E       AssertionError: assert '--output' in ('/opt/pyvenv/bin/python', '-m', 'quality.source_archive')
+
+tests/test_v10_source_evidence.py:24: AssertionError
+______ test_source_cli_accepts_nondefault_report_and_preserves_old_report ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_source_cli_accepts_nondef0')
+
+    def test_source_cli_accepts_nondefault_report_and_preserves_old_report(tmp_path):
+        source = Path('quality/source_archive.py').read_text()
+        project = tmp_path / 'project'
+        (project / 'quality').mkdir(parents=True)
+        (project / 'sources').mkdir()
+        (project / 'verification/v7').mkdir(parents=True)
+        (project / 'quality/source_archive.py').write_text(source)
+        (project / 'sources/manifest.json').write_text(json.dumps({'files': []}))
+        old = project / 'verification/v7/source_archive.json'
+        old.write_text('historical evidence')
+        result = subprocess.run(
+            [sys.executable, str(project / 'quality/source_archive.py'), '--output',
+             'verification/v10/source_archive.json'],
+            cwd=project, capture_output=True, text=True, check=False,
+        )
+        assert result.returncode != 0
+>       assert old.read_text() == 'historical evidence'
+E       assert '{\n  "stored..._files": 0\n}' == 'historical evidence'
+E         
+E         - historical evidence
+E         + {
+E         +   "stored_file_integrity_passed": false,
+E         +   "errors": [
+E         +     "Stored-source verification requires a nonempty file scope"
+E         +   ],
+E         +   "public_original_archival_completeness": false,
+E         +   "stored_files": 0
+E         + }
+
+tests/test_v10_source_evidence.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v10_source_evidence.py::test_manifest_rows_fail_closed_without_crashing[files0] - AttributeError: 'NoneType' object has no attribute 'get'
+FAILED tests/test_v10_source_evidence.py::test_manifest_rows_fail_closed_without_crashing[files1] - AttributeError: 'str' object has no attribute 'get'
+FAILED tests/test_v10_source_evidence.py::test_manifest_rows_fail_closed_without_crashing[files2] - AttributeError: 'int' object has no attribute 'get'
+FAILED tests/test_v10_source_evidence.py::test_non_string_manifest_path_is_a_validation_error - TypeError: unsupported operand type(s) for /: 'PosixPath' and 'int'
+FAILED tests/test_v10_source_evidence.py::test_source_gate_declares_versioned_output - AssertionError: assert '--output' in ('/opt/pyvenv/bin/python', '-m', 'quality.source_archive')
+FAILED tests/test_v10_source_evidence.py::test_source_cli_accepts_nondefault_report_and_preserves_old_report - assert '{\n  "stored..._files": 0\n}' == 'historical evidence'
+  
+  - historical evidence
+  + {
+  +   "stored_file_integrity_passed": false,
+  +   "errors": [
+  +     "Stored-source verification requires a nonempty file scope"
+  +   ],
+  +   "public_original_archival_completeness": false,
+  +   "stored_files": 0
+  + }
+6 failed in 1.05s
