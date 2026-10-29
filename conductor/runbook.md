@@ -1,6 +1,6 @@
-# Neocam v8: authoritative assurance and private repository handoff
+# Neocam v10: authoritative assurance and private repository handoff
 
-Read conductor/current-state.json and tracks/v8-assurance-publish/{spec,plan}.md.
+Read conductor/current-state.json and tracks/v10-acceptance-reconciliation/{spec,plan}.md.
 For CI and dependency work also read .agents/skills/maintaining-lean-ci/SKILL.md.
 
 ## Scientific scope
@@ -10,8 +10,8 @@ data/v6/spec.json is a reference snapshot, not a live configuration input.
 Sources and estimates retain the v7 evidence limitations. Do not recast cost-only results as health benefits.
 
 ## Authoritative verification
-python -m quality.cli --profile full --evidence-version v8
-The v7 default path is retained for backward-compatible fixture callers; explicitly select v8 for this handoff.
+python -m quality.cli --profile full --evidence-version v10
+The v7 default path is retained for backward-compatible fixture callers; explicitly select v10 for this handoff.
 The same full gate set remains mandatory. Atomic receipts are checkpointed before and after every gate.
 run_finished=true means all gates were enumerated, not that they all passed.
 complete_within_profile and full_local_assurance require every required gate to pass.
@@ -38,3 +38,5 @@ A clean public research release remains a separate task with licensing and priva
 Preserve exact source commit, input fingerprint, log digests, full terminal receipt and remote upload scope.
 Restore and test the complete Git bundle. Report blocked, failed and passed gates separately.
 Do not rerun clinical analyses when no scientific input or numerical implementation changed.
+
+Source integrity now accepts an explicit versioned --output; malformed rows fail closed. See conductor/reconciliation-v10.md for twenty scoped track checks and remaining acceptance. Existing draft PR #3 remains partial; do not merge as a complete migration.

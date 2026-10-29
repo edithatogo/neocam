@@ -5,3 +5,5 @@ Task 1 complete. Restored v8 full source/history. Found existing draft PR #3 and
 Ruling: update existing PR #3 rather than create a duplicate; keep draft and do not merge. Full binary/history transfer is still not available through direct Git because DNS fails.
 
 Task 2 complete within local-test scope. Six failing regressions reproduced malformed source-record crashes and historical audit overwrite. Source verification now fails closed on malformed records and accepts an explicit verification-directory output. The unified gate routes source evidence through the selected version. Existing source records/bytes and clinical inputs are unchanged. Combined source/v9 regressions pass; see source_red.txt and source_green.txt.
+
+Task 3 complete within current-host regression scope. Twenty historical tracks, including the newly discovered remote v9 track, were checked sequentially. Each record and its scoped log was committed before moving on. All selected test groups passed. Counts overlap; full-suite count is determined separately. Remaining clinical, archival, dependency, security and hosted requirements stay open.

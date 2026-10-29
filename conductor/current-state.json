@@ -1,16 +1,16 @@
 {
-  "version": 8,
-  "date": "2026-10-29",
+  "version": 10,
+  "date": "2026-10-30",
   "active_tracks": [
-    "v8-assurance-publish"
+    "v10-acceptance-reconciliation"
   ],
-  "branch": "conductor/neocam-v8-assurance-publish",
+  "branch": "conductor/neocam-v10-acceptance-reconciliation",
   "parent_commit": "eabbb6b",
   "release_ready": false,
   "independent_validation": false,
   "review": "four simulated author roles; not independent agents",
   "analysis": "outputs/v7/results_v7.json",
-  "receipt": "verification/v8/full/receipt.json",
+  "receipt": "verification/v10/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [
@@ -25,10 +25,13 @@
   "next_acceptance": "Complete the private source import, then resolve a real lock and execute the pinned toolchain. No missing tool is a pass.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "private",
-  "remote_import": "partial bootstrap; full Git transport failed DNS",
+  "remote_import": "partial; exact remote inventory verification still required",
   "hosted_environment_check": {
     "run_id": 40721279349,
     "conclusion": "failure",
     "executed_steps_reported": 0
-  }
+  },
+  "remote_pr": 3,
+  "remote_branch": "conductor/neocam-v9-track-reconciliation",
+  "tracks_reconciled": 20
 }
