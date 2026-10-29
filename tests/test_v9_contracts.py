@@ -59,3 +59,27 @@ def test_incremental_mutation_loads_plugin_explicitly(tmp_path):
     from quality.feedback import prepare
     plan = prepare(tmp_path, 'mutation', available=True, environment={})
     assert ('-p', 'gremlins') in tuple(zip(plan.command, plan.command[1:]))
+
+
+def test_utility_bridge_driver_starts_at_evidence_age_eleven():
+    """The generator, not only the helper, must use the observed age anchor."""
+    import importlib.util
+    import pytest
+    path = Path('scripts/analyse_v7.py')
+    specification = importlib.util.spec_from_file_location('v9_analysis_driver', path)
+    module = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(module)
+    assert hasattr(module, 'utility_bridge_scenarios'), 'Driver lacks auditable utility-bridge generator'
+    rows = module.utility_bridge_scenarios()
+    selected = next(r for r in rows if r['utility_difference'] == .13
+                    and r['duration_years_assumed'] == 1
+                    and r['discount_rate'] == .05
+                    and r['fraction_consultations_improved_assumed'] == .001)
+    assert selected['start_age_years'] == 11
+    assert selected['qalys_per_1000_consultations'] == pytest.approx(.13 / 1.05**11)
+    assert len(rows) == 54
+
+
+def test_empty_stored_source_scope_does_not_pass(tmp_path):
+    from quality.source_archive import verify_manifest
+    assert verify_manifest(tmp_path, {'files': [], 'original_public_downloads_complete': False})
