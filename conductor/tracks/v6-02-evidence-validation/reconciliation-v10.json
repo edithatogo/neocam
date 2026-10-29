@@ -1,0 +1,26 @@
+{
+  "track": "v6-02-evidence-validation",
+  "order": 16,
+  "checked_at_utc": "2026-10-29T17:37:58.580438+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "ea92ea9380bfa33cb484ed783d60ac1a7877ac57",
+  "plan_spec_sha256": {
+    "spec.md": "8a99ec596c84a404be4ebb88d56bf34c37da81326246a23e33c4a9fba3950713",
+    "plan.md": "eb3ca1bf2d3d48eb1e4140d5909da08435f96069942635ec56bcb3f39c42277f"
+  },
+  "historical_status": "implemented_with_open_acceptance_gates",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_validation.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 50,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Simulated author review is not an independent panel; source gaps remain.",
+  "log": "verification/v10/tracks/16-v6-02-evidence-validation.txt",
+  "log_sha256": "dc46ca0c3ed892bc4cca3cfda6e91bba45c216131261facf10efdcad30178fda"
+}

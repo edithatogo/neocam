@@ -1,0 +1,31 @@
+{
+  "track": "v7-perspectives",
+  "order": 18,
+  "checked_at_utc": "2026-10-29T17:38:01.701555+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "9b1e31d5e4ae5c22cca02f303c6d53edef0bf16d",
+  "plan_spec_sha256": {
+    "spec.md": "f811188365b77f97c80ba79b7784ec3c1fb12ab53a5c2c321c66f6fcb1b756fc",
+    "plan.md": "dd76d719ce596c3a995c464cec2ef9148b8dbaf8b1e36a1143c832348841b90c"
+  },
+  "historical_status": "implemented_with_open_external_acceptance",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v7_analysis_contracts.py",
+    "tests/test_v7_perspectives.py",
+    "tests/test_v7_regional.py",
+    "tests/test_v7_review_repairs.py",
+    "tests/test_v7_sampling_health.py",
+    "tests/test_v7_source_archive.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 37,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Funding/capability/outcome assumptions, original files, Gitleaks and external review open.",
+  "log": "verification/v10/tracks/18-v7-perspectives.txt",
+  "log_sha256": "9a340df7b528adb468182723e1619e9cabd095b22bb399376957fda62b00337f"
+}

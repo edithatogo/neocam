@@ -1,0 +1,27 @@
+{
+  "track": "v6-03-delivery-assurance",
+  "order": 17,
+  "checked_at_utc": "2026-10-29T17:37:59.997534+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "acae79049acdb841ab668eaacca76f8d1df46ac5",
+  "plan_spec_sha256": {
+    "spec.md": "4fe905e42ea2a29f1434046048d8b8c81b63c4347643e8264617aea5e0533707",
+    "plan.md": "c63c40928770f9092c22738f26409be8c062ea4f201ad92670c9c58e11ca007e"
+  },
+  "historical_status": "implemented_with_open_acceptance_gates",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_assurance_scope.py",
+    "tests/test_v6_documentation_contract.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 4,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Pinned and hosted acceptance incomplete.",
+  "log": "verification/v10/tracks/17-v6-03-delivery-assurance.txt",
+  "log_sha256": "99cef98de12a8b8a90abbcb2033d076bfc563ea7951d4da90263da27288d16f6"
+}
