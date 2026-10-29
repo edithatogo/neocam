@@ -1,0 +1,22 @@
+{
+  "track": "v3-03-solo-assurance-harness",
+  "order": 5,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_assurance_v3.py",
+    "tests/test_contract_adversaries.py",
+    "tests/test_assurance_scope.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 91,
+  "source_commit": "30ca882d0bc5a6a2b6cbfb0e7e78109c4366b615",
+  "checked_at_utc": "2026-10-29T20:42:38.461591+00:00",
+  "log": "verification/v11/tracks/05-v3-03-solo-assurance-harness.txt",
+  "log_sha256": "dd796e03ff43061e43a1891bd7a771e9a3eddf1fbbd85fcd41e0208fdb118452",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Required external tools unexecuted."
+}
