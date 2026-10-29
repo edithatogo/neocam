@@ -1,0 +1,20 @@
+{
+  "id": "v9-reconciliation",
+  "status": "implemented_scoped_checks_pass_full_acceptance_blocked",
+  "implementation": "demonstrated assurance repairs plus sequential reconciliation",
+  "existing_tracks_reviewed": 19,
+  "full_acceptance": false,
+  "independent_review": false,
+  "date": "2026-10-29",
+  "remote_pr": 3,
+  "remote_branch": "conductor/neocam-v9-track-reconciliation",
+  "remote_import_complete": false,
+  "tracks_checked_sequentially": 19,
+  "ordinary_tests_after_repairs": 507,
+  "full_gates": {
+    "passed": 7,
+    "blocked": 22,
+    "failed": 1
+  },
+  "handoff_receipt": "verification/v9/handoff.json"
+}

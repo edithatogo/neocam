@@ -35,3 +35,8 @@ Test counts across rows overlap and must not be summed as unique tests. The full
 
 ## Still open
 Full repo/history upload; genuine lock and pinned tool execution; Gitleaks; populated Conductor checkout; hosted CI; four critical full texts and original public-source files; external clinical/economic validation.
+
+## Post-reconciliation regression repairs
+The v7 health-threshold track was reopened after the generator was found to use the helper default year1 despite the documented age11 interpretation. A failing generator-level test was added; the generator now anchors age11 and exports the age explicitly. Thirty-six of 54 discounted utility scenarios change; primary financial results and all source/data parameters are unchanged. Corrected table: outputs/v9/utility_bridge_corrected.csv. Historical v7 utility tables/figures are retained as historical, not silently replaced.
+
+An empty stored-source manifest can no longer pass source-integrity acceptance. A regression first reproduced that vacuous pass and now rejects it.

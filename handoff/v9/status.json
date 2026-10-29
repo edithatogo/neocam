@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-29",
+  "local_tested_source_commit": "e3111a48b7408411a10605cd4028ba0caa9420eb",
+  "local_input_fingerprint": "b36ef950c46272d37ef3b1ac3715c7c082ffc20a553b9cd00bc6e4f94d915939",
+  "local_run_id": "ceaaf892-6b92-4c1b-b85d-2fe39b549e56",
+  "ordinary_tests_passed": 507,
+  "full_gate_counts": {"passed": 7, "blocked": 22, "failed": 1},
+  "run_finished": true,
+  "full_acceptance": false,
+  "gitleaks_passed": false,
+  "tracks_reconciled_sequentially": 19,
+  "remote_import_complete": false,
+  "verified_source_subtree": "cc0bbb89ece22b08f498937595d3f5c10846b0fd",
+  "verified_data_subtree": "2530ae6e70fb2ff9c5d517014b85378764e5085e",
+  "limitations": [
+    "The complete historical Git ancestry and all artifacts have not been imported.",
+    "The full local receipt is from the complete project, not this partial GitHub branch.",
+    "Pinned dependency/tool installation and genuine uv.lock remain unavailable.",
+    "Hosted run 40882632395 failed before runner allocation, with no executed steps reported.",
+    "The Conductor gitlink is preserved but its working checkout is not certified.",
+    "Critical full-text evidence and independent clinical/economic validation remain open."
+  ],
+  "utility_correction": "36 discounted secondary scenarios now start at age11; primary financial code/parameters unchanged.",
+  "pull_request": 3
+}

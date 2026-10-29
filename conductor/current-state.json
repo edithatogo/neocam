@@ -1,0 +1,38 @@
+{
+  "version": 9,
+  "date": "2026-10-29",
+  "active_tracks": [
+    "v9-reconciliation"
+  ],
+  "branch": "conductor/neocam-v9-track-reconciliation",
+  "parent_commit": "eabbb6b",
+  "release_ready": false,
+  "independent_validation": false,
+  "review": "four simulated author roles; not independent agents",
+  "analysis": "outputs/v7/results_v7.json",
+  "receipt": "verification/v9/full/receipt.json",
+  "source_manifest": "sources/manifest.json",
+  "public_original_archival_complete": false,
+  "known_limitations": [
+    "historical/missing denominators and current capability/routing",
+    "one clinical episode per forecast consultation assumption",
+    "bounded societal/family costing and unknown provider contracts",
+    "clinical outcomes not causally quantified",
+    "four critical full texts missing",
+    "original public PDF/XLSX files not acquired",
+    "Gitleaks/latest stack/real lock/hosted CI/Conductor checkout unverified"
+  ],
+  "next_acceptance": "Complete the private source import, then resolve a real lock and execute the pinned toolchain. No missing tool is a pass.",
+  "remote": "edithatogo/neocam",
+  "remote_visibility": "private",
+  "remote_import": "Partial: src/data directories exact; selected driver/assurance/tests imported. Remaining tracked files, binary artifacts and original ancestry NOT fully imported.",
+  "hosted_environment_check": {
+    "run_id": 40882632395,
+    "conclusion": "failure",
+    "runner_id": 0,
+    "executed_steps_reported": 0
+  },
+  "reconciliation": "verification/v9/tracks/reconciliation.json",
+  "utility_correction": "outputs/v9/utility_bridge_corrected.csv",
+  "remote_pr": "https://github.com/edithatogo/neocam/pull/3"
+}

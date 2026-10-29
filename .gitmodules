@@ -1,0 +1,4 @@
+[submodule "extensions/conductor"]
+	path = extensions/conductor
+	url = https://github.com/edithatogo/conductor-next.git
+	branch = main
