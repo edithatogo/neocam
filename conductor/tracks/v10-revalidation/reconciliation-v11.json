@@ -1,0 +1,21 @@
+{
+  "track": "v10-revalidation",
+  "order": 22,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v9_contracts.py",
+    "tests/test_v10_reconciliation.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 13,
+  "source_commit": "75025e9e8b662debb66627d23041e2db826dc78f",
+  "checked_at_utc": "2026-10-29T21:09:50.697074+00:00",
+  "log": "verification/v11/tracks/22-v10-revalidation.txt",
+  "log_sha256": "1bf4be99a7d6d1ff8d69790e07e082fc2f1dbbf31be4b8542172bb11bf7ae38c",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Actual plugin execution, full private binary/history migration, original public sources and independent validation remain open. Historical record from concurrent remote work preserved."
+}
