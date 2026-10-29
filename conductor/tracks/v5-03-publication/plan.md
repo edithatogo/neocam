@@ -68,3 +68,7 @@ Contract: Restore and rerun ordinary suite; clean tracked tree; no fonts/secrets
 Check: `git bundle verify; restored python -m pytest -q; ZIP test`
 
 Status/evidence: Final packaging evidence in verification/v5/packaging.json.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.

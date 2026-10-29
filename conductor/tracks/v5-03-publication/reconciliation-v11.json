@@ -1,0 +1,21 @@
+{
+  "track": "v5-03-publication",
+  "order": 14,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v5_analysis_integrity.py",
+    "tests/test_v5_assurance_scope.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 9,
+  "source_commit": "6101ed41fe077ff38292f5bd1561e5a2cd90b2c4",
+  "checked_at_utc": "2026-10-29T20:43:31.501282+00:00",
+  "log": "verification/v11/tracks/14-v5-03-publication.txt",
+  "log_sha256": "45abebc3866c7aaabc61d13e6cb2a483a865d3aaa6de60480622f0f782e9cac2",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Four critical full texts and independent review missing."
+}
