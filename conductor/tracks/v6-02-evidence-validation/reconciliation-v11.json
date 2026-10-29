@@ -1,0 +1,20 @@
+{
+  "track": "v6-02-evidence-validation",
+  "order": 16,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_validation.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 50,
+  "source_commit": "13885072adc9b6b2edc5455ffb69ad653e1a5d08",
+  "checked_at_utc": "2026-10-29T20:43:34.015844+00:00",
+  "log": "verification/v11/tracks/16-v6-02-evidence-validation.txt",
+  "log_sha256": "097eecd8b1e615f61a152426f66b8e6ca91a0ab4bbb533a120b2fb438d8b8eb9",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Simulated author review is not an independent panel; source gaps remain."
+}
