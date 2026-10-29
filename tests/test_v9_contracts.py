@@ -52,7 +52,7 @@ def test_compatibility_installs_research_dependencies():
 def test_incremental_testmon_loads_plugin_explicitly(tmp_path):
     from quality.feedback import prepare
     plan = prepare(tmp_path, 'tests', available=True, environment={})
-    assert ('-p', 'testmon') in tuple(zip(plan.command, plan.command[1:]))
+    assert ('-p', 'testmon.pytest_testmon') in tuple(zip(plan.command, plan.command[1:]))
 
 
 def test_incremental_mutation_loads_plugin_explicitly(tmp_path):
