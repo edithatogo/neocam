@@ -1,16 +1,16 @@
 {
-  "version": 10,
+  "version": 11,
   "date": "2026-10-30",
   "active_tracks": [
-    "v10-acceptance-reconciliation"
+    "v11-executable-recovery"
   ],
-  "branch": "conductor/neocam-v10-acceptance-reconciliation",
+  "branch": "conductor/neocam-v11-executable-recovery",
   "parent_commit": "7242e7f7e12d807c52e1d250a388541ada033c51",
   "release_ready": false,
   "independent_validation": false,
   "review": "four simulated author roles; not independent agents",
   "analysis": "outputs/v7/results_v7.json",
-  "receipt": "verification/v10/full/receipt.json",
+  "receipt": "verification/v11/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [
@@ -39,5 +39,5 @@
     "cb01184fafe688c8a1cdfbbece60cff35f2eb90c",
     "3021017be5349faa4ea2cdcbdef89a4e37865b6d"
   ],
-  "remote_verified_incremental_commit": "737b5e9deae49cf32f4dd0a8aa9aafed5809f64a"
+  "remote_verified_incremental_commit": "126c385d5894a2f3c8b9534a4095cd784b8bf18e"
 }

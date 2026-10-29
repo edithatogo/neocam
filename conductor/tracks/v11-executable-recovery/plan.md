@@ -9,7 +9,7 @@ Execute in this order and commit each implementation with fresh scoped evidence:
 1. [x] Dependencies/native security: reject unapproved redirects and oversized extracted executables.
 2. [x] Cached development: consume previous success seals before starting a new run; fail closed on malformed cache metadata.
 3. [x] Source provenance: validate manifest fields and failure reports without exception leaks or unsupported completeness.
-4. [ ] Historical tracks: reconcile existing requirements in sequence; preserve explicit unresolved external/scientific acceptance.
+4. [x] Historical tracks: reconcile existing requirements in sequence; preserve explicit unresolved external/scientific acceptance.
 5. [ ] Repository recovery: transfer missing original tests/supporting source, plus tested repairs, into the existing private PR. Compare remote blob hashes.
 6. [ ] Execute the full harness once on committed code; preserve every result. Restore and test the final package.
 
