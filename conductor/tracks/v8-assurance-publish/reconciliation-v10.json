@@ -1,0 +1,26 @@
+{
+  "track": "v8-assurance-publish",
+  "order": 19,
+  "checked_at_utc": "2026-10-29T17:38:04.196791+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "2cfaf8515cc75938b41755a9eaf6d7205f36f801",
+  "plan_spec_sha256": {
+    "spec.md": "7a63f446772d5849c6654ccda16f32af88a3475c35d735c09737ee5f45fc0276",
+    "plan.md": "e7943027bb8e783c09a745761db54a79209d08945233a5f8d5364f1c4c30ee87"
+  },
+  "historical_status": "in_progress",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v8_assurance.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 9,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Complete import, genuine lock and external-tool acceptance remain open.",
+  "log": "verification/v10/tracks/19-v8-assurance-publish.txt",
+  "log_sha256": "b70ba6eae386aa2016a6ad73bb42d027729039603b9d0aad6d8f6886ddff166c"
+}

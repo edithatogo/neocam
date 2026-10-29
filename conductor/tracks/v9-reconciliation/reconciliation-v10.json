@@ -1,0 +1,12 @@
+{
+  "track": "v9-reconciliation",
+  "order": 20,
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "1a2eb4f5db8ad841b057389ce47653e0e82cbd04",
+  "scope_result": "passed",
+  "passed_tests": 10,
+  "full_acceptance": false,
+  "remaining_acceptance": "Original v9 handoff not fully imported; all external acceptance remains open.",
+  "log": "verification/v10/tracks/20-v9-reconciliation.txt",
+  "log_sha256": "1253f6ca793d46eb9c48b6f1606064815d0bb62be75a701be4c49494044e47ce"
+}
