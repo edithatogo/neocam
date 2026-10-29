@@ -51,3 +51,7 @@
 - [ ] Establish the applicable contract or retrieval requirement.
 - [ ] Implement/review within that declared scope.
 - [ ] Inspect actual evidence; keep blocked/partial acceptance open.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.

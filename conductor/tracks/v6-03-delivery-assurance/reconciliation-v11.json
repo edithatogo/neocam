@@ -1,0 +1,21 @@
+{
+  "track": "v6-03-delivery-assurance",
+  "order": 17,
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v6_assurance_scope.py",
+    "tests/test_v6_documentation_contract.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed_tests": 4,
+  "source_commit": "ec4e1cba961127860dcc8eab57043668eaf3b52d",
+  "checked_at_utc": "2026-10-29T20:43:35.148724+00:00",
+  "log": "verification/v11/tracks/17-v6-03-delivery-assurance.txt",
+  "log_sha256": "99cef98de12a8b8a90abbcb2033d076bfc563ea7951d4da90263da27288d16f6",
+  "review": "same-assistant sequential technical verification; not independent validation",
+  "full_acceptance": false,
+  "remaining_acceptance": "Pinned and hosted acceptance incomplete."
+}
