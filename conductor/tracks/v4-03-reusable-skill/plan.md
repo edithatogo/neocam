@@ -57,3 +57,7 @@ Files: `outputs/v4`
 - [ ] Implement the smallest repair without changing economic assumptions.
 - [ ] Run `python scripts/package_v4.py` and inspect its actual outcome.
 - [ ] Record implemented / accepted / blocked separately and commit.
+
+## v11 reconciliation
+
+Scoped regression command executed successfully; see `reconciliation-v11.json` for the exact code, command and log hash. This does not close unexecuted integration, scientific, archival or hosted acceptance.
