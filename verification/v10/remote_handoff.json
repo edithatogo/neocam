@@ -1,0 +1,20 @@
+{
+  "repository": "edithatogo/neocam",
+  "pr": 3,
+  "remote_commit": "126c385d5894a2f3c8b9534a4095cd784b8bf18e",
+  "remote_tree": "f40d300fcacfe9a2efe21b5a28c9235e9fc97ee3",
+  "pr_state": "open",
+  "draft": true,
+  "complete_repository_uploaded": false,
+  "verified_matching_subtrees": {
+    "src": "cc0bbb89ece22b08f498937595d3f5c10846b0fd",
+    "data": "2530ae6e70fb2ff9c5d517014b85378764e5085e",
+    "quality": "338a5b5f8d2133174d012ddca7901d18ecdef721"
+  },
+  "checks": "Scoped text/blob and subtree readback; not a successful hosted test run",
+  "concurrent_updates_preserved": [
+    "cb01184fafe688c8a1cdfbbece60cff35f2eb90c",
+    "3021017be5349faa4ea2cdcbdef89a4e37865b6d",
+    "40c0c8194c359ea33e15199f7bcdcb0d350108cc"
+  ]
+}
