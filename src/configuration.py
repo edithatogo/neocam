@@ -7,7 +7,7 @@ import hashlib
 import json
 from dataclasses import asdict, dataclass, fields
 from pathlib import Path
-from typing import NoReturn
+from typing import NoReturn, TypedDict, cast
 
 from src.equipment import OwnedAsset, validate_estate
 from src.pathways_v6 import PathwaySpec
@@ -19,7 +19,67 @@ _MIN_DRAWS = 2
 _MAX_DRAWS = 1_000_000
 
 
-def strict_json(path: Path) -> dict:
+class _OwnedAssetDocument(TypedDict):
+    """Declared shape of one owned-asset record in the equipment-estate source."""
+
+    site: str
+    strategy: str
+    remaining_life_years: int
+
+
+class _ParametersDocument(TypedDict):
+    """Declared shape of the parameter source document accepted by ``Parameters``."""
+
+    equipment_cost: float
+    life_years: float
+    discount: float
+    check_minutes: float
+    loaded_hour: float
+    support: float
+    training: float
+    workflow_per_call: float
+    calls_per_pilot_site: float
+    birth_growth: float
+    state_uptake: float
+    reliability: float
+    odds_ratio: float
+    case_mix: tuple[float, float, float]
+    baseline_transfer: tuple[float, float, float]
+    rescue_rate: float
+    rescue_premium: float
+    road_cost: float
+    air_multiplier: float
+    marginal_fraction: float
+    downstream_delta: float
+    family_delta: float
+    hub_annual_cost: float
+    capacity_threshold: float
+    capacity_step_cost: float
+    mode_air_shift: float
+    include_capital: bool
+
+
+class _PathwaySpecDocument(TypedDict):
+    """Declared shape of the pathway source document accepted by ``PathwaySpec``."""
+
+    phone_delay_share: float
+    video_delay_share: float
+    extra_rescue: float
+    endpoint: str
+    local_coordination_per_call: float
+    hub_minutes_per_call: float
+    hub_hourly_rate: float
+    hub_spare_hours: float
+    hub_block_hours: float
+    hub_block_cost: float
+    hospital_marginal_fraction: float
+    hospital_resource_multiplier: float
+    local_care_multiplier: float
+    extra_pre_rescue_cost: float
+    rescue_receiving_premium: float
+
+
+def strict_json(path: Path) -> dict[str, object]:
     """Reject duplicate JSON keys and nonstandard nonfinite numbers.
 
     Returns:
@@ -42,20 +102,22 @@ def strict_json(path: Path) -> dict:
         msg = f"Nonfinite JSON value: {value}"
         raise ValueError(msg)
 
-    result = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs, parse_constant=nonfinite)
-    if not isinstance(result, dict):
+    parsed = cast(
+        "object", json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs, parse_constant=nonfinite)
+    )
+    if not isinstance(parsed, dict):
         msg = "Configuration document must be an object"
         raise TypeError(msg)
-    return result
+    return cast("dict[str, object]", parsed)
 
 
-def exact_keys(value: dict, expected: set[str], label: str) -> None:
+def exact_keys(value: object, expected: set[str], label: str) -> None:
     """Require exactly the declared keys on a configuration document.
 
     Raises:
         ValueError: If the value is not an object or its keys differ.
     """
-    if not isinstance(value, dict) or set(value) != expected:
+    if not isinstance(value, dict) or set(cast("dict[str, object]", value)) != expected:
         msg = f"{label} requires exactly {sorted(expected)}"
         raise ValueError(msg)
 
@@ -73,7 +135,7 @@ class ResolvedConfiguration:
     source_hashes: dict[str, str]
     digest: str
 
-    def snapshot(self) -> dict:
+    def snapshot(self) -> dict[str, object]:
         """Return the resolved inputs and their source digest as plain data."""
         return {
             "parameters": asdict(self.parameters),
@@ -109,7 +171,7 @@ def load_configuration(  # ruff: ignore[complex-structure, too-many-locals, too-
         msg = "Unsupported run-configuration schema"
         raise ValueError(msg)
     sources = [path]
-    docs = {}
+    docs: dict[str, dict[str, object]] = {}
     for key in ("parameters", "pathways", "equipment_estate"):
         value = recipe[key]
         if not isinstance(value, str) or Path(value).is_absolute():
@@ -124,42 +186,57 @@ def load_configuration(  # ruff: ignore[complex-structure, too-many-locals, too-
     exact_keys(docs["parameters"], {f.name for f in fields(Parameters)}, "Parameters")
     exact_keys(docs["pathways"], {f.name for f in fields(PathwaySpec)}, "Pathways")
     exact_keys(docs["equipment_estate"], {"owned_assets", "remaining_life_basis"}, "Equipment estate")
-    if not isinstance(docs["equipment_estate"]["owned_assets"], list):
+    owned_raw = docs["equipment_estate"]["owned_assets"]
+    if not isinstance(owned_raw, list):
         msg = "Owned assets must be a list"
         raise TypeError(msg)
-    owned = []
-    for item in docs["equipment_estate"]["owned_assets"]:
+    owned: list[OwnedAsset] = []
+    for item in cast("list[object]", owned_raw):
         exact_keys(item, {"site", "strategy", "remaining_life_years"}, "Owned asset")
-        owned.append(OwnedAsset(**item))
+        owned.append(OwnedAsset(**cast("_OwnedAssetDocument", item)))
     assets = tuple(owned)
     validate_estate(assets)
     with (root / "data/births_queensland_2022.csv").open(encoding="utf-8", newline="") as stream:
-        known_sites = {row["facility"] for row in csv.DictReader(stream)} | set(CHHHS) | set(TCHHS)
+        reader = csv.DictReader(stream)
+        known_sites = {row["facility"] for row in reader} | set(CHHHS) | set(TCHHS)
     if any(asset.site not in known_sites for asset in assets):
         msg = "Unknown site in owned equipment estate"
         raise ValueError(msg)
-    run = recipe["run"]
+    run = cast("dict[str, object]", recipe["run"])
     exact_keys(run, {"draws", "seed", "portfolios"}, "Run controls")
-    if type(run["draws"]) is not int or not _MIN_DRAWS <= run["draws"] <= _MAX_DRAWS:
+    draws_raw = run["draws"]
+    if type(draws_raw) is not int or not _MIN_DRAWS <= draws_raw <= _MAX_DRAWS:
         msg = "Draw count must be an integer in 2..1000000"
         raise ValueError(msg)
-    if type(run["seed"]) is not int or run["seed"] < 0:
+    seed_raw = run["seed"]
+    if type(seed_raw) is not int or seed_raw < 0:
         msg = "Seed must be a nonnegative integer"
         raise ValueError(msg)
-    networks = run["portfolios"]
+    portfolios_raw = run["portfolios"]
+    portfolios = cast("list[object]", portfolios_raw) if isinstance(portfolios_raw, list) else None
     if (
-        not isinstance(networks, list)
-        or not networks
-        or any(not isinstance(k, str) for k in networks)
-        or len(set(networks)) != len(networks)
-        or set(networks) - {"pilot", "chhhs", "chhhs_tchhs", "spokes"}
+        portfolios is None
+        or not portfolios
+        or any(not isinstance(k, str) for k in portfolios)
+        or len(set(portfolios)) != len(portfolios)
+        or set(portfolios) - {"pilot", "chhhs", "chhhs_tchhs", "spokes"}
     ):
         msg = "Unknown, empty or repeated portfolio"
         raise ValueError(msg)
-    p, s = Parameters(**docs["parameters"]), PathwaySpec(**docs["pathways"])
+    p = Parameters(**cast("_ParametersDocument", cast("object", docs["parameters"])))
+    s = PathwaySpec(**cast("_PathwaySpecDocument", cast("object", docs["pathways"])))
     if any(a.remaining_life_years > p.life_years for a in assets):
         msg = "Remaining asset life exceeds equipment life"
         raise ValueError(msg)
     hashes = {f.relative_to(root).as_posix(): hashlib.sha256(f.read_bytes()).hexdigest() for f in sources}
     digest = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode()).hexdigest()
-    return ResolvedConfiguration(p, s, assets, run["draws"], run["seed"], tuple(networks), hashes, digest)
+    return ResolvedConfiguration(
+        p,
+        s,
+        assets,
+        draws_raw,
+        seed_raw,
+        tuple(k for k in portfolios if isinstance(k, str)),
+        hashes,
+        digest,
+    )

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 
@@ -38,8 +38,8 @@ class Eligibility:
         Raises:
             ValueError: If the site, strategy, status or evidence is invalid.
         """
-        invalid_site = not isinstance(self.site, str) or not self.site.strip()
-        invalid_evidence = not isinstance(self.evidence, str) or not self.evidence.strip()
+        invalid_site = not isinstance(self.site, str) or not self.site.strip()  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may pass a non-string
+        invalid_evidence = not isinstance(self.evidence, str) or not self.evidence.strip()  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may pass a non-string
         if invalid_site or self.strategy not in KEYS or self.status not in ELIGIBILITY_STATES or invalid_evidence:
             msg = "Invalid eligibility record"
             raise ValueError(msg)
@@ -59,18 +59,18 @@ class DeploymentPolicy:
         Raises:
             ValueError: If the name, conditional flag or assignments are invalid.
         """
-        if not isinstance(self.name, str) or not self.name.strip() or type(self.conditional) is not bool:
+        if not isinstance(self.name, str) or not self.name.strip() or type(self.conditional) is not bool:  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction
             msg = "Invalid deployment policy identity"
             raise ValueError(msg)
         # Freeze caller-owned lists. Validate row shape before conversion.
-        if not isinstance(self.assignments, (tuple, list)) or not self.assignments:
+        if not isinstance(self.assignments, (tuple, list)) or not self.assignments:  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction
             msg = "Nonempty assignments required"
             raise ValueError(msg)
         for row in self.assignments:
             if (
-                not isinstance(row, (tuple, list))
+                not isinstance(row, (tuple, list))  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction
                 or len(row) != _ASSIGNMENT_WIDTH
-                or any(not isinstance(v, str) or not v.strip() for v in row)
+                or any(not isinstance(v, str) or not v.strip() for v in row)  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may pass non-strings
                 or row[1] not in KEYS
             ):
                 msg = "Invalid policy assignment"
@@ -88,9 +88,9 @@ def eligibility_catalogue(sites: list[Site], *, allow_hypothetical: bool = False
         ValueError: If the hypothetical-permission flag is not boolean.
     """
     if type(allow_hypothetical) is not bool:
-        msg = "Hypothetical permission must be boolean"
+        msg = "Hypothetical permission must be boolean"  # pyright: ignore[reportUnreachable] -- runtime guard: untyped callers may pass a truthy non-boolean; the annotation cannot enforce this
         raise ValueError(msg)
-    records = []
+    records: list[Eligibility] = []
     for site in sites:
         for key in KEYS:
             if key == "telephone":
@@ -117,11 +117,11 @@ def validate_policy(sites: list[Site], policy: DeploymentPolicy, eligibility: tu
     Raises:
         ValueError: If the scope, policy or eligibility records are inconsistent.
     """
-    if not sites or len({s.name for s in sites}) != len(sites) or not isinstance(policy, DeploymentPolicy):
+    if not sites or len({s.name for s in sites}) != len(sites) or not isinstance(policy, DeploymentPolicy):  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: untyped callers may pass a non-policy
         msg = "Unique nonempty site scope and typed policy required"
         raise ValueError(msg)
     names = {s.name for s in sites}
-    if any(not isinstance(e, Eligibility) or e.site not in names for e in eligibility):
+    if any(not isinstance(e, Eligibility) or e.site not in names for e in eligibility):  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: untyped callers may pass a non-record  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may pass a non-record
         msg = "Unknown site or malformed eligibility"
         raise ValueError(msg)
     records = {(e.site, e.strategy): e for e in eligibility}
@@ -163,8 +163,8 @@ def policy_catalogue(sites: list[Site]) -> tuple[DeploymentPolicy, ...]:
         )
         for new in ("panda", "obsbot", "mobile", "fixed")
     )
-    unique = []
-    seen = set()
+    unique: list[DeploymentPolicy] = []
+    seen: set[tuple[tuple[str, str], ...]] = set()
     for policy in result:
         if policy.assignments not in seen:
             unique.append(policy)
@@ -185,11 +185,11 @@ def evaluate_policies(  # ruff: ignore[too-many-arguments, too-many-positional-a
     spec: PathwaySpec,
     assets: tuple[OwnedAsset, ...],
     *,
-    inputs: dict | None = None,
-    structural_draws: dict | None = None,
+    inputs: dict[str, np.ndarray] | None = None,
+    structural_draws: dict[str, np.ndarray] | None = None,
     activity: ActivitySpec | None = None,
     retain: bool = True,
-    site_calls: dict | None = None,
+    site_calls: dict[str, np.ndarray] | None = None,
 ) -> dict[str, dict[str, np.ndarray]]:
     """Evaluate each distinct group once within this call, on the same input draws.
 
@@ -202,7 +202,7 @@ def evaluate_policies(  # ruff: ignore[too-many-arguments, too-many-positional-a
     Raises:
         ValueError: If the policies, retention flag or site override is invalid.
     """
-    if not policies or any(not isinstance(p, DeploymentPolicy) for p in policies):
+    if not policies or any(not isinstance(p, DeploymentPolicy) for p in policies):  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: untyped callers may pass a non-policy  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may pass a non-policy
         msg = "Nonempty typed policies required"
         raise ValueError(msg)
     if len({p.name for p in policies}) != len(policies):
@@ -212,16 +212,16 @@ def evaluate_policies(  # ruff: ignore[too-many-arguments, too-many-positional-a
         validate_policy(sites, policy, eligibility)
     validate_estate(assets)
     if type(retain) is not bool:
-        msg = "Retention must be boolean"
+        msg = "Retention must be boolean"  # pyright: ignore[reportUnreachable] -- runtime guard: untyped callers may pass a truthy non-boolean; the annotation cannot enforce this
         raise ValueError(msg)
     site_calls = {} if site_calls is None else site_calls
     if set(site_calls) - {s.name for s in sites}:
         msg = "Unknown site in activity override"
         raise ValueError(msg)
-    calculated = {}
-    answers = {}
+    calculated: dict[tuple[str, ...], dict[str, dict[str, np.ndarray]]] = {}
+    answers: dict[str, dict[str, np.ndarray]] = {}
     for policy in policies:
-        selected = []
+        selected: list[dict[str, np.ndarray]] = []
         for key, group in _groups(sites, policy).items():
             identity = tuple(s.name for s in group)
             if identity not in calculated:
@@ -238,7 +238,9 @@ def evaluate_policies(  # ruff: ignore[too-many-arguments, too-many-positional-a
             if retain and key != "telephone":
                 apply_retention({key: arm}, group, assets, (key,))
             selected.append(arm)
-        out = {name: sum((r[name] for r in selected), np.zeros_like(selected[0][name])) for name in selected[0]}
+        out: dict[str, np.ndarray] = {
+            name: sum((r[name] for r in selected), np.zeros_like(selected[0][name])) for name in selected[0]
+        }
         out["conditional_rescue_risk"] = np.divide(
             out["delayed_rescues"],
             out["initially_local"],
@@ -262,11 +264,11 @@ def evaluate_policy(  # ruff: ignore[too-many-arguments, too-many-positional-arg
     spec: PathwaySpec,
     assets: tuple[OwnedAsset, ...],
     *,
-    inputs: dict | None = None,
-    structural_draws: dict | None = None,
+    inputs: dict[str, np.ndarray] | None = None,
+    structural_draws: dict[str, np.ndarray] | None = None,
     activity: ActivitySpec | None = None,
     retain: bool = True,
-    site_calls: dict | None = None,
+    site_calls: dict[str, np.ndarray] | None = None,
 ) -> dict[str, np.ndarray]:
     """Evaluate one policy, retaining the same public typed interface and safeguards.
 
@@ -300,8 +302,8 @@ def policy_cash_budget(  # ruff: ignore[too-many-arguments, too-many-positional-
     activity: ActivitySpec | None = None,
     retain: bool = True,
     years: int = 7,
-    site_calls: dict | None = None,
-) -> list[dict]:
+    site_calls: dict[str, np.ndarray] | None = None,
+) -> list[dict[str, float]]:
     """Combine site-estate purchases with one portfolio-level annual hub capacity bill.
 
     Returns:
@@ -316,7 +318,7 @@ def policy_cash_budget(  # ruff: ignore[too-many-arguments, too-many-positional-
     if type(years) is not int or not 1 <= years <= _MAX_BUDGET_YEARS:
         msg = "Budget years must be an integer in 1..100"
         raise ValueError(msg)
-    tables = []
+    tables: list[list[dict[str, float]]] = []
     for key, group in _groups(sites, policy).items():
         names = {s.name for s in group}
         tables.append(
@@ -332,17 +334,17 @@ def policy_cash_budget(  # ruff: ignore[too-many-arguments, too-many-positional-
                 site_calls={k: v for k, v in (site_calls or {}).items() if k in names},
             )
         )
-    rows = []
+    rows: list[dict[str, float]] = []
     for i in range(years):
         capital = sum(t[i]["capital"] for t in tables)
-        running = float(result["cash_running_cost"][0])
+        running = float(cast("float", result["cash_running_cost"][0]))
         rows.append({
             "year": i + 1,
             "capital": capital,
             "purchases": sum(t[i]["purchases"] for t in tables),
             "new_installations": sum(t[i]["new_installations"] for t in tables),
             "cash_running": running,
-            "hub_cash_capacity": float(result["hub_cash_cost"][0]),
+            "hub_cash_capacity": float(cast("float", result["hub_cash_cost"][0])),
             "cash_expenditure": capital + running,
         })
     return rows

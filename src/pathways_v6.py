@@ -8,15 +8,16 @@ original modules; this module does not call the legacy site-count cost kernel.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass
 from numbers import Real
-from typing import Any
+from typing import cast
 
 import numpy as np
 
 from src.activity import ActivitySpec
-from src.statewide import Parameters, Site, _base_arrays, _site_modes, sample_inputs
-from src.strategies import KEYS, STRATEGIES, _validate_overrides
+from src.statewide import Parameters, Site, _base_arrays, _site_modes, sample_inputs  # pyright: ignore[reportPrivateUsage] -- in-package draw/kernel helpers shared with the pathway layer
+from src.strategies import KEYS, STRATEGIES, _validate_overrides  # pyright: ignore[reportPrivateUsage] -- in-package override validator shared with the pathway layer
 
 NEP26 = 7418.0
 # NEP Determination 2026-27, Appendix H, PDF pp82-83. Text-extracted rows.
@@ -52,10 +53,15 @@ class PathwaySpec:
         Raises:
             ValueError: If any declared assumption is negative or out of range.
         """
-        for name, value in asdict(self).items():
+        for name, value in cast("dict[str, object]", asdict(self)).items():
             if name == "endpoint":
                 continue
-            if isinstance(value, bool) or not isinstance(value, Real) or not np.isfinite(value) or value < 0:
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, Real)
+                or not np.isfinite(cast("float", cast("object", value)))
+                or value < 0
+            ):
                 msg = f"{name} must be finite non-negative numeric"
                 raise ValueError(msg)
         for name in ("phone_delay_share", "video_delay_share", "extra_rescue", "hospital_marginal_fraction"):
@@ -195,7 +201,7 @@ def hospital_cost(  # ruff: ignore[too-many-arguments, too-many-positional-argum
         The per-draw priced hospital resource cost.
     """
     for a in (immediate, rescue, local, origin, receiving, local_episode, extra_pre_rescue):
-        _array(a, "hospital component")
+        _ = _array(a, "hospital component")
     return (immediate + rescue) * (origin + receiving) + local * local_episode + rescue * extra_pre_rescue
 
 
@@ -221,7 +227,7 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
     *,
     inputs: dict[str, np.ndarray] | None = None,
     sunk: tuple[str, ...] = (),
-    overrides: dict[str, dict[str, Any]] | None = None,
+    overrides: Mapping[str, Mapping[str, object]] | None = None,
     structural_draws: dict[str, np.ndarray] | None = None,
     site_calls: dict[str, np.ndarray] | None = None,
     activity: ActivitySpec | None = None,
@@ -243,14 +249,14 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
         raise ValueError(msg)
     p, s = parameters or Parameters(), spec or PathwaySpec()
     activity = ActivitySpec() if activity is None else activity
-    if not isinstance(activity, ActivitySpec):
-        msg = "Activity requires ActivitySpec"
+    if not isinstance(activity, ActivitySpec):  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: untyped callers may pass a non-spec object
+        msg = "Activity requires ActivitySpec"  # pyright: ignore[reportUnreachable] -- runtime guard: the annotation cannot enforce the caller's runtime type
         raise TypeError(msg)
     x = inputs if inputs is not None else _base_arrays(p, 1)
     n = len(x["odds_ratio"])
     for name, value in x.items():
         if name not in {"downstream_delta", "mode_air_shift"}:
-            _array(value, name)
+            _ = _array(value, name)
         if np.asarray(value).shape != ((n, 3) if name in {"case_mix", "baseline_transfer"} else (n,)):
             msg = f"bad input shape: {name}"
             raise ValueError(msg)
@@ -260,7 +266,7 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
     if np.any(x["life_years"] <= 0):
         msg = "positive equipment life required"
         raise ValueError(msg)
-    overrides = overrides or {}
+    overrides = overrides or dict[str, Mapping[str, object]]()
     _validate_overrides(overrides, n)
     structural_draws = structural_draws or {}
     allowed = {"delay_share", "hospital_fraction", "hospital_multiplier", "local_multiplier", "pre_rescue"}
@@ -307,7 +313,11 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
     for strategy in STRATEGIES:
         key, video = strategy.key, strategy.key != "telephone"
         fields = overrides.get(key, {})
-        rel = np.broadcast_to(np.asarray(fields.get("reliability", x["reliability"])), (n,)) if video else np.zeros(n)
+        rel = (
+            np.broadcast_to(np.asarray(cast("Real | np.ndarray", fields.get("reliability", x["reliability"]))), (n,))
+            if video
+            else np.zeros(n)
+        )
         paths = path_probabilities(
             x["baseline_transfer"], x["odds_ratio"], rel, dp, dv, extra_rescue=s.extra_rescue, endpoint=s.endpoint
         )
@@ -371,7 +381,9 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
         )
         out.update({k: np.zeros(n) for k in zero_names})
         if video:
-            workflow = np.broadcast_to(np.asarray(fields.get("workflow_per_call", x["workflow_per_call"])), (n,))
+            workflow = np.broadcast_to(
+                np.asarray(cast("Real | np.ndarray", fields.get("workflow_per_call", x["workflow_per_call"]))), (n,)
+            )
             scale = workflow / 75.0  # Explicit split of historical staff allowance, not an extra charge.
             hub = hub_cost(out["contacts"], scale * s.hub_minutes_per_call, s)
             out["hub_hours"], out["hub_resource_cost"], out["hub_cash_cost"] = (
@@ -385,11 +397,19 @@ def compare_v6(  # ruff: ignore[complex-structure, too-many-arguments, too-many-
                 52 * x["check_minutes"] / 60 * x["loaded_hour"] + x["support"] + x["training"]
             )
             capital = np.broadcast_to(
-                np.asarray(fields.get("installed_cost", x["equipment_cost"] * strategy.installed_cost / 10000)), (n,)
+                np.asarray(
+                    cast(
+                        "Real | np.ndarray",
+                        fields.get("installed_cost", x["equipment_cost"] * strategy.installed_cost / 10000),
+                    )
+                ),
+                (n,),
             ).copy() * len(sites)
-            life = np.broadcast_to(np.asarray(fields.get("life_years", x["life_years"])), (n,))
+            life = np.broadcast_to(
+                np.asarray(cast("Real | np.ndarray", fields.get("life_years", x["life_years"]))), (n,)
+            )
             out["full_purchase_capital"] = capital
-            out["attributed_capital"] = capital * fields.get("capital_share", 1.0)
+            out["attributed_capital"] = capital * cast("Real | np.ndarray", fields.get("capital_share", 1.0))
             out["incremental_purchase_capital"] = capital.copy() if key not in sunk else np.zeros(n)
             if p.include_capital and key not in sunk:
                 out["capital_annualised"] = _annuity_vector(out["attributed_capital"], life, x["discount"])
@@ -473,15 +493,17 @@ def cash_budget(  # ruff: ignore[too-many-arguments, too-many-positional-argumen
     out = compare_v6(sites, p, spec, sunk=(strategy,) if incumbent and strategy != "telephone" else ())[strategy]
     life = int(p.life_years)
     first = remaining_life if incumbent else 0
-    rows = []
+    rows: list[dict[str, float]] = []
     for y in range(years):
-        capital = float(out["full_purchase_capital"][0]) if y >= first and (y - first) % life == 0 else 0.0
-        cash = float(out["cash_running_cost"][0])
+        capital = (
+            float(cast("float", out["full_purchase_capital"][0])) if y >= first and (y - first) % life == 0 else 0.0
+        )
+        cash = float(cast("float", out["cash_running_cost"][0]))
         rows.append({
             "year": y + 1,
             "capital": capital,
             "cash_running": cash,
-            "hub_cash_capacity": float(out["hub_cash_cost"][0]),
+            "hub_cash_capacity": float(cast("float", out["hub_cash_cost"][0])),
             "cash_expenditure": capital + cash,
         })
     return rows

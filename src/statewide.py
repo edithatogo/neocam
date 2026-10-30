@@ -16,11 +16,23 @@ import math
 from dataclasses import asdict, dataclass
 from numbers import Real
 from pathlib import Path
-from typing import Any
+from typing import TypedDict, cast
 
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class _SiteClassification(TypedDict):
+    """Declared shape of the retained site-classification source document."""
+
+    aliases: dict[str, str]
+    nicu_anznn_2023: list[str]
+    scn_anznn_2023: list[str]
+    geographic_remote_proxy: list[str]
+    geographic_metro_proxy: list[str]
+    pilot_sites: list[str]
+
 
 # Calendar-year guard bounds for a birth-year record.
 _MIN_YEAR = 1900
@@ -57,7 +69,7 @@ class Site:
         Raises:
             ValueError: If any site field is missing or outside its allowed set.
         """
-        if not isinstance(self.name, str) or not self.name.strip():
+        if not isinstance(self.name, str) or not self.name.strip():  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction
             msg = "Site name must be non-empty"
             raise ValueError(msg)
         if type(self.births) is not int or self.births < 0:
@@ -120,18 +132,23 @@ class Parameters:
             msg = "include_capital must be boolean"
             raise ValueError(msg)
         for name in ("case_mix", "baseline_transfer"):
-            values = getattr(self, name)
-            if not isinstance(values, (list, tuple)):
+            raw = cast("object", getattr(self, name))
+            if not isinstance(raw, (list, tuple)):
                 msg = f"{name} must be a three-value sequence"
                 raise TypeError(msg)
-            if any((not isinstance(value, Real) or isinstance(value, bool)) for value in values):
+            values = cast("list[object] | tuple[object, ...]", raw)
+            if any(isinstance(value, bool) or not isinstance(value, Real) for value in values):
                 msg = f"{name} values must be numeric, not boolean"
                 raise ValueError(msg)
             object.__setattr__(self, name, tuple(values))
-        for key, value in asdict(self).items():
+        for key, value in cast("dict[str, object]", asdict(self)).items():
             if key in {"case_mix", "baseline_transfer", "include_capital"}:
                 continue
-            if not isinstance(value, Real) or isinstance(value, bool) or not math.isfinite(value):
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, Real)
+                or not math.isfinite(cast("float", cast("object", value)))
+            ):
                 msg = f"{key} must be finite numeric, not boolean"
                 raise ValueError(msg)
         for key in ("state_uptake", "reliability", "rescue_rate", "marginal_fraction"):
@@ -185,7 +202,7 @@ def load_sites(  # ruff: ignore[complex-structure, too-many-branches] -- one ord
     Raises:
         ValueError: If the birth table is malformed, duplicated or of mixed years.
     """
-    cfg = json.loads((ROOT / "data/site_classification.json").read_text())
+    cfg = cast("_SiteClassification", cast("object", json.loads((ROOT / "data/site_classification.json").read_text())))
     totals: dict[str, int] = {}
     years: set[int] = set()
     seen: set[str] = set()
@@ -222,7 +239,7 @@ def load_sites(  # ruff: ignore[complex-structure, too-many-branches] -- one ord
         msg = "Birth table must contain one year only"
         raise ValueError(msg)
     birth_year = years.pop()
-    sites = []
+    sites: list[Site] = []
     for name, births in sorted(totals.items()):
         if name in cfg["nicu_anznn_2023"]:
             group = "hub"
@@ -326,7 +343,7 @@ def _odds(p: np.ndarray, odds_ratio: np.ndarray) -> np.ndarray:
 def _base_arrays(p: Parameters, n: int) -> dict[str, np.ndarray]:
     values = {
         k: np.full(n, v, dtype=float)
-        for k, v in asdict(p).items()
+        for k, v in cast("dict[str, object]", asdict(p)).items()
         if isinstance(v, (float, int)) and not isinstance(v, bool)
     }
     values["case_mix"] = np.tile(p.case_mix, (n, 1))
@@ -426,7 +443,7 @@ def _kernel(  # ruff: ignore[too-many-locals] -- published historical kernel kep
     return out
 
 
-def evaluate(sites: list[Site], parameters: Parameters | None = None) -> dict[str, Any]:
+def evaluate(sites: list[Site], parameters: Parameters | None = None) -> dict[str, object]:
     """Evaluate the historical deterministic single-draw scenario.
 
     Returns:
@@ -434,7 +451,7 @@ def evaluate(sites: list[Site], parameters: Parameters | None = None) -> dict[st
     """
     p = parameters or Parameters()
     results = _kernel(sites, p, _base_arrays(p, 1))
-    result: dict[str, Any] = {k: float(v[0]) for k, v in results.items()}
+    result: dict[str, object] = {k: float(cast("float", v[0])) for k, v in results.items()}
     result.update({
         "site_count": len(sites),
         "births_2022": sum(s.births for s in sites),
@@ -510,7 +527,7 @@ def psa(
     seed: int = 20261027,
     parameters: Parameters | None = None,
     effect_mode: str = "attenuated",
-) -> dict[str, Any]:
+) -> dict[str, object]:
     """Common state-wide draws preserve systematic uncertainty at all scales.
 
     Returns:
@@ -534,9 +551,9 @@ def psa(
             "seed": seed,
             "effect_mode": effect_mode,
             "mean": float(np.mean(draws["net_saving"])),
-            "median": float(q[1]),
-            "lower": float(q[0]),
-            "upper": float(q[2]),
+            "median": float(cast("float", q[1])),
+            "lower": float(cast("float", q[0])),
+            "upper": float(cast("float", q[2])),
             "probability_cost_saving": prob,
             "mcse_probability": math.sqrt(prob * (1 - prob) / n),
             "mean_avoided_transfers": float(np.mean(draws["avoided_transfers"])),
@@ -614,14 +631,14 @@ def budget_impact(
         raise ValueError(msg)
     p = parameters or Parameters()
     r = evaluate(sites, p)
-    records = []
+    records: list[dict[str, float]] = []
     for year in range(1, years + 1):
         capital = len(sites) * p.equipment_cost if replacement and (year - 1) % max(1, round(p.life_years)) == 0 else 0
-        cash = capital + r["cash_running_cost"]
+        cash = capital + cast("float", r["cash_running_cost"])
         records.append({
             "year": year,
             "cash_expenditure": cash,
             "capital": capital,
-            "resource_net_saving_excluding_funding": r["gross_resource_benefit"] - cash,
+            "resource_net_saving_excluding_funding": cast("float", r["gross_resource_benefit"]) - cash,
         })
     return records

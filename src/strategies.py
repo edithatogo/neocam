@@ -6,13 +6,14 @@ video effects are identical by assumption, not demonstrated device equivalence.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, replace
 from numbers import Real
-from typing import Any
+from typing import cast
 
 import numpy as np
 
-from src.statewide import Parameters, Site, _base_arrays, _kernel, sample_inputs
+from src.statewide import Parameters, Site, _base_arrays, _kernel, sample_inputs  # pyright: ignore[reportPrivateUsage] -- in-package draw helpers shared with the strategy layer
 
 
 @dataclass(frozen=True)
@@ -65,7 +66,7 @@ _OVERRIDE_RANGES = {
 }
 
 
-def _validate_overrides(overrides: dict[str, dict[str, Any]], n: int) -> None:
+def _validate_overrides(overrides: Mapping[str, Mapping[str, object]], n: int) -> None:
     for key, fields in overrides.items():
         if key not in KEYS or key == "telephone":
             msg = "Overrides require a named video strategy"
@@ -93,7 +94,7 @@ def compare_inputs(
     inputs: dict[str, np.ndarray],
     *,
     sunk: tuple[str, ...] = (),
-    overrides: dict[str, dict[str, Any]] | None = None,
+    overrides: Mapping[str, Mapping[str, object]] | None = None,
 ) -> dict[str, dict[str, np.ndarray]]:
     """Evaluate every strategy on the SAME draw, retaining systematic correlations.
 
@@ -113,9 +114,9 @@ def compare_inputs(
         msg = "Invalid sunk strategy list"
         raise ValueError(msg)
     n = len(inputs["odds_ratio"])
-    overrides = overrides or {}
+    overrides = overrides or dict[str, Mapping[str, object]]()
     _validate_overrides(overrides, n)
-    result = {}
+    result: dict[str, dict[str, np.ndarray]] = {}
     reference = _kernel(sites, parameters, inputs)
     for strategy in STRATEGIES:
         if strategy.key == "telephone":
@@ -133,7 +134,7 @@ def compare_inputs(
             if name == "capital_share":
                 continue
             target = "equipment_cost" if name == "installed_cost" else name
-            x[target] = np.broadcast_to(np.asarray(value, dtype=float), (n,)).copy()
+            x[target] = np.broadcast_to(np.asarray(cast("Real | np.ndarray", value), dtype=float), (n,)).copy()
         purchase = x["equipment_cost"].copy() * len(sites)
         x["equipment_cost"] *= fields.get("capital_share", 1.0)
         p = replace(parameters, include_capital=parameters.include_capital and strategy.key not in sunk)
@@ -150,17 +151,17 @@ def compare(
     parameters: Parameters | None = None,
     *,
     sunk: tuple[str, ...] = (),
-    overrides: dict[str, dict[str, Any]] | None = None,
+    overrides: Mapping[str, Mapping[str, object]] | None = None,
 ) -> dict[str, dict[str, float]]:
     """Return exact deterministic annual incremental resource results."""
     p = parameters or Parameters()
     draws = compare_inputs(sites, p, _base_arrays(p, 1), sunk=sunk, overrides=overrides)
-    return {key: {name: float(a[0]) for name, a in values.items()} for key, values in draws.items()}
+    return {key: {name: float(cast("float", a[0])) for name, a in values.items()} for key, values in draws.items()}
 
 
 def summarise(
     draws: dict[str, dict[str, np.ndarray]], *, eligible: tuple[str, ...] = KEYS, metric: str = "net_saving"
-) -> dict[str, Any]:
+) -> dict[str, object]:
     """Summarise joint choices; expected value, probability best and regret differ.
 
     Returns:
@@ -180,16 +181,16 @@ def summarise(
     # Fractional credit avoids arm-order bias in genuinely tied decisions.
     tied = np.isclose(matrix, best[:, None], rtol=1e-12, atol=1e-8)
     shares = tied / tied.sum(axis=1, keepdims=True)
-    summary = {}
+    summary: dict[str, dict[str, float]] = {}
     for j, k in enumerate(eligible):
         a = matrix[:, j]
         q = np.quantile(a, [0.025, 0.5, 0.975])
         prob = float(np.mean(a > 0))
         summary[k] = {
             "mean": float(a.mean()),
-            "lower": float(q[0]),
-            "median": float(q[1]),
-            "upper": float(q[2]),
+            "lower": float(cast("float", q[0])),
+            "median": float(cast("float", q[1])),
+            "upper": float(cast("float", q[2])),
             "p_saving_vs_telephone": prob,
             "p_optimal": float(shares[:, j].mean()),
             "expected_regret": float((best - a).mean()),
@@ -197,7 +198,7 @@ def summarise(
             "mean_avoided_transfers": float(draws[k]["avoided_transfers"].mean()),
         }
     evpi = float(best.mean() - np.max(matrix.mean(axis=0)))
-    pairwise = []
+    pairwise: list[dict[str, object]] = []
     for j, a in enumerate(eligible):
         for z in range(j + 1, len(eligible)):
             b = eligible[z]
@@ -208,8 +209,8 @@ def summarise(
                 "b": b,
                 "mean_incremental_saving_a_vs_b": float(d.mean()),
                 "p_a_more_saving": float(np.mean(d > 0)),
-                "lower": float(q[0]),
-                "upper": float(q[2]),
+                "lower": float(cast("float", q[0])),
+                "upper": float(cast("float", q[2])),
             })
     return {
         "summary": summary,
@@ -230,9 +231,9 @@ def compare_psa(  # ruff: ignore[too-many-arguments] -- published PSA API
     effect_mode: str = "attenuated",
     *,
     sunk: tuple[str, ...] = (),
-    overrides: dict[str, dict[str, Any]] | None = None,
+    overrides: Mapping[str, Mapping[str, object]] | None = None,
     eligible: tuple[str, ...] = KEYS,
-) -> dict[str, Any]:
+) -> dict[str, object]:
     """Joint PSA with paired rather than independently sampled comparators.
 
     Returns:

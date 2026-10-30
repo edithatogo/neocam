@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import math
-from dataclasses import asdict, dataclass
-from typing import Any
+from dataclasses import dataclass, replace
+from typing import cast
 
 import numpy as np
 
@@ -104,7 +104,7 @@ def deterministic_scenario(
         The legacy deterministic cost and saving components.
     """
     cps = x.consultations_per_site if consultations_per_site is None else consultations_per_site
-    xx = ModelInputs(**{**asdict(x), "consultations_per_site": cps})
+    xx = replace(x, consultations_per_site=cps)
     p_video = odds_to_probability(xx.usual_transfer_probability, xx.video_transfer_odds_ratio)
     effect = xx.usual_transfer_probability - p_video if transfer_reduction_abs is None else transfer_reduction_abs
     consultations = xx.sites * cps
@@ -156,13 +156,13 @@ def clinical_extension(  # ruff: ignore[too-many-arguments, too-many-positional-
 
 
 def _lognormal(rng: np.random.Generator, median: float, gsd: float, n: int) -> np.ndarray:
-    return rng.lognormal(np.log(median), np.log(gsd), n)
+    return rng.lognormal(cast("float", np.log(median)), cast("float", np.log(gsd)), n)
 
 
 def run_psa(  # ruff: ignore[too-many-locals] -- one linear paired-sampling routine
     n: int = 20_000,
     seed: int = 20261027,
-) -> dict[str, Any]:
+) -> dict[str, object]:
     """Run the legacy probabilistic scenario and return its summary and histogram.
 
     Returns:
@@ -174,7 +174,7 @@ def run_psa(  # ruff: ignore[too-many-locals] -- one linear paired-sampling rout
     mean, sd = 0.65, 0.15
     concentration = mean * (1 - mean) / (sd**2) - 1
     p0 = rng.beta(mean * concentration, (1 - mean) * concentration, n)
-    odds_ratio = np.exp(rng.normal(np.log(0.70), 0.35, n))
+    odds_ratio = np.exp(rng.normal(cast("float", np.log(0.70)), 0.35, n))
     p1 = odds_ratio * p0 / (1 - p0 + odds_ratio * p0)
     effect = p0 - p1
 
@@ -201,22 +201,23 @@ def run_psa(  # ruff: ignore[too-many-locals] -- one linear paired-sampling rout
     bins = np.linspace(float(np.quantile(net, 0.005)), float(np.quantile(net, 0.995)), 21)
     counts, edges = np.histogram(net, bins=bins)
     histogram = [
-        {"midpoint": float((edges[i] + edges[i + 1]) / 2), "count": int(counts[i])} for i in range(len(counts))
+        {"midpoint": float(cast("float", (edges[i] + edges[i + 1]) / 2)), "count": int(cast("int", counts[i]))}
+        for i in range(len(counts))
     ]
     summary = {
         "iterations": int(n),
         "mean_net_saving": float(np.mean(net)),
-        "median_net_saving": float(q[1]),
-        "net_saving_p025": float(q[0]),
-        "net_saving_p975": float(q[2]),
+        "median_net_saving": float(cast("float", q[1])),
+        "net_saving_p025": float(cast("float", q[0])),
+        "net_saving_p975": float(cast("float", q[2])),
         "probability_cost_saving": float(np.mean(net > 0)),
         "mean_societal_net_saving": float(np.mean(societal_net)),
         "mean_avoided_transfers": float(np.mean(avoided)),
         "mean_programme_cost": float(np.mean(programme_cost)),
         "mean_transfer_cost": float(np.mean(transfer_cost)),
         "transfer_effect_mean": float(np.mean(effect)),
-        "transfer_effect_p025": float(eq[0]),
-        "transfer_effect_median": float(eq[1]),
-        "transfer_effect_p975": float(eq[2]),
+        "transfer_effect_p025": float(cast("float", eq[0])),
+        "transfer_effect_median": float(cast("float", eq[1])),
+        "transfer_effect_p975": float(cast("float", eq[2])),
     }
     return {"summary": summary, "histogram": histogram}

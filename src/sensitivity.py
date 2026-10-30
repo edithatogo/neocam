@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import product
+from typing import cast
 
 import numpy as np
 
-from src.statewide import Parameters, Site, _base_arrays
+from src.statewide import Parameters, Site, _base_arrays  # pyright: ignore[reportPrivateUsage] -- in-package draw helper shared with the sensitivity layer
 from src.strategies import KEYS, compare_inputs
 
 
@@ -29,7 +30,7 @@ VARIABLES = (
         "Video transfer odds ratio",
         0.35,
         1.3,
-        float(np.sqrt(0.48)),
+        float(cast("float", np.sqrt(0.48))),
         "Common clinical-effect uncertainty, including no effect/increased transfer",
     ),
     Variable(
@@ -197,47 +198,56 @@ def _check_points(points: int) -> None:
         raise ValueError(msg)
 
 
-def one_way(sites: list[Site], points: int = 21, *, sunk: tuple[str, ...] = ()) -> list[dict]:
+def _row(matrix: np.ndarray, index: int) -> np.ndarray:
+    """Return one outcome row; numpy integer indexing is untyped in the stubs."""
+    return cast("np.ndarray", matrix[index])
+
+
+def one_way(sites: list[Site], points: int = 21, *, sunk: tuple[str, ...] = ()) -> list[dict[str, object]]:
     """Full curves around a fixed reference; not jointly sampled priors.
 
     Returns:
         One row per parameter, grid point and strategy.
     """
     _check_points(points)
-    rows = []
+    rows: list[dict[str, object]] = []
     for j, var in enumerate(VARIABLES):
         d = np.tile(reference_design(), (points, 1))
         d[:, j] = np.linspace(var.low, var.high, points)
         y = evaluate_design(sites, d, sunk=sunk)
-        for i, values in enumerate(y):
+        for i in range(len(y)):
+            values = _row(y, i)
             best = KEYS[int(np.argmax(values))]
             for z, key in enumerate(KEYS):
                 rows.append({
                     "parameter": var.name,
-                    "value": float(d[i, j]),
+                    "value": float(cast("float", cast("object", d[i, j]))),
                     "strategy": key,
-                    "net_saving": float(values[z]),
+                    "net_saving": float(cast("float", values[z])),
                     "best": best,
                 })
     return rows
 
 
-def _design_rows(design: np.ndarray, outcome: np.ndarray, axes: list[str], kind: str) -> list[dict]:
-    rows = []
-    for i, values in enumerate(outcome):
+def _design_rows(design: np.ndarray, outcome: np.ndarray, axes: list[str], kind: str) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for i in range(len(outcome)):
+        values = _row(outcome, i)
         order = np.argsort(values)
         rows.append({
-            **{name: float(design[i, NAMES.index(name)]) for name in axes},
-            **{key: float(values[j]) for j, key in enumerate(KEYS)},
-            "best": KEYS[int(order[-1])],
-            "runner_up": KEYS[int(order[-2])],
-            "margin": float(values[order[-1]] - values[order[-2]]),
+            **{name: float(cast("float", cast("object", design[i, NAMES.index(name)]))) for name in axes},
+            **{key: float(cast("float", values[j])) for j, key in enumerate(KEYS)},
+            "best": KEYS[int(cast("int", order[-1]))],
+            "runner_up": KEYS[int(cast("int", order[-2]))],
+            "margin": float(cast("float", cast("object", values[order[-1]] - values[order[-2]]))),
             "design_kind": kind,
         })
     return rows
 
 
-def two_way(sites: list[Site], x_name: str, y_name: str, points: int = 31, *, sunk: tuple[str, ...] = ()) -> list[dict]:
+def two_way(
+    sites: list[Site], x_name: str, y_name: str, points: int = 31, *, sunk: tuple[str, ...] = ()
+) -> list[dict[str, object]]:
     """Evaluate all pairs on a complete named two-dimensional grid.
 
     Returns:
@@ -257,7 +267,9 @@ def two_way(sites: list[Site], x_name: str, y_name: str, points: int = 31, *, su
     return _design_rows(d, evaluate_design(sites, d, sunk=sunk), [x_name, y_name], "deterministic_grid_not_probability")
 
 
-def k_way(sites: list[Site], axes: list[str], levels: int = 5, *, sunk: tuple[str, ...] = ()) -> list[dict]:
+def k_way(
+    sites: list[Site], axes: list[str], levels: int = 5, *, sunk: tuple[str, ...] = ()
+) -> list[dict[str, object]]:
     """Exact bounded Cartesian design in selected high-value dimensions.
 
     Returns:
@@ -296,14 +308,14 @@ def decision_quality(predicted: np.ndarray, truth: np.ndarray) -> dict[str, floa
     if misaligned or not np.all(np.isfinite(p)) or not np.all(np.isfinite(t)):
         msg = "Aligned finite n-by-five prediction and exact outcomes required"
         raise ValueError(msg)
-    choice = np.argmax(p, axis=1)
-    actual = np.argmax(t, axis=1)
+    choice = cast("np.ndarray", np.argmax(p, axis=1))
+    actual = cast("np.ndarray", np.argmax(t, axis=1))
     regret = t.max(axis=1) - t[np.arange(len(t)), choice]
     return {
-        "accuracy": float(np.mean(choice == actual)),
+        "accuracy": float(np.mean(cast("np.ndarray", choice == actual))),
         "mean_regret": float(regret.mean()),
-        "max_regret": float(regret.max()),
-        "regret_95th": float(np.quantile(regret, 0.95)),
+        "max_regret": float(cast("float", regret.max())),
+        "regret_95th": float(cast("float", np.quantile(regret, 0.95))),
         "near_optimal_100": float(np.mean(regret <= _NEAR_OPTIMAL_ABS_100)),
         "near_optimal_1000": float(np.mean(regret <= _NEAR_OPTIMAL_ABS_1000)),
     }

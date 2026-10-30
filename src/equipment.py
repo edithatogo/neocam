@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, cast
 
 from src.pathways_v6 import PathwaySpec, compare_v6
 from src.strategies import KEYS
 
 if TYPE_CHECKING:
+    import numpy as np
+
     from src.activity import ActivitySpec
     from src.statewide import Parameters, Site
 
@@ -30,7 +32,7 @@ class OwnedAsset:
         Raises:
             ValueError: If the site, strategy or remaining life is invalid.
         """
-        if not isinstance(self.site, str) or not self.site.strip() or self.strategy not in KEYS[1:]:
+        if not isinstance(self.site, str) or not self.site.strip() or self.strategy not in KEYS[1:]:  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: frozen dataclasses accept untyped construction
             msg = "Invalid asset site or configuration"
             raise ValueError(msg)
         if (
@@ -47,7 +49,7 @@ def validate_estate(assets: tuple[OwnedAsset, ...]) -> None:
     Raises:
         ValueError: If a record is untyped or a site is duplicated.
     """
-    if any(not isinstance(a, OwnedAsset) for a in assets):
+    if any(not isinstance(a, OwnedAsset) for a in assets):  # pyright: ignore[reportUnnecessaryIsInstance] -- runtime guard: untyped callers may submit non-asset records  # ty: ignore[redundant-condition-strict] -- runtime guard: untyped callers may submit non-asset records
         msg = "Estate requires OwnedAsset records"
         raise ValueError(msg)
     if len({a.site for a in assets}) != len(assets):
@@ -67,7 +69,10 @@ def retained_sites(sites: list[Site], strategy: str, assets: tuple[OwnedAsset, .
 
 
 def apply_retention(
-    result: dict[str, dict[str, Any]], sites: list[Site], assets: tuple[OwnedAsset, ...], strategies: tuple[str, ...]
+    result: dict[str, dict[str, np.ndarray]],
+    sites: list[Site],
+    assets: tuple[OwnedAsset, ...],
+    strategies: tuple[str, ...],
 ) -> None:
     """Apply the same known retained-site count used by the purchase schedule.
 
@@ -101,9 +106,9 @@ def mixed_cash_budget(  # ruff: ignore[too-many-arguments] -- published budgetin
     *,
     retain: bool = True,
     years: int = 7,
-    site_calls: dict | None = None,
+    site_calls: dict[str, np.ndarray] | None = None,
     activity: ActivitySpec | None = None,
-) -> list[dict]:
+) -> list[dict[str, float]]:
     """Schedule new and replacement purchases, without double-counting hub costs.
 
     Year 1 is the current year; remaining life 2 means replacement at start of
@@ -131,14 +136,14 @@ def mixed_cash_budget(  # ruff: ignore[too-many-arguments] -- published budgetin
         msg = "Unknown strategy"
         raise ValueError(msg)
     out = compare_v6(sites, parameters, spec, site_calls=site_calls, activity=activity)[strategy]
-    unit_cost = float(out["full_purchase_capital"][0]) / len(sites)
+    unit_cost = float(cast("float", out["full_purchase_capital"][0])) / len(sites)
     owned = {a.site: a for a in assets if a.strategy == strategy} if retain else {}
     first = {s.name: owned[s.name].remaining_life_years if s.name in owned else 0 for s in sites}
-    rows = []
+    rows: list[dict[str, float]] = []
     for index in range(years):
         count = sum(index >= start and (index - start) % life == 0 for start in first.values())
         capital = count * unit_cost
-        running = float(out["cash_running_cost"][0])
+        running = float(cast("float", out["cash_running_cost"][0]))
         rows.append({
             "year": index + 1,
             "capital": capital,
@@ -147,7 +152,7 @@ def mixed_cash_budget(  # ruff: ignore[too-many-arguments] -- published budgetin
             if index == 0 and strategy != "telephone"
             else 0,
             "cash_running": running,
-            "hub_cash_capacity": float(out["hub_cash_cost"][0]),
+            "hub_cash_capacity": float(cast("float", out["hub_cash_cost"][0])),
             "cash_expenditure": capital + running,
         })
     return rows

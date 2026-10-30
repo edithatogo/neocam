@@ -29,7 +29,7 @@ def optimal_probabilities(values: np.ndarray, atol: float = 1e-9) -> np.ndarray:
     return (winners / winners.sum(axis=1, keepdims=True)).mean(axis=0)
 
 
-def perspective_regret(choose: np.ndarray, evaluate: np.ndarray, atol: float = 1e-9) -> dict:
+def perspective_regret(choose: np.ndarray, evaluate: np.ndarray, atol: float = 1e-9) -> dict[str, object]:
     """Fixed current-information choice, with an explicit equal-lottery tie policy.
 
     Per-draw loss may be negative. Only the EXPECTATION is a regret. This is

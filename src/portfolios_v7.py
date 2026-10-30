@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from src.pathways_v6 import _activity
+from src.pathways_v6 import _activity  # pyright: ignore[reportPrivateUsage] -- in-package activity helper shared with the portfolio layer
 from src.statewide import Site, load_sites, select_sites
 
 CHHHS = (
@@ -22,10 +22,10 @@ CHHHS = (
 TCHHS = ("Cooktown", "Weipa", "Thursday Island", "Bamaga")
 
 
-def regional_roster() -> list[dict]:
+def regional_roster() -> list[dict[str, object]]:
     """Return the public hospital/emergency roster with missing births left as ``None``."""
     old = {s.name: s for s in load_sites()}
-    rows = []
+    rows: list[dict[str, object]] = []
     for name in CHHHS + TCHHS:
         s = old.get(name)
         role = (
@@ -81,7 +81,7 @@ def portfolio(name: str) -> list[Site]:
 
 def consultation_overrides(  # ruff: ignore[too-many-arguments] -- published scenario API
     sites: list[Site],
-    inputs: dict,
+    inputs: dict[str, np.ndarray],
     *,
     reopened: bool = False,
     readiness_calls: float = 0.0,
@@ -109,7 +109,7 @@ def consultation_overrides(  # ruff: ignore[too-many-arguments] -- published sce
         msg = "Nonnegative finite activity required"
         raise ValueError(msg)
     n = len(inputs["odds_ratio"])
-    out = {}
+    out: dict[str, np.ndarray] = {}
     for s in sites:
         if s.name == "Cairns" and cairns_hub_only:
             out[s.name] = np.zeros(n)

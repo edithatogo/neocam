@@ -14,9 +14,10 @@ from src.statewide import Parameters
 # representation error in an otherwise-reference value must not trigger a
 # spurious re-draw of the sampled beta mean.
 _REFERENCE_REL_TOL = 1e-9
+_INF = float("inf")
 
 
-def _finite(value: float, lower: float = 0.0, upper: float = float("inf")) -> float:
+def _finite(value: float, lower: float = 0.0, upper: float = _INF) -> float:
     if isinstance(value, bool) or not isinstance(value, Real) or not np.isfinite(value) or not lower <= value <= upper:
         msg = "Invalid finite numeric input"
         raise ValueError(msg)
@@ -48,7 +49,7 @@ def sample_v7(
     n: int = 20000,
     seed: int = 20261028,
     effect_mode: str = "attenuated",
-) -> tuple[dict, dict]:
+) -> tuple[dict[str, np.ndarray], dict[str, np.ndarray]]:
     """Preserve reference v6 draws; repair non-reference beta mean changes.
 
     No data are fitted. Beta concentration20 and all transported clinical-effect
