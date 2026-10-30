@@ -47,7 +47,7 @@ def gates_for_profile(profile: str) -> list[Gate]:
         Gate('source_integrity', (python, '-m', 'quality.source_archive', '--output', 'verification/v7/source_archive.json'), 60),
         Gate('coverage', (python, '-m', 'coverage', 'json', '-o', 'verification/v7/coverage.json'), 60, 'coverage'),
         Gate('coverage_threshold', (python, '-m', 'coverage', 'report', '--fail-under=90'), 60, 'coverage'),
-        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/configuration.py,src/equipment.py,src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py', '--fail-under=95'), 60, 'coverage'),
+        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/activity.py,src/deployment.py,src/configuration.py,src/equipment.py,src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py', '--fail-under=95'), 60, 'coverage'),
         Gate('ruff_lint', (python, '-m', 'ruff', 'check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ruff_format', (python, '-m', 'ruff', 'format', '--check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ty', (python, '-m', 'ty', 'check'), 180, 'ty'),

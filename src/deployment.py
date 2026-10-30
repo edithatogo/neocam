@@ -118,42 +118,65 @@ def _groups(sites: list[Site], policy: DeploymentPolicy) -> dict[str, list[Site]
             if key in chosen.values()}
 
 
-def evaluate_policy(sites: list[Site], policy: DeploymentPolicy, eligibility: tuple[Eligibility, ...],
-                    parameters: Parameters, spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
-                    inputs: dict | None = None, structural_draws: dict | None = None,
-                    activity: ActivitySpec | None = None, retain: bool = True,
-                    site_calls: dict | None = None) -> dict[str, np.ndarray]:
-    """Sum paired exact group outcomes; apply shared paid hub capacity only once.
+def evaluate_policies(sites: list[Site], policies: tuple[DeploymentPolicy, ...],
+                      eligibility: tuple[Eligibility, ...], parameters: Parameters,
+                      spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
+                      inputs: dict | None = None, structural_draws: dict | None = None,
+                      activity: ActivitySpec | None = None, retain: bool = True,
+                      site_calls: dict | None = None) -> dict[str, dict[str, np.ndarray]]:
+    """Evaluate each distinct group once within this call, on the same input draws.
 
-    These are health-system and bounded family-resource results. Provider fiscal
-    allocation and policy-specific safety effects are not invented. Grouping only
-    avoids redundant calculation; it does not redraw clinical/systematic priors.
+    No persistent cache or reused acceptance evidence is involved. Outputs are
+    copied before retention/aggregation; a subsequent call always computes afresh.
     """
-    validate_policy(sites, policy, eligibility)
+    if not policies or any(not isinstance(p, DeploymentPolicy) for p in policies):
+        raise ValueError('Nonempty typed policies required')
+    if len({p.name for p in policies}) != len(policies):
+        raise ValueError('Duplicate policy identifiers')
+    for policy in policies:
+        validate_policy(sites, policy, eligibility)
     validate_estate(assets)
     if type(retain) is not bool:
         raise ValueError('Retention must be boolean')
     site_calls = {} if site_calls is None else site_calls
     if set(site_calls) - {s.name for s in sites}:
         raise ValueError('Unknown site in activity override')
-    selected = []
-    for key, group in _groups(sites, policy).items():
-        names = {s.name for s in group}
-        result = compare_v6(group, parameters, spec, inputs=inputs, structural_draws=structural_draws,
-                            activity=activity, site_calls={k: v for k, v in site_calls.items() if k in names})
-        if retain and key != 'telephone':
-            apply_retention(result, group, assets, (key,))
-        selected.append(result[key])
-    out = {name: sum((r[name] for r in selected), np.zeros_like(selected[0][name]))
-           for name in selected[0]}
-    out['conditional_rescue_risk'] = np.divide(out['delayed_rescues'], out['initially_local'],
-        out=np.zeros_like(out['episodes']), where=out['initially_local'] > 0)
-    # Convert the summed hours through the existing capacity function, exactly once.
-    hub = hub_cost(out['hub_hours'], np.full_like(out['hub_hours'], 60.), spec)
-    out['hub_cash_cost'] = hub['cash_capacity']
-    out['hub_capacity_blocks'] = hub['capacity_blocks']
-    out['cash_running_cost'] = out['local_ready_cost'] + out['local_workflow_cost'] + out['hub_cash_cost']
-    return out
+    calculated = {}
+    answers = {}
+    for policy in policies:
+        selected = []
+        for key, group in _groups(sites, policy).items():
+            identity = tuple(s.name for s in group)
+            if identity not in calculated:
+                calculated[identity] = compare_v6(group, parameters, spec, inputs=inputs,
+                    structural_draws=structural_draws, activity=activity,
+                    site_calls={k: v for k, v in site_calls.items() if k in identity})
+            arm = {name: value.copy() for name, value in calculated[identity][key].items()}
+            if retain and key != 'telephone':
+                apply_retention({key: arm}, group, assets, (key,))
+            selected.append(arm)
+        out = {name: sum((r[name] for r in selected), np.zeros_like(selected[0][name]))
+               for name in selected[0]}
+        out['conditional_rescue_risk'] = np.divide(out['delayed_rescues'], out['initially_local'],
+            out=np.zeros_like(out['episodes']), where=out['initially_local'] > 0)
+        # Spare capacity belongs to the whole network, not each technology group.
+        hub = hub_cost(out['hub_hours'], np.full_like(out['hub_hours'], 60.), spec)
+        out['hub_cash_cost'] = hub['cash_capacity']
+        out['hub_capacity_blocks'] = hub['capacity_blocks']
+        out['cash_running_cost'] = out['local_ready_cost'] + out['local_workflow_cost'] + out['hub_cash_cost']
+        answers[policy.name] = out
+    return answers
+
+
+def evaluate_policy(sites: list[Site], policy: DeploymentPolicy, eligibility: tuple[Eligibility, ...],
+                    parameters: Parameters, spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
+                    inputs: dict | None = None, structural_draws: dict | None = None,
+                    activity: ActivitySpec | None = None, retain: bool = True,
+                    site_calls: dict | None = None) -> dict[str, np.ndarray]:
+    """Evaluate one policy, retaining the same public typed interface and safeguards."""
+    results = evaluate_policies(sites, (policy,), eligibility, parameters, spec, assets,
+        inputs=inputs, structural_draws=structural_draws, activity=activity, retain=retain, site_calls=site_calls)
+    return results[policy.name]
 
 
 def policy_cash_budget(sites: list[Site], policy: DeploymentPolicy, eligibility: tuple[Eligibility, ...],

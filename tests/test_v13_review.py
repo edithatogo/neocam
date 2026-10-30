@@ -62,3 +62,9 @@ def test_approved_record_with_unresolved_finding_fails():
 @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
 def test_malformed_review_fails_without_crash(bad):
     assert api()(bad,SNAPSHOT)
+
+
+@pytest.mark.parametrize('finding', [None,{'severity':'high'},{'severity':[], 'status':'resolved'}])
+def test_malformed_findings_fail_without_exception(finding):
+    p=packet();p['reviews'][0]['findings']=[finding]
+    assert api()(p,SNAPSHOT)

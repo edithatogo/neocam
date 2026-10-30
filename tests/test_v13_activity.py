@@ -81,3 +81,12 @@ def test_perspective_and_budget_use_activity():
     base=mixed_cash_budget(sites,'panda',cfg.owned_assets,p,s)
     assert first[0]['cash_running']>base[0]['cash_running']
     assert first[0]['capital']==base[0]['capital']
+
+
+@pytest.mark.parametrize('bad',[False,{},[],0,'contacts'])
+def test_falsey_untyped_activity_is_not_silently_defaulted(bad):
+    with pytest.raises(ValueError):compare_v6(select_sites(load_sites(),'pilot'),activity=bad)
+
+
+def test_contact_overflow_rejected():
+    with pytest.raises(ValueError):api()('episodes',1e308).exposures(np.array([1e308]))

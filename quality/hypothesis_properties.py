@@ -59,3 +59,25 @@ def test_current_sampler_seed_reproducibility(seed):
     a,b=sample_v7(n=50,seed=seed);c,d=sample_v7(n=50,seed=seed)
     for key in a:np.testing.assert_array_equal(a[key],c[key])
     for key in b:np.testing.assert_array_equal(b[key],d[key])
+
+
+# Active v13 properties. These are required but not claimed executed without Hypothesis.
+from src.activity import ActivitySpec
+from src.deployment import DeploymentPolicy, eligibility_catalogue, evaluate_policy
+
+
+@given(st.floats(min_value=1,max_value=5,allow_nan=False,allow_infinity=False))
+def test_repeat_contacts_do_not_multiply_clinical_episodes(ratio):
+    a=compare_v6([SITE])['panda']
+    b=compare_v6([SITE],activity=ActivitySpec('episodes',ratio))['panda']
+    np.testing.assert_allclose(a['eventual_transfers'],b['eventual_transfers'])
+    np.testing.assert_allclose(a['hub_hours']*ratio,b['hub_hours'])
+
+
+@given(st.floats(min_value=1,max_value=5,allow_nan=False,allow_infinity=False),PROBABILITY)
+def test_policy_and_contact_population_conservation(ratio,reliability):
+    sites=[SITE,replace(SITE,name='Mareeba')]
+    policy=DeploymentPolicy('mixed',(('Atherton','panda'),('Mareeba','telephone')))
+    result=evaluate_policy(sites,policy,eligibility_catalogue(sites),Parameters(reliability=reliability),PathwaySpec(),(),activity=ActivitySpec('contacts',ratio))
+    np.testing.assert_allclose(result['eventual_transfers']+result['final_local'],result['episodes'],atol=1e-8)
+    np.testing.assert_allclose(result['contacts'],ratio*result['episodes'],atol=1e-8)

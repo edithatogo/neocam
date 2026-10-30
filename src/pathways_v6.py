@@ -166,7 +166,7 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
     if any(k not in KEYS[1:] for k in sunk) or len(set(sunk)) != len(sunk):
         raise ValueError("invalid sunk strategies")
     p, s = parameters or Parameters(), spec or PathwaySpec()
-    activity = activity or ActivitySpec()
+    activity = ActivitySpec() if activity is None else activity
     if not isinstance(activity, ActivitySpec):
         raise ValueError("Activity requires ActivitySpec")
     x = inputs if inputs is not None else _base_arrays(p, 1)

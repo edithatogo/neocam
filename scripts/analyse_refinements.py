@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 from src.activity import ActivitySpec
 from src.audit_v7 import sample_v7
 from src.configuration import exact_keys, load_configuration, strict_json
-from src.deployment import eligibility_catalogue, evaluate_policy, policy_cash_budget, policy_catalogue
+from src.deployment import eligibility_catalogue, evaluate_policy, evaluate_policies, policy_cash_budget, policy_catalogue
 from src.pathways_v6 import compare_v6
 from src.perspectives_v7 import optimal_probabilities
 from src.portfolios_v7 import portfolio
@@ -119,7 +119,10 @@ def main(config_path: Path | None = None, refinements_path: Path | None = None,
     (output/'resolved_inputs.json').write_text(json.dumps(snapshot, indent=2)+'\n')
     deterministic, results, rankings, predictive, budgets, assignments, eligibility_rows = [], [], [], [], [], [], []
     checks = []
+    sampled = {mode: sample_v7(p, s, n=n, seed=config.seed, effect_mode=mode)
+               for mode in refinements['effect_modes']}
     for network in config.portfolios:
+        print(f'Analysing {network}: paired policy/contact scenarios', flush=True)
         sites = portfolio(network)
         policies = policy_catalogue(sites)
         eligibility = eligibility_catalogue(sites, allow_hypothetical=True)
@@ -140,9 +143,10 @@ def main(config_path: Path | None = None, refinements_path: Path | None = None,
                                                 activity=activity, years=refinements['budget_years']):
                     budgets.append({'portfolio': network, 'activity_id': row['id'], 'policy': policy.name, **budget})
             for effect in refinements['effect_modes']:
-                x, e = sample_v7(p, s, n=n, seed=config.seed, effect_mode=effect)
-                evaluated = [evaluate_policy(sites, policy, eligibility, p, s, config.owned_assets,
-                             inputs=x, structural_draws=e, activity=activity) for policy in policies]
+                x, e = sampled[effect]
+                calculated = evaluate_policies(sites, policies, eligibility, p, s, config.owned_assets,
+                                               inputs=x, structural_draws=e, activity=activity)
+                evaluated = [calculated[policy.name] for policy in policies]
                 for policy, arm in zip(policies, evaluated, strict=True):
                     base = {'portfolio': network, 'activity_id': row['id'], 'activity_basis': activity.activity_basis,
                             'contacts_per_episode': activity.contacts_per_episode, 'effect_mode': effect,

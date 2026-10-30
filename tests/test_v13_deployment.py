@@ -123,3 +123,27 @@ def test_policy_scope_and_life_validation():
     m,s,e,p=env()
     with pytest.raises(ValueError):m.policy_cash_budget(s,p,e,Parameters(),PathwaySpec(),(),years=True)
     with pytest.raises(ValueError):m.evaluate_policy(s,p,e,Parameters(),PathwaySpec(),(),retain='false')
+
+
+def test_multiple_policies_reuse_only_identical_ephemeral_groups(monkeypatch):
+    m,s,e,p=env(portfolio('chhhs'))
+    policies=m.policy_catalogue(s)
+    seen=[];real=m.compare_v6
+    def recorded(sites,*args,**kwargs):
+        seen.append(tuple(site.name for site in sites))
+        return real(sites,*args,**kwargs)
+    monkeypatch.setattr(m,'compare_v6',recorded)
+    result=m.evaluate_policies(s,policies,e,Parameters(),PathwaySpec(),())
+    assert len(result)==6
+    assert len(seen)==len(set(seen))==3
+    # No persisted cache: a new call with new parameters must evaluate afresh.
+    changed=m.evaluate_policies(s,policies,e,Parameters(odds_ratio=1),PathwaySpec(),())
+    assert len(seen)==6
+    assert changed['retain_pilot_expand_obsbot']['net_saving'][0]!=result['retain_pilot_expand_obsbot']['net_saving'][0]
+
+
+def test_policy_results_do_not_share_mutable_arrays():
+    m,s,e,p=env(portfolio('chhhs'))
+    result=m.evaluate_policies(s,m.policy_catalogue(s),e,Parameters(),PathwaySpec(),())
+    first=result['retain_pilot_only']['episodes'];second=result['telephone']['episodes']
+    assert not np.shares_memory(first,second)

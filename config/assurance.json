@@ -1,4 +1,7 @@
 {
-  "evidence_version": "v12",
-  "current_output": "outputs/v12"
+  "evidence_version": "v13",
+  "current_output": "outputs/v13-primary",
+  "additional_outputs": [
+    "outputs/v13-refinements"
+  ]
 }
