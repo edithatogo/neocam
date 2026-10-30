@@ -1,0 +1,10 @@
+{
+  "id": "v13-04-release",
+  "status": "planned",
+  "external_acceptance": false,
+  "tasks": [
+    "4.1",
+    "4.2",
+    "4.3"
+  ]
+}

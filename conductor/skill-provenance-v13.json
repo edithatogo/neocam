@@ -1,0 +1,18 @@
+{
+  "upstream_repository": "edithatogo/conductor-next",
+  "ref": "137c1e41ff9c1dc75ff277b9582460a0bd8c4768",
+  "read_via": "GitHub connector at pinned ref",
+  "implement": {
+    "entry": "skills/conductor-implement/SKILL.md",
+    "blob": "cf4e381292438d164b0cfc7a5b846ff1e1b8191c",
+    "detailed_protocol": "conductor-vscode/skills/conductor-implement/conductor-implement/SKILL.md",
+    "detailed_blob": "b6ea1ccb81e61bfd5e0ebc32bae2be901f50a30c"
+  },
+  "review": {
+    "canonical_command": "commands/conductor/review.toml",
+    "blob": "830dd45a0c72dad765d7efb011af28133c0804b7"
+  },
+  "adaptation": "Local named skill entrypoints invoke the pinned implement/review protocols. No installed conductor-review SKILL existed at that ref; the actual review command is the source. User explicitly authorised implementation, fixing findings and keeping tracks; no additional confirmations or archival deletion. Expected failing regression tests do not halt repair. External failures are recorded, not passed. Review is the same assistant, not independent agents.",
+  "conductor_cli_executed": false,
+  "submodule_checkout_completed": false
+}

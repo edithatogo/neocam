@@ -1,19 +1,19 @@
 {
-  "version": 12,
+  "version": 13,
   "date": "2026-10-30",
   "active_tracks": [
-    "v12-01-execution-accounting",
-    "v12-02-artifacts-provenance",
-    "v12-03-portable-delivery",
-    "v12-04-scientific-validation"
+    "v13-01-contacts",
+    "v13-02-policies",
+    "v13-03-review",
+    "v13-04-release"
   ],
-  "branch": "conductor/neocam-v12-consistency",
+  "branch": "conductor/neocam-v13-decision-refinements",
   "parent_commit": "d1fd81342ec2561fa5a01f744a8d312e47f31e49",
   "release_ready": false,
   "independent_validation": false,
   "review": "four simulated author roles; not independent agents",
   "analysis": "outputs/v12/results.json",
-  "receipt": "verification/v12/full/receipt.json",
+  "receipt": "verification/v13/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [

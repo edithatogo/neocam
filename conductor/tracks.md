@@ -1,8 +1,19 @@
-# Current bounded work packages
+# Conductor tracks — current v13 work
 
-- [v12-01-execution-accounting](tracks/v12-01-execution-accounting/plan.md)
-- [v12-02-artifacts-provenance](tracks/v12-02-artifacts-provenance/plan.md)
-- [v12-03-portable-delivery](tracks/v12-03-portable-delivery/plan.md)
-- [v12-04-scientific-validation](tracks/v12-04-scientific-validation/plan.md)
+Implementation completion is not external acceptance. Historical tracks remain unchanged under their original folders.
 
-Historical tracks are preserved; only affected contracts were reconciled in this pass. Do not equate a scoped implementation with full external acceptance.
+---
+## [ ] Track: Episode/contact semantics
+Link: [./tracks/v13-01-contacts/](./tracks/v13-01-contacts/)
+
+---
+## [ ] Track: Eligible mixed deployment and shared capacity
+Link: [./tracks/v13-02-policies/](./tracks/v13-02-policies/)
+
+---
+## [ ] Track: Clinical plausibility packet and unresolved evidence
+Link: [./tracks/v13-03-review/](./tracks/v13-03-review/)
+
+---
+## [ ] Track: Integrated reproduction, review and private delivery
+Link: [./tracks/v13-04-release/](./tracks/v13-04-release/)

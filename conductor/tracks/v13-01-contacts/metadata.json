@@ -1,0 +1,9 @@
+{
+  "id": "v13-01-contacts",
+  "status": "planned",
+  "external_acceptance": false,
+  "tasks": [
+    "1.1",
+    "1.2"
+  ]
+}
