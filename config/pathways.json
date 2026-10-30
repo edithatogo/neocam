@@ -1,0 +1,17 @@
+{
+  "phone_delay_share": 0.05,
+  "video_delay_share": 0.05,
+  "extra_rescue": 0.0,
+  "endpoint": "eventual",
+  "local_coordination_per_call": 25.0,
+  "hub_minutes_per_call": 15.0,
+  "hub_hourly_rate": 200.0,
+  "hub_spare_hours": 100.0,
+  "hub_block_hours": 200.0,
+  "hub_block_cost": 40000.0,
+  "hospital_marginal_fraction": 0.5,
+  "hospital_resource_multiplier": 1.0,
+  "local_care_multiplier": 1.0,
+  "extra_pre_rescue_cost": 2000.0,
+  "rescue_receiving_premium": 0.0
+}

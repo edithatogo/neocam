@@ -1,36 +1,32 @@
-# Neocam / Panda Vision — draft recovery branch
+# Neocam / Panda Vision
 
-Private working destination for the Queensland neonatal teleconsultation economic evaluation.
+Early model-based economic evaluation of regional neonatal video consultation. This is a research decision model, not clinical guidance, an approved device specification or a validated prediction system.
 
-## Import is PARTIAL
+## Current source and outputs
 
-[Draft PR #3](https://github.com/edithatogo/neocam/pull/3) now contains all nine original model modules in `src/`, all nine original model input files in `data/`, the regional analysis driver, selected assurance modules and regression tests, dependency/CI configuration, and reconciled developer context.
+`config/reference.json` resolves the actual parameter, pathway and equipment-estate inputs. `data/parameters.json` is live; `config/pathways.json` is live; `data/v6/spec.json` remains a historical reference snapshot. Unknown fields, duplicate keys and invalid sites fail before execution.
 
-The `src` Git subtree is `cc0bbb89ece22b08f498937595d3f5c10846b0fd` and the `data` subtree is `2530ae6e70fb2ff9c5d517014b85378764e5085e`. Both match the complete recovered local project exactly.
+```bash
+# In the verified project environment; use a NEW output directory.
+python -m scripts.reproduce --output outputs/reproduction --office
+python -m quality.artifacts verify --output outputs/reproduction
+python -m quality.cli --profile full --evidence-version v12
+```
 
-**The remaining tests, supporting scripts, evidence files, original track files, binary artifacts and complete historical ancestry have NOT all been imported. This branch is not a complete distribution and is not ready to merge.** Missing references are recorded as recovery gaps, not silently replaced with invented files.
+`--office` adds Word/PDF/PowerPoint reports using private supplied CHHHS assets. PDF conversion requires LibreOffice. The current path uses repository-relative assets, no host skill directory. CSV/JSON are the calculation tables; this release does not provide a newly certified recalculating Excel model.
 
-## Current model and correction
+Reference outputs: `outputs/v12/current_report.md`, current memo/presentation, CSV tables and figures. `release_manifest.json` binds actual output bytes to the generating inputs. Historical versioned artifacts are preserved, but the old age-discounted utility table is superseded by the current age-11 output.
 
-The active model uses `src/pathways_v6.py` with regional/perspective adapters. `src/statewide.py` and `src/panda_model.py` retain historical models for reproducibility; do not use their superseded hub/rescue logic for current decisions.
+## Dependency and assurance boundary
 
-No primary financial parameters or numerical model modules changed during v9. The secondary age-11 utility scenario generator in `scripts/analyse_v7.py` now explicitly discounts from year 11. Historical v7 utility tables and figures are not newly corrected merely because the generator is fixed.
+NumPy is used for numerical arrays. Only Polars is permitted as a DataFrame engine; pandas/xarray are excluded from project imports and the intended resolved environment. Model, optional research/reporting, tests and assurance dependencies are separate. The observed reporting environment is documented; it is not asserted to be latest or transitively locked.
 
-## Reconciled work and actual assurance
+A genuine `uv.lock` is still required. Ordinary tests on the available host do not certify the declared pinned stack, Gitleaks, mutation/property tools, type checkers or hosted CI. Missing required tools remain blocked. Current source and generated-output fingerprints are separately captured in the unified receipt; final execution results live in `verification/v12/` rather than being copied into mutable source context.
 
-- [All 19 historical tracks, checked in order](conductor/reconciliation-v9.md).
-- [Current task ledger](conductor/tracks/v9-reconciliation/plan.md).
-- [Authoritative runbook](conductor/runbook.md).
-- [Local-versus-remote verification status](handoff/v9/status.json).
+## Conductor
 
-The complete LOCAL project passes 507 ordinary tests. Its full run enumerated 30 mandatory gates: seven passed, 22 blocked, one failed. The failed gate correctly rejects an absent genuine `uv.lock`; required external tools and Gitleaks have not passed. The local receipt does not certify this partial remote branch.
+Start at `conductor/runbook.md`. Four bounded v12 tracks address execution/accounting, outputs/provenance, portable delivery and scientific validation. Predecessor records are historical evidence, not automatically reopened tasks. Clinical effects, source originals, independent review and institutional approvals remain separate acceptance questions.
 
-A real [hosted CI run](https://github.com/edithatogo/neocam/actions/runs/40882632395) failed before a runner was allocated, with zero executed steps reported. Its underlying account/platform cause is not established. No successful hosted model run is claimed.
+## Private recovery
 
-The Conductor submodule gitlink is preserved, but the populated checkout is not certified. No force push, main-branch merge, public release or repository-visibility change has been performed.
-
-## Scientific and privacy boundary
-
-This is a preliminary model, not clinical validation or procurement approval. Four critical full texts, original public-source archival gaps and independent clinical/economic validation remain open. No patient-level records were added. Restricted corporate assets in the private local handoff must not be redistributed publicly without permission.
-
-Complete migration remains tracked in [issue #2](https://github.com/edithatogo/neocam/issues/2).
+Authorised destination: `edithatogo/neocam`, existing draft PR #3. Full remote history/source/artifact migration remains incomplete until an exact inventory proves otherwise. The full private bundle preserves the original history. Never force-push main, claim an incomplete checkout passed the full suite, or publish corporate/licensed assets without permission. No patient-level records are part of this model.

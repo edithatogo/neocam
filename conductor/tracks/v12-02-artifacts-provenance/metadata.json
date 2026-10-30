@@ -1,0 +1,8 @@
+{
+  "id": "v12-02-artifacts-provenance",
+  "status": "implementation_recorded_external_acceptance_open",
+  "full_acceptance": false,
+  "independent_validation": false,
+  "remaining": "Current outputs regenerated and visually inspected; exact-snapshot execution is recorded only in verification/v12/full/receipt.json. External toolchain remains open.",
+  "receipt": "verification/v12/full/receipt.json"
+}

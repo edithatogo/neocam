@@ -1,0 +1,24 @@
+{
+  "scope": "Complete local recovered repository, not complete remote checkout",
+  "tested_source": "e97f56932ec6a4a81d2d925f58b8b1afdf3366b8",
+  "run_finished": true,
+  "ordinary_tests_passed": 603,
+  "required_gates": 31,
+  "gate_counts": {
+    "passed": 8,
+    "blocked": 22,
+    "failed": 1
+  },
+  "full_local_assurance": false,
+  "input_fingerprint": "b149acaee8ee8b9f1eb29420c37e5f0bcc355de8f82d86fea75d53fc3c19b8ae",
+  "artifact_dependency_fingerprint": "bf54566689f8b6a3180bea0c0b896e1bdc36edc8ec48efb802f91f10ec3feaf5",
+  "exact_snapshot_matches": true,
+  "all_log_hashes_match": true,
+  "current_release_manifest_passed": true,
+  "receipt_sha256": "5140d9945f7543749b3fd07299f833356794561b21ef8153248865b98f4d1dde",
+  "coverage_statement_branch_percent": 93.95,
+  "active_core_coverage_percent": 97.74,
+  "local_clinical_validation": false,
+  "new_patient_data": false,
+  "full_remote_migration": false
+}

@@ -18,6 +18,7 @@ import shutil
 import subprocess
 import sys
 
+from quality.artifacts import artifact_dependency_fingerprint
 from quality.assurance import Gate, Receipt, input_fingerprint, run_gate, validate_receipts
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,10 +43,11 @@ def gates_for_profile(profile: str) -> list[Gate]:
         raise ValueError('Unknown assurance profile')
     gates[0] = Gate('pytest', (python, '-m', 'coverage', 'run', '-m', 'pytest', '-q'), 180, 'coverage')
     gates.extend([
+        Gate('current_release', (python, '-m', 'quality.artifacts', 'verify'), 60),
         Gate('source_integrity', (python, '-m', 'quality.source_archive', '--output', 'verification/v7/source_archive.json'), 60),
         Gate('coverage', (python, '-m', 'coverage', 'json', '-o', 'verification/v7/coverage.json'), 60, 'coverage'),
         Gate('coverage_threshold', (python, '-m', 'coverage', 'report', '--fail-under=90'), 60, 'coverage'),
-        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py', '--fail-under=95'), 60, 'coverage'),
+        Gate('core_coverage', (python, '-m', 'coverage', 'report', '--include=src/configuration.py,src/equipment.py,src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py', '--fail-under=95'), 60, 'coverage'),
         Gate('ruff_lint', (python, '-m', 'ruff', 'check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ruff_format', (python, '-m', 'ruff', 'format', '--check', 'src', 'scripts', 'quality', 'tests'), 180, 'ruff'),
         Gate('ty', (python, '-m', 'ty', 'check'), 180, 'ty'),
@@ -99,6 +101,7 @@ def main() -> int:
         for stale in ('coverage/gremlins/gremlins.json', f'{evidence_root}/scalene.json', '.coverage'):
             (ROOT / stale).unlink(missing_ok=True)
     fingerprint = input_fingerprint(ROOT)
+    artifacts_before = artifact_dependency_fingerprint(ROOT)
     receipts: list[Receipt] = []
     versions: dict[str, str | None] = {}
     for name in ('numpy', 'polars', 'scipy', 'scikit-learn', 'pytest', 'coverage', 'ruff', 'ty',
@@ -114,6 +117,7 @@ def main() -> int:
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'run_id': str(uuid.uuid4()), 'profile': args.profile,
         'source_commit_at_execution': commit, 'input_fingerprint': fingerprint,
+        'artifact_dependency_fingerprint': artifacts_before,
         'run_finished': False, 'active_gate': None,
         'complete_within_profile': False, 'full_local_assurance': False,
         'release_ready': False,
@@ -146,6 +150,10 @@ def main() -> int:
         print(f'{receipt.status.upper():7} {gate.name}: {receipt.reason}', flush=True)
     current = input_fingerprint(ROOT)
     problems = validate_receipts(receipts, {g.name for g in gates}, current, ROOT)
+    artifacts_after = artifact_dependency_fingerprint(ROOT)
+    report['artifact_dependency_fingerprint_end'] = artifacts_after
+    if artifacts_before != artifacts_after:
+        problems.append('Generated artifacts changed during verification')
     if fingerprint != current:
         problems.append('Inputs changed during verification')
     report.update(run_finished=True, active_gate=None, problems=problems,

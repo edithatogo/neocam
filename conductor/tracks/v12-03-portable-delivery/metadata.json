@@ -1,0 +1,8 @@
+{
+  "id": "v12-03-portable-delivery",
+  "status": "implementation_recorded_external_acceptance_open",
+  "full_acceptance": false,
+  "independent_validation": false,
+  "remaining": "Genuine lock, requested external tools, hosted CI and complete migration remain open.",
+  "receipt": "verification/v12/full/receipt.json"
+}
