@@ -1,5 +1,8 @@
 import math
-from src.panda_model import ModelInputs, annual_programme_cost, odds_to_probability, deterministic_scenario, run_psa
+
+import pytest
+
+from src.panda_model import ModelInputs, annual_programme_cost, deterministic_scenario, odds_to_probability, run_psa
 
 
 def test_odds_ratio_transformation():
@@ -11,7 +14,7 @@ def test_odds_ratio_transformation():
 def test_annual_programme_cost_uses_three_sites_and_per_site_volume():
     x = ModelInputs()
     result = annual_programme_cost(x)
-    assert result["consultations"] == 37.5
+    assert result["consultations"] == pytest.approx(37.5)
     assert math.isclose(result["annualised_equipment"], 6000.0)
     assert result["total_economic"] > result["cash_continuation"]
 

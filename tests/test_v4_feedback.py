@@ -1,98 +1,128 @@
 """Cached development must not silently reuse evidence for changed inputs."""
+
 import importlib
-import json
-from pathlib import Path
-import subprocess
-import sys
 
 import pytest
 
 
 def api():
     try:
-        return importlib.import_module('quality.feedback')
+        return importlib.import_module("quality.feedback")
     except ModuleNotFoundError:
-        pytest.fail('Guarded development feedback implementation is missing')
+        pytest.fail("Guarded development feedback implementation is missing")
 
 
 def sample(root):
-    for name, content in [('src/a.py','X=1'),('data/x.csv','a\n1'),('pyproject.toml','[project]\nname="x"'),('tests/test_a.py','def test_x(): pass')]:
-        p=root/name; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(content)
+    for name, content in [
+        ("src/a.py", "X=1"),
+        ("data/x.csv", "a\n1"),
+        ("pyproject.toml", '[project]\nname="x"'),
+        ("tests/test_a.py", "def test_x(): pass"),
+    ]:
+        p = root / name
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(content)
 
 
 def test_code_change_preserves_testmon_key_but_not_mutation(tmp_path):
-    sample(tmp_path); m=api()
-    a=m.cache_key(tmp_path,'tests',{'python':'3.13','numpy':'2'})
-    b=m.cache_key(tmp_path,'mutation',{'python':'3.13','numpy':'2'})
-    (tmp_path/'src/a.py').write_text('X=2')
-    assert m.cache_key(tmp_path,'tests',{'python':'3.13','numpy':'2'}) == a
-    assert m.cache_key(tmp_path,'mutation',{'python':'3.13','numpy':'2'}) != b
+    sample(tmp_path)
+    m = api()
+    a = m.cache_key(tmp_path, "tests", {"python": "3.13", "numpy": "2"})
+    b = m.cache_key(tmp_path, "mutation", {"python": "3.13", "numpy": "2"})
+    (tmp_path / "src/a.py").write_text("X=2")
+    assert m.cache_key(tmp_path, "tests", {"python": "3.13", "numpy": "2"}) == a
+    assert m.cache_key(tmp_path, "mutation", {"python": "3.13", "numpy": "2"}) != b
 
 
-@pytest.mark.parametrize('path',['data/x.csv','pyproject.toml','uv.lock','tests/conftest.py','quality/policy.py','.pre-commit-config.yaml'])
-def test_static_or_policy_change_invalidates_testmon(tmp_path,path):
-    sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
-    f=tmp_path/path; f.parent.mkdir(parents=True,exist_ok=True); f.write_text('changed')
-    assert m.cache_key(tmp_path,'tests',{}) != before
+@pytest.mark.parametrize(
+    "path",
+    ["data/x.csv", "pyproject.toml", "uv.lock", "tests/conftest.py", "quality/policy.py", ".pre-commit-config.yaml"],
+)
+def test_static_or_policy_change_invalidates_testmon(tmp_path, path):
+    sample(tmp_path)
+    m = api()
+    before = m.cache_key(tmp_path, "tests", {})
+    f = tmp_path / path
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text("changed")
+    assert m.cache_key(tmp_path, "tests", {}) != before
 
 
 def test_deletion_and_environment_invalidate(tmp_path):
-    sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{'python':'A'})
-    assert before != m.cache_key(tmp_path,'tests',{'python':'B'})
-    (tmp_path/'data/x.csv').unlink()
-    assert before != m.cache_key(tmp_path,'tests',{'python':'A'})
+    sample(tmp_path)
+    m = api()
+    before = m.cache_key(tmp_path, "tests", {"python": "A"})
+    assert before != m.cache_key(tmp_path, "tests", {"python": "B"})
+    (tmp_path / "data/x.csv").unlink()
+    assert before != m.cache_key(tmp_path, "tests", {"python": "A"})
 
 
 def test_outputs_and_receipts_do_not_invalidate(tmp_path):
-    sample(tmp_path); m=api(); before=m.cache_key(tmp_path,'tests',{})
-    for name in ['outputs/a.txt','verification/latest.json']:
-        p=tmp_path/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('log')
-    assert before == m.cache_key(tmp_path,'tests',{})
+    sample(tmp_path)
+    m = api()
+    before = m.cache_key(tmp_path, "tests", {})
+    for name in ["outputs/a.txt", "verification/latest.json"]:
+        p = tmp_path / name
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("log")
+    assert before == m.cache_key(tmp_path, "tests", {})
 
 
 def test_cold_tests_clear_database_not_other_files(tmp_path):
-    sample(tmp_path); m=api(); (tmp_path/'.testmondata').write_text('stale')
-    (tmp_path/'user.txt').write_text('keep')
-    plan=m.prepare(tmp_path,'tests',available=True,environment={})
-    assert plan.cache_reused is False and '--testmon' in plan.command
-    assert not (tmp_path/'.testmondata').exists()
-    assert (tmp_path/'user.txt').read_text() == 'keep'
+    sample(tmp_path)
+    m = api()
+    (tmp_path / ".testmondata").write_text("stale")
+    (tmp_path / "user.txt").write_text("keep")
+    plan = m.prepare(tmp_path, "tests", available=True, environment={})
+    assert plan.cache_reused is False
+    assert "--testmon" in plan.command
+    assert not (tmp_path / ".testmondata").exists()
+    assert (tmp_path / "user.txt").read_text() == "keep"
 
 
 def test_cache_only_sealed_after_success(tmp_path):
-    sample(tmp_path); m=api(); plan=m.prepare(tmp_path,'tests',available=True,environment={})
-    m.complete(tmp_path,plan,1)
-    assert m.prepare(tmp_path,'tests',available=True,environment={}).cache_reused is False
-    m.complete(tmp_path,plan,0)
-    assert m.prepare(tmp_path,'tests',available=True,environment={}).cache_reused is True
+    sample(tmp_path)
+    m = api()
+    plan = m.prepare(tmp_path, "tests", available=True, environment={})
+    m.complete(tmp_path, plan, 1)
+    assert m.prepare(tmp_path, "tests", available=True, environment={}).cache_reused is False
+    m.complete(tmp_path, plan, 0)
+    assert m.prepare(tmp_path, "tests", available=True, environment={}).cache_reused is True
 
 
 def test_mutation_clean_then_incremental(tmp_path):
-    sample(tmp_path);m=api();first=m.prepare(tmp_path,'mutation',available=True,environment={})
-    assert '--gremlin-clear-cache' in first.command
-    m.complete(tmp_path,first,0)
-    second=m.prepare(tmp_path,'mutation',available=True,environment={})
-    assert '--gremlin-clear-cache' not in second.command
-    assert '--gremlin-cache' in second.command
+    sample(tmp_path)
+    m = api()
+    first = m.prepare(tmp_path, "mutation", available=True, environment={})
+    assert "--gremlin-clear-cache" in first.command
+    m.complete(tmp_path, first, 0)
+    second = m.prepare(tmp_path, "mutation", available=True, environment={})
+    assert "--gremlin-clear-cache" not in second.command
+    assert "--gremlin-cache" in second.command
 
 
 def test_missing_selection_tool_explicitly_falls_back_to_full_tests(tmp_path):
-    sample(tmp_path);plan=api().prepare(tmp_path,'tests',available=False,environment={})
-    assert '--testmon' not in plan.command
-    assert 'full ordinary suite' in plan.reason
+    sample(tmp_path)
+    plan = api().prepare(tmp_path, "tests", available=False, environment={})
+    assert "--testmon" not in plan.command
+    assert "full ordinary suite" in plan.reason
     assert not plan.cache_reused
 
 
 def test_missing_mutation_tool_is_not_replaced_by_ordinary_tests(tmp_path):
     sample(tmp_path)
-    with pytest.raises(ModuleNotFoundError): api().prepare(tmp_path,'mutation',available=False,environment={})
+    with pytest.raises(ModuleNotFoundError):
+        api().prepare(tmp_path, "mutation", available=False, environment={})
 
 
 def test_invalid_modes_rejected(tmp_path):
-    with pytest.raises(ValueError): api().cache_key(tmp_path,'release',{})
+    with pytest.raises(ValueError, match="Unknown local feedback mode"):
+        api().cache_key(tmp_path, "release", {})
 
 
 def test_deleted_source_file_invalidates_selection_inventory(tmp_path):
-    sample(tmp_path);m=api();before=m.cache_key(tmp_path,'tests',{})
-    (tmp_path/'src/a.py').unlink()
-    assert m.cache_key(tmp_path,'tests',{}) != before
+    sample(tmp_path)
+    m = api()
+    before = m.cache_key(tmp_path, "tests", {})
+    (tmp_path / "src/a.py").unlink()
+    assert m.cache_key(tmp_path, "tests", {}) != before
