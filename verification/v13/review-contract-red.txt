@@ -1,0 +1,385 @@
+FFFFFFFFFFFFFFFFFFFF                                                     [100%]
+=================================== FAILURES ===================================
+________________________ test_pending_is_not_validation ________________________
+
+    def test_pending_is_not_validation():
+        from scripts.analyse_refinements import pending_reviews
+>       assert api()(pending_reviews(SNAPSHOT),SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+____________ test_valid_attestation_schema_only_not_identity_proof _____________
+
+    def test_valid_attestation_schema_only_not_identity_proof():
+>       assert api()(packet(),SNAPSHOT)==[]
+               ^^^^^
+
+tests/test_v13_review.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+______________ test_missing_or_false_attestation_fails[identity-] ______________
+
+field = 'identity', value = ''
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+__________ test_missing_or_false_attestation_fails[independent-False] __________
+
+field = 'independent', value = False
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+____________ test_missing_or_false_attestation_fails[independent-1] ____________
+
+field = 'independent', value = 1
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+___________ test_missing_or_false_attestation_fails[status-pending] ____________
+
+field = 'status', value = 'pending'
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_____________ test_missing_or_false_attestation_fails[conflicts-] ______________
+
+field = 'conflicts', value = ''
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+______________ test_missing_or_false_attestation_fails[date-bad] _______________
+
+field = 'date', value = 'bad'
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+__________ test_missing_or_false_attestation_fails[finding_summary-] ___________
+
+field = 'finding_summary', value = ''
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+___________ test_missing_or_false_attestation_fails[evidence-value7] ___________
+
+field = 'evidence', value = []
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_ test_missing_or_false_attestation_fails[snapshot_sha256-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb] _
+
+field = 'snapshot_sha256'
+value = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+____________ test_missing_or_false_attestation_fails[role-invented] ____________
+
+field = 'role', value = 'invented'
+
+    @pytest.mark.parametrize('field,value',[('identity',''),('independent',False),('independent',1),
+     ('status','pending'),('conflicts',''),('date','bad'),('finding_summary',''),('evidence',[]),
+     ('snapshot_sha256','b'*64),('role','invented')])
+    def test_missing_or_false_attestation_fails(field,value):
+        p=packet();p['reviews'][0][field]=value
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+___________________ test_duplicate_role_and_empty_scope_fail ___________________
+
+    def test_duplicate_role_and_empty_scope_fail():
+        p=packet();p['reviews'][1]=p['reviews'][0].copy()
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_____________________ test_simulated_or_stale_record_fails _____________________
+
+    def test_simulated_or_stale_record_fails():
+        p=packet();p['review_type']='simulated author roles'
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+______________ test_approved_record_with_unresolved_finding_fails ______________
+
+    def test_approved_record_with_unresolved_finding_fails():
+        p=packet();p['reviews'][0]['findings']=[{'severity':'high','description':'Unknown outcome definition',
+            'status':'open','resolution':'','evidence':[]}]
+>       assert api()(p,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_______________ test_malformed_review_fails_without_crash[None] ________________
+
+bad = None
+
+    @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
+    def test_malformed_review_fails_without_crash(bad):
+>       assert api()(bad,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_______________ test_malformed_review_fails_without_crash[bad1] ________________
+
+bad = []
+
+    @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
+    def test_malformed_review_fails_without_crash(bad):
+>       assert api()(bad,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_______________ test_malformed_review_fails_without_crash[bad2] ________________
+
+bad = {'reviews': None}
+
+    @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
+    def test_malformed_review_fails_without_crash(bad):
+>       assert api()(bad,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_______________ test_malformed_review_fails_without_crash[bad3] ________________
+
+bad = {'reviews': [None]}
+
+    @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
+    def test_malformed_review_fails_without_crash(bad):
+>       assert api()(bad,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+_________________ test_malformed_review_fails_without_crash[a] _________________
+
+bad = 'a'
+
+    @pytest.mark.parametrize('bad',[None,[],{'reviews':None},{'reviews':[None]},'a'])
+    def test_malformed_review_fails_without_crash(bad):
+>       assert api()(bad,SNAPSHOT)
+               ^^^^^
+
+tests/test_v13_review.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from quality.clinical_review import review_errors
+E       ModuleNotFoundError: No module named 'quality.clinical_review'
+
+tests/test_v13_review.py:9: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_v13_review.py::test_pending_is_not_validation - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_valid_attestation_schema_only_not_identity_proof - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[identity-] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[independent-False] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[independent-1] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[status-pending] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[conflicts-] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[date-bad] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[finding_summary-] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[evidence-value7] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[snapshot_sha256-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_missing_or_false_attestation_fails[role-invented] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_duplicate_role_and_empty_scope_fail - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_simulated_or_stale_record_fails - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_approved_record_with_unresolved_finding_fails - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_malformed_review_fails_without_crash[None] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_malformed_review_fails_without_crash[bad1] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_malformed_review_fails_without_crash[bad2] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_malformed_review_fails_without_crash[bad3] - ModuleNotFoundError: No module named 'quality.clinical_review'
+FAILED tests/test_v13_review.py::test_malformed_review_fails_without_crash[a] - ModuleNotFoundError: No module named 'quality.clinical_review'
+20 failed in 0.09s

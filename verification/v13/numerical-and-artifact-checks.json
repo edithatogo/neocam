@@ -1,0 +1,23 @@
+{
+  "csv_reference_parity": {
+    "allocation_two_way.csv": true,
+    "deterministic.csv": true,
+    "established_options.csv": true,
+    "health_thresholds.csv": true,
+    "mixed_estate_budget.csv": true,
+    "prior_predictive.csv": true,
+    "psa_perspectives.csv": true,
+    "reconciliation.csv": true,
+    "regional_roster.csv": true,
+    "structural_scenarios.csv": true,
+    "utility_bridge_scenarios.csv": true,
+    "value_of_perspective.csv": true
+  },
+  "all_reference_csv_bytes_unchanged": true,
+  "snapshot_matches_current_source_and_inputs": true,
+  "artifact_sets_verified": [
+    "v13-primary",
+    "v13-refinements"
+  ],
+  "independent_validation": false
+}

@@ -1,0 +1,9 @@
+Submodule 'extensions/conductor' (https://github.com/edithatogo/conductor-next.git) registered for path 'extensions/conductor'
+Cloning into '/mnt/data/neocam-v13/extensions/conductor'...
+fatal: unable to access 'https://github.com/edithatogo/conductor-next.git/': Could not resolve host: github.com
+fatal: clone of 'https://github.com/edithatogo/conductor-next.git' into submodule path '/mnt/data/neocam-v13/extensions/conductor' failed
+Failed to clone 'extensions/conductor'. Retry scheduled
+Cloning into '/mnt/data/neocam-v13/extensions/conductor'...
+fatal: unable to access 'https://github.com/edithatogo/conductor-next.git/': Could not resolve host: github.com
+fatal: clone of 'https://github.com/edithatogo/conductor-next.git' into submodule path '/mnt/data/neocam-v13/extensions/conductor' failed
+Failed to clone 'extensions/conductor' a second time, aborting

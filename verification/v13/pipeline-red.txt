@@ -1,0 +1,57 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_____________ test_catalogue_deduplicates_identical_pilot_policies _____________
+
+    def test_catalogue_deduplicates_identical_pilot_policies():
+        from src.deployment import policy_catalogue
+        from src.portfolios_v7 import portfolio
+        policies=policy_catalogue(portfolio('pilot'))
+>       assert len({p.assignments for p in policies})==len(policies)
+E       AssertionError: assert 2 == 6
+E        +  where 2 = len({(('Atherton', 'panda'), ('Innisfail', 'panda'), ('Mareeba', 'panda')), (('Atherton', 'telephone'), ('Innisfail', 'telephone'), ('Mareeba', 'telephone'))})
+E        +  and   6 = len((DeploymentPolicy(name='telephone', assignments=(('Atherton', 'telephone'), ('Innisfail', 'telephone'), ('Mareeba', 't...ot_expand_fixed', assignments=(('Atherton', 'panda'), ('Innisfail', 'panda'), ('Mareeba', 'panda')), conditional=True)))
+
+tests/test_v13_pipeline.py:18: AssertionError
+_______________________ test_refinement_schema_is_strict _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-2/test_refinement_schema_is_stri0')
+
+    def test_refinement_schema_is_strict(tmp_path):
+>       from scripts.analyse_refinements import load_refinements
+E       ModuleNotFoundError: No module named 'scripts.analyse_refinements'
+
+tests/test_v13_pipeline.py:23: ModuleNotFoundError
+________________________ test_real_refinement_pipeline _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-2/test_real_refinement_pipeline0')
+
+    def test_real_refinement_pipeline(tmp_path):
+>       assert (ROOT/'scripts/analyse_refinements.py').exists()
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = (PosixPath('/mnt/data/neocam-v13') / 'scripts/analyse_refinements.py').exists
+
+tests/test_v13_pipeline.py:32: AssertionError
+_____________ test_new_driver_enters_artifact_dependency_manifest ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-2/test_new_driver_enters_artifac0')
+
+    def test_new_driver_enters_artifact_dependency_manifest(tmp_path):
+        from quality.artifacts import calculation_inputs
+        (tmp_path/'scripts').mkdir()
+        p=tmp_path/'scripts/analyse_refinements.py';p.write_text('#one')
+        first=calculation_inputs(tmp_path)
+>       assert 'scripts/analyse_refinements.py' in first
+E       AssertionError: assert 'scripts/analyse_refinements.py' in {}
+
+tests/test_v13_pipeline.py:71: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v13_pipeline.py::test_catalogue_deduplicates_identical_pilot_policies - AssertionError: assert 2 == 6
+ +  where 2 = len({(('Atherton', 'panda'), ('Innisfail', 'panda'), ('Mareeba', 'panda')), (('Atherton', 'telephone'), ('Innisfail', 'telephone'), ('Mareeba', 'telephone'))})
+ +  and   6 = len((DeploymentPolicy(name='telephone', assignments=(('Atherton', 'telephone'), ('Innisfail', 'telephone'), ('Mareeba', 't...ot_expand_fixed', assignments=(('Atherton', 'panda'), ('Innisfail', 'panda'), ('Mareeba', 'panda')), conditional=True)))
+FAILED tests/test_v13_pipeline.py::test_refinement_schema_is_strict - ModuleNotFoundError: No module named 'scripts.analyse_refinements'
+FAILED tests/test_v13_pipeline.py::test_real_refinement_pipeline - AssertionError: assert False
+ +  where False = exists()
+ +    where exists = (PosixPath('/mnt/data/neocam-v13') / 'scripts/analyse_refinements.py').exists
+FAILED tests/test_v13_pipeline.py::test_new_driver_enters_artifact_dependency_manifest - AssertionError: assert 'scripts/analyse_refinements.py' in {}
+4 failed in 0.07s

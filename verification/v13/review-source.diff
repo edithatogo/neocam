@@ -1,0 +1,482 @@
+diff --git a/quality/clinical_review.py b/quality/clinical_review.py
+new file mode 100644
+index 0000000..e7e9186
+--- /dev/null
++++ b/quality/clinical_review.py
+@@ -0,0 +1,97 @@
++"""Validate external-review records; schema validity is not proof of reviewer identity."""
++from __future__ import annotations
++
++import argparse
++from datetime import date
++import json
++from pathlib import Path
++import re
++
++ROLES = frozenset({'neonatal_retrieval', 'health_economics', 'technical', 'consumer_rural'})
++
++
++def _text(value: object) -> bool:
++    return isinstance(value, str) and bool(value.strip()) and value.strip().lower() not in {'tbd', 'pending', 'unknown', 'placeholder'}
++
++
++def _evidence(value: object) -> bool:
++    return isinstance(value, list) and bool(value) and all(_text(item) for item in value)
++
++
++def review_errors(packet: object, expected_snapshot: str) -> list[str]:
++    """Check complete, snapshot-matched attestation fields without inventing sign-off.
++
++    Approval requires an actual independently authored report outside this schema.
++    This function cannot authenticate identities or adjudicate clinical adequacy.
++    """
++    errors = []
++    if not isinstance(expected_snapshot, str) or not re.fullmatch(r'[a-f0-9]{64}', expected_snapshot):
++        return ['Expected exact analysis snapshot digest is required']
++    if not isinstance(packet, dict):
++        return ['Review packet must be an object']
++    if packet.get('snapshot_sha256') != expected_snapshot:
++        errors.append('Review packet does not match analysis snapshot')
++    if packet.get('review_type') != 'external reviewer attestation':
++        errors.append('External reviewer attestation is not recorded')
++    rows = packet.get('reviews')
++    if not isinstance(rows, list) or not rows:
++        return errors + ['Review scope is empty or malformed']
++    roles = []
++    for index, record in enumerate(rows):
++        if not isinstance(record, dict):
++            errors.append(f'Malformed review record {index}')
++            continue
++        role = record.get('role')
++        if not isinstance(role, str) or role not in ROLES:
++            errors.append(f'Unknown role at record {index}')
++        else:
++            roles.append(role)
++        for field in ('identity', 'conflicts', 'finding_summary'):
++            if not _text(record.get(field)):
++                errors.append(f'Review {index} lacks {field}')
++        if record.get('independent') is not True or record.get('status') != 'approved':
++            errors.append(f'Review {index} has no independent completed attestation')
++        if record.get('snapshot_sha256') != expected_snapshot:
++            errors.append(f'Review {index} has a stale or absent snapshot')
++        try:
++            date.fromisoformat(record.get('date', ''))
++        except (TypeError, ValueError):
++            errors.append(f'Review {index} lacks a valid date')
++        if not _evidence(record.get('evidence')):
++            errors.append(f'Review {index} lacks supporting report evidence')
++        findings = record.get('findings')
++        if not isinstance(findings, list):
++            errors.append(f'Review {index} findings malformed')
++            continue
++        for finding in findings:
++            if not isinstance(finding, dict):
++                errors.append(f'Review {index} contains a malformed finding')
++                continue
++            if (finding.get('severity') not in ('critical', 'high', 'medium', 'low')
++                    or not _text(finding.get('description'))
++                    or finding.get('status') != 'resolved'
++                    or not _text(finding.get('resolution')) or not _evidence(finding.get('evidence'))):
++                errors.append(f'Review {index} contains an unresolved or undocumented finding')
++    if set(roles) != ROLES or len(roles) != len(ROLES):
++        errors.append('All four distinct review roles are required')
++    return errors
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('packet', type=Path)
++    parser.add_argument('--snapshot', required=True)
++    args = parser.parse_args()
++    try:
++        packet = json.loads(args.packet.read_text(encoding='utf-8'))
++    except (ValueError, OSError):
++        packet = None
++    errors = review_errors(packet, args.snapshot)
++    print(json.dumps({'errors': errors, 'record_contract_passed': not errors,
++                      'identity_authenticated': False,
++                      'scope': 'Attestation schema only; cannot certify reviewer independence or clinical validity'}, indent=2))
++    return int(bool(errors))
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+diff --git a/scripts/analyse_v7.py b/scripts/analyse_v7.py
+index 8ad6047..0a8cfe0 100644
+--- a/scripts/analyse_v7.py
++++ b/scripts/analyse_v7.py
+@@ -43,17 +43,17 @@ def compare_regional(sites,p,s,*,sunk=(),owned_assets=None,**kwargs):
+ 
+ def evaluate_perspectives(sites,p,s,x,e,*,reopened=False,readiness_calls=0.,cairns_hub_only=False,
+                           receiver_share=.5,retrieval_chhhs_share=1.,subsidy_fraction=.5,
+-                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None,owned_assets=None):
++                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None,owned_assets=None,activity=None):
+     for v in (receiver_share,retrieval_chhhs_share,subsidy_fraction,family_travel_share,funding_response):
+         if isinstance(v,bool) or not np.isfinite(v) or not 0<=v<=1:raise ValueError('Invalid perspective fraction')
+     calls=consultation_overrides(sites,x,reopened=reopened,readiness_calls=readiness_calls,cairns_hub_only=cairns_hub_only)
+-    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides,owned_assets=owned_assets)
++    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity)
+     local_sites=[z for z in sites if z.name in CHHHS]
+-    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if local_sites else None
++    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity) if local_sites else None
+     # Receiving resources allocated to CHHHS must come from the explicitly
+     # modelled regional catchment, not every origin in a statewide portfolio.
+     catchment_sites=[z for z in sites if z.name in CHHHS+TCHHS]
+-    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if catchment_sites else None
++    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity) if catchment_sites else None
+     base=r['telephone'];n=len(x['odds_ratio']);hf=e.get('hospital_fraction',np.full(n,s.hospital_marginal_fraction))
+     ledgers={};components={}
+     for key,a in r.items():
+diff --git a/src/activity.py b/src/activity.py
+new file mode 100644
+index 0000000..43f5ad9
+--- /dev/null
++++ b/src/activity.py
+@@ -0,0 +1,42 @@
++"""Separate clinical episodes from specialist contacts without inventing incidence."""
++from __future__ import annotations
++
++from dataclasses import dataclass
++from numbers import Real
++
++import numpy as np
++
++
++@dataclass(frozen=True)
++class ActivitySpec:
++    """Interpret the forecast denominator; contact intensity is a scenario input.
++
++    Contacts are workload events, not independent transfer opportunities. A clinical
++    episode is not asserted to be a unique infant over multiple admissions. The same
++    intensity applies in both arms; no extra clinical success is inferred per call.
++    """
++
++    activity_basis: str = 'contacts'
++    contacts_per_episode: float = 1.0
++
++    def __post_init__(self) -> None:
++        if self.activity_basis not in ('contacts', 'episodes'):
++            raise ValueError('Activity basis must be contacts or episodes')
++        value = self.contacts_per_episode
++        if isinstance(value, bool) or not isinstance(value, Real) or not np.isfinite(value) or value < 1:
++            raise ValueError('Contacts per episode must be finite numeric and at least one')
++
++    def exposures(self, forecast: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
++        """Return paired episode and contact arrays without modifying the forecast."""
++        values = np.asarray(forecast)
++        if (values.ndim != 1 or not len(values) or values.dtype.kind not in 'iuf'
++                or not np.isfinite(values).all() or np.any(values < 0)):
++            raise ValueError('Forecast requires finite nonnegative one-dimensional numeric values')
++        values = values.astype(float, copy=True)
++        if self.activity_basis == 'contacts':
++            return values / self.contacts_per_episode, values
++        with np.errstate(over='ignore'):
++            contacts = values * self.contacts_per_episode
++        if not np.isfinite(contacts).all():
++            raise ValueError('Contact exposure overflow')
++        return values, contacts
+diff --git a/src/deployment.py b/src/deployment.py
+new file mode 100644
+index 0000000..f83a0f2
+--- /dev/null
++++ b/src/deployment.py
+@@ -0,0 +1,206 @@
++"""Explicit mixed-site policies; eligibility assumptions are not device approvals."""
++from __future__ import annotations
++
++from dataclasses import dataclass
++
++import numpy as np
++
++from src.activity import ActivitySpec
++from src.equipment import OwnedAsset, apply_retention, mixed_cash_budget, validate_estate
++from src.pathways_v6 import PathwaySpec, compare_v6, hub_cost
++from src.statewide import Parameters, Site
++from src.strategies import KEYS
++
++PILOT_NAMES = frozenset({'Atherton', 'Mareeba', 'Innisfail'})
++ELIGIBILITY_STATES = frozenset({'reported_operation', 'verified_eligible', 'hypothetical', 'unknown'})
++
++
++@dataclass(frozen=True)
++class Eligibility:
++    """A site/strategy decision-set record, not certification from this software."""
++
++    site: str
++    strategy: str
++    status: str
++    evidence: str
++
++    def __post_init__(self) -> None:
++        if (not isinstance(self.site, str) or not self.site.strip() or self.strategy not in KEYS
++                or self.status not in ELIGIBILITY_STATES
++                or not isinstance(self.evidence, str) or not self.evidence.strip()):
++            raise ValueError('Invalid eligibility record')
++
++
++@dataclass(frozen=True)
++class DeploymentPolicy:
++    """Exactly one configuration per site; no unrestricted combinatorial optimiser."""
++
++    name: str
++    assignments: tuple[tuple[str, str], ...]
++    conditional: bool = False
++
++    def __post_init__(self) -> None:
++        if not isinstance(self.name, str) or not self.name.strip() or type(self.conditional) is not bool:
++            raise ValueError('Invalid deployment policy identity')
++        # Freeze caller-owned lists. Validate row shape before conversion.
++        if not isinstance(self.assignments, (tuple, list)) or not self.assignments:
++            raise ValueError('Nonempty assignments required')
++        for row in self.assignments:
++            if (not isinstance(row, (tuple, list)) or len(row) != 2
++                    or any(not isinstance(v, str) or not v.strip() for v in row)
++                    or row[1] not in KEYS):
++                raise ValueError('Invalid policy assignment')
++        object.__setattr__(self, 'assignments', tuple(tuple(row) for row in self.assignments))
++
++
++def eligibility_catalogue(sites: list[Site], *, allow_hypothetical: bool = False) -> tuple[Eligibility, ...]:
++    """Preserve reported pilot operation; do not generalise it to new sites/devices."""
++    if type(allow_hypothetical) is not bool:
++        raise ValueError('Hypothetical permission must be boolean')
++    records = []
++    for site in sites:
++        for key in KEYS:
++            if key == 'telephone':
++                status, source = 'reported_operation', 'Existing specialist telephone pathway; usual care'
++            elif site.name in PILOT_NAMES and key == 'panda':
++                status, source = 'reported_operation', 'ELC2026 item2.1.7; reported operation, not approval certification'
++            elif allow_hypothetical:
++                status, source = 'hypothetical', 'Analyst scenario: site suitability, credentials, connectivity and approval unverified'
++            else:
++                status, source = 'unknown', 'No verified site-specific eligibility evidence supplied'
++            records.append(Eligibility(site.name, key, status, source))
++    return tuple(records)
++
++
++def validate_policy(sites: list[Site], policy: DeploymentPolicy,
++                    eligibility: tuple[Eligibility, ...]) -> None:
++    """Reject incomplete scopes, duplicate records and ineligible strategy choices."""
++    if not sites or len({s.name for s in sites}) != len(sites) or not isinstance(policy, DeploymentPolicy):
++        raise ValueError('Unique nonempty site scope and typed policy required')
++    names = {s.name for s in sites}
++    if any(not isinstance(e, Eligibility) or e.site not in names for e in eligibility):
++        raise ValueError('Unknown site or malformed eligibility')
++    records = {(e.site, e.strategy): e for e in eligibility}
++    if len(records) != len(eligibility):
++        raise ValueError('Duplicate eligibility')
++    chosen = dict(policy.assignments)
++    if len(chosen) != len(policy.assignments) or set(chosen) != names:
++        raise ValueError('Policy must assign every site exactly once')
++    for site, strategy in chosen.items():
++        record = records.get((site, strategy))
++        allowed = {'reported_operation', 'verified_eligible'}
++        if policy.conditional:
++            allowed.add('hypothetical')
++        if record is None or record.status not in allowed:
++            raise ValueError(f'Policy eligibility not established: {site}/{strategy}')
++
++
++def policy_catalogue(sites: list[Site]) -> tuple[DeploymentPolicy, ...]:
++    """Two reported-operation policies plus four conditional expansion scenarios."""
++    all_phone = tuple((s.name, 'telephone') for s in sites)
++    result = [DeploymentPolicy('telephone', all_phone),
++              DeploymentPolicy('retain_pilot_only', tuple((s.name, 'panda' if s.name in PILOT_NAMES else 'telephone') for s in sites))]
++    for new in ('panda', 'obsbot', 'mobile', 'fixed'):
++        result.append(DeploymentPolicy(f'retain_pilot_expand_{new}',
++            tuple((s.name, 'panda' if s.name in PILOT_NAMES else new) for s in sites), True))
++    unique = []
++    seen = set()
++    for policy in result:
++        if policy.assignments not in seen:
++            unique.append(policy)
++            seen.add(policy.assignments)
++    return tuple(unique)
++
++
++def _groups(sites: list[Site], policy: DeploymentPolicy) -> dict[str, list[Site]]:
++    chosen = dict(policy.assignments)
++    return {key: [s for s in sites if chosen[s.name] == key] for key in KEYS
++            if key in chosen.values()}
++
++
++def evaluate_policies(sites: list[Site], policies: tuple[DeploymentPolicy, ...],
++                      eligibility: tuple[Eligibility, ...], parameters: Parameters,
++                      spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
++                      inputs: dict | None = None, structural_draws: dict | None = None,
++                      activity: ActivitySpec | None = None, retain: bool = True,
++                      site_calls: dict | None = None) -> dict[str, dict[str, np.ndarray]]:
++    """Evaluate each distinct group once within this call, on the same input draws.
++
++    No persistent cache or reused acceptance evidence is involved. Outputs are
++    copied before retention/aggregation; a subsequent call always computes afresh.
++    """
++    if not policies or any(not isinstance(p, DeploymentPolicy) for p in policies):
++        raise ValueError('Nonempty typed policies required')
++    if len({p.name for p in policies}) != len(policies):
++        raise ValueError('Duplicate policy identifiers')
++    for policy in policies:
++        validate_policy(sites, policy, eligibility)
++    validate_estate(assets)
++    if type(retain) is not bool:
++        raise ValueError('Retention must be boolean')
++    site_calls = {} if site_calls is None else site_calls
++    if set(site_calls) - {s.name for s in sites}:
++        raise ValueError('Unknown site in activity override')
++    calculated = {}
++    answers = {}
++    for policy in policies:
++        selected = []
++        for key, group in _groups(sites, policy).items():
++            identity = tuple(s.name for s in group)
++            if identity not in calculated:
++                calculated[identity] = compare_v6(group, parameters, spec, inputs=inputs,
++                    structural_draws=structural_draws, activity=activity,
++                    site_calls={k: v for k, v in site_calls.items() if k in identity})
++            arm = {name: value.copy() for name, value in calculated[identity][key].items()}
++            if retain and key != 'telephone':
++                apply_retention({key: arm}, group, assets, (key,))
++            selected.append(arm)
++        out = {name: sum((r[name] for r in selected), np.zeros_like(selected[0][name]))
++               for name in selected[0]}
++        out['conditional_rescue_risk'] = np.divide(out['delayed_rescues'], out['initially_local'],
++            out=np.zeros_like(out['episodes']), where=out['initially_local'] > 0)
++        # Spare capacity belongs to the whole network, not each technology group.
++        hub = hub_cost(out['hub_hours'], np.full_like(out['hub_hours'], 60.), spec)
++        out['hub_cash_cost'] = hub['cash_capacity']
++        out['hub_capacity_blocks'] = hub['capacity_blocks']
++        out['cash_running_cost'] = out['local_ready_cost'] + out['local_workflow_cost'] + out['hub_cash_cost']
++        answers[policy.name] = out
++    return answers
++
++
++def evaluate_policy(sites: list[Site], policy: DeploymentPolicy, eligibility: tuple[Eligibility, ...],
++                    parameters: Parameters, spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
++                    inputs: dict | None = None, structural_draws: dict | None = None,
++                    activity: ActivitySpec | None = None, retain: bool = True,
++                    site_calls: dict | None = None) -> dict[str, np.ndarray]:
++    """Evaluate one policy, retaining the same public typed interface and safeguards."""
++    results = evaluate_policies(sites, (policy,), eligibility, parameters, spec, assets,
++        inputs=inputs, structural_draws=structural_draws, activity=activity, retain=retain, site_calls=site_calls)
++    return results[policy.name]
++
++
++def policy_cash_budget(sites: list[Site], policy: DeploymentPolicy, eligibility: tuple[Eligibility, ...],
++                       parameters: Parameters, spec: PathwaySpec, assets: tuple[OwnedAsset, ...], *,
++                       activity: ActivitySpec | None = None, retain: bool = True, years: int = 7,
++                       site_calls: dict | None = None) -> list[dict]:
++    """Combine site-estate purchases with one portfolio-level annual hub capacity bill."""
++    result = evaluate_policy(sites, policy, eligibility, parameters, spec, assets,
++                             activity=activity, retain=retain, site_calls=site_calls)
++    if type(years) is not int or not 1 <= years <= 100:
++        raise ValueError('Budget years must be an integer in 1..100')
++    tables = []
++    for key, group in _groups(sites, policy).items():
++        names = {s.name for s in group}
++        tables.append(mixed_cash_budget(group, key, assets, parameters, spec, retain=retain,
++            years=years, activity=activity,
++            site_calls={k: v for k, v in (site_calls or {}).items() if k in names}))
++    rows = []
++    for i in range(years):
++        capital = sum(t[i]['capital'] for t in tables)
++        running = float(result['cash_running_cost'][0])
++        rows.append({'year': i+1, 'capital': capital,
++                     'purchases': sum(t[i]['purchases'] for t in tables),
++                     'new_installations': sum(t[i]['new_installations'] for t in tables),
++                     'cash_running': running, 'hub_cash_capacity': float(result['hub_cash_cost'][0]),
++                     'cash_expenditure': capital+running})
++    return rows
+diff --git a/src/equipment.py b/src/equipment.py
+index d3c6085..b9e53f6 100644
+--- a/src/equipment.py
++++ b/src/equipment.py
+@@ -63,7 +63,7 @@ def apply_retention(result: dict[str, dict[str, Any]], sites: list[Site],
+ 
+ def mixed_cash_budget(sites: list[Site], strategy: str, assets: tuple[OwnedAsset, ...],
+                       parameters: Parameters, spec: PathwaySpec, *, retain: bool = True,
+-                      years: int = 7, site_calls: dict | None = None) -> list[dict]:
++                      years: int = 7, site_calls: dict | None = None, activity=None) -> list[dict]:
+     """Schedule new and replacement purchases, without double-counting hub costs.
+ 
+     Year 1 is the current year; remaining life 2 means replacement at start of
+@@ -80,7 +80,7 @@ def mixed_cash_budget(sites: list[Site], strategy: str, assets: tuple[OwnedAsset
+         raise ValueError('Remaining life exceeds configured equipment life')
+     if strategy not in KEYS:
+         raise ValueError('Unknown strategy')
+-    out = compare_v6(sites, parameters, spec, site_calls=site_calls)[strategy]
++    out = compare_v6(sites, parameters, spec, site_calls=site_calls, activity=activity)[strategy]
+     unit_cost = float(out['full_purchase_capital'][0]) / len(sites)
+     owned = {a.site: a for a in assets if a.strategy == strategy} if retain else {}
+     first = {s.name: owned[s.name].remaining_life_years if s.name in owned else 0 for s in sites}
+diff --git a/src/pathways_v6.py b/src/pathways_v6.py
+index 99b0056..0defc99 100644
+--- a/src/pathways_v6.py
++++ b/src/pathways_v6.py
+@@ -13,6 +13,7 @@ from typing import Any
+ 
+ import numpy as np
+ 
++from src.activity import ActivitySpec
+ from src.statewide import Parameters, Site, _base_arrays, _site_modes, sample_inputs
+ from src.strategies import KEYS, STRATEGIES, _validate_overrides
+ 
+@@ -157,13 +158,17 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+                structural_draws: dict[str, np.ndarray] | None = None,
+-               site_calls: dict[str, np.ndarray] | None = None) -> dict[str, dict[str, np.ndarray]]:
++               site_calls: dict[str, np.ndarray] | None = None,
++               activity: ActivitySpec | None = None) -> dict[str, dict[str, np.ndarray]]:
+     """Calculate absolute pathways and paired incremental outcomes for all arms."""
+     if not sites or len({s.name for s in sites}) != len(sites):
+         raise ValueError("non-empty unique sites required")
+     if any(k not in KEYS[1:] for k in sunk) or len(set(sunk)) != len(sunk):
+         raise ValueError("invalid sunk strategies")
+     p, s = parameters or Parameters(), spec or PathwaySpec()
++    activity = ActivitySpec() if activity is None else activity
++    if not isinstance(activity, ActivitySpec):
++        raise ValueError("Activity requires ActivitySpec")
+     x = inputs if inputs is not None else _base_arrays(p, 1)
+     n = len(x["odds_ratio"])
+     for name, value in x.items():
+@@ -199,11 +204,14 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+     site_calls = site_calls or {}
+     if set(site_calls) - {site.name for site in sites}:
+         raise ValueError("Unknown site in activity override")
+-    total_calls = np.zeros(n)
++    total_calls = np.zeros(n)  # Historical name; clinical episodes, not repeat contacts.
++    total_contacts = np.zeros(n)
+     transport_exposure = np.zeros(n)
+     for site in sites:
+         calls = (_column(site_calls[site.name], n, "site calls")[:, 0]
+                  if site.name in site_calls else _activity(site, x))
++        calls, contacts = activity.exposures(calls)
++        total_contacts += contacts
+         transport = np.sum(_site_modes(site, x["mode_air_shift"])*np.column_stack(
+             [x["road_cost"], x["air_anchor"]*1.15, x["air_anchor"]*.85]), axis=1)
+         total_calls += calls
+@@ -224,7 +232,9 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+                  "pre_rescue_benchmark_cost", "rescue_extra_resource_cost")
+         out = {k: np.zeros(n) for k in names}
+         weights = cohort_weights
+-        out["consultations"] = total_calls.copy()
++        out["consultations"] = total_calls.copy()  # Compatibility alias for episodes.
++        out["episodes"] = total_calls.copy()
++        out["contacts"] = total_contacts.copy()
+         out["immediate_transfers"] = (weights*im).sum(axis=1)
+         out["delayed_rescues"] = (weights*re).sum(axis=1)
+         out["initially_local"] = (weights*(1-im)).sum(axis=1)
+@@ -249,10 +259,10 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+         if video:
+             workflow = np.broadcast_to(np.asarray(fields.get("workflow_per_call",x["workflow_per_call"])),(n,))
+             scale = workflow/75.  # Explicit split of historical staff allowance, not an extra charge.
+-            hub = hub_cost(out["consultations"],scale*s.hub_minutes_per_call,s)
++            hub = hub_cost(out["contacts"],scale*s.hub_minutes_per_call,s)
+             out["hub_hours"], out["hub_resource_cost"],out["hub_cash_cost"] = hub["hours"],hub["economic"],hub["cash_capacity"]
+             out["hub_capacity_blocks"] = hub["capacity_blocks"]
+-            out["local_workflow_cost"] = out["consultations"]*s.local_coordination_per_call*scale
++            out["local_workflow_cost"] = out["contacts"]*s.local_coordination_per_call*scale
+             out["local_ready_cost"] = len(sites)*(52*x["check_minutes"]/60*x["loaded_hour"]+x["support"]+x["training"])
+             capital = np.broadcast_to(np.asarray(fields.get("installed_cost",x["equipment_cost"]*strategy.installed_cost/10000)),(n,)).copy()*len(sites)
+             life = np.broadcast_to(np.asarray(fields.get("life_years",x["life_years"])),(n,))

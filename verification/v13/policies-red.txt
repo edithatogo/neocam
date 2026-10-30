@@ -1,0 +1,303 @@
+FFFFFFFFFFFFFFF                                                          [100%]
+=================================== FAILURES ===================================
+___________ test_reported_current_operation_not_approval_everywhere ____________
+
+    def test_reported_current_operation_not_approval_everywhere():
+>       m,s,e,p=env(portfolio('chhhs'),conditional=False)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v13_deployment.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+_________________ test_kit_is_conditional_not_strict_eligible __________________
+
+    def test_kit_is_conditional_not_strict_eligible():
+>       m,s,e,p=env(strategy='obsbot')
+                ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v13_deployment.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________________ test_bad_assignment_scope[assignments0] ____________________
+
+assignments = ()
+
+    @pytest.mark.parametrize('assignments', [(),(('Atherton','panda'),), (('Atherton','panda'),)*3, (('invented','panda'),)])
+    def test_bad_assignment_scope(assignments):
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________________ test_bad_assignment_scope[assignments1] ____________________
+
+assignments = (('Atherton', 'panda'),)
+
+    @pytest.mark.parametrize('assignments', [(),(('Atherton','panda'),), (('Atherton','panda'),)*3, (('invented','panda'),)])
+    def test_bad_assignment_scope(assignments):
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________________ test_bad_assignment_scope[assignments2] ____________________
+
+assignments = (('Atherton', 'panda'), ('Atherton', 'panda'), ('Atherton', 'panda'))
+
+    @pytest.mark.parametrize('assignments', [(),(('Atherton','panda'),), (('Atherton','panda'),)*3, (('invented','panda'),)])
+    def test_bad_assignment_scope(assignments):
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________________ test_bad_assignment_scope[assignments3] ____________________
+
+assignments = (('invented', 'panda'),)
+
+    @pytest.mark.parametrize('assignments', [(),(('Atherton','panda'),), (('Atherton','panda'),)*3, (('invented','panda'),)])
+    def test_bad_assignment_scope(assignments):
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+____________________ test_unknown_and_duplicate_eligibility ____________________
+
+    def test_unknown_and_duplicate_eligibility():
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________ test_uniform_policy_is_exact_reference_without_retention ___________
+
+    def test_uniform_policy_is_exact_reference_without_retention():
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+________________ test_mixed_clinical_mass_and_retained_capital _________________
+
+    def test_mixed_clinical_mass_and_retained_capital():
+>       m,s,e,p=env(portfolio('chhhs'))
+                ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v13_deployment.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+________________ test_hub_capacity_not_summed_per_group_or_site ________________
+
+    def test_hub_capacity_not_summed_per_group_or_site():
+        sites=[Site('S1',0,2022,'readiness','regional'),Site('S2',0,2022,'readiness','regional')]
+>       m,s,e,p=env(sites)
+                ^^^^^^^^^^
+
+tests/test_v13_deployment.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+________________ test_single_contact_vs_repeated_clinical_cases ________________
+
+    def test_single_contact_vs_repeated_clinical_cases():
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+___________________ test_shared_draws_and_input_immutability ___________________
+
+    def test_shared_draws_and_input_immutability():
+        from src.audit_v7 import sample_v7
+>       m,s,e,p=env();x,z=sample_v7(n=128,seed=99)
+                ^^^^^
+
+tests/test_v13_deployment.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+________________ test_more_transfers_remain_signed_not_clipped _________________
+
+    def test_more_transfers_remain_signed_not_clipped():
+>       m,s,e,p=env();r=m.evaluate_policy(s,p,e,Parameters(odds_ratio=1.4),PathwaySpec(),())
+                ^^^^^
+
+tests/test_v13_deployment.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+__________________ test_null_policy_phone_and_expired_assets ___________________
+
+    def test_null_policy_phone_and_expired_assets():
+>       m,s,e,p=env(strategy='telephone')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_v13_deployment.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+____________________ test_policy_scope_and_life_validation _____________________
+
+    def test_policy_scope_and_life_validation():
+>       m,s,e,p=env()
+                ^^^^^
+
+tests/test_v13_deployment.py:123: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_v13_deployment.py:19: in env
+    m=api();sites=sites or portfolio('pilot')
+      ^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src import deployment
+E       ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+
+tests/test_v13_deployment.py:14: ImportError
+=========================== short test summary info ============================
+FAILED tests/test_v13_deployment.py::test_reported_current_operation_not_approval_everywhere - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_kit_is_conditional_not_strict_eligible - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_bad_assignment_scope[assignments0] - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_bad_assignment_scope[assignments1] - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_bad_assignment_scope[assignments2] - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_bad_assignment_scope[assignments3] - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_unknown_and_duplicate_eligibility - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_uniform_policy_is_exact_reference_without_retention - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_mixed_clinical_mass_and_retained_capital - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_hub_capacity_not_summed_per_group_or_site - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_single_contact_vs_repeated_clinical_cases - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_shared_draws_and_input_immutability - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_more_transfers_remain_signed_not_clipped - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_null_policy_phone_and_expired_assets - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+FAILED tests/test_v13_deployment.py::test_policy_scope_and_life_validation - ImportError: cannot import name 'deployment' from 'src' (/mnt/data/neocam-v13/src/__init__.py)
+15 failed in 0.14s

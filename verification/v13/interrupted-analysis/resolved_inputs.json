@@ -1,0 +1,135 @@
+{
+  "parameters": {
+    "equipment_cost": 10000.0,
+    "life_years": 5.0,
+    "discount": 0.05,
+    "check_minutes": 10.0,
+    "loaded_hour": 85.0,
+    "support": 300.0,
+    "training": 400.0,
+    "workflow_per_call": 75.0,
+    "calls_per_pilot_site": 12.5,
+    "birth_growth": 1.0,
+    "state_uptake": 0.8,
+    "reliability": 0.95,
+    "odds_ratio": 0.6928203230275509,
+    "case_mix": [
+      0.35,
+      0.5,
+      0.15
+    ],
+    "baseline_transfer": [
+      0.3,
+      0.65,
+      0.98
+    ],
+    "rescue_rate": 0.05,
+    "rescue_premium": 10000.0,
+    "road_cost": 4000.0,
+    "air_multiplier": 1.0,
+    "marginal_fraction": 0.5,
+    "downstream_delta": 2000.0,
+    "family_delta": 1500.0,
+    "hub_annual_cost": 60000.0,
+    "capacity_threshold": 500.0,
+    "capacity_step_cost": 30000.0,
+    "mode_air_shift": 0.0,
+    "include_capital": true
+  },
+  "pathways": {
+    "phone_delay_share": 0.05,
+    "video_delay_share": 0.05,
+    "extra_rescue": 0.0,
+    "endpoint": "eventual",
+    "local_coordination_per_call": 25.0,
+    "hub_minutes_per_call": 15.0,
+    "hub_hourly_rate": 200.0,
+    "hub_spare_hours": 100.0,
+    "hub_block_hours": 200.0,
+    "hub_block_cost": 40000.0,
+    "hospital_marginal_fraction": 0.5,
+    "hospital_resource_multiplier": 1.0,
+    "local_care_multiplier": 1.0,
+    "extra_pre_rescue_cost": 2000.0,
+    "rescue_receiving_premium": 0.0
+  },
+  "owned_assets": [
+    {
+      "site": "Atherton",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    },
+    {
+      "site": "Mareeba",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    },
+    {
+      "site": "Innisfail",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    }
+  ],
+  "run": {
+    "draws": 20000,
+    "seed": 20261028,
+    "portfolios": [
+      "pilot",
+      "chhhs",
+      "chhhs_tchhs",
+      "spokes"
+    ]
+  },
+  "source_hashes": {
+    "config/reference.json": "c9d30c4ca62ace030808c56703dfffcd7442e6e22d4c3fb27a649b9714cdc687",
+    "data/parameters.json": "9c1e4608532268e537c9b1956451142b5de396e2c46fd0454bace7735716780d",
+    "config/pathways.json": "b0625409296c0120b3d74d6a7019df4967d82ff26f09eacabe7b42bdea502feb",
+    "config/equipment_estate.json": "c6a3e26071c8a8f25a2512a08a169f4a93cc8c0cf5e21db3dbb19b11eebd2a33"
+  },
+  "configuration_sha256": "ca704e84aa88f8c333eaef1ff45670936600a9b461e207a01d1057ffefebb0e6",
+  "refinements_sha256": "c1caae145909c4ad7f1e70152dc273907871c4479ad7ddcb2133f6c31580078e",
+  "refinements": {
+    "schema_version": 1,
+    "activity_scenarios": [
+      {
+        "id": "contacts_1",
+        "activity_basis": "contacts",
+        "contacts_per_episode": 1
+      },
+      {
+        "id": "contacts_1p5",
+        "activity_basis": "contacts",
+        "contacts_per_episode": 1.5
+      },
+      {
+        "id": "contacts_2",
+        "activity_basis": "contacts",
+        "contacts_per_episode": 2
+      },
+      {
+        "id": "episodes_1",
+        "activity_basis": "episodes",
+        "contacts_per_episode": 1
+      },
+      {
+        "id": "episodes_1p5",
+        "activity_basis": "episodes",
+        "contacts_per_episode": 1.5
+      },
+      {
+        "id": "episodes_2",
+        "activity_basis": "episodes",
+        "contacts_per_episode": 2
+      }
+    ],
+    "effect_modes": [
+      "attenuated",
+      "null",
+      "skeptical",
+      "published"
+    ],
+    "budget_years": 7,
+    "assumption_label": "Contact multipliers are deterministic analyst sensitivity settings, not observed local rates; repeat contacts do not increase episode-level clinical efficacy. Conditional expansion policies do not establish device or site approval."
+  },
+  "analysis_snapshot_sha256": "589c292d8a33442d963d30c73ed9e4529315c82b8474fc89ad4570edf38db8e5"
+}

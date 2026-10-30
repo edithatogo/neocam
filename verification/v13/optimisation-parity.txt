@@ -1,0 +1,1 @@
+Six policies, all 38 output arrays, 128 paired draws: bit-for-bit parity against pre-optimisation implementation. Same ephemeral site group evaluated once; no persistent cache.

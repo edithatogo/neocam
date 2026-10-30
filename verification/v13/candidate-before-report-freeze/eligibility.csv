@@ -1,0 +1,301 @@
+portfolio,site,strategy,status,evidence
+pilot,Atherton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+pilot,Atherton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Atherton,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+pilot,Atherton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Atherton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Innisfail,telephone,reported_operation,Existing specialist telephone pathway; usual care
+pilot,Innisfail,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Innisfail,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+pilot,Innisfail,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Innisfail,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Mareeba,telephone,reported_operation,Existing specialist telephone pathway; usual care
+pilot,Mareeba,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Mareeba,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+pilot,Mareeba,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+pilot,Mareeba,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Cairns,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Cairns,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Cairns,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Cairns,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Cairns,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Atherton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Atherton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Atherton,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs,Atherton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Atherton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mareeba,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Mareeba,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mareeba,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs,Mareeba,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mareeba,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Innisfail,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Innisfail,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Innisfail,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs,Innisfail,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Innisfail,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Tully,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Tully,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Tully,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Tully,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Tully,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mossman,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Mossman,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mossman,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mossman,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Mossman,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Babinda,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Babinda,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Babinda,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Babinda,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Babinda,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Gordonvale,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Gordonvale,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Gordonvale,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Gordonvale,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Gordonvale,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Herberton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Herberton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Herberton,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Herberton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Herberton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Yarrabah Emergency Service,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs,Yarrabah Emergency Service,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Yarrabah Emergency Service,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Yarrabah Emergency Service,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs,Yarrabah Emergency Service,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cairns,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Cairns,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cairns,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cairns,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cairns,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Atherton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Atherton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Atherton,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs_tchhs,Atherton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Atherton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mareeba,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Mareeba,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mareeba,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs_tchhs,Mareeba,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mareeba,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Innisfail,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Innisfail,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Innisfail,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+chhhs_tchhs,Innisfail,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Innisfail,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Tully,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Tully,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Tully,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Tully,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Tully,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mossman,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Mossman,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mossman,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mossman,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Mossman,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Babinda,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Babinda,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Babinda,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Babinda,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Babinda,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Gordonvale,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Gordonvale,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Gordonvale,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Gordonvale,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Gordonvale,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Herberton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Herberton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Herberton,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Herberton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Herberton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Yarrabah Emergency Service,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Yarrabah Emergency Service,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Yarrabah Emergency Service,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Yarrabah Emergency Service,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Yarrabah Emergency Service,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cooktown,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Cooktown,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cooktown,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cooktown,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Cooktown,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Weipa,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Weipa,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Weipa,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Weipa,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Weipa,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Thursday Island,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Thursday Island,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Thursday Island,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Thursday Island,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Thursday Island,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Bamaga,telephone,reported_operation,Existing specialist telephone pathway; usual care
+chhhs_tchhs,Bamaga,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Bamaga,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Bamaga,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+chhhs_tchhs,Bamaga,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Atherton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Atherton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Atherton,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+spokes,Atherton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Atherton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ayr,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Ayr,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ayr,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ayr,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ayr,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Beaudesert,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Beaudesert,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Beaudesert,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Beaudesert,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Beaudesert,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Bundaberg Base,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Bundaberg Base,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Bundaberg Base,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Bundaberg Base,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Bundaberg Base,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Caboolture,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Caboolture,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Caboolture,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Caboolture,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Caboolture,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Cairns,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Cairns,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Cairns,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Cairns,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Cairns,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Charleville,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Charleville,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Charleville,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Charleville,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Charleville,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Dalby,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Dalby,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Dalby,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Dalby,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Dalby,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Emerald,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Emerald,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Emerald,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Emerald,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Emerald,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gladstone,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Gladstone,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gladstone,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gladstone,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gladstone,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Goondiwindi,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Goondiwindi,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Goondiwindi,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Goondiwindi,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Goondiwindi,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gympie,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Gympie,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gympie,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gympie,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Gympie,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Hervey Bay,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Hervey Bay,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Hervey Bay,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Hervey Bay,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Hervey Bay,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ingham,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Ingham,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ingham,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ingham,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ingham,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Innisfail,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Innisfail,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Innisfail,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+spokes,Innisfail,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Innisfail,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ipswich,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Ipswich,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ipswich,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ipswich,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Ipswich,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Kingaroy,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Kingaroy,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Kingaroy,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Kingaroy,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Kingaroy,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Logan,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Logan,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Logan,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Logan,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Logan,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Longreach,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Longreach,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Longreach,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Longreach,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Longreach,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mackay Base,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Mackay Base,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mackay Base,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mackay Base,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mackay Base,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mareeba,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Mareeba,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mareeba,panda,reported_operation,"ELC2026 item2.1.7; reported operation, not approval certification"
+spokes,Mareeba,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mareeba,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mount Isa,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Mount Isa,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mount Isa,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mount Isa,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Mount Isa,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Proserpine,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Proserpine,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Proserpine,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Proserpine,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Proserpine,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redcliffe,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Redcliffe,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redcliffe,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redcliffe,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redcliffe,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redland,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Redland,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redland,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redland,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Redland,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Rockhampton,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Rockhampton,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Rockhampton,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Rockhampton,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Rockhampton,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Roma,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Roma,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Roma,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Roma,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Roma,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,St George,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,St George,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,St George,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,St George,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,St George,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Stanthorpe,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Stanthorpe,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Stanthorpe,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Stanthorpe,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Stanthorpe,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Sunshine Coast University,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Sunshine Coast University,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Sunshine Coast University,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Sunshine Coast University,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Sunshine Coast University,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Thursday Island,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Thursday Island,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Thursday Island,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Thursday Island,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Thursday Island,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Toowoomba,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Toowoomba,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Toowoomba,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Toowoomba,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Toowoomba,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Warwick,telephone,reported_operation,Existing specialist telephone pathway; usual care
+spokes,Warwick,mobile,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Warwick,panda,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Warwick,fixed,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"
+spokes,Warwick,obsbot,hypothetical,"Analyst scenario: site suitability, credentials, connectivity and approval unverified"

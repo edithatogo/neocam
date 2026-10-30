@@ -1,0 +1,15 @@
+name,hhs,role,births_2022,current_status,births_status,source_id,scope
+Cairns,CHHHS,birth/referral,2223,current service directory,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Atherton,CHHHS,birthing,157,current service directory,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Mareeba,CHHHS,birthing,134,current service directory,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Innisfail,CHHHS,birthing,195,current service directory,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Tully,CHHHS,readiness scenario,,not asserted to have planned birthing,missing from retained table; NOT observed zero,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Mossman,CHHHS,readiness scenario,6,not asserted to have planned birthing,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Babinda,CHHHS,readiness scenario,,not asserted to have planned birthing,missing from retained table; NOT observed zero,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Gordonvale,CHHHS,readiness scenario,,not asserted to have planned birthing,missing from retained table; NOT observed zero,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Herberton,CHHHS,readiness scenario,,not asserted to have planned birthing,missing from retained table; NOT observed zero,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Yarrabah Emergency Service,CHHHS,readiness scenario,8,not asserted to have planned birthing,2022 historical count,CHHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Cooktown,TCHHS,reopened birthing,6,birthing resumed September 2026,2022 historical count,TCHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Weipa,TCHHS,reopened birthing,,birthing resumed May 2024,missing from retained table; NOT observed zero,TCHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Thursday Island,TCHHS,birthing,89,current service directory,2022 historical count,TCHHS_DIR,hospital/emergency network only; community/primary health centres excluded
+Bamaga,TCHHS,readiness scenario,1,not asserted to have planned birthing,2022 historical count,TCHHS_DIR,hospital/emergency network only; community/primary health centres excluded

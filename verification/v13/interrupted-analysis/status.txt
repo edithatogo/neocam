@@ -1,0 +1,1 @@
+First full refinement execution was interrupted by the outer 60-second tool limit. Only resolved inputs existed; no complete results are claimed.

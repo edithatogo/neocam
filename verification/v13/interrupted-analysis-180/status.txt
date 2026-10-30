@@ -1,0 +1,1 @@
+Interrupted by outer execution limit before tables completed. Superseded after exact ephemeral-group reuse optimisation; no partial results used.

@@ -1,0 +1,60 @@
+....FFF                                                                  [100%]
+=================================== FAILURES ===================================
+____________ test_review_snapshot_changes_when_model_source_changes ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_review_snapshot_changes_w0')
+
+    def test_review_snapshot_changes_when_model_source_changes(tmp_path):
+>       from scripts.analyse_refinements import snapshot_identity
+E       ImportError: cannot import name 'snapshot_identity' from 'scripts.analyse_refinements' (/mnt/data/neocam-v13/scripts/analyse_refinements.py)
+
+tests/test_v13_pipeline.py:77: ImportError
+____ test_artifact_cli_checks_declared_supplement_not_old_hardcoded_release ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_artifact_cli_checks_decla0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f67a57d56e0>
+
+    def test_artifact_cli_checks_declared_supplement_not_old_hardcoded_release(tmp_path,monkeypatch):
+        from quality import artifacts
+        (tmp_path/'config').mkdir()
+        (tmp_path/'config/assurance.json').write_text(json.dumps({'evidence_version':'v13','current_output':'outputs/primary','additional_outputs':['outputs/supplement']}))
+        for name in ('primary','supplement'):
+            d=tmp_path/'outputs'/name;d.mkdir(parents=True);(d/'result.txt').write_text('value')
+            artifacts.seal(tmp_path,d)
+        monkeypatch.setattr(artifacts,'__file__',str(tmp_path/'quality/artifacts.py'))
+        monkeypatch.setattr(sys,'argv',['artifacts','verify'])
+>       assert artifacts.main()==0
+E       AssertionError: assert 1 == 0
+E        +  where 1 = <function main at 0x7f67a5775080>()
+E        +    where <function main at 0x7f67a5775080> = <module 'quality.artifacts' from '/mnt/data/neocam-v13/quality/artifacts.py'>.main
+
+tests/test_v13_pipeline.py:93: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{
+  "errors": [
+    "Manifest unavailable or invalid; no release verification"
+  ],
+  "scope": "outputs/v12"
+}
+_________ test_contact_config_must_reject_duplicate_semantic_scenarios _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-5/test_contact_config_must_rejec0')
+
+    def test_contact_config_must_reject_duplicate_semantic_scenarios(tmp_path):
+        from scripts.analyse_refinements import load_refinements
+        d=json.loads((ROOT/'config/refinements.json').read_text())
+        dup=dict(d['activity_scenarios'][0],id='another')
+        d['activity_scenarios'].append(dup)
+        p=tmp_path/'c.json';p.write_text(json.dumps(d))
+>       with pytest.raises(ValueError):load_refinements(p)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v13_pipeline.py:104: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v13_pipeline.py::test_review_snapshot_changes_when_model_source_changes - ImportError: cannot import name 'snapshot_identity' from 'scripts.analyse_refinements' (/mnt/data/neocam-v13/scripts/analyse_refinements.py)
+FAILED tests/test_v13_pipeline.py::test_artifact_cli_checks_declared_supplement_not_old_hardcoded_release - AssertionError: assert 1 == 0
+ +  where 1 = <function main at 0x7f67a5775080>()
+ +    where <function main at 0x7f67a5775080> = <module 'quality.artifacts' from '/mnt/data/neocam-v13/quality/artifacts.py'>.main
+FAILED tests/test_v13_pipeline.py::test_contact_config_must_reject_duplicate_semantic_scenarios - Failed: DID NOT RAISE <class 'ValueError'>
+3 failed, 4 passed in 2.61s

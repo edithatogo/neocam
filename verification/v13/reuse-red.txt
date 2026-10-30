@@ -1,0 +1,32 @@
+...............FF                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_multiple_policies_reuse_only_identical_ephemeral_groups _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f2f4944a2c0>
+
+    def test_multiple_policies_reuse_only_identical_ephemeral_groups(monkeypatch):
+        m,s,e,p=env(portfolio('chhhs'))
+        policies=m.policy_catalogue(s)
+        seen=[];real=m.compare_v6
+        def recorded(sites,*args,**kwargs):
+            seen.append(tuple(site.name for site in sites))
+            return real(sites,*args,**kwargs)
+        monkeypatch.setattr(m,'compare_v6',recorded)
+>       result=m.evaluate_policies(s,policies,e,Parameters(),PathwaySpec(),())
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.deployment' has no attribute 'evaluate_policies'. Did you mean: 'evaluate_policy'?
+
+tests/test_v13_deployment.py:136: AttributeError
+_______________ test_policy_results_do_not_share_mutable_arrays ________________
+
+    def test_policy_results_do_not_share_mutable_arrays():
+        m,s,e,p=env(portfolio('chhhs'))
+>       result=m.evaluate_policies(s,m.policy_catalogue(s),e,Parameters(),PathwaySpec(),())
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'src.deployment' has no attribute 'evaluate_policies'. Did you mean: 'evaluate_policy'?
+
+tests/test_v13_deployment.py:147: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_v13_deployment.py::test_multiple_policies_reuse_only_identical_ephemeral_groups - AttributeError: module 'src.deployment' has no attribute 'evaluate_policies'. Did you mean: 'evaluate_policy'?
+FAILED tests/test_v13_deployment.py::test_policy_results_do_not_share_mutable_arrays - AttributeError: module 'src.deployment' has no attribute 'evaluate_policies'. Did you mean: 'evaluate_policy'?
+2 failed, 15 passed in 0.13s

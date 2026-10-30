@@ -1,0 +1,349 @@
+portfolio,policy,conditional_policy,site,strategy
+pilot,telephone,False,Atherton,telephone
+pilot,telephone,False,Innisfail,telephone
+pilot,telephone,False,Mareeba,telephone
+pilot,retain_pilot_only,False,Atherton,panda
+pilot,retain_pilot_only,False,Innisfail,panda
+pilot,retain_pilot_only,False,Mareeba,panda
+chhhs,telephone,False,Cairns,telephone
+chhhs,telephone,False,Atherton,telephone
+chhhs,telephone,False,Mareeba,telephone
+chhhs,telephone,False,Innisfail,telephone
+chhhs,telephone,False,Tully,telephone
+chhhs,telephone,False,Mossman,telephone
+chhhs,telephone,False,Babinda,telephone
+chhhs,telephone,False,Gordonvale,telephone
+chhhs,telephone,False,Herberton,telephone
+chhhs,telephone,False,Yarrabah Emergency Service,telephone
+chhhs,retain_pilot_only,False,Cairns,telephone
+chhhs,retain_pilot_only,False,Atherton,panda
+chhhs,retain_pilot_only,False,Mareeba,panda
+chhhs,retain_pilot_only,False,Innisfail,panda
+chhhs,retain_pilot_only,False,Tully,telephone
+chhhs,retain_pilot_only,False,Mossman,telephone
+chhhs,retain_pilot_only,False,Babinda,telephone
+chhhs,retain_pilot_only,False,Gordonvale,telephone
+chhhs,retain_pilot_only,False,Herberton,telephone
+chhhs,retain_pilot_only,False,Yarrabah Emergency Service,telephone
+chhhs,retain_pilot_expand_panda,True,Cairns,panda
+chhhs,retain_pilot_expand_panda,True,Atherton,panda
+chhhs,retain_pilot_expand_panda,True,Mareeba,panda
+chhhs,retain_pilot_expand_panda,True,Innisfail,panda
+chhhs,retain_pilot_expand_panda,True,Tully,panda
+chhhs,retain_pilot_expand_panda,True,Mossman,panda
+chhhs,retain_pilot_expand_panda,True,Babinda,panda
+chhhs,retain_pilot_expand_panda,True,Gordonvale,panda
+chhhs,retain_pilot_expand_panda,True,Herberton,panda
+chhhs,retain_pilot_expand_panda,True,Yarrabah Emergency Service,panda
+chhhs,retain_pilot_expand_obsbot,True,Cairns,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Atherton,panda
+chhhs,retain_pilot_expand_obsbot,True,Mareeba,panda
+chhhs,retain_pilot_expand_obsbot,True,Innisfail,panda
+chhhs,retain_pilot_expand_obsbot,True,Tully,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Mossman,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Babinda,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Gordonvale,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Herberton,obsbot
+chhhs,retain_pilot_expand_obsbot,True,Yarrabah Emergency Service,obsbot
+chhhs,retain_pilot_expand_mobile,True,Cairns,mobile
+chhhs,retain_pilot_expand_mobile,True,Atherton,panda
+chhhs,retain_pilot_expand_mobile,True,Mareeba,panda
+chhhs,retain_pilot_expand_mobile,True,Innisfail,panda
+chhhs,retain_pilot_expand_mobile,True,Tully,mobile
+chhhs,retain_pilot_expand_mobile,True,Mossman,mobile
+chhhs,retain_pilot_expand_mobile,True,Babinda,mobile
+chhhs,retain_pilot_expand_mobile,True,Gordonvale,mobile
+chhhs,retain_pilot_expand_mobile,True,Herberton,mobile
+chhhs,retain_pilot_expand_mobile,True,Yarrabah Emergency Service,mobile
+chhhs,retain_pilot_expand_fixed,True,Cairns,fixed
+chhhs,retain_pilot_expand_fixed,True,Atherton,panda
+chhhs,retain_pilot_expand_fixed,True,Mareeba,panda
+chhhs,retain_pilot_expand_fixed,True,Innisfail,panda
+chhhs,retain_pilot_expand_fixed,True,Tully,fixed
+chhhs,retain_pilot_expand_fixed,True,Mossman,fixed
+chhhs,retain_pilot_expand_fixed,True,Babinda,fixed
+chhhs,retain_pilot_expand_fixed,True,Gordonvale,fixed
+chhhs,retain_pilot_expand_fixed,True,Herberton,fixed
+chhhs,retain_pilot_expand_fixed,True,Yarrabah Emergency Service,fixed
+chhhs_tchhs,telephone,False,Cairns,telephone
+chhhs_tchhs,telephone,False,Atherton,telephone
+chhhs_tchhs,telephone,False,Mareeba,telephone
+chhhs_tchhs,telephone,False,Innisfail,telephone
+chhhs_tchhs,telephone,False,Tully,telephone
+chhhs_tchhs,telephone,False,Mossman,telephone
+chhhs_tchhs,telephone,False,Babinda,telephone
+chhhs_tchhs,telephone,False,Gordonvale,telephone
+chhhs_tchhs,telephone,False,Herberton,telephone
+chhhs_tchhs,telephone,False,Yarrabah Emergency Service,telephone
+chhhs_tchhs,telephone,False,Cooktown,telephone
+chhhs_tchhs,telephone,False,Weipa,telephone
+chhhs_tchhs,telephone,False,Thursday Island,telephone
+chhhs_tchhs,telephone,False,Bamaga,telephone
+chhhs_tchhs,retain_pilot_only,False,Cairns,telephone
+chhhs_tchhs,retain_pilot_only,False,Atherton,panda
+chhhs_tchhs,retain_pilot_only,False,Mareeba,panda
+chhhs_tchhs,retain_pilot_only,False,Innisfail,panda
+chhhs_tchhs,retain_pilot_only,False,Tully,telephone
+chhhs_tchhs,retain_pilot_only,False,Mossman,telephone
+chhhs_tchhs,retain_pilot_only,False,Babinda,telephone
+chhhs_tchhs,retain_pilot_only,False,Gordonvale,telephone
+chhhs_tchhs,retain_pilot_only,False,Herberton,telephone
+chhhs_tchhs,retain_pilot_only,False,Yarrabah Emergency Service,telephone
+chhhs_tchhs,retain_pilot_only,False,Cooktown,telephone
+chhhs_tchhs,retain_pilot_only,False,Weipa,telephone
+chhhs_tchhs,retain_pilot_only,False,Thursday Island,telephone
+chhhs_tchhs,retain_pilot_only,False,Bamaga,telephone
+chhhs_tchhs,retain_pilot_expand_panda,True,Cairns,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Atherton,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Mareeba,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Innisfail,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Tully,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Mossman,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Babinda,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Gordonvale,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Herberton,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Yarrabah Emergency Service,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Cooktown,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Weipa,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Thursday Island,panda
+chhhs_tchhs,retain_pilot_expand_panda,True,Bamaga,panda
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Cairns,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Atherton,panda
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Mareeba,panda
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Innisfail,panda
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Tully,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Mossman,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Babinda,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Gordonvale,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Herberton,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Yarrabah Emergency Service,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Cooktown,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Weipa,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Thursday Island,obsbot
+chhhs_tchhs,retain_pilot_expand_obsbot,True,Bamaga,obsbot
+chhhs_tchhs,retain_pilot_expand_mobile,True,Cairns,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Atherton,panda
+chhhs_tchhs,retain_pilot_expand_mobile,True,Mareeba,panda
+chhhs_tchhs,retain_pilot_expand_mobile,True,Innisfail,panda
+chhhs_tchhs,retain_pilot_expand_mobile,True,Tully,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Mossman,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Babinda,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Gordonvale,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Herberton,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Yarrabah Emergency Service,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Cooktown,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Weipa,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Thursday Island,mobile
+chhhs_tchhs,retain_pilot_expand_mobile,True,Bamaga,mobile
+chhhs_tchhs,retain_pilot_expand_fixed,True,Cairns,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Atherton,panda
+chhhs_tchhs,retain_pilot_expand_fixed,True,Mareeba,panda
+chhhs_tchhs,retain_pilot_expand_fixed,True,Innisfail,panda
+chhhs_tchhs,retain_pilot_expand_fixed,True,Tully,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Mossman,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Babinda,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Gordonvale,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Herberton,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Yarrabah Emergency Service,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Cooktown,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Weipa,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Thursday Island,fixed
+chhhs_tchhs,retain_pilot_expand_fixed,True,Bamaga,fixed
+spokes,telephone,False,Atherton,telephone
+spokes,telephone,False,Ayr,telephone
+spokes,telephone,False,Beaudesert,telephone
+spokes,telephone,False,Bundaberg Base,telephone
+spokes,telephone,False,Caboolture,telephone
+spokes,telephone,False,Cairns,telephone
+spokes,telephone,False,Charleville,telephone
+spokes,telephone,False,Dalby,telephone
+spokes,telephone,False,Emerald,telephone
+spokes,telephone,False,Gladstone,telephone
+spokes,telephone,False,Goondiwindi,telephone
+spokes,telephone,False,Gympie,telephone
+spokes,telephone,False,Hervey Bay,telephone
+spokes,telephone,False,Ingham,telephone
+spokes,telephone,False,Innisfail,telephone
+spokes,telephone,False,Ipswich,telephone
+spokes,telephone,False,Kingaroy,telephone
+spokes,telephone,False,Logan,telephone
+spokes,telephone,False,Longreach,telephone
+spokes,telephone,False,Mackay Base,telephone
+spokes,telephone,False,Mareeba,telephone
+spokes,telephone,False,Mount Isa,telephone
+spokes,telephone,False,Proserpine,telephone
+spokes,telephone,False,Redcliffe,telephone
+spokes,telephone,False,Redland,telephone
+spokes,telephone,False,Rockhampton,telephone
+spokes,telephone,False,Roma,telephone
+spokes,telephone,False,St George,telephone
+spokes,telephone,False,Stanthorpe,telephone
+spokes,telephone,False,Sunshine Coast University,telephone
+spokes,telephone,False,Thursday Island,telephone
+spokes,telephone,False,Toowoomba,telephone
+spokes,telephone,False,Warwick,telephone
+spokes,retain_pilot_only,False,Atherton,panda
+spokes,retain_pilot_only,False,Ayr,telephone
+spokes,retain_pilot_only,False,Beaudesert,telephone
+spokes,retain_pilot_only,False,Bundaberg Base,telephone
+spokes,retain_pilot_only,False,Caboolture,telephone
+spokes,retain_pilot_only,False,Cairns,telephone
+spokes,retain_pilot_only,False,Charleville,telephone
+spokes,retain_pilot_only,False,Dalby,telephone
+spokes,retain_pilot_only,False,Emerald,telephone
+spokes,retain_pilot_only,False,Gladstone,telephone
+spokes,retain_pilot_only,False,Goondiwindi,telephone
+spokes,retain_pilot_only,False,Gympie,telephone
+spokes,retain_pilot_only,False,Hervey Bay,telephone
+spokes,retain_pilot_only,False,Ingham,telephone
+spokes,retain_pilot_only,False,Innisfail,panda
+spokes,retain_pilot_only,False,Ipswich,telephone
+spokes,retain_pilot_only,False,Kingaroy,telephone
+spokes,retain_pilot_only,False,Logan,telephone
+spokes,retain_pilot_only,False,Longreach,telephone
+spokes,retain_pilot_only,False,Mackay Base,telephone
+spokes,retain_pilot_only,False,Mareeba,panda
+spokes,retain_pilot_only,False,Mount Isa,telephone
+spokes,retain_pilot_only,False,Proserpine,telephone
+spokes,retain_pilot_only,False,Redcliffe,telephone
+spokes,retain_pilot_only,False,Redland,telephone
+spokes,retain_pilot_only,False,Rockhampton,telephone
+spokes,retain_pilot_only,False,Roma,telephone
+spokes,retain_pilot_only,False,St George,telephone
+spokes,retain_pilot_only,False,Stanthorpe,telephone
+spokes,retain_pilot_only,False,Sunshine Coast University,telephone
+spokes,retain_pilot_only,False,Thursday Island,telephone
+spokes,retain_pilot_only,False,Toowoomba,telephone
+spokes,retain_pilot_only,False,Warwick,telephone
+spokes,retain_pilot_expand_panda,True,Atherton,panda
+spokes,retain_pilot_expand_panda,True,Ayr,panda
+spokes,retain_pilot_expand_panda,True,Beaudesert,panda
+spokes,retain_pilot_expand_panda,True,Bundaberg Base,panda
+spokes,retain_pilot_expand_panda,True,Caboolture,panda
+spokes,retain_pilot_expand_panda,True,Cairns,panda
+spokes,retain_pilot_expand_panda,True,Charleville,panda
+spokes,retain_pilot_expand_panda,True,Dalby,panda
+spokes,retain_pilot_expand_panda,True,Emerald,panda
+spokes,retain_pilot_expand_panda,True,Gladstone,panda
+spokes,retain_pilot_expand_panda,True,Goondiwindi,panda
+spokes,retain_pilot_expand_panda,True,Gympie,panda
+spokes,retain_pilot_expand_panda,True,Hervey Bay,panda
+spokes,retain_pilot_expand_panda,True,Ingham,panda
+spokes,retain_pilot_expand_panda,True,Innisfail,panda
+spokes,retain_pilot_expand_panda,True,Ipswich,panda
+spokes,retain_pilot_expand_panda,True,Kingaroy,panda
+spokes,retain_pilot_expand_panda,True,Logan,panda
+spokes,retain_pilot_expand_panda,True,Longreach,panda
+spokes,retain_pilot_expand_panda,True,Mackay Base,panda
+spokes,retain_pilot_expand_panda,True,Mareeba,panda
+spokes,retain_pilot_expand_panda,True,Mount Isa,panda
+spokes,retain_pilot_expand_panda,True,Proserpine,panda
+spokes,retain_pilot_expand_panda,True,Redcliffe,panda
+spokes,retain_pilot_expand_panda,True,Redland,panda
+spokes,retain_pilot_expand_panda,True,Rockhampton,panda
+spokes,retain_pilot_expand_panda,True,Roma,panda
+spokes,retain_pilot_expand_panda,True,St George,panda
+spokes,retain_pilot_expand_panda,True,Stanthorpe,panda
+spokes,retain_pilot_expand_panda,True,Sunshine Coast University,panda
+spokes,retain_pilot_expand_panda,True,Thursday Island,panda
+spokes,retain_pilot_expand_panda,True,Toowoomba,panda
+spokes,retain_pilot_expand_panda,True,Warwick,panda
+spokes,retain_pilot_expand_obsbot,True,Atherton,panda
+spokes,retain_pilot_expand_obsbot,True,Ayr,obsbot
+spokes,retain_pilot_expand_obsbot,True,Beaudesert,obsbot
+spokes,retain_pilot_expand_obsbot,True,Bundaberg Base,obsbot
+spokes,retain_pilot_expand_obsbot,True,Caboolture,obsbot
+spokes,retain_pilot_expand_obsbot,True,Cairns,obsbot
+spokes,retain_pilot_expand_obsbot,True,Charleville,obsbot
+spokes,retain_pilot_expand_obsbot,True,Dalby,obsbot
+spokes,retain_pilot_expand_obsbot,True,Emerald,obsbot
+spokes,retain_pilot_expand_obsbot,True,Gladstone,obsbot
+spokes,retain_pilot_expand_obsbot,True,Goondiwindi,obsbot
+spokes,retain_pilot_expand_obsbot,True,Gympie,obsbot
+spokes,retain_pilot_expand_obsbot,True,Hervey Bay,obsbot
+spokes,retain_pilot_expand_obsbot,True,Ingham,obsbot
+spokes,retain_pilot_expand_obsbot,True,Innisfail,panda
+spokes,retain_pilot_expand_obsbot,True,Ipswich,obsbot
+spokes,retain_pilot_expand_obsbot,True,Kingaroy,obsbot
+spokes,retain_pilot_expand_obsbot,True,Logan,obsbot
+spokes,retain_pilot_expand_obsbot,True,Longreach,obsbot
+spokes,retain_pilot_expand_obsbot,True,Mackay Base,obsbot
+spokes,retain_pilot_expand_obsbot,True,Mareeba,panda
+spokes,retain_pilot_expand_obsbot,True,Mount Isa,obsbot
+spokes,retain_pilot_expand_obsbot,True,Proserpine,obsbot
+spokes,retain_pilot_expand_obsbot,True,Redcliffe,obsbot
+spokes,retain_pilot_expand_obsbot,True,Redland,obsbot
+spokes,retain_pilot_expand_obsbot,True,Rockhampton,obsbot
+spokes,retain_pilot_expand_obsbot,True,Roma,obsbot
+spokes,retain_pilot_expand_obsbot,True,St George,obsbot
+spokes,retain_pilot_expand_obsbot,True,Stanthorpe,obsbot
+spokes,retain_pilot_expand_obsbot,True,Sunshine Coast University,obsbot
+spokes,retain_pilot_expand_obsbot,True,Thursday Island,obsbot
+spokes,retain_pilot_expand_obsbot,True,Toowoomba,obsbot
+spokes,retain_pilot_expand_obsbot,True,Warwick,obsbot
+spokes,retain_pilot_expand_mobile,True,Atherton,panda
+spokes,retain_pilot_expand_mobile,True,Ayr,mobile
+spokes,retain_pilot_expand_mobile,True,Beaudesert,mobile
+spokes,retain_pilot_expand_mobile,True,Bundaberg Base,mobile
+spokes,retain_pilot_expand_mobile,True,Caboolture,mobile
+spokes,retain_pilot_expand_mobile,True,Cairns,mobile
+spokes,retain_pilot_expand_mobile,True,Charleville,mobile
+spokes,retain_pilot_expand_mobile,True,Dalby,mobile
+spokes,retain_pilot_expand_mobile,True,Emerald,mobile
+spokes,retain_pilot_expand_mobile,True,Gladstone,mobile
+spokes,retain_pilot_expand_mobile,True,Goondiwindi,mobile
+spokes,retain_pilot_expand_mobile,True,Gympie,mobile
+spokes,retain_pilot_expand_mobile,True,Hervey Bay,mobile
+spokes,retain_pilot_expand_mobile,True,Ingham,mobile
+spokes,retain_pilot_expand_mobile,True,Innisfail,panda
+spokes,retain_pilot_expand_mobile,True,Ipswich,mobile
+spokes,retain_pilot_expand_mobile,True,Kingaroy,mobile
+spokes,retain_pilot_expand_mobile,True,Logan,mobile
+spokes,retain_pilot_expand_mobile,True,Longreach,mobile
+spokes,retain_pilot_expand_mobile,True,Mackay Base,mobile
+spokes,retain_pilot_expand_mobile,True,Mareeba,panda
+spokes,retain_pilot_expand_mobile,True,Mount Isa,mobile
+spokes,retain_pilot_expand_mobile,True,Proserpine,mobile
+spokes,retain_pilot_expand_mobile,True,Redcliffe,mobile
+spokes,retain_pilot_expand_mobile,True,Redland,mobile
+spokes,retain_pilot_expand_mobile,True,Rockhampton,mobile
+spokes,retain_pilot_expand_mobile,True,Roma,mobile
+spokes,retain_pilot_expand_mobile,True,St George,mobile
+spokes,retain_pilot_expand_mobile,True,Stanthorpe,mobile
+spokes,retain_pilot_expand_mobile,True,Sunshine Coast University,mobile
+spokes,retain_pilot_expand_mobile,True,Thursday Island,mobile
+spokes,retain_pilot_expand_mobile,True,Toowoomba,mobile
+spokes,retain_pilot_expand_mobile,True,Warwick,mobile
+spokes,retain_pilot_expand_fixed,True,Atherton,panda
+spokes,retain_pilot_expand_fixed,True,Ayr,fixed
+spokes,retain_pilot_expand_fixed,True,Beaudesert,fixed
+spokes,retain_pilot_expand_fixed,True,Bundaberg Base,fixed
+spokes,retain_pilot_expand_fixed,True,Caboolture,fixed
+spokes,retain_pilot_expand_fixed,True,Cairns,fixed
+spokes,retain_pilot_expand_fixed,True,Charleville,fixed
+spokes,retain_pilot_expand_fixed,True,Dalby,fixed
+spokes,retain_pilot_expand_fixed,True,Emerald,fixed
+spokes,retain_pilot_expand_fixed,True,Gladstone,fixed
+spokes,retain_pilot_expand_fixed,True,Goondiwindi,fixed
+spokes,retain_pilot_expand_fixed,True,Gympie,fixed
+spokes,retain_pilot_expand_fixed,True,Hervey Bay,fixed
+spokes,retain_pilot_expand_fixed,True,Ingham,fixed
+spokes,retain_pilot_expand_fixed,True,Innisfail,panda
+spokes,retain_pilot_expand_fixed,True,Ipswich,fixed
+spokes,retain_pilot_expand_fixed,True,Kingaroy,fixed
+spokes,retain_pilot_expand_fixed,True,Logan,fixed
+spokes,retain_pilot_expand_fixed,True,Longreach,fixed
+spokes,retain_pilot_expand_fixed,True,Mackay Base,fixed
+spokes,retain_pilot_expand_fixed,True,Mareeba,panda
+spokes,retain_pilot_expand_fixed,True,Mount Isa,fixed
+spokes,retain_pilot_expand_fixed,True,Proserpine,fixed
+spokes,retain_pilot_expand_fixed,True,Redcliffe,fixed
+spokes,retain_pilot_expand_fixed,True,Redland,fixed
+spokes,retain_pilot_expand_fixed,True,Rockhampton,fixed
+spokes,retain_pilot_expand_fixed,True,Roma,fixed
+spokes,retain_pilot_expand_fixed,True,St George,fixed
+spokes,retain_pilot_expand_fixed,True,Stanthorpe,fixed
+spokes,retain_pilot_expand_fixed,True,Sunshine Coast University,fixed
+spokes,retain_pilot_expand_fixed,True,Thursday Island,fixed
+spokes,retain_pilot_expand_fixed,True,Toowoomba,fixed
+spokes,retain_pilot_expand_fixed,True,Warwick,fixed

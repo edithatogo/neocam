@@ -1,0 +1,28 @@
+{
+  "version": "13.0.0",
+  "draws": 20000,
+  "seed": 20261028,
+  "portfolios": [
+    "pilot",
+    "chhhs",
+    "chhhs_tchhs",
+    "spokes"
+  ],
+  "independent_validation": false,
+  "clinical_appropriateness_estimated": false,
+  "snapshot_sha256": "1326f779feab577c01669427979adf31206504a985911d166f26e5f11c3a8e61",
+  "max_cohort_residual": 6.821210263296962e-13,
+  "all_finite": true,
+  "counts": {
+    "paired_policy_scenarios": 480,
+    "psa_result_rows": 960,
+    "ranking_rows": 1344,
+    "predictive_rows": 3840,
+    "budget_rows": 840
+  },
+  "assumptions": "Contact multipliers are deterministic analyst sensitivity settings, not observed local rates; repeat contacts do not increase episode-level clinical efficacy. Conditional expansion policies do not establish device or site approval.",
+  "scope": "Health-system and bounded family resources; arbitrary mixed-policy provider/fiscal allocation is not inferred. Original six-perspective reference retained separately.",
+  "clinical_unit": "episode; consultations is legacy episode alias, contacts are separate workload events; not unique infants over repeated admissions",
+  "reliability": "episode-level video delivery; repeated contacts are not independent opportunities for success",
+  "cost_equivalence": "Reference assumes equal video effect/reliability by technology; lower costs alone can dominate under that assumption."
+}

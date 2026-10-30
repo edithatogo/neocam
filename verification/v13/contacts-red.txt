@@ -1,0 +1,356 @@
+FFFFFFFFFFFFFFFFFFFF                                                     [100%]
+=================================== FAILURES ===================================
+_________________ test_forecast_exposures[contacts-18.75-37.5] _________________
+
+basis = 'contacts', episodes = 18.75, contacts = 37.5
+
+    @pytest.mark.parametrize('basis,episodes,contacts', [('contacts',18.75,37.5),('episodes',37.5,75)])
+    def test_forecast_exposures(basis,episodes,contacts):
+>       e,c=api()(basis,2).exposures(np.array([37.5]))
+            ^^^^^
+
+tests/test_v13_activity.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+__________________ test_forecast_exposures[episodes-37.5-75] ___________________
+
+basis = 'episodes', episodes = 37.5, contacts = 75
+
+    @pytest.mark.parametrize('basis,episodes,contacts', [('contacts',18.75,37.5),('episodes',37.5,75)])
+    def test_forecast_exposures(basis,episodes,contacts):
+>       e,c=api()(basis,2).exposures(np.array([37.5]))
+            ^^^^^
+
+tests/test_v13_activity.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+___________________________ test_invalid_ratio[True] ___________________________
+
+ratio = True
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+__________________________ test_invalid_ratio[False] ___________________________
+
+ratio = False
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+____________________________ test_invalid_ratio[0] _____________________________
+
+ratio = 0
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+___________________________ test_invalid_ratio[0.9] ____________________________
+
+ratio = 0.9
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+___________________________ test_invalid_ratio[nan] ____________________________
+
+ratio = nan
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+___________________________ test_invalid_ratio[inf] ____________________________
+
+ratio = inf
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+____________________________ test_invalid_ratio[2] _____________________________
+
+ratio = '2'
+
+    @pytest.mark.parametrize('ratio',[True,False,0,.9,float('nan'),float('inf'),'2'])
+    def test_invalid_ratio(ratio):
+>       with pytest.raises(ValueError):api()('contacts',ratio)
+                                       ^^^^^
+
+tests/test_v13_activity.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+______________________________ test_invalid_basis ______________________________
+
+    def test_invalid_basis():
+>       with pytest.raises(ValueError):api()('infants',1)
+                                       ^^^^^
+
+tests/test_v13_activity.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_______________________ test_invalid_exposure[forecast0] _______________________
+
+forecast = array([ True])
+
+    @pytest.mark.parametrize('forecast',[np.array([True]),np.array([-1]),np.array([np.nan]),np.array([]),np.array([[2]])])
+    def test_invalid_exposure(forecast):
+>       with pytest.raises(ValueError):api()().exposures(forecast)
+                                       ^^^^^
+
+tests/test_v13_activity.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_______________________ test_invalid_exposure[forecast1] _______________________
+
+forecast = array([-1])
+
+    @pytest.mark.parametrize('forecast',[np.array([True]),np.array([-1]),np.array([np.nan]),np.array([]),np.array([[2]])])
+    def test_invalid_exposure(forecast):
+>       with pytest.raises(ValueError):api()().exposures(forecast)
+                                       ^^^^^
+
+tests/test_v13_activity.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_______________________ test_invalid_exposure[forecast2] _______________________
+
+forecast = array([nan])
+
+    @pytest.mark.parametrize('forecast',[np.array([True]),np.array([-1]),np.array([np.nan]),np.array([]),np.array([[2]])])
+    def test_invalid_exposure(forecast):
+>       with pytest.raises(ValueError):api()().exposures(forecast)
+                                       ^^^^^
+
+tests/test_v13_activity.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_______________________ test_invalid_exposure[forecast3] _______________________
+
+forecast = array([], dtype=float64)
+
+    @pytest.mark.parametrize('forecast',[np.array([True]),np.array([-1]),np.array([np.nan]),np.array([]),np.array([[2]])])
+    def test_invalid_exposure(forecast):
+>       with pytest.raises(ValueError):api()().exposures(forecast)
+                                       ^^^^^
+
+tests/test_v13_activity.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_______________________ test_invalid_exposure[forecast4] _______________________
+
+forecast = array([[2]])
+
+    @pytest.mark.parametrize('forecast',[np.array([True]),np.array([-1]),np.array([np.nan]),np.array([]),np.array([[2]])])
+    def test_invalid_exposure(forecast):
+>       with pytest.raises(ValueError):api()().exposures(forecast)
+                                       ^^^^^
+
+tests/test_v13_activity.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_____________________ test_default_is_reference_equivalent _____________________
+
+    def test_default_is_reference_equivalent():
+        sites=select_sites(load_sites(),'pilot')
+>       a=compare_v6(sites);b=compare_v6(sites,activity=api()('contacts',1))
+                                                        ^^^^^
+
+tests/test_v13_activity.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_____ test_fixed_episode_clinical_outcomes_unchanged_and_workload_doubled ______
+
+    def test_fixed_episode_clinical_outcomes_unchanged_and_workload_doubled():
+        sites=select_sites(load_sites(),'pilot')
+>       a=compare_v6(sites);b=compare_v6(sites,activity=api()('episodes',2))
+                                                        ^^^^^
+
+tests/test_v13_activity.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+_________________ test_fixed_contacts_outcomes_halved_not_time _________________
+
+    def test_fixed_contacts_outcomes_halved_not_time():
+        sites=select_sites(load_sites(),'pilot')
+>       a=compare_v6(sites);b=compare_v6(sites,activity=api()('contacts',2))
+                                                        ^^^^^
+
+tests/test_v13_activity.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+____________ test_contact_effect_does_not_exponentiate_reliability _____________
+
+    def test_contact_effect_does_not_exponentiate_reliability():
+        sites=select_sites(load_sites(),'pilot');p=Parameters(reliability=.5)
+>       a=compare_v6(sites,p);b=compare_v6(sites,p,activity=api()('episodes',3))
+                                                            ^^^^^
+
+tests/test_v13_activity.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+___________________ test_perspective_and_budget_use_activity ___________________
+
+    def test_perspective_and_budget_use_activity():
+        from scripts.analyse_v7 import evaluate_perspectives
+        from src.statewide import _base_arrays
+        from src.configuration import load_configuration
+        from src.equipment import mixed_cash_budget
+        from pathlib import Path
+        p=Parameters();s=PathwaySpec();sites=select_sites(load_sites(),'pilot');x=_base_arrays(p,1)
+>       _,ledgers,_=evaluate_perspectives(sites,p,s,x,{},activity=api()('contacts',2))
+                                                                  ^^^^^
+
+tests/test_v13_activity.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       from src.activity import ActivitySpec
+E       ModuleNotFoundError: No module named 'src.activity'
+
+tests/test_v13_activity.py:10: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_v13_activity.py::test_forecast_exposures[contacts-18.75-37.5] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_forecast_exposures[episodes-37.5-75] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[True] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[False] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[0] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[0.9] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[nan] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[inf] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_ratio[2] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_basis - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_exposure[forecast0] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_exposure[forecast1] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_exposure[forecast2] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_exposure[forecast3] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_invalid_exposure[forecast4] - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_default_is_reference_equivalent - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_fixed_episode_clinical_outcomes_unchanged_and_workload_doubled - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_fixed_contacts_outcomes_halved_not_time - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_contact_effect_does_not_exponentiate_reliability - ModuleNotFoundError: No module named 'src.activity'
+FAILED tests/test_v13_activity.py::test_perspective_and_budget_use_activity - ModuleNotFoundError: No module named 'src.activity'
+20 failed in 0.11s

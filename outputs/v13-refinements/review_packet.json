@@ -1,0 +1,59 @@
+{
+  "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9",
+  "independent_validation": false,
+  "review_type": "external review requested, not executed",
+  "reviews": [
+    {
+      "role": "neonatal_retrieval",
+      "identity": "",
+      "independent": false,
+      "status": "pending",
+      "conflicts": "",
+      "date": "",
+      "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9",
+      "finding_summary": "",
+      "findings": [],
+      "evidence": [],
+      "question": "Do episode counts, transfer timing, local capability and appropriate escalation look plausible? More transfers can mean better recognition; identify potential unsafe retention."
+    },
+    {
+      "role": "health_economics",
+      "identity": "",
+      "independent": false,
+      "status": "pending",
+      "conflicts": "",
+      "date": "",
+      "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9",
+      "finding_summary": "",
+      "findings": [],
+      "evidence": [],
+      "question": "Are incremental workload, avoidable resources, shared capacity and site-estate capital/replacement coherent? Are fixed-contact versus fixed-episode interpretations appropriate?"
+    },
+    {
+      "role": "technical",
+      "identity": "",
+      "independent": false,
+      "status": "pending",
+      "conflicts": "",
+      "date": "",
+      "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9",
+      "finding_summary": "",
+      "findings": [],
+      "evidence": [],
+      "question": "Recalculate a small independent case without importing model helpers; check shared priors, population and cost identities against exact source and inputs."
+    },
+    {
+      "role": "consumer_rural",
+      "identity": "",
+      "independent": false,
+      "status": "pending",
+      "conflicts": "",
+      "date": "",
+      "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9",
+      "finding_summary": "",
+      "findings": [],
+      "evidence": [],
+      "question": "Assess separation, access, family burden, cultural safety and whether the bounded family-cost account misses material consequences."
+    }
+  ]
+}
