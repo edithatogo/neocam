@@ -56,3 +56,5 @@ Same assistant reviewed the implementation using the pinned conductor-review com
 
 ## Final exact-snapshot verification
 Source `ff0182de3933348565ef06e7799aa3c34c827760`:676 ordinary tests passed;31 gates reached,8 passed,22 blocked,1 failed. Coverage93.43%, active core96.53%; activity/configuration/equipment/pathway modules100%. Both final fingerprints and all gate log digests match. Current primary and refinement artifact manifests pass. All12 shared primary CSV files match v12 byte-for-byte. Four external reviewer requests remain pending and their validation command correctly returns nonzero. Final evidence-only appendices are excluded from calculation/verification input scopes; no complete-release, independent-validation or remote-push claim.
+
+Final restoration: complete bundle at a4e450fe28dff8bdfbfc76fedbed1411dbfc37bc cloned to a separate directory; git fsck completed and676tests passed again. Evidence-only reconciliation follows; executable and artifact fingerprints are unchanged.

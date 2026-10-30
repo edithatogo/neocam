@@ -32,3 +32,6 @@ Finish genuine lock and native tooling execution, private full source/artifact/h
 
 ## Applying the small update
 The patch is relative to the COMPLETE v12 local repository at8933d4dcdd7df01ed4b70adb8367c9c6eb9ddd4a, not to the partial GitHub checkout. Do not apply blindly to PR#3. Prefer the complete Git bundle to preserve existing ancestry, then reconcile with the current remote on an authenticated connected terminal without force-pushing main.
+
+## Restored package
+The complete bundle at a4e450fe28dff8bdfbfc76fedbed1411dbfc37bc was cloned into a separate directory, checked with git fsck and passed676tests. The last reconciliation commit adds only this evidence. Source and artifact fingerprints remain the exact values in the completed unified receipt. Final packaging checksums are published separately to avoid recursive manifests.

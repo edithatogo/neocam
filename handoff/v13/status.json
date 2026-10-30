@@ -30,7 +30,7 @@
     "4.3.b": "completed",
     "4.3.c": "completed_attempts_with_external_blockers",
     "4.3.d": "completed_frozen_run_hashes_verified",
-    "4.3.e": "packaging_and_restoration_pending",
+    "4.3.e": "completed_bundle_restoration_676_tests_and_integrity",
     "4.3.f": "blocked_no_remote_write"
   },
   "analysis": {
@@ -53,5 +53,9 @@
     "66c32fabd180cf845886d4e1aef2efc8f9395d22 feat: evaluate explicitly eligible mixed deployment with shared hub capacity",
     "4d0cf87d3854408e2cdd6fe61ae8626341dadf47 feat: separate neonatal episodes from repeat consultation workload",
     "6e0cd4b3562b28b7690ce8deb1cd6fa4d28160f0 conductor: specify four executable refinement tracks and pinned implement/review protocols"
-  ]
+  ],
+  "restoration_tests_passed": 676,
+  "restoration_source_commit": "a4e450fe28dff8bdfbfc76fedbed1411dbfc37bc",
+  "restoration_log_sha256": "19e2dac4f5d4219d6b8e82dc5e2ac834c1285b9bd1c5239512a0bc2582fd9b0e",
+  "git_fsck": "completed_without_reported_errors"
 }
