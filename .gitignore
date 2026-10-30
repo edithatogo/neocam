@@ -35,3 +35,7 @@ archive/
 
 # macOS metadata
 .DS_Store
+
+# Local build artifacts
+build/
+*.egg-info/
