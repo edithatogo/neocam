@@ -1,27 +1,25 @@
 # Scientific and publication validation implementation plan
 
-**Goal:** Scientific and publication validation.
-**Architecture:** existing exact pathway model, small standard-library adapters, explicit source and artifact provenance.
-**Stack:** Python/NumPy; optional reporting libraries; existing assurance tools.
+**Goal:** Expose model implications and make remaining scientific acceptance checkable.
+**Architecture:** Active exact pathway/perspective model and a bounded review protocol; no new clinical effect fitting.
 **Spec:** `v12-04-scientific-validation/spec.md`.
 
-## 1. predictive
-Export prior-predictive summaries from the active pathway model with checks for mass conservation, unsupported critical avoidance and signed perspective reconciliation; do not call assumptions posterior fitting.
-- [ ] Reproduce the relevant failure or missing contract.
-- [ ] Implement the smallest correction and run focused regression tests.
-- [ ] Record acceptance boundary, update this track and commit before progressing.
+## 1. Prior-predictive consequences
+- [x] Export 140 summaries from the actual reference draws across four portfolios and five strategies.
+- [x] Check population conservation, null effects, unsupported critical-case avoidance and signed perspective reconciliation.
+- [x] Label all prior-predictive quantities as assumed-model implications, not observed outcomes or a fitted posterior.
 
-## 2. properties
-Move principal Hypothesis properties to active configuration/pathway/perspective routines; retain historical regressions and add end-to-end declared-input/output tests.
-- [ ] Reproduce the relevant failure or missing contract.
-- [ ] Implement the smallest correction and run focused regression tests.
-- [ ] Record acceptance boundary, update this track and commit before progressing.
+## 2. Active-model testing
+- [x] Redirect principal generative properties to active pathway/perspective routines while retaining historical regressions.
+- [x] Add ordinary seed/invariance checks and a real declared-input-to-output CLI test.
+- [x] Reproduce and repair misspelled owned-site names being silently ignored.
+- [ ] Execute Hypothesis and mutation testing with the genuine installed toolchain.
 
-## 3. review
-Add clinical plausibility review, external comparison, four full-text gaps, consent/privacy/licensing/publication checklist. Mark empirical review unexecuted. Track repeated contacts and mixed deployment as bounded follow-on analyses, not new asserted effects.
-- [ ] Reproduce the relevant failure or missing contract.
-- [ ] Implement the smallest correction and run focused regression tests.
-- [ ] Record acceptance boundary, update this track and commit before progressing.
+## 3. Clinical, economic and publication review
+- [x] Record four full-text gaps, independent-review questions and explicit publication/privacy acceptance in conductor/validation-v12.md.
+- [x] Define contacts-per-infant, mixed deployment and clinical-appropriateness follow-ons without inventing empirical effects.
+- [ ] Acquire and verify critical full texts and missing original public source files.
+- [ ] Obtain independent neonatal/retrieval, economic and technical review; simulated roles remain author review.
+- [ ] Complete journal/governance/authorship/licensing review before submission or public release.
 
-
-Implemented:140 prior-predictive rows, active-kernel property definitions and ordinary seed/invariance checks; reviewer protocol and source/privacy checklist. Hypothesis tool and independent clinical/economic review are not executed. Contacts-per-infant and mixed policies remain explicit follow-on studies.
+Existing reference cost findings are retained; 36 utility rows are corrected to their age-11 evidence anchor. No causal survival/QALY benefit enters the primary analysis. External scientific acceptance is still open.

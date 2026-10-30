@@ -15,3 +15,5 @@ Further defect found and repaired: misspelled owned-site names could be silently
 Track3: one genuine lock resolution attempt timed out; no lock fabricated. Existing private PR will receive verified text updates; original binary/history migration remains external.
 
 Track4: active properties and validation protocol implemented; independent review, acquired full texts and empirical outcome calibration remain open. Final evidence is to be recorded under verification/v12 without editing this frozen context.
+
+Final reconciliation: current build, owned-site guard, all new ordinary tests and artifact verification completed. The first pollable full run reached all31 gates with603 tests passed,8 gates passed,22 blocked and1 failed; exact digests matched. Track3/4 checkboxes now distinguish implemented work from external acceptance. This final context edit requires a fresh receipt; the final run outcome will be appended only under verification/handoff, not back into this covered file.
