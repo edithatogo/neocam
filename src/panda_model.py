@@ -1,12 +1,18 @@
+"""Legacy single-site panda model retained for historical reproduction."""
+
 from __future__ import annotations
-from dataclasses import dataclass, asdict
+
 import math
+from dataclasses import asdict, dataclass
 from typing import Any
+
 import numpy as np
 
 
 @dataclass(frozen=True)
 class ModelInputs:
+    """Declared legacy model inputs; every value is an assumption, not an observation."""
+
     sites: int = 3
     consultations_per_site: float = 12.5
     equipment_cost_per_site: float = 10_000.0
@@ -30,16 +36,27 @@ class ModelInputs:
 
 
 def odds_to_probability(p0: float, odds_ratio: float) -> float:
+    """Convert a baseline probability to a post-odds-ratio probability.
+
+    Returns:
+        The converted probability, unchanged at the degenerate endpoints.
+
+    Raises:
+        ValueError: If the baseline probability or odds ratio is out of range.
+    """
     if not 0 <= p0 <= 1:
-        raise ValueError("p0 must be between zero and one")
+        msg = "p0 must be between zero and one"
+        raise ValueError(msg)
     if odds_ratio <= 0:
-        raise ValueError("odds_ratio must be positive")
-    if p0 in (0.0, 1.0):
+        msg = "odds_ratio must be positive"
+        raise ValueError(msg)
+    if p0 in {0.0, 1.0}:
         return p0
     return (odds_ratio * p0) / (1 - p0 + odds_ratio * p0)
 
 
 def annual_programme_cost(x: ModelInputs) -> dict[str, float]:
+    """Return the legacy annual programme cost components."""
     consultations = x.sites * x.consultations_per_site
     annualised_equipment = x.sites * x.equipment_cost_per_site / x.equipment_life_years
     checks = x.sites * 52 * (x.weekly_check_minutes / 60) * x.loaded_staff_cost_per_hour
@@ -58,9 +75,15 @@ def annual_programme_cost(x: ModelInputs) -> dict[str, float]:
 
 
 def weighted_transfer_cost(x: ModelInputs) -> float:
+    """Return the transport-weighted transfer cost under the declared mode shares.
+
+    Raises:
+        ValueError: If the declared transport shares do not sum to one.
+    """
     shares = x.road_share + x.rotary_share + x.fixed_share
     if not math.isclose(shares, 1.0, abs_tol=1e-9):
-        raise ValueError("transport shares must sum to one")
+        msg = "transport shares must sum to one"
+        raise ValueError(msg)
     return (
         x.road_share * x.road_cost
         + x.rotary_share * x.rotary_cost
@@ -73,8 +96,13 @@ def deterministic_scenario(
     x: ModelInputs,
     transfer_reduction_abs: float | None = None,
     consultations_per_site: float | None = None,
-    include_annualised_capital: bool = True,
+    include_annualised_capital: bool = True,  # ruff: ignore[boolean-default-value-positional-argument, boolean-type-hint-positional-argument] -- published flag
 ) -> dict[str, float]:
+    """Evaluate the legacy deterministic net-saving scenario.
+
+    Returns:
+        The legacy deterministic cost and saving components.
+    """
     cps = x.consultations_per_site if consultations_per_site is None else consultations_per_site
     xx = ModelInputs(**{**asdict(x), "consultations_per_site": cps})
     p_video = odds_to_probability(xx.usual_transfer_probability, xx.video_transfer_odds_ratio)
@@ -97,7 +125,7 @@ def deterministic_scenario(
     }
 
 
-def clinical_extension(
+def clinical_extension(  # ruff: ignore[too-many-arguments, too-many-positional-arguments] -- published model API
     consultations: float,
     probability_incremental_survival: float,
     major_morbidity_share_among_survivors: float = 0.35,
@@ -107,6 +135,11 @@ def clinical_extension(
     lifetime_cost_with_major_morbidity: float = 500_000.0,
     wtp_per_qaly: float = 50_000.0,
 ) -> dict[str, float]:
+    """Return the exploratory survival, QALY and lifetime-cost extension.
+
+    Returns:
+        The assumed survivor counts, incremental QALYs and net monetary benefit.
+    """
     extra_survivors = consultations * probability_incremental_survival
     major = extra_survivors * major_morbidity_share_among_survivors
     no_major = extra_survivors - major
@@ -126,7 +159,15 @@ def _lognormal(rng: np.random.Generator, median: float, gsd: float, n: int) -> n
     return rng.lognormal(np.log(median), np.log(gsd), n)
 
 
-def run_psa(n: int = 20_000, seed: int = 20261027) -> dict[str, Any]:
+def run_psa(  # ruff: ignore[too-many-locals] -- one linear paired-sampling routine
+    n: int = 20_000,
+    seed: int = 20261027,
+) -> dict[str, Any]:
+    """Run the legacy probabilistic scenario and return its summary and histogram.
+
+    Returns:
+        The PSA summary and histogram records.
+    """
     rng = np.random.default_rng(seed)
     sites = 3
     consultations = sites * rng.triangular(10.0, 12.5, 15.0, n)
@@ -160,8 +201,7 @@ def run_psa(n: int = 20_000, seed: int = 20261027) -> dict[str, Any]:
     bins = np.linspace(float(np.quantile(net, 0.005)), float(np.quantile(net, 0.995)), 21)
     counts, edges = np.histogram(net, bins=bins)
     histogram = [
-        {"midpoint": float((edges[i] + edges[i + 1]) / 2), "count": int(counts[i])}
-        for i in range(len(counts))
+        {"midpoint": float((edges[i] + edges[i + 1]) / 2), "count": int(counts[i])} for i in range(len(counts))
     ]
     summary = {
         "iterations": int(n),
