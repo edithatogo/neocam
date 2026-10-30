@@ -5,17 +5,17 @@
     "v13-04-release"
   ],
   "branch": "conductor/neocam-v13-decision-refinements",
-  "parent_commit": "d1fd81342ec2561fa5a01f744a8d312e47f31e49",
+  "parent_commit": "8933d4dcdd7df01ed4b70adb8367c9c6eb9ddd4a",
   "release_ready": false,
   "independent_validation": false,
   "review": "Pinned conductor-review protocol, same-assistant author review; external records pending",
-  "analysis": "outputs/v12/results.json",
+  "analysis": "outputs/v13-primary/results.json",
   "receipt": "verification/v13/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [
     "historical/missing denominators and current capability/routing",
-    "one clinical episode per forecast consultation assumption",
+    "Reference retains one contact per episode; 1/1.5/2 contact scenarios are explicit assumptions, not observed infant-level incidence",
     "bounded societal/family costing and unknown provider contracts",
     "clinical outcomes not causally quantified",
     "four critical full texts missing",
@@ -25,7 +25,7 @@
   "next_acceptance": "Read the exact final receipt; complete genuine lock/tool execution, remote inventory and independent evidence review.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "private",
-  "remote_import": "partial at the observed PR head; current v12 text upload pending readback; supporting artifacts and original ancestry remain open",
+  "remote_import": "Partial at last verified PR head dad20644185156090d642cb9d01470adb2813138; no v13 remote write",
   "hosted_environment_check": {
     "run_id": 40721279349,
     "conclusion": "failure",
@@ -39,12 +39,13 @@
     "cb01184fafe688c8a1cdfbbece60cff35f2eb90c",
     "3021017be5349faa4ea2cdcbdef89a4e37865b6d"
   ],
-  "remote_verified_incremental_commit": "0b87cdb38e8ea0aba444ffa4512f05cebf1af734",
+  "remote_verified_incremental_commit": "dad20644185156090d642cb9d01470adb2813138",
   "current_outputs": [
     "outputs/v13-primary",
     "outputs/v13-refinements"
   ],
   "remote_written_in_this_turn": false,
   "remote_write_blocker": "No write actions exposed; CLI push failed DNS",
-  "primary_results_change": "Reference default unchanged; new conditional contact/policy scenarios added"
+  "primary_results_change": "Reference default unchanged; new conditional contact/policy scenarios added",
+  "refinement_analysis": "outputs/v13-refinements/results.json"
 }
