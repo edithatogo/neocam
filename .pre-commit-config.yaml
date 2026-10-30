@@ -10,22 +10,26 @@ repos:
         language: system
         entry: uv run --frozen --no-sync python -m quality.hooks python
         types: [python]
+        stages: [pre-commit]
       - id: prose
         name: Vale (active prose)
         language: system
         entry: uv run --frozen --no-sync python -m quality.hooks prose
         files: '^(README.md|AGENTS.md|GEMINI.md|conductor/runbook.md|\.agents/skills/.*\.md)$'
+        stages: [pre-commit]
       - id: workflows
         name: Actionlint and zizmor (changed workflows)
         language: system
         entry: uv run --frozen --no-sync python -m quality.hooks workflow
         files: '^\.github/workflows/.*\.ya?ml$'
+        stages: [pre-commit]
       - id: staged-secrets
         name: Gitleaks (staged changes)
         language: system
         entry: uv run --frozen --no-sync python -m quality.hooks secrets
         pass_filenames: false
         always_run: true
+        stages: [pre-commit]
       - id: pushed-secrets
         name: Gitleaks (full history at push)
         language: system
