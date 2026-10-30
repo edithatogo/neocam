@@ -93,19 +93,34 @@ documentation/annotation/exception-style judgements.
 Worst single files: `scripts/build_workbook.py` 1,695 · `scripts/analyse_v5.py` 1,063 ·
 `scripts/build_workbook_v2.py` 1,040 · `scripts/analyse_v7.py` 1,007.
 
-## Scope decision required first (owner)
+## Scope decision — RESOLVED by the gate commands (owner no longer needed)
 
-Two defensible targets; the plan assumes A unless the owner chooses B.
+The plan originally offered A (fix everything) or B (enforce current-generation code and
+exclude `scripts/`). Reading the actual harness settles it: **`scripts/` is inside the
+gate scope**, so B is not available without weakening acceptance, which this project
+forbids. Evidence:
 
-- **A. Fix everything, including historical scripts.** Largest diff, touches
-  versioned scripts whose outputs are already frozen and published in `outputs/`.
-  Reformatting cannot change numerics, but it does churn historical files.
-- **B. Enforce on current-generation code (`src/`, `quality/`, `tests/`, `.agents/`),
-  formally exclude `scripts/` as historical, documented in `pyproject.toml` and the
-  runbook.** ~11.9k findings, keeps frozen historical artifacts untouched.
+- `quality/cli.py` — `Gate("ruff_lint", (python, "-m", "ruff", "check", "src", "scripts", "quality", "tests"), ...)`
+- `pyproject.toml` `[tool.ty.src].include` and `[tool.basedpyright].include` both list
+  `src`, `quality`, `tests` plus nine named scripts (`run_v2.py`, `verify.py`,
+  `analyse_v5.py`, `analyse_v6.py`, `analyse_v7.py`, `build_current_report.py`,
+  `plot_current.py`, `analyse_refinements.py`, `plot_refinements.py`).
 
-Either way, `pyproject.toml`'s own 6 `rule-codes-in-selectors` findings should be
-fixed (harmless, config-only).
+Therefore: `scripts/` is cleared for ruff (Option A), and those nine scripts also feed
+the type gates. No gate command, threshold or scope is being changed by this burn-down.
+`pyproject.toml`'s own 6 `rule-codes-in-selectors` findings were fixed in B0.
+
+## Phase 4 baseline (measured 2026-10-31, after the ruff work)
+
+- `ty`: **101 diagnostics** — `src` 48, `tests` 28, `scripts` 23, `quality` 22.
+- `basedpyright`: **3,813 errors, 0 warnings** — `tests` 2,243, `scripts` 933,
+  `quality` 405, `src` 311 (line counts; each error prints its path twice, so read them
+  as relative weights).
+
+Both tools run strict (`all`, `failOnWarnings`, no ignores), and a contract test forbids
+adding a `basedpyright` ignore block or a `.basedpyright/baseline.json`. Phase 4 therefore
+fixes types for real: `tests/` first by volume, then `scripts/`, `quality/`, and `src/`
+last, always re-running the parity checks after `src/` edits.
 
 ## Invariants (must hold for every batch)
 

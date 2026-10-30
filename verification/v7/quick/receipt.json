@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-30T15:37:44.428747+00:00",
-  "run_id": "b460c4fa-11c7-4a91-8c40-13f8c7989d1a",
+  "generated_at": "2026-10-30T17:32:44.434127+00:00",
+  "run_id": "d6b9c31a-259a-4305-b95d-028c2d532213",
   "profile": "quick",
-  "source_commit_at_execution": "4bdb86beb858d4b5aa0d11036c3073c677851bf4",
-  "input_fingerprint": "e11191d960e84e07ee7f1c50408a53ed8d21562a6a9bc31969917eaa8d7ed345",
+  "source_commit_at_execution": "5efe26c3432a7a45d90cef3bc4902abfe819104f",
+  "input_fingerprint": "3c10cbe8f9554a3478e51bc3ab53ce39406e2e5130a89c82c607ad6378e40a1a",
   "artifact_dependency_fingerprint": "ea689b83dacb7afbdaedc7ad93cf9d58270268ee2b9dd5e446f64d46a728a251",
   "run_finished": true,
   "active_gate": null,
@@ -42,30 +42,30 @@
       "gate": "pytest",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "e11191d960e84e07ee7f1c50408a53ed8d21562a6a9bc31969917eaa8d7ed345",
+      "fingerprint": "3c10cbe8f9554a3478e51bc3ab53ce39406e2e5130a89c82c607ad6378e40a1a",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "pytest",
         "-q"
       ],
-      "duration_seconds": 5.034256667000591,
+      "duration_seconds": 3.8686660829989705,
       "log": "verification/v7/quick/pytest.txt",
-      "log_sha256": "6dc8bfb1694ce471c8adaf613cf9e08f960311a700d3ab7eb97d464a8cb1dc91",
+      "log_sha256": "c929a71a61b274171a676d222c7993b343ef3825e51e518b38a0b84d478da2fe",
       "reason": ""
     },
     {
       "gate": "inputs",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "e11191d960e84e07ee7f1c50408a53ed8d21562a6a9bc31969917eaa8d7ed345",
+      "fingerprint": "3c10cbe8f9554a3478e51bc3ab53ce39406e2e5130a89c82c607ad6378e40a1a",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "quality.checks",
         "inputs"
       ],
-      "duration_seconds": 0.23044683299667668,
+      "duration_seconds": 0.19876874999317806,
       "log": "verification/v7/quick/inputs.txt",
       "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
       "reason": ""
@@ -74,14 +74,14 @@
       "gate": "context",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "e11191d960e84e07ee7f1c50408a53ed8d21562a6a9bc31969917eaa8d7ed345",
+      "fingerprint": "3c10cbe8f9554a3478e51bc3ab53ce39406e2e5130a89c82c607ad6378e40a1a",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "quality.checks",
         "context"
       ],
-      "duration_seconds": 0.04550404200563207,
+      "duration_seconds": 0.03953479199844878,
       "log": "verification/v7/quick/context.txt",
       "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
       "reason": ""
@@ -95,6 +95,6 @@
     "inputs",
     "context"
   ],
-  "updated_at": "2026-10-30T15:37:49.893165+00:00",
+  "updated_at": "2026-10-30T17:32:48.674582+00:00",
   "artifact_dependency_fingerprint_end": "ea689b83dacb7afbdaedc7ad93cf9d58270268ee2b9dd5e446f64d46a728a251"
 }
