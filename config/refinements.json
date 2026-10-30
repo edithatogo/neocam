@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "activity_scenarios": [
+    {
+      "id": "contacts_1",
+      "activity_basis": "contacts",
+      "contacts_per_episode": 1
+    },
+    {
+      "id": "contacts_1p5",
+      "activity_basis": "contacts",
+      "contacts_per_episode": 1.5
+    },
+    {
+      "id": "contacts_2",
+      "activity_basis": "contacts",
+      "contacts_per_episode": 2
+    },
+    {
+      "id": "episodes_1",
+      "activity_basis": "episodes",
+      "contacts_per_episode": 1
+    },
+    {
+      "id": "episodes_1p5",
+      "activity_basis": "episodes",
+      "contacts_per_episode": 1.5
+    },
+    {
+      "id": "episodes_2",
+      "activity_basis": "episodes",
+      "contacts_per_episode": 2
+    }
+  ],
+  "effect_modes": [
+    "attenuated",
+    "null",
+    "skeptical",
+    "published"
+  ],
+  "budget_years": 7,
+  "assumption_label": "Contact multipliers are deterministic analyst sensitivity settings, not observed local rates; repeat contacts do not increase episode-level clinical efficacy. Conditional expansion policies do not establish device or site approval."
+}

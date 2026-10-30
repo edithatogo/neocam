@@ -103,7 +103,13 @@ def policy_catalogue(sites: list[Site]) -> tuple[DeploymentPolicy, ...]:
     for new in ('panda', 'obsbot', 'mobile', 'fixed'):
         result.append(DeploymentPolicy(f'retain_pilot_expand_{new}',
             tuple((s.name, 'panda' if s.name in PILOT_NAMES else new) for s in sites), True))
-    return tuple(result)
+    unique = []
+    seen = set()
+    for policy in result:
+        if policy.assignments not in seen:
+            unique.append(policy)
+            seen.add(policy.assignments)
+    return tuple(unique)
 
 
 def _groups(sites: list[Site], policy: DeploymentPolicy) -> dict[str, list[Site]]:

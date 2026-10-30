@@ -31,8 +31,8 @@ Files: `config/refinements.json; scripts/analyse_refinements.py`. Tests: `tests/
 Interface: `main(config_path,refinements_path,output_dir)`.
 Acceptance: Generate all4portfolios with paired draws and strict vs conditional sets; 1/1.5/2contacts × fixed contacts/episodes; known pilot retirement/new capital correct; reject existing output and invalid config; export hashes.
 
-- [ ] 2.3.a Write reproducing test(s) for this contract.
-- [ ] 2.3.b Run `python -m pytest tests/test_v13_pipeline.py -q`; preserve expected red evidence (or documented configuration-only inspection).
-- [ ] 2.3.c Implement minimal existing-stack changes; do not modify scientific input estimates.
-- [ ] 2.3.d Run scoped tests and dependent regressions; preserve actual green output.
-- [ ] 2.3.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.
+- [x] 2.3.a Write reproducing test(s) for this contract.
+- [x] 2.3.b Run `python -m pytest tests/test_v13_pipeline.py -q`; preserve expected red evidence (or documented configuration-only inspection).
+- [x] 2.3.c Implement minimal existing-stack changes; do not modify scientific input estimates.
+- [x] 2.3.d Run scoped tests and dependent regressions; preserve actual green output.
+- [x] 2.3.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.

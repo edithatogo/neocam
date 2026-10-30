@@ -7,11 +7,11 @@ Implementation completion is not external acceptance. Historical tracks remain u
 Link: [./tracks/v13-01-contacts/](./tracks/v13-01-contacts/)
 
 ---
-## [~] Track: Eligible mixed deployment and shared capacity
+## [x] Track: Eligible mixed deployment and shared capacity
 Link: [./tracks/v13-02-policies/](./tracks/v13-02-policies/)
 
 ---
-## [ ] Track: Clinical plausibility packet and unresolved evidence
+## [~] Track: Clinical plausibility packet and unresolved evidence
 Link: [./tracks/v13-03-review/](./tracks/v13-03-review/)
 
 ---
