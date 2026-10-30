@@ -36,13 +36,18 @@ def load_refinements(path: Path) -> dict:
     if not isinstance(rows, list) or not rows:
         raise ValueError('Nonempty activity scenarios required')
     seen = set()
+    semantics = set()
     for row in rows:
         exact_keys(row, {'id', 'activity_basis', 'contacts_per_episode'}, 'Activity scenario')
         identity = row['id']
         if not isinstance(identity, str) or not re.fullmatch(r'[a-z0-9_]+', identity) or identity in seen:
             raise ValueError('Unique safe activity identifiers required')
         seen.add(identity)
-        ActivitySpec(row['activity_basis'], row['contacts_per_episode'])
+        activity = ActivitySpec(row['activity_basis'], row['contacts_per_episode'])
+        signature = (activity.activity_basis, activity.contacts_per_episode)
+        if signature in semantics:
+            raise ValueError('Duplicate semantic activity scenario')
+        semantics.add(signature)
     modes = data['effect_modes']
     if (not isinstance(modes, list) or not modes or any(not isinstance(x, str) for x in modes)
             or len(set(modes)) != len(modes) or set(modes)-{'attenuated', 'null', 'skeptical', 'published'}):
@@ -84,6 +89,13 @@ def pending_reviews(snapshot: str) -> dict:
                          'findings': [], 'evidence': [], 'question': questions[role]} for role in REVIEW_ROLES]}
 
 
+def snapshot_identity(root: Path, declared: dict) -> str:
+    """Bind external-review requests to numerical/report source and resolved inputs."""
+    from quality.artifacts import calculation_inputs
+    identity = {'declared_inputs': declared, 'calculation_inputs': calculation_inputs(root)}
+    return hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
+
+
 def main(config_path: Path | None = None, refinements_path: Path | None = None,
          output_dir: Path | None = None) -> dict:
     """Run paired policy analysis; all approvals, health effects and gaps stay explicit."""
@@ -102,7 +114,7 @@ def main(config_path: Path | None = None, refinements_path: Path | None = None,
     snapshot = config.snapshot()
     snapshot['refinements_sha256'] = hashlib.sha256(ref_path.read_bytes()).hexdigest()
     snapshot['refinements'] = refinements
-    snapshot_digest = hashlib.sha256(json.dumps(snapshot, sort_keys=True).encode()).hexdigest()
+    snapshot_digest = snapshot_identity(ROOT, snapshot)
     snapshot['analysis_snapshot_sha256'] = snapshot_digest
     (output/'resolved_inputs.json').write_text(json.dumps(snapshot, indent=2)+'\n')
     deterministic, results, rankings, predictive, budgets, assignments, eligibility_rows = [], [], [], [], [], [], []

@@ -1,0 +1,105 @@
+{
+  "release_ready": false,
+  "blockers": [
+    {
+      "id": "environment-lock",
+      "category": "environment",
+      "status": "blocked",
+      "attempted_in_v13": true,
+      "action": "UV_HTTP_TIMEOUT=8 UV_HTTP_RETRIES=0 uv lock",
+      "evidence": "verification/v13/lock-attempt.txt",
+      "log_sha256": "e6fdecdc4c33c3317208ec16f34a02d59ee224e23eaa7fe5df5262d565c07c02",
+      "acceptance": "Resolve a genuine lock, review transitive licences and banned dataframe engines, then uv sync --frozen; no fake lock."
+    },
+    {
+      "id": "native-tools",
+      "category": "security",
+      "status": "blocked",
+      "attempted_in_v13": true,
+      "action": "python -m quality.bootstrap",
+      "evidence": "verification/v13/native-attempt.txt",
+      "log_sha256": "c4c54d8cc985f91f4e12d6eb8133e515f75faaca892d1e7bd040eb0d398634ae",
+      "acceptance": "Verified native downloads, pinned versions, Gitleaks history/tree and Vale/actionlint must actually pass."
+    },
+    {
+      "id": "conductor-checkout",
+      "category": "environment",
+      "status": "blocked",
+      "attempted_in_v13": true,
+      "action": "git submodule update --init --recursive",
+      "evidence": "verification/v13/submodule-attempt.txt",
+      "log_sha256": "b3fa27811b30e7337aff3fa5d1c92315fdee0144f3bab06607e33f1d9e91d057",
+      "acceptance": "Actual pinned checkout exists; workflow adapters do not count as a checkout."
+    },
+    {
+      "id": "core-fulltexts",
+      "category": "evidence",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "Review conductor/validation-v12.md and the four exact bibliography records",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Retrieve and critically verify Haynes2020, Armfield2012, Yoo2022, Thao2022 full article/supplement; abstracts are insufficient."
+    },
+    {
+      "id": "public-originals",
+      "category": "evidence",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "python sources/retrieve_originals.py --fetch",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Archive actual PDF/XLSX bytes with retrieval date, rights, hashes and source mappings; a transcription is not the original."
+    },
+    {
+      "id": "independent-review",
+      "category": "clinical",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "python -m quality.clinical_review outputs/v13-refinements/review_packet.json --snapshot <actual snapshot>",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Four review roles document external identity, conflicts, exact snapshot, findings and resolution. Current records deliberately pending; schema is not authentication."
+    },
+    {
+      "id": "complete-migration",
+      "category": "delivery",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "Compare remote recursive Git tree/ancestry with complete local source manifest",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "All authorised code/data/artifacts/history accounted for, no omitted files silently treated as complete."
+    },
+    {
+      "id": "hosted-assurance",
+      "category": "delivery",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "Run existing PR #3 workflow; inspect actual job steps/logs",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Hosted runner allocated and all required checks execute against imported commit; runner allocation failure is not a test result."
+    },
+    {
+      "id": "site-eligibility",
+      "category": "clinical",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "Review outputs/v13-refinements/eligibility.csv and policy_assignments.csv",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Verify current site capability, neonatal scope, camera/device governance and service approval before using hypothetical expansion as a procurement recommendation."
+    },
+    {
+      "id": "policy-fiscal-allocation",
+      "category": "methods",
+      "status": "open",
+      "attempted_in_v13": false,
+      "action": "Document provider/hub/destination allocation for each mixed policy before extending VoP",
+      "evidence": null,
+      "log_sha256": null,
+      "acceptance": "Current mixed-policy module reports health-system/bounded-family resources, not invented provider/Commonwealth split. Existing uniform six-perspective model retained."
+    }
+  ]
+}

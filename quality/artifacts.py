@@ -103,15 +103,31 @@ def artifact_dependency_fingerprint(root: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('seal', 'verify'))
-    parser.add_argument('--output', type=Path, default=Path('outputs/v12'))
+    parser.add_argument('--output', type=Path, default=None)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    output = (root / args.output).resolve()
+    if args.output is not None:
+        paths = [args.output]
+    else:
+        from src.configuration import strict_json
+        try:
+            config = strict_json(root / 'config/assurance.json')
+            paths = [config['current_output'], *config.get('additional_outputs', [])]
+            if (not paths or any(not isinstance(p, str) or not p for p in paths)
+                    or len(set(paths)) != len(paths)):
+                raise ValueError('Unique nonempty output scopes required')
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            print(json.dumps({'errors': ['Invalid current-artifact configuration', str(error)]}))
+            return 1
+    outputs = [(root / path).resolve() for path in paths]
+    if any(not output.is_relative_to(root / 'outputs') or output == root / 'outputs' for output in outputs):
+        parser.error('Release outputs must be repository output subdirectories')
     if args.action == 'seal':
-        print(json.dumps(seal(root, output), indent=2))
+        print(json.dumps([seal(root, output) for output in outputs], indent=2))
         return 0
-    errors = verify(root, output)
-    print(json.dumps({'errors': errors, 'scope': str(output.relative_to(root))}, indent=2))
+    reports = [{'scope': str(output.relative_to(root)), 'errors': verify(root, output)} for output in outputs]
+    errors = [error for report in reports for error in report['errors']]
+    print(json.dumps({'reports': reports, 'errors': errors}, indent=2))
     return int(bool(errors))
 
 

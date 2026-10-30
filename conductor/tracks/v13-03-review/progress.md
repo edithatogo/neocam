@@ -1,3 +1,3 @@
 # Execution ledger
-
-Not yet implemented.
+3.1:20 review-record tests failed before implementation;24 combined reviewer/pipeline tests passed. Empty, pending, self-review, stale/malformed records cannot pass external attestation contracts. Actual independent reviews remain pending. The schema cannot authenticate identities.
+3.2:driver produces absolute predictive tables, separate eligibility/cash/policy tables and blank external review forms. Blocker registry records attempted lock/native/submodule downloads and exact DNS failures. Four original full texts and originals are not claimed newly acquired. Source-stage review found the original review identity only bound configuration; fixed in integration with a source-change regression. Current report binds source/configuration. No clinical signoff has been manufactured.

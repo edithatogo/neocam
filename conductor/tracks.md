@@ -11,9 +11,9 @@ Link: [./tracks/v13-01-contacts/](./tracks/v13-01-contacts/)
 Link: [./tracks/v13-02-policies/](./tracks/v13-02-policies/)
 
 ---
-## [~] Track: Clinical plausibility packet and unresolved evidence
+## [x] Track: Clinical plausibility packet and unresolved evidence
 Link: [./tracks/v13-03-review/](./tracks/v13-03-review/)
 
 ---
-## [ ] Track: Integrated reproduction, review and private delivery
+## [~] Track: Integrated reproduction, review and private delivery
 Link: [./tracks/v13-04-release/](./tracks/v13-04-release/)

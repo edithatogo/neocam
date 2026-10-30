@@ -71,3 +71,34 @@ def test_new_driver_enters_artifact_dependency_manifest(tmp_path):
     assert 'scripts/analyse_refinements.py' in first
     p.write_text('#two')
     assert calculation_inputs(tmp_path)!=first
+
+
+def test_review_snapshot_changes_when_model_source_changes(tmp_path):
+    from scripts.analyse_refinements import snapshot_identity
+    (tmp_path/'src').mkdir();p=tmp_path/'src/model.py';p.write_text('x=1')
+    first=snapshot_identity(tmp_path,{'reference':'a'})
+    p.write_text('x=2')
+    assert snapshot_identity(tmp_path,{'reference':'a'})!=first
+
+
+def test_artifact_cli_checks_declared_supplement_not_old_hardcoded_release(tmp_path,monkeypatch):
+    from quality import artifacts
+    (tmp_path/'config').mkdir()
+    (tmp_path/'config/assurance.json').write_text(json.dumps({'evidence_version':'v13','current_output':'outputs/primary','additional_outputs':['outputs/supplement']}))
+    for name in ('primary','supplement'):
+        d=tmp_path/'outputs'/name;d.mkdir(parents=True);(d/'result.txt').write_text('value')
+        artifacts.seal(tmp_path,d)
+    monkeypatch.setattr(artifacts,'__file__',str(tmp_path/'quality/artifacts.py'))
+    monkeypatch.setattr(sys,'argv',['artifacts','verify'])
+    assert artifacts.main()==0
+    (tmp_path/'outputs/supplement/result.txt').write_text('changed')
+    assert artifacts.main()==1
+
+
+def test_contact_config_must_reject_duplicate_semantic_scenarios(tmp_path):
+    from scripts.analyse_refinements import load_refinements
+    d=json.loads((ROOT/'config/refinements.json').read_text())
+    dup=dict(d['activity_scenarios'][0],id='another')
+    d['activity_scenarios'].append(dup)
+    p=tmp_path/'c.json';p.write_text(json.dumps(d))
+    with pytest.raises(ValueError):load_refinements(p)

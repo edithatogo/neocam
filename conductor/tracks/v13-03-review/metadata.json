@@ -1,6 +1,6 @@
 {
   "id": "v13-03-review",
-  "status": "planned",
+  "status": "implementation_contract_tests_passed_external_reviews_pending",
   "external_acceptance": false,
   "tasks": [
     "3.1",
