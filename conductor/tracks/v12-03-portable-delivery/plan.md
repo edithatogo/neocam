@@ -11,15 +11,17 @@ Provide one standard-library CLI for current analysis, report building, verifica
 - [ ] Implement the smallest correction and run focused regression tests.
 - [ ] Record acceptance boundary, update this track and commit before progressing.
 
-## 2. environment
+## 2. environment — attempted, external acceptance open
 Separate model, reporting and assurance dependencies; keep latest-candidate and actually tested environment distinct. Attempt genuine lock resolution once; no fabricated lock or relaxed gates.
 - [ ] Reproduce the relevant failure or missing contract.
 - [ ] Implement the smallest correction and run focused regression tests.
 - [ ] Record acceptance boundary, update this track and commit before progressing.
 
-## 3. migration
+## 3. migration — incremental PR update; full transfer open
 Update existing private PR with tested text files using expected-head writes; report exact transfer inventory and complete-migration blocker. Preserve original ancestry locally; no force push or main merge.
 - [ ] Reproduce the relevant failure or missing contract.
 - [ ] Implement the smallest correction and run focused regression tests.
 - [ ] Record acceptance boundary, update this track and commit before progressing.
 
+
+Implemented: repository-relative reporting, separate observed reporting group, central CI evidence version. Genuine resolver attempt timed out. Complete remote transfer/hosted execution remain open.

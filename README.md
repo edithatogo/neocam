@@ -1,48 +1,32 @@
-# Panda Vision v7 — regional perspectives and evidence audit
+# Neocam / Panda Vision
 
-Private working research model. Active commands and limitations: conductor/runbook.md and conductor/current-state.json.
+Early model-based economic evaluation of regional neonatal video consultation. This is a research decision model, not clinical guidance, an approved device specification or a validated prediction system.
 
-V7 adds hospital/emergency-network CHHHS and CHHHS+TCHHS portfolios, reconciled evaluative perspectives, directional fixed-decision Value of Perspective, bounded HRQoL thresholds, source integrity and simulated role reviews. It does not add a proven clinical effect, a complete societal model, actual payer contract prices or independent validation. Public original-source archiving and full external-tool acceptance remain incomplete.
+## Current source and outputs
 
-Outputs: outputs/v7. Figures/tables are exact model results under researcher assumptions. Reproduce with scripts/analyse_v7.py. No pandas/xarray project imports are permitted.
+`config/reference.json` resolves the actual parameter, pathway and equipment-estate inputs. `data/parameters.json` is live; `config/pathways.json` is live; `data/v6/spec.json` remains a historical reference snapshot. Unknown fields, duplicate keys and invalid sites fail before execution.
 
-## Historical README (not current acceptance)
+```bash
+# In the verified project environment; use a NEW output directory.
+python -m scripts.reproduce --output outputs/reproduction --office
+python -m quality.artifacts verify --output outputs/reproduction
+python -m quality.cli --profile full --evidence-version v12
+```
 
-# Panda Vision v6 — explicit clinical pathways
+`--office` adds Word/PDF/PowerPoint reports using private supplied CHHHS assets. PDF conversion requires LibreOffice. The current path uses repository-relative assets, no host skill directory. CSV/JSON are the calculation tables; this release does not provide a newly certified recalculating Excel model.
 
-Early model-based cost–consequence and investment-threshold evaluation. Current model: `src/pathways_v6.py`. Start with `conductor/runbook.md`. Main outputs are in `outputs/v6`. Version 5 and older code/results are retained only for reproducibility and comparison.
+Reference outputs: `outputs/v12/current_report.md`, current memo/presentation, CSV tables and figures. `release_manifest.json` binds actual output bytes to the generating inputs. Historical versioned artifacts are preserved, but the old age-discounted utility table is superseded by the current age-11 output.
 
-The site-count hub trigger is removed. Hospital origin, receiving, final-local and additional pre-rescue care are reported separately. Eventual transfers are partitioned into immediate and rescue pathways; alternative endpoint interpretation and harm scenarios are explicit. Resource costs, funding proxies and cash budgets remain different ledgers.
+## Dependency and assurance boundary
 
-**Acceptance boundary:** independent subagent panel NOT executed; four critical full-text papers still inaccessible; clean latest-toolchain/hosted release not certified. This is not procurement approval or proof of savings. See `docs/validation/v6` and the actual harness receipt.
+NumPy is used for numerical arrays. Only Polars is permitted as a DataFrame engine; pandas/xarray are excluded from project imports and the intended resolved environment. Model, optional research/reporting, tests and assurance dependencies are separate. The observed reporting environment is documented; it is not asserted to be latest or transitively locked.
 
-Corporate templates and historic internal source material in this private handoff must not be publicly redistributed without permission. A clean research release is a separate action. No GitHub push or publication was performed.
+A genuine `uv.lock` is still required. Ordinary tests on the available host do not certify the declared pinned stack, Gitleaks, mutation/property tools, type checkers or hosted CI. Missing required tools remain blocked. Current source and generated-output fingerprints are separately captured in the unified receipt; final execution results live in `verification/v12/` rather than being copied into mutable source context.
 
-## Historical README
+## Conductor
 
-# Panda Vision evaluation — v5 working handoff
+Start at `conductor/runbook.md`. Four bounded v12 tracks address execution/accounting, outputs/provenance, portable delivery and scientific validation. Predecessor records are historical evidence, not automatically reopened tasks. Clinical effects, source originals, independent review and institutional approvals remain separate acceptance questions.
 
-Five complete neonatal consultation configurations: telephone, mobile teleconference, Panda Vision, fixed PTZ and proposed tablet/OBSBOT. A small NumPy cohort engine remains authoritative. Offline SciPy/scikit-learn analysis explores sensitivity and explains decisions; it does not produce clinical evidence.
+## Private recovery
 
-Start with `conductor/runbook.md`. Current outputs are under `outputs/v5/`; original analyses remain under `outputs/v4/`. See the two-page plan, comparative supplement and publication strategy. No public deployment, hosted CI or independent review is claimed. Latest-toolchain acceptance remains incomplete.
-
-## Preserved project documentation
-
-# Panda Vision evaluation — v4
-
-An existing-evidence neonatal video-versus-telephone economic evaluation, with an intentionally small numerical model and explicit assumptions. **Preliminary; not a clinical prediction tool or proof of savings.**
-
-## Start here
-
-- `conductor/current-state.json` and `conductor/runbook.md`: authoritative workflow and next gates.
-- `outputs/v4/Panda_Vision_two_page_plan_v4.pdf`: two-page CHHHS evaluation plan.
-- `outputs/v4/Panda_Vision_analysis_supplement_v4.pdf`: analysis, sources and limits.
-- `outputs/v4/Panda_Vision_analysis_v4.xlsx`: inspectable result tables, not an Excel PSA engine.
-- `outputs/v4/figures`: individual PNG/SVG figures; CSVs contain the full tables.
-- `.agents/skills/maintaining-lean-ci`: portable skill and evidence-contract checker.
-
-V4 preserves 27 economic parameters and default v2/v3 outputs. It removes duplicate testing, adds guarded local feedback and thin hooks/workflow checks, reruns the existing analyses, and adds numerical/break-even/equipment-life diagnostics without new clinical parameters.
-
-Local ordinary tests and numerical checks pass. **Full locked latest-toolchain acceptance does not:** see `verification/v4/full/receipt.json`. The absence of packages, a real lock or submodule checkout is never treated as a successful check. No hosted CI, remote push, publication or permanent ChatGPT skill installation is claimed.
-
-Use the runbook for environment setup, analysis, authoring and acceptance. Historical releases are preserved for provenance, not current status. Corporate template assets remain internal materials; do not publish without appropriate authority.
+Authorised destination: `edithatogo/neocam`, existing draft PR #3. Full remote history/source/artifact migration remains incomplete until an exact inventory proves otherwise. The full private bundle preserves the original history. Never force-push main, claim an incomplete checkout passed the full suite, or publish corporate/licensed assets without permission. No patient-level records are part of this model.

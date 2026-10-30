@@ -1,16 +1,19 @@
 {
-  "version": 11,
+  "version": 12,
   "date": "2026-10-30",
   "active_tracks": [
-    "v11-executable-recovery"
+    "v12-01-execution-accounting",
+    "v12-02-artifacts-provenance",
+    "v12-03-portable-delivery",
+    "v12-04-scientific-validation"
   ],
-  "branch": "conductor/neocam-v11-executable-recovery",
+  "branch": "conductor/neocam-v12-consistency",
   "parent_commit": "7242e7f7e12d807c52e1d250a388541ada033c51",
   "release_ready": false,
   "independent_validation": false,
   "review": "four simulated author roles; not independent agents",
-  "analysis": "outputs/v7/results_v7.json",
-  "receipt": "verification/v11/full/receipt.json",
+  "analysis": "outputs/v12/results.json",
+  "receipt": "verification/v12/full/receipt.json",
   "source_manifest": "sources/manifest.json",
   "public_original_archival_complete": false,
   "known_limitations": [
@@ -22,7 +25,7 @@
     "original public PDF/XLSX files not acquired",
     "Gitleaks/latest stack/real lock/hosted CI/Conductor checkout unverified"
   ],
-  "next_acceptance": "Complete the private source import, then resolve a real lock and execute the pinned toolchain. No missing tool is a pass.",
+  "next_acceptance": "Read the exact final receipt; complete genuine lock/tool execution, remote inventory and independent evidence review.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "private",
   "remote_import": "partial; complete src/data/tests/quality verified, supporting artifacts and original ancestry remain open",

@@ -1,7 +1,8 @@
 {
   "id": "v12-02-artifacts-provenance",
-  "status": "implemented_pending_integrated_acceptance",
+  "status": "implementation_recorded_external_acceptance_open",
   "full_acceptance": false,
   "independent_validation": false,
-  "remaining": "Regeneration and visual inspection before release seal; final exact-snapshot run pending."
+  "remaining": "Regeneration and visual inspection before release seal; final exact-snapshot run pending.",
+  "receipt": "verification/v12/full/receipt.json"
 }

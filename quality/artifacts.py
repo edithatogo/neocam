@@ -11,7 +11,7 @@ MANIFEST = 'release_manifest.json'
 SOURCE_DIRECTORIES = ('src', 'data', 'config')
 SOURCE_FILES = ('scripts/reproduce.py', 'scripts/analyse_v7.py', 'scripts/build_current_report.py',
                 'scripts/plot_current.py', 'quality/artifacts.py', 'assets/Briefing_note.docx',
-                'assets/chhhs-powerpoint-template.pptx', 'assets/chhhs-content-background.png')
+                'assets/chhhs-powerpoint-template.pptx', 'assets/chhhs-content-v2-background.png')
 
 
 def digest_file(path: Path) -> str:

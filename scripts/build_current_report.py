@@ -68,6 +68,7 @@ def build_office(output,rows,budgets,inputs):
     """Optional reporting group; corporate assets remain private and repository-relative."""
     from docx import Document
     from docx.shared import Pt, Inches
+    from docx.oxml import OxmlElement
     from pptx import Presentation
     from pptx.util import Inches as PInches, Pt as PPt
     from pptx.dml.color import RGBColor
@@ -102,7 +103,11 @@ def build_office(output,rows,budgets,inputs):
     for node in doc._element.xpath('.//w:t'):
         if node.text and '<select document type>' in node.text:node.text='MEMORANDUM'
         elif node.text and 'Choose an item' in node.text:node.text=''
+    for para in list(doc.paragraphs):
+        if para.text.strip()=='/' or (not para.text.strip() and para._p.xpath('.//w:sdt')):
+            para._p.getparent().remove(para._p)
     for table in doc.tables:
+        repeat=OxmlElement('w:tblHeader');table.rows[0]._tr.get_or_add_trPr().append(repeat)
         for row in table.rows:
             row.height=None
             for cell in row.cells:
@@ -119,9 +124,9 @@ def build_office(output,rows,budgets,inputs):
         deck.part.drop_rel(sid.rId);deck.slides._sldIdLst.remove(sid)
     def slide(title,body=None,image=None):
         s=deck.slides.add_slide(deck.slide_layouts[6])
-        s.shapes.add_picture(str(ROOT/'assets/chhhs-content-background.png'),0,0,width=deck.slide_width,height=deck.slide_height)
+        s.shapes.add_picture(str(ROOT/'assets/chhhs-content-v2-background.png'),0,0,width=deck.slide_width,height=deck.slide_height)
         box=s.shapes.add_textbox(PInches(.55),PInches(.32),deck.slide_width-PInches(1.1),PInches(.8))
-        p=box.text_frame.paragraphs[0];p.text=title;p.font.size=PPt(25);p.font.bold=True;p.font.color.rgb=RGBColor.from_string('15535C')
+        p=box.text_frame.paragraphs[0];p.text=title;p.font.size=PPt(25);p.font.bold=True;p.font.color.rgb=RGBColor.from_string('FFFFFF')
         if image:s.shapes.add_picture(str(image),PInches(1.1),PInches(1.35),width=deck.slide_width-PInches(2.2),height=deck.slide_height-PInches(2.05))
         if body:
             box=s.shapes.add_textbox(PInches(.8),PInches(1.5),deck.slide_width-PInches(1.6),deck.slide_height-PInches(2.2))

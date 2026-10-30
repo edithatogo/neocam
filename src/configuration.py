@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, fields
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -85,6 +86,11 @@ def load_configuration(root: Path, path: Path | None = None) -> ResolvedConfigur
         owned.append(OwnedAsset(**item))
     assets = tuple(owned)
     validate_estate(assets)
+    from src.portfolios_v7 import CHHHS, TCHHS
+    with (root / 'data/births_queensland_2022.csv').open(encoding='utf-8', newline='') as stream:
+        known_sites = {row['facility'] for row in csv.DictReader(stream)} | set(CHHHS) | set(TCHHS)
+    if any(asset.site not in known_sites for asset in assets):
+        raise ValueError('Unknown site in owned equipment estate')
     run = recipe['run']
     exact_keys(run, {'draws', 'seed', 'portfolios'}, 'Run controls')
     if type(run['draws']) is not int or not 2 <= run['draws'] <= 1_000_000:

@@ -23,3 +23,5 @@ Add clinical plausibility review, external comparison, four full-text gaps, cons
 - [ ] Implement the smallest correction and run focused regression tests.
 - [ ] Record acceptance boundary, update this track and commit before progressing.
 
+
+Implemented:140 prior-predictive rows, active-kernel property definitions and ordinary seed/invariance checks; reviewer protocol and source/privacy checklist. Hypothesis tool and independent clinical/economic review are not executed. Contacts-per-infant and mixed policies remain explicit follow-on studies.

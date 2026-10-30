@@ -90,3 +90,8 @@ def test_other_malformed_configuration_contracts(tmp_path,which,value):
 
 def test_run_recipe_outside_repository_rejected(tmp_path):
     with pytest.raises(ValueError):api().load_configuration(tmp_path,tmp_path.parent/'elsewhere.json')
+
+
+def test_misspelled_owned_site_cannot_silently_disappear(tmp_path):
+    m=api();root=fixture(tmp_path);f=root/'config/equipment_estate.json';d=json.loads(f.read_text());d['owned_assets'][0]['site']='Athertonn';f.write_text(json.dumps(d))
+    with pytest.raises(ValueError):m.load_configuration(root)
