@@ -11,31 +11,60 @@ import subprocess  # ruff: ignore[suspicious-subprocess-import] -- benchmark tim
 import sys
 import time
 from pathlib import Path
+from typing import TYPE_CHECKING, Protocol, TypedDict, cast
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping, Sequence
 
 ROOT = Path(__file__).resolve().parents[1]
 # A benchmark needs at least a pair of timed samples to compare variants.
 MIN_REPEATS = 2
 
 
-def summarise(rows: list[dict]) -> dict:
+class _Sample(TypedDict):
+    """One timed sample, as recorded in the benchmark report."""
+
+    variant: str
+    duration_seconds: float
+    returncode: int
+    passed: int
+
+
+class _BenchmarkSummary(TypedDict):
+    """The compared median timings and derived speedup for one benchmark."""
+
+    median_seconds: dict[str, float]
+    speedup: float
+    reduction_fraction: float
+    tests_per_run: int
+    scope: str
+
+
+class _BenchmarkArgs(Protocol):
+    """The parsed CLI attributes for the benchmark runner."""
+
+    repeats: int
+
+
+def summarise(rows: Sequence[Mapping[str, object]]) -> _BenchmarkSummary:
     """Reject failed/non-equivalent samples instead of cherry-picking timings.
 
     Returns:
-        dict: Median durations per variant, speedup and reduction fraction.
+        _BenchmarkSummary: Median durations per variant, speedup and reduction fraction.
 
     Raises:
         ValueError: If any sample failed, variants disagree on pass counts, or
             either the baseline or the new implementation is missing.
     """
-    if not rows or any(row["returncode"] != 0 for row in rows):
+    samples = [cast("_Sample", cast("object", row)) for row in rows]
+    if not samples or any(sample["returncode"] != 0 for sample in samples):
         msg = "All timed samples must pass"
         raise ValueError(msg)
-    if len({row["passed"] for row in rows}) != 1:
+    if len({sample["passed"] for sample in samples}) != 1:
         msg = "Benchmarked suites are not equivalent"
         raise ValueError(msg)
-    groups = {
-        name: [r["duration_seconds"] for r in rows if r["variant"] == name] for name in {r["variant"] for r in rows}
-    }
+    names = {sample["variant"] for sample in samples}
+    groups = {name: [sample["duration_seconds"] for sample in samples if sample["variant"] == name] for name in names}
     if not {"old", "new"} <= groups.keys():
         msg = "Both baseline and new implementation are required"
         raise ValueError(msg)
@@ -44,16 +73,16 @@ def summarise(rows: list[dict]) -> dict:
         "median_seconds": med,
         "speedup": med["old"] / med["new"],
         "reduction_fraction": 1 - med["new"] / med["old"],
-        "tests_per_run": rows[0]["passed"],
+        "tests_per_run": samples[0]["passed"],
         "scope": "Same available host; no claim about full online CI",
     }
 
 
-def timed(commands: list[tuple[str, ...]], log: Path) -> dict:
+def timed(commands: list[tuple[str, ...]], log: Path) -> dict[str, object]:
     """Time serial commands and require matching positive passed-test counts.
 
     Returns:
-        dict: Duration, exit code, final passed count and repo-relative log path.
+        dict[str, object]: Duration, exit code, final passed count and repo-relative log path.
 
     Raises:
         ValueError: If no benchmark command was supplied.
@@ -64,11 +93,11 @@ def timed(commands: list[tuple[str, ...]], log: Path) -> dict:
     log = log if log.is_absolute() else ROOT / log
     log.parent.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
-    counts = []
+    counts: list[int] = []
     exitcode = 0
     with log.open("w", encoding="utf-8") as stream:
         for command in commands:
-            stream.write("COMMAND: " + repr(command) + "\n")
+            _ = stream.write("COMMAND: " + repr(command) + "\n")
             stream.flush()
             offset = stream.tell()
             try:
@@ -77,11 +106,11 @@ def timed(commands: list[tuple[str, ...]], log: Path) -> dict:
                 )
                 code = result.returncode
             except subprocess.TimeoutExpired:
-                stream.write("\nBENCHMARK TIMEOUT; this is not a timing sample\n")
+                _ = stream.write("\nBENCHMARK TIMEOUT; this is not a timing sample\n")
                 code = 124
             stream.flush()
             with log.open(encoding="utf-8") as readback:
-                readback.seek(offset)
+                _ = readback.seek(offset)
                 output = readback.read()
             found = re.search(r"(\d+) passed", output)
             counts.append(int(found.group(1)) if found else 0)
@@ -105,31 +134,36 @@ def main() -> int:
         int: 0 once the report has been written.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repeats", type=int, default=3)
-    args = parser.parse_args()
+    _ = parser.add_argument("--repeats", type=int, default=3)
+    args = cast("_BenchmarkArgs", cast("object", parser.parse_args()))
     if args.repeats < MIN_REPEATS:
         parser.error("At least two repetitions are required")
     out = ROOT / "verification/v4/benchmarks"
     out.mkdir(parents=True, exist_ok=True)
     plain = (sys.executable, "-m", "pytest", "-q")
     covered = (sys.executable, "-m", "coverage", "run", "-m", "pytest", "-q")
-    samples = []
+    samples: list[dict[str, object]] = []
     # Alternate order to reduce systematic warm-up/order bias.
     for i in range(args.repeats):
         variants = ("old", "new") if i % 2 == 0 else ("new", "old")
         for variant in variants:
             result = timed([plain, covered] if variant == "old" else [covered], out / f"{variant}_{i}.txt")
             samples.append({"variant": variant, "repeat": i, **result})
-            print(variant, i, round(result["duration_seconds"], 3), result["returncode"], flush=True)  # ruff: ignore[print] -- live benchmark progress goes to stdout
-    optional = {}
+            print(variant, i, round(cast("float", result["duration_seconds"]), 3), result["returncode"], flush=True)  # ruff: ignore[print] -- live benchmark progress goes to stdout
+    optional: dict[str, str] = {}
     for package in ("xdist", "testmon"):
         optional[package] = (
             "available; not yet benchmark-qualified"
             if importlib.util.find_spec(package)
             else "blocked: package unavailable"
         )
-    report = {"samples": samples, "optional": optional, "summary": summarise(samples), "python": sys.version}
-    (out / "results.json").write_text(json.dumps(report, indent=2) + "\n")
+    report: dict[str, object] = {
+        "samples": samples,
+        "optional": optional,
+        "summary": summarise(samples),
+        "python": sys.version,
+    }
+    _ = (out / "results.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report["summary"], indent=2))  # ruff: ignore[print] -- benchmark summary is this CLI's stdout output
     return 0
 

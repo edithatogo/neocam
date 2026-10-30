@@ -10,12 +10,25 @@ import re
 import tomllib
 from dataclasses import asdict
 from itertools import starmap
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypedDict, cast
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Sequence
     from pathlib import Path
 
 BANNED = frozenset({"pandas", "xarray", "pandas-stubs", "xarray-stubs"})
+
+
+class _PopulationTotals(TypedDict):
+    """The fixed whole-population total schema reconciled by the input audit."""
+
+    public_births: int
+    private_births_aggregate_only: int
+    home_freebirths: int
+    born_before_arrival: int
+    total: int
+    raw_public_rows: int
+    year: int
 
 
 def forbidden_imports(source: str) -> list[str]:
@@ -30,7 +43,7 @@ def forbidden_imports(source: str) -> list[str]:
         names: list[str] = []
         if isinstance(node, ast.Import):
             names = [alias.name for alias in node.names]
-        elif isinstance(node, ast.ImportFrom) and node.module:
+        elif isinstance(node, ast.ImportFrom) and node.module is not None and node.module:
             names = [node.module]
         elif isinstance(node, ast.Call) and node.args:
             literal = node.args[0]
@@ -54,7 +67,19 @@ def forbidden_packages(names: list[str]) -> list[str]:
     return sorted(canonical & BANNED)
 
 
-def _package_hash_errors(package: dict) -> list[str]:
+def _valid_artifact_hash(artifact: object) -> bool:
+    """Return whether one registry artifact carries a valid SHA-256 digest.
+
+    Returns:
+        bool: True when the artifact is a record with a well-formed hash.
+    """
+    if not isinstance(artifact, dict):
+        return False
+    record = cast("dict[str, object]", artifact)
+    return bool(re.fullmatch(r"sha256:[a-f0-9]{64}", str(record.get("hash", ""))))
+
+
+def _package_hash_errors(package: dict[str, object]) -> list[str]:
     """Return artifact-hash errors for one registry package record.
 
     Returns:
@@ -64,18 +89,17 @@ def _package_hash_errors(package: dict) -> list[str]:
     source = package.get("source", {})
     if not isinstance(source, dict):
         return [f"Invalid source: {name}"]
-    if "registry" not in source:
+    if "registry" not in cast("dict[str, object]", source):
         return []
-    artifacts = [*package.get("wheels", [])]
+    artifacts: list[object] = []
+    wheels = package.get("wheels")
+    if isinstance(wheels, list):
+        artifacts.extend(cast("list[object]", wheels))
     if "sdist" in package:
         artifacts.append(package["sdist"])
     if not artifacts:
         return [f"No registry artifact hashes: {name}"]
-    return [
-        f"Invalid artifact hash: {name}"
-        for artifact in artifacts
-        if not isinstance(artifact, dict) or not re.fullmatch(r"sha256:[a-f0-9]{64}", str(artifact.get("hash", "")))
-    ]
+    return [f"Invalid artifact hash: {name}" for artifact in artifacts if not _valid_artifact_hash(artifact)]
 
 
 def validate_lock(path: Path) -> list[str]:
@@ -87,7 +111,7 @@ def validate_lock(path: Path) -> list[str]:
     if not path.is_file():
         return ["Dependency lock unavailable; resolve and review uv.lock before full acceptance"]
     try:
-        content = tomllib.loads(path.read_text(encoding="utf-8"))
+        content = cast("dict[str, object]", tomllib.loads(path.read_text(encoding="utf-8")))
     except (tomllib.TOMLDecodeError, UnicodeError):
         return ["Invalid dependency lock"]
     packages = content.get("package", [])
@@ -95,12 +119,17 @@ def validate_lock(path: Path) -> list[str]:
         return ["Empty package graph"]
     errors: list[str] = []
     names: list[str] = []
-    for package in packages:
-        if not isinstance(package, dict) or not isinstance(package.get("name"), str):
+    for package in cast("list[object]", packages):
+        if not isinstance(package, dict):
             errors.append("Malformed package record")
             continue
-        names.append(package["name"])
-        errors.extend(_package_hash_errors(package))
+        record = cast("dict[str, object]", package)
+        name = record.get("name")
+        if not isinstance(name, str):
+            errors.append("Malformed package record")
+            continue
+        names.append(name)
+        errors.extend(_package_hash_errors(record))
     errors.extend(f"Prohibited dependency: {name}" for name in forbidden_packages(names))
     return errors
 
@@ -110,9 +139,19 @@ def _rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(stream))
 
 
+def _as_sequence(value: object) -> Sequence[object] | None:
+    """Return the value as an object sequence, or None when it is not one.
+
+    Returns:
+        Sequence[object] | None: The list/tuple element view, otherwise None.
+    """
+    return cast("Sequence[object]", value) if isinstance(value, (list, tuple)) else None
+
+
 def _same_value(first: object, second: object) -> bool:
-    if isinstance(first, (list, tuple)) and isinstance(second, (list, tuple)):
-        return len(first) == len(second) and all(starmap(_same_value, zip(first, second, strict=True)))
+    left, right = _as_sequence(first), _as_sequence(second)
+    if left is not None and right is not None:
+        return len(left) == len(right) and all(starmap(_same_value, zip(left, right, strict=True)))
     if isinstance(first, bool) or isinstance(second, bool):
         return type(first) is type(second) and first == second
     if isinstance(first, (int, float)) and isinstance(second, (int, float)):
@@ -120,7 +159,7 @@ def _same_value(first: object, second: object) -> bool:
     return first == second
 
 
-def _register_errors(register: list[dict[str, str]], params: dict, known: set[str]) -> list[str]:
+def _register_errors(register: list[dict[str, str]], params: dict[str, object], known: set[str]) -> list[str]:
     """Return reconciliation errors for the parameter-evidence register.
 
     Returns:
@@ -129,7 +168,7 @@ def _register_errors(register: list[dict[str, str]], params: dict, known: set[st
     errors: list[str] = []
     for row in register:
         name = row["parameter"]
-        if name in params and not _same_value(json.loads(row["base_value"]), params[name]):
+        if name in params and not _same_value(cast("object", json.loads(row["base_value"])), params[name]):
             errors.append(f"Parameter register mismatch: {name}")
         if not row["uncertainty"] or not row["interpretation"]:
             errors.append(f"Incomplete assumption disclosure: {name}")
@@ -148,11 +187,12 @@ def audit_inputs(root: Path) -> dict[str, object]:
     from src.statewide import Parameters, load_sites  # ruff: ignore[import-outside-top-level] -- deferred so the module imports without src on the path
 
     errors: list[str] = []
-    supplied = json.loads((root / "data/parameters.json").read_text(encoding="utf-8"))
-    defaults = asdict(Parameters())
+    supplied = cast("dict[str, object]", json.loads((root / "data/parameters.json").read_text(encoding="utf-8")))
+    defaults = cast("dict[str, object]", asdict(Parameters()))
     if set(supplied) != set(defaults):
         errors.append("Parameter JSON and model schema differ")
-    params = asdict(Parameters(**supplied))
+    # The constructor call is a dynamic seam: the exact-key check above guarantees the mapping shape.
+    params = cast("dict[str, object]", asdict(cast("Callable[..., Parameters]", Parameters)(**supplied)))
     register = _rows(root / "evidence/parameter_register.csv")
     names = [row["parameter"] for row in register]
     if len(names) != len(set(names)) or set(names) != set(params):
@@ -169,7 +209,7 @@ def audit_inputs(root: Path) -> dict[str, object]:
         for row in [*sources, *literature]
         if not row["url"] or not row["limitations"]
     )
-    totals = json.loads((root / "data/population_totals.json").read_text(encoding="utf-8"))
+    totals = cast("_PopulationTotals", json.loads((root / "data/population_totals.json").read_text(encoding="utf-8")))
     rows = _rows(root / "data/births_queensland_2022.csv")
     sites = load_sites(root / "data/births_queensland_2022.csv")
     count = sum(site.births for site in sites)

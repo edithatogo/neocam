@@ -7,9 +7,17 @@ import json
 import re
 from datetime import date
 from pathlib import Path
+from typing import Protocol, cast
 
 ROLES = frozenset({"neonatal_retrieval", "health_economics", "technical", "consumer_rural"})
 SEVERITIES = frozenset({"critical", "high", "medium", "low"})
+
+
+class _ReviewArgs(Protocol):
+    """The parsed CLI attributes for the review-packet check."""
+
+    packet: Path
+    snapshot: str
 
 
 def _text(value: object) -> bool:
@@ -31,7 +39,10 @@ def _evidence(value: object) -> bool:
     Returns:
         bool: True when the value is a nonempty list of valid text items.
     """
-    return isinstance(value, list) and bool(value) and all(_text(item) for item in value)
+    if not isinstance(value, list):
+        return False
+    items = cast("list[object]", value)
+    return bool(items) and all(_text(item) for item in items)
 
 
 def _finding_errors(index: int, finding: object) -> list[str]:
@@ -42,14 +53,15 @@ def _finding_errors(index: int, finding: object) -> list[str]:
     """
     if not isinstance(finding, dict):
         return [f"Review {index} contains a malformed finding"]
-    severity = finding.get("severity")
+    fields = cast("dict[str, object]", finding)
+    severity = fields.get("severity")
     valid_severity = isinstance(severity, str) and severity in SEVERITIES
     if (
         valid_severity
-        and _text(finding.get("description"))
-        and finding.get("status") == "resolved"
-        and _text(finding.get("resolution"))
-        and _evidence(finding.get("evidence"))
+        and _text(fields.get("description"))
+        and fields.get("status") == "resolved"
+        and _text(fields.get("resolution"))
+        and _evidence(fields.get("evidence"))
     ):
         return []
     return [f"Review {index} contains an unresolved or undocumented finding"]
@@ -63,30 +75,32 @@ def _record_errors(index: int, record: object, expected_snapshot: str) -> tuple[
     """
     if not isinstance(record, dict):
         return [f"Malformed review record {index}"], None
+    fields = cast("dict[str, object]", record)
     errors: list[str] = []
-    role = record.get("role")
+    role = fields.get("role")
     known_role = role if isinstance(role, str) and role in ROLES else None
     if known_role is None:
         errors.append(f"Unknown role at record {index}")
     errors.extend(
         f"Review {index} lacks {field}"
         for field in ("identity", "conflicts", "finding_summary")
-        if not _text(record.get(field))
+        if not _text(fields.get(field))
     )
-    if record.get("independent") is not True or record.get("status") != "approved":
+    if fields.get("independent") is not True or fields.get("status") != "approved":
         errors.append(f"Review {index} has no independent completed attestation")
-    if record.get("snapshot_sha256") != expected_snapshot:
+    if fields.get("snapshot_sha256") != expected_snapshot:
         errors.append(f"Review {index} has a stale or absent snapshot")
+    recorded_date = fields.get("date", "")
     try:
-        date.fromisoformat(record.get("date", ""))
+        _ = date.fromisoformat(recorded_date if isinstance(recorded_date, str) else "")
     except (TypeError, ValueError):
         errors.append(f"Review {index} lacks a valid date")
-    if not _evidence(record.get("evidence")):
+    if not _evidence(fields.get("evidence")):
         errors.append(f"Review {index} lacks supporting report evidence")
-    findings = record.get("findings")
+    findings = fields.get("findings")
     if not isinstance(findings, list):
         return [*errors, f"Review {index} findings malformed"], known_role
-    for finding in findings:
+    for finding in cast("list[object]", findings):
         errors.extend(_finding_errors(index, finding))
     return errors, known_role
 
@@ -100,25 +114,26 @@ def review_errors(packet: object, expected_snapshot: str) -> list[str]:
     Returns:
         list[str]: Attestation errors; empty when the review packet is complete.
     """
-    errors = []
-    if not isinstance(expected_snapshot, str) or not re.fullmatch(r"[a-f0-9]{64}", expected_snapshot):
+    errors: list[str] = []
+    if not re.fullmatch(r"[a-f0-9]{64}", expected_snapshot):
         return ["Expected exact analysis snapshot digest is required"]
     if not isinstance(packet, dict):
         return ["Review packet must be an object"]
-    if packet.get("snapshot_sha256") != expected_snapshot:
+    fields = cast("dict[str, object]", packet)
+    if fields.get("snapshot_sha256") != expected_snapshot:
         errors.append("Review packet does not match analysis snapshot")
-    if packet.get("review_type") != "external reviewer attestation":
+    if fields.get("review_type") != "external reviewer attestation":
         errors.append("External reviewer attestation is not recorded")
-    rows = packet.get("reviews")
+    rows = fields.get("reviews")
     if not isinstance(rows, list) or not rows:
         return [*errors, "Review scope is empty or malformed"]
-    roles = []
-    for index, record in enumerate(rows):
+    roles: list[str] = []
+    for index, record in enumerate(cast("list[object]", rows)):
         record_errors, role = _record_errors(index, record, expected_snapshot)
         errors.extend(record_errors)
         if role is not None:
             roles.append(role)
-    if set(roles) != ROLES or len(roles) != len(ROLES):
+    if set(roles) != set(ROLES) or len(roles) != len(ROLES):
         errors.append("All four distinct review roles are required")
     return errors
 
@@ -130,11 +145,11 @@ def main() -> int:
         int: 0 when the attestation contract holds, otherwise 1.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("packet", type=Path)
-    parser.add_argument("--snapshot", required=True)
-    args = parser.parse_args()
+    _ = parser.add_argument("packet", type=Path)
+    _ = parser.add_argument("--snapshot", required=True)
+    args = cast("_ReviewArgs", cast("object", parser.parse_args()))
     try:
-        packet = json.loads(args.packet.read_text(encoding="utf-8"))
+        packet: object = cast("object", json.loads(args.packet.read_text(encoding="utf-8")))
     except (ValueError, OSError):
         packet = None
     errors = review_errors(packet, args.snapshot)

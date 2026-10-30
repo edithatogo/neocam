@@ -15,7 +15,7 @@ import tarfile
 import urllib.error
 import urllib.request
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import IO, TYPE_CHECKING, TypedDict, cast, override
 from urllib.parse import urlsplit
 
 if TYPE_CHECKING:
@@ -29,6 +29,13 @@ MAX_ARCHIVE_BYTES = 50_000_000
 MIN_PRINTABLE_ORDINAL = 32
 RELEASE_HOSTS = frozenset({"github.com", "release-assets.githubusercontent.com", "objects.githubusercontent.com"})
 NATIVE_TOOLS = frozenset({"gitleaks", "vale", "actionlint"})
+
+
+class _Asset(TypedDict):
+    """One checksum-addressed native release archive."""
+
+    url: str
+    sha256: str
 
 
 def validate_release_url(url: str, *, initial: bool = False) -> None:
@@ -54,12 +61,13 @@ def validate_release_url(url: str, *, initial: bool = False) -> None:
 class TrustedReleaseRedirect(urllib.request.HTTPRedirectHandler):
     """Check each redirect target before urllib opens the next connection."""
 
-    def redirect_request(  # ruff: ignore[too-many-arguments, too-many-positional-arguments] -- signature must mirror urllib's redirect handler
+    @override
+    def redirect_request(
         self,
-        request: Request,
-        response: http.client.HTTPResponse,
+        req: Request,
+        fp: IO[bytes],
         code: int,
-        message: str,
+        msg: str,
         headers: http.client.HTTPMessage,
         newurl: str,
     ) -> Request | None:
@@ -69,7 +77,7 @@ class TrustedReleaseRedirect(urllib.request.HTTPRedirectHandler):
             Request | None: The base handler's follow-up request, when any.
         """
         validate_release_url(newurl)
-        return super().redirect_request(request, response, code, message, headers, newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
 def open_release(url: str) -> http.client.HTTPResponse:
@@ -79,7 +87,8 @@ def open_release(url: str) -> http.client.HTTPResponse:
         http.client.HTTPResponse: The open response for the validated release URL.
     """
     validate_release_url(url, initial=True)
-    return urllib.request.build_opener(TrustedReleaseRedirect()).open(url, timeout=20)
+    opener = urllib.request.build_opener(TrustedReleaseRedirect())
+    return cast("http.client.HTTPResponse", opener.open(url, timeout=20))
 
 
 def unpack_binary(payload: bytes, expected: str, name: str, destination: Path) -> Path:
@@ -116,12 +125,12 @@ def unpack_binary(payload: bytes, expected: str, name: str, destination: Path) -
             raise ValueError(msg)
     destination.mkdir(parents=True, exist_ok=True)
     target = destination / name
-    target.write_bytes(content)
+    _ = target.write_bytes(content)
     target.chmod(0o755)
     return target
 
 
-def download_archive(asset: dict) -> bytes:
+def download_archive(asset: _Asset) -> bytes:
     """Download one checksum-addressed release archive after URL validation.
 
     Returns:
@@ -145,19 +154,20 @@ def main() -> int:
     Returns:
         int: 0 when all tools install, 1 on a failed install, 69 when blocked.
     """
-    manifest = json.loads((ROOT / "quality/native-tools.json").read_text(encoding="utf-8"))
+    manifest = cast("dict[str, object]", json.loads((ROOT / "quality/native-tools.json").read_text(encoding="utf-8")))
     key = f"{platform.system().lower()}-{platform.machine().lower()}"
     failed = False
     blocked = False
     for name, entries in manifest.items():
-        if key not in entries:
+        record = cast("dict[str, object]", entries) if isinstance(entries, dict) else {}
+        if key not in record:
             print(f"BLOCKED {name}: platform {key} has no verified binary record")  # ruff: ignore[print] -- install receipt goes to stdout
             blocked = True
             continue
-        asset = entries[key]
+        asset = cast("_Asset", record[key])
         try:
             target = unpack_binary(download_archive(asset), asset["sha256"], name, ROOT / ".tools/bin")
-            print(f"Installed checksum-verified {name} {entries['version']}: {target}")  # ruff: ignore[print] -- install receipt goes to stdout
+            print(f"Installed checksum-verified {name} {record['version']}: {target}")  # ruff: ignore[print] -- install receipt goes to stdout
         except (urllib.error.URLError, TimeoutError, OSError) as error:
             print(f"BLOCKED {name}: {error}")  # ruff: ignore[print] -- install receipt goes to stdout
             blocked = True

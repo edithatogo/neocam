@@ -1,18 +1,29 @@
 """Review-record integrity cannot manufacture independent clinical validation."""
 
+from typing import TYPE_CHECKING, TypedDict, cast
+
 import pytest
 
 from quality.clinical_review import review_errors
-from scripts.analyse_refinements import pending_reviews
+from scripts import analyse_refinements
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 SNAPSHOT = "a" * 64
 
 
-def api():
-    return review_errors
+class Packet(TypedDict):
+    """External review packet template returned by the refinement driver."""
+
+    reviews: list[dict[str, object]]
+    review_type: str
 
 
-def packet():
+pending_reviews = cast("Callable[..., Packet]", analyse_refinements.pending_reviews)
+
+
+def packet() -> Packet:
     p = pending_reviews(SNAPSHOT)
     for i, r in enumerate(p["reviews"]):
         r.update(
@@ -28,12 +39,12 @@ def packet():
     return p
 
 
-def test_pending_is_not_validation():
-    assert api()(pending_reviews(SNAPSHOT), SNAPSHOT)
+def test_pending_is_not_validation() -> None:
+    assert review_errors(pending_reviews(SNAPSHOT), SNAPSHOT)
 
 
-def test_valid_attestation_schema_only_not_identity_proof():
-    assert api()(packet(), SNAPSHOT) == []
+def test_valid_attestation_schema_only_not_identity_proof() -> None:
+    assert review_errors(packet(), SNAPSHOT) == []
 
 
 @pytest.mark.parametrize(
@@ -51,30 +62,30 @@ def test_valid_attestation_schema_only_not_identity_proof():
         ("role", "invented"),
     ],
 )
-def test_missing_or_false_attestation_fails(field, value):
+def test_missing_or_false_attestation_fails(field: str, value: object) -> None:
     p = packet()
     p["reviews"][0][field] = value
-    assert api()(p, SNAPSHOT)
+    assert review_errors(p, SNAPSHOT)
 
 
-def test_duplicate_role_and_empty_scope_fail():
+def test_duplicate_role_and_empty_scope_fail() -> None:
     p = packet()
     p["reviews"][1] = p["reviews"][0].copy()
-    assert api()(p, SNAPSHOT)
-    assert api()({"reviews": []}, SNAPSHOT)
+    assert review_errors(p, SNAPSHOT)
+    assert review_errors({"reviews": []}, SNAPSHOT)
 
 
-def test_simulated_or_stale_record_fails():
+def test_simulated_or_stale_record_fails() -> None:
     p = packet()
     p["review_type"] = "simulated author roles"
-    assert api()(p, SNAPSHOT)
-    assert api()(packet(), "b" * 64)
-    assert api()(packet(), "")
+    assert review_errors(p, SNAPSHOT)
+    assert review_errors(packet(), "b" * 64)
+    assert review_errors(packet(), "")
 
 
-def test_approved_record_with_unresolved_finding_fails():
+def test_approved_record_with_unresolved_finding_fails() -> None:
     p = packet()
-    p["reviews"][0]["findings"] = [
+    findings: list[dict[str, object]] = [
         {
             "severity": "high",
             "description": "Unknown outcome definition",
@@ -83,20 +94,19 @@ def test_approved_record_with_unresolved_finding_fails():
             "evidence": [],
         }
     ]
-    assert api()(p, SNAPSHOT)
-    p["reviews"][0]["findings"][0].update(
-        status="resolved", resolution="Definition reconciled", evidence=["Evidence locator"]
-    )
-    assert api()(p, SNAPSHOT) == []
+    p["reviews"][0]["findings"] = findings
+    assert review_errors(p, SNAPSHOT)
+    findings[0].update(status="resolved", resolution="Definition reconciled", evidence=["Evidence locator"])
+    assert review_errors(p, SNAPSHOT) == []
 
 
 @pytest.mark.parametrize("bad", [None, [], {"reviews": None}, {"reviews": [None]}, "a"])
-def test_malformed_review_fails_without_crash(bad):
-    assert api()(bad, SNAPSHOT)
+def test_malformed_review_fails_without_crash(bad: object) -> None:
+    assert review_errors(bad, SNAPSHOT)
 
 
 @pytest.mark.parametrize("finding", [None, {"severity": "high"}, {"severity": [], "status": "resolved"}])
-def test_malformed_findings_fail_without_exception(finding):
+def test_malformed_findings_fail_without_exception(finding: object) -> None:
     p = packet()
     p["reviews"][0]["findings"] = [finding]
-    assert api()(p, SNAPSHOT)
+    assert review_errors(p, SNAPSHOT)

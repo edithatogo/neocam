@@ -7,9 +7,30 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from typing import Protocol, cast
 
 
-def _bytes_errors(path: Path, name: str, item: dict) -> list[str]:
+class _ArchiveArgs(Protocol):
+    """The parsed CLI attributes for the source-archive check."""
+
+    output: str
+
+
+def _string_list(value: object) -> list[str] | None:
+    """Return the value as a nonempty list of nonblank strings, or None.
+
+    Returns:
+        list[str] | None: The validated string list, otherwise None.
+    """
+    if not isinstance(value, list):
+        return None
+    items = cast("list[object]", value)
+    if not items or not all(isinstance(item, str) and item.strip() for item in items):
+        return None
+    return [item for item in items if isinstance(item, str)]
+
+
+def _bytes_errors(path: Path, name: str, item: dict[str, object]) -> list[str]:
     """Return size and digest errors for one stored source file.
 
     Returns:
@@ -41,16 +62,18 @@ def _original_id_errors(name: str, source_id: object, original_ids: set[str]) ->
     return []
 
 
-def _metadata_errors(path: Path, name: str, item: dict, original_ids: set[str]) -> list[str]:
+def _metadata_errors(path: Path, name: str, item: dict[str, object], original_ids: set[str]) -> list[str]:
     """Check byte count, digest format, representation and stored bytes.
 
     Returns:
         list[str]: Metadata and byte errors; empty when the record is consistent.
     """
     errors: list[str] = []
-    if type(item.get("bytes")) is not int or item["bytes"] < 0:
+    byte_count = item.get("bytes")
+    if type(byte_count) is not int or byte_count < 0:
         errors.append(f"Invalid source byte count: {name}")
-    if not isinstance(item.get("sha256"), str) or not re.fullmatch(r"[a-f0-9]{64}", item["sha256"]):
+    digest = item.get("sha256")
+    if not isinstance(digest, str) or not re.fullmatch(r"[a-f0-9]{64}", digest):
         errors.append(f"Invalid source digest: {name}")
     if item.get("representation") == "original public bytes":
         errors.extend(_original_id_errors(name, item.get("source_id"), original_ids))
@@ -68,7 +91,8 @@ def _record_errors(root: Path, index: int, item: object, seen: set[Path], origin
     """
     if not isinstance(item, dict):
         return [f"Invalid source record: {index}"]
-    name = item.get("path", "")
+    record = cast("dict[str, object]", item)
+    name = record.get("path", "")
     if not isinstance(name, str):
         return [f"Invalid source path type: {index}"]
     try:
@@ -78,10 +102,10 @@ def _record_errors(root: Path, index: int, item: object, seen: set[Path], origin
     if not name or Path(name).is_absolute() or path == root or root not in path.parents or path in seen:
         return [f"Unsafe or duplicate source path: {name}"]
     seen.add(path)
-    return _metadata_errors(path, name, item, original_ids)
+    return _metadata_errors(path, name, record, original_ids)
 
 
-def _completeness_errors(manifest: dict, original_ids: set[str]) -> list[str]:
+def _completeness_errors(manifest: dict[str, object], original_ids: set[str]) -> list[str]:
     """Check declared original-source completeness against recorded identifiers.
 
     Returns:
@@ -89,13 +113,8 @@ def _completeness_errors(manifest: dict, original_ids: set[str]) -> list[str]:
     """
     if manifest.get("original_public_downloads_complete") is not True:
         return []
-    expected = manifest.get("expected_original_source_ids")
-    valid = (
-        isinstance(expected, list)
-        and bool(expected)
-        and all(isinstance(item, str) and item.strip() for item in expected)
-    )
-    if not valid or len(set(expected)) != len(expected):
+    expected = _string_list(manifest.get("expected_original_source_ids"))
+    if expected is None or len(set(expected)) != len(expected):
         return ["Expected original-source identifiers must be a nonempty unique string list"]
     if not set(expected).issubset(original_ids):
         return ["Original public-source completeness is unsupported"]
@@ -112,16 +131,17 @@ def verify_manifest(root: Path, manifest: object) -> list[str]:
     root = root.resolve()
     if not isinstance(manifest, dict):
         return ["Source manifest must be an object"]
-    files = manifest.get("files", [])
+    record = cast("dict[str, object]", manifest)
+    files = record.get("files", [])
     if not isinstance(files, list) or not files:
         return ["Stored-source verification requires a nonempty file scope"]
-    if type(manifest.get("original_public_downloads_complete", False)) is not bool:
+    if type(record.get("original_public_downloads_complete", False)) is not bool:
         errors.append("Original-source completeness must be a boolean")
     seen: set[Path] = set()
     original_ids: set[str] = set()
-    for index, item in enumerate(files):
+    for index, item in enumerate(cast("list[object]", files)):
         errors.extend(_record_errors(root, index, item, seen, original_ids))
-    errors.extend(_completeness_errors(manifest, original_ids))
+    errors.extend(_completeness_errors(record, original_ids))
     return errors
 
 
@@ -132,20 +152,21 @@ def main() -> int:
         int: 0 when stored-byte verification passes, otherwise 1.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", default="verification/v7/source_archive.json")
-    args = parser.parse_args()
+    _ = parser.add_argument("--output", default="verification/v7/source_archive.json")
+    args = cast("_ArchiveArgs", cast("object", parser.parse_args()))
     root = Path(__file__).resolve().parents[1]
     output = (root / args.output).resolve()
     if not output.is_relative_to((root / "verification").resolve()):
         parser.error("Source report must remain within the verification directory")
+    manifest: object
     try:
-        manifest = json.loads((root / "sources/manifest.json").read_text(encoding="utf-8"))
+        manifest = cast("object", json.loads((root / "sources/manifest.json").read_text(encoding="utf-8")))
     except (OSError, ValueError):
         manifest = None
         errors = ["Source manifest unavailable or invalid JSON"]
     else:
         errors = verify_manifest(root, manifest)
-    mapping = manifest if isinstance(manifest, dict) else {}
+    mapping = cast("dict[str, object]", manifest) if isinstance(manifest, dict) else {}
     records = mapping.get("files")
     report = {
         "stored_file_integrity_passed": not errors,
@@ -153,12 +174,12 @@ def main() -> int:
         "public_original_archival_completeness": (
             not errors and mapping.get("original_public_downloads_complete") is True
         ),
-        "stored_files": len(records) if isinstance(records, list) else 0,
+        "stored_files": len(cast("list[object]", records)) if isinstance(records, list) else 0,
     }
-    output.parent.mkdir(exist_ok=True, parents=True)
+    _ = output.parent.mkdir(exist_ok=True, parents=True)
     temporary = output.with_name(output.name + ".tmp")
-    temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    temporary.replace(output)
+    _ = temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    _ = temporary.replace(output)
     print(json.dumps(report, indent=2))  # ruff: ignore[print] -- CLI verification report goes to stdout
     return int(bool(errors))
 

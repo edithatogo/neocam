@@ -12,6 +12,7 @@ import subprocess  # ruff: ignore[suspicious-subprocess-import] -- runs the guar
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Protocol, cast
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED = {
@@ -45,6 +46,12 @@ class FeedbackPlan:
     can_seal: bool
 
 
+class _FeedbackArgs(Protocol):
+    """The parsed CLI attributes for the local feedback runner."""
+
+    mode: str
+
+
 def environment_versions() -> dict[str, str]:
     """Include interpreter, OS and the actual installed distribution versions.
 
@@ -52,9 +59,11 @@ def environment_versions() -> dict[str, str]:
         dict[str, str]: Installed distribution versions keyed by name, plus
             ``__python__`` and ``__platform__`` entries.
     """
-    versions = {
-        dist.metadata["Name"]: dist.version for dist in importlib.metadata.distributions() if dist.metadata.get("Name")
-    }
+    versions: dict[str, str] = {}
+    for dist in importlib.metadata.distributions():
+        name = dist.metadata.get("Name")
+        if name is not None and name:
+            versions[name] = dist.version
     versions["__python__"] = sys.version
     versions["__platform__"] = platform.platform()
     return versions
@@ -103,12 +112,11 @@ def prepare(root: Path, mode: str, *, available: bool, environment: dict[str, st
     key = cache_key(root, mode, environment)
     state_file = root / ".feedback-cache" / f"{mode}.json"
     try:
-        previous = json.loads(state_file.read_text(encoding="utf-8"))
+        previous: object = cast("object", json.loads(state_file.read_text(encoding="utf-8")))
     except (OSError, ValueError):
         previous = {}
-    if not isinstance(previous, dict):
-        previous = {}
-    reused = previous.get("key") == key and previous.get("returncode") == 0
+    state = cast("dict[str, object]", previous) if isinstance(previous, dict) else {}
+    reused = state.get("key") == key and state.get("returncode") == 0
     # Consume the old seal before starting: interruption must not preserve success.
     state_file.unlink(missing_ok=True)
     if mode == "tests":
@@ -161,7 +169,7 @@ def complete(root: Path, plan: FeedbackPlan, returncode: int) -> None:
     state_file.unlink(missing_ok=True)
     if returncode == 0 and plan.can_seal:
         state_file.parent.mkdir(parents=True, exist_ok=True)
-        state_file.write_text(
+        _ = state_file.write_text(
             json.dumps({"key": plan.key, "returncode": 0, "scope": "local-only; not acceptance"}) + "\n",
             encoding="utf-8",
         )
@@ -174,8 +182,8 @@ def main() -> int:
         int: The guarded command's exit code, or 69 when a plugin is unavailable.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=("tests", "mutation"), default="tests")
-    args = parser.parse_args()
+    _ = parser.add_argument("--mode", choices=("tests", "mutation"), default="tests")
+    args = cast("_FeedbackArgs", cast("object", parser.parse_args()))
     module = "testmon" if args.mode == "tests" else "pytest_gremlins"
     env = environment_versions()
     try:

@@ -5,17 +5,32 @@ examples remain covered by ordinary regressions; these properties target current
 """
 
 from dataclasses import replace
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from scripts.analyse_v7 import evaluate_perspectives
+from scripts import analyse_v7
+from src import audit_v7, deployment
 from src.activity import ActivitySpec
-from src.audit_v7 import sample_v7
-from src.deployment import DeploymentPolicy, eligibility_catalogue, evaluate_policy
+from src.deployment import DeploymentPolicy, eligibility_catalogue
 from src.pathways_v6 import PathwaySpec, compare_v6
-from src.statewide import Parameters, Site, _base_arrays  # ruff: ignore[import-private-name] -- property test reuses the internal base-array builder
+from src.statewide import (
+    Parameters,
+    Site,
+    _base_arrays,  # ruff: ignore[import-private-name] -- property test reuses the internal base-array builder  # pyright: ignore[reportPrivateUsage]
+)
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+# The numerical kernels below are untyped in the model package; bind precise call shapes here.
+perspective_balances = cast(
+    "Callable[..., tuple[object, dict[str, dict[str, np.ndarray]], object]]", analyse_v7.evaluate_perspectives
+)
+sampled_draws = cast("Callable[..., tuple[dict[str, np.ndarray], dict[str, np.ndarray]]]", audit_v7.sample_v7)
+policy_outcomes = cast("Callable[..., dict[str, np.ndarray]]", deployment.evaluate_policy)
 
 settings.register_profile("panda_ci", max_examples=100, deadline=None, derandomize=True)
 settings.load_profile("panda_ci")
@@ -51,7 +66,7 @@ def test_perspective_transfers_do_not_create_social_resources(subsidy: float, fu
     p = Parameters()
     s = PathwaySpec()
     x = _base_arrays(p, 1)
-    _, ledger, _ = evaluate_perspectives([SITE], p, s, x, {}, subsidy_fraction=subsidy, funding_response=funding)
+    _, ledger, _ = perspective_balances([SITE], p, s, x, {}, subsidy_fraction=subsidy, funding_response=funding)
     for arm in ledger.values():
         np.testing.assert_allclose(
             arm["state"] + arm["commonwealth"] + arm["patient_family"], arm["societal_bounded"], atol=1e-7
@@ -64,7 +79,7 @@ def test_active_shared_psa_draws_remain_paired(seed: int) -> None:
     """Adding a second site doubles additive hourly value on the same draws."""
     p = Parameters()
     s = PathwaySpec()
-    x, e = sample_v7(p, s, 80, seed)
+    x, e = sampled_draws(p, s, 80, seed)
     a = compare_v6([SITE], p, s, inputs=x, structural_draws=e)
     b = compare_v6([SITE, replace(SITE, name="Mareeba")], p, s, inputs=x, structural_draws=e)
     # Economic hourly value is additive; cash capacity steps intentionally are not.
@@ -76,8 +91,8 @@ def test_active_shared_psa_draws_remain_paired(seed: int) -> None:
 @settings(max_examples=25)
 def test_current_sampler_seed_reproducibility(seed: int) -> None:
     """Repeated draws from one seed reproduce the same clinical and economic arrays."""
-    a, b = sample_v7(n=50, seed=seed)
-    c, d = sample_v7(n=50, seed=seed)
+    a, b = sampled_draws(n=50, seed=seed)
+    c, d = sampled_draws(n=50, seed=seed)
     for key in a:
         np.testing.assert_array_equal(a[key], c[key])
     for key in b:
@@ -99,7 +114,7 @@ def test_policy_and_contact_population_conservation(ratio: float, reliability: f
     """A mixed deployment policy conserves episodes and scales contacts with them."""
     sites = [SITE, replace(SITE, name="Mareeba")]
     policy = DeploymentPolicy("mixed", (("Atherton", "panda"), ("Mareeba", "telephone")))
-    result = evaluate_policy(
+    result = policy_outcomes(
         sites,
         policy,
         eligibility_catalogue(sites),

@@ -13,13 +13,23 @@ import re
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- gates deliberately run pinned native tools without a shell
 import time
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 # EX_UNAVAILABLE is used only by our explicit preflight check scripts.
 EX_UNAVAILABLE = 69
+
+
+def _as_text(value: object) -> str:
+    """Render captured output or a launch detail that may be bytes or absent.
+
+    Returns:
+        str: The decoded bytes, or ``str()`` of the value.
+    """
+    return value.decode(errors="replace") if isinstance(value, bytes) else str(value)
+
 
 INPUT_DIRS = (
     "src",
@@ -68,7 +78,7 @@ class Gate:
         if not re.fullmatch(r"[a-z][a-z0-9_]*", self.name):
             msg = "Gate name must be a lowercase identifier"
             raise ValueError(msg)
-        if not self.command or not all(isinstance(part, str) and part for part in self.command):
+        if not self.command or any(not part for part in self.command):
             msg = "Command must contain nonempty string arguments"
             raise ValueError(msg)
         if not math.isfinite(self.timeout) or self.timeout <= 0:
@@ -143,7 +153,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
         try:
             returncode, output = execute_gate(gate, root)
         except FileNotFoundError as error:
-            status, reason = "blocked", f"Executable unavailable: {error.filename}"
+            status, reason = "blocked", f"Executable unavailable: {_as_text(cast('object', error.filename))}"
             output = reason + "\n"
         except OSError as error:
             status = "failed"
@@ -151,8 +161,8 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
             output = reason + "\n"
         except subprocess.TimeoutExpired as error:
             status, reason = "failed", f"Check timeout after {gate.timeout:g} seconds"
-            fragments = (error.stdout or b"", error.stderr or b"")
-            output = "".join(part.decode(errors="replace") if isinstance(part, bytes) else part for part in fragments)
+            fragments: tuple[bytes | str, ...] = (error.stdout or b"", error.stderr or b"")
+            output = "".join(_as_text(part) for part in fragments)
             output += "\n" + reason + "\n"
         else:
             status = (
@@ -164,7 +174,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
             )
             if returncode != 0:
                 reason = f"Command exited {returncode}"
-    log.write_text(output, encoding="utf-8")
+    _ = log.write_text(output, encoding="utf-8")
     return Receipt(
         gate.name,
         status,

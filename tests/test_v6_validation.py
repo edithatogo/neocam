@@ -3,16 +3,23 @@
 import ast
 from dataclasses import replace
 from pathlib import Path
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 import pytest
 
 from src.pathways_v6 import PathwaySpec, cash_budget, compare_v6, path_probabilities, sample_v6
-from src.statewide import Parameters, Site, _base_arrays, load_sites, select_sites
+from src.statewide import Parameters, Site, _base_arrays, load_sites, select_sites  # pyright: ignore[reportPrivateUsage] -- private kernel helper is the published in-repo surface under test
 from src.strategies import KEYS
 
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
-def scalar_case(p, s):
+# Heterogeneous failure-injection keywords are validated by the kernel itself.
+_compare_v6 = cast("Callable[..., dict[str, dict[str, np.ndarray]]]", compare_v6)
+
+
+def scalar_case(p: Parameters, s: PathwaySpec) -> tuple[float, float, list[float]]:
     """Hand-expressed one-pilot-site calculation; no new-kernel helper calls.
 
     Returns:
@@ -54,14 +61,17 @@ def scalar_case(p, s):
     if not p.include_capital:
         annual = 0
     return (
-        care[0]
-        - care[1]
-        - annual
-        - (52 * p.check_minutes / 60 * p.loaded_hour + p.support + p.training)
-        - (
-            p.calls_per_pilot_site
-            * (p.workflow_per_call / 75)
-            * (s.local_coordination_per_call + s.hub_minutes_per_call * s.hub_hourly_rate / 60)
+        cast(
+            "float",
+            care[0]
+            - care[1]
+            - annual
+            - (52 * p.check_minutes / 60 * p.loaded_hour + p.support + p.training)
+            - (
+                p.calls_per_pilot_site
+                * (p.workflow_per_call / 75)
+                * (s.local_coordination_per_call + s.hub_minutes_per_call * s.hub_hourly_rate / 60)
+            ),
         ),
         transfers[0] - transfers[1],
         care,
@@ -69,7 +79,7 @@ def scalar_case(p, s):
 
 
 @pytest.mark.parametrize("seed", range(20))
-def test_random_scalar_oracle(seed):
+def test_random_scalar_oracle(seed: int) -> None:
     rng = np.random.default_rng(seed)
     p = replace(
         Parameters(),
@@ -100,7 +110,7 @@ def test_random_scalar_oracle(seed):
 
 @pytest.mark.parametrize("endpoint", ["eventual", "initial"])
 @pytest.mark.parametrize("reliability", [0, 1, 0.35])
-def test_population_conservation_in_each_draw(endpoint, reliability):
+def test_population_conservation_in_each_draw(endpoint: str, reliability: float) -> None:
     p = Parameters(reliability=reliability)
     s = replace(PathwaySpec(), endpoint=endpoint)
     x, e = sample_v6(p, s, n=600, seed=600)
@@ -125,7 +135,7 @@ def test_population_conservation_in_each_draw(endpoint, reliability):
         )
 
 
-def test_hub_cash_change_cannot_change_resource_result():
+def test_hub_cash_change_cannot_change_resource_result() -> None:
     sites = select_sites(load_sites(), "spokes")
     a = compare_v6(sites, spec=PathwaySpec())["panda"]
     b = compare_v6(sites, spec=replace(PathwaySpec(), hub_spare_hours=0, hub_block_cost=900000))["panda"]
@@ -133,14 +143,14 @@ def test_hub_cash_change_cannot_change_resource_result():
     assert b["cash_running_cost"][0] > a["cash_running_cost"][0]
 
 
-def test_increasing_hub_workload_has_proportionate_cost():
+def test_increasing_hub_workload_has_proportionate_cost() -> None:
     sites = select_sites(load_sites(), "pilot")
     a = compare_v6(sites)["panda"]
     b = compare_v6(sites, spec=replace(PathwaySpec(), hub_minutes_per_call=30))["panda"]
     assert b["programme_cost"][0] - a["programme_cost"][0] == pytest.approx(37.5 * 15 / 60 * 200)
 
 
-def test_eventual_effect_no_double_counting_rescue():
+def test_eventual_effect_no_double_counting_rescue() -> None:
     p = Parameters(odds_ratio=0.5, reliability=1)
     a = compare_v6(select_sites(load_sites(), "pilot"), p)["panda"]
     b = compare_v6(select_sites(load_sites(), "pilot"), p, replace(PathwaySpec(), video_delay_share=0.5))["panda"]
@@ -148,7 +158,7 @@ def test_eventual_effect_no_double_counting_rescue():
     assert b["net_saving"][0] < a["net_saving"][0]
 
 
-def test_sample_reproducibility_and_null_resource_benefit():
+def test_sample_reproducibility_and_null_resource_benefit() -> None:
     p = Parameters(odds_ratio=1)
     x, e = sample_v6(p, n=500, seed=601, effect_mode="null")
     y, f = sample_v6(p, n=500, seed=601, effect_mode="null")
@@ -161,24 +171,26 @@ def test_sample_reproducibility_and_null_resource_benefit():
         np.testing.assert_allclose(a["gross_resource_benefit"], 0, atol=1e-8)
 
 
-def test_absolutely_no_activity_no_hub_but_readiness():
+def test_absolutely_no_activity_no_hub_but_readiness() -> None:
     a = compare_v6([Site("Zero", 0, 2022, "readiness", "remote")])["panda"]
     assert a["hub_resource_cost"][0] == a["hub_cash_cost"][0] == 0
     assert a["programme_cost"][0] > 0
 
 
-def test_all_critical_has_no_transfer_avoidance():
+def test_all_critical_has_no_transfer_avoidance() -> None:
     out = compare_v6(select_sites(load_sites(), "pilot"), Parameters(case_mix=(0, 0, 1)))
     for a in out.values():
         assert a["avoided_transfers"][0] == pytest.approx(0)
 
 
-def test_budget_shared_attribution_not_discount_cash():
+def test_budget_shared_attribution_not_discount_cash() -> None:
     sites = select_sites(load_sites(), "pilot")
     full = compare_v6(sites)["mobile"]
     shared = compare_v6(sites, overrides={"mobile": {"capital_share": 0.1}})["mobile"]
     np.testing.assert_array_equal(full["full_purchase_capital"], shared["full_purchase_capital"])
-    assert shared["capital_annualised"][0] == pytest.approx(full["capital_annualised"][0] / 10)
+    shared_capital = cast("float", shared["capital_annualised"][0])
+    full_capital = cast("float", full["capital_annualised"][0])
+    assert shared_capital == pytest.approx(full_capital / 10)
 
 
 @pytest.mark.parametrize(
@@ -189,12 +201,12 @@ def test_budget_shared_attribution_not_discount_cash():
         (3, 6, "Integer equipment life and feasible remaining life required"),
     ],
 )
-def test_invalid_budget(years, remaining, message):
+def test_invalid_budget(years: int, remaining: int, message: str) -> None:
     with pytest.raises(ValueError, match=message):
-        cash_budget(select_sites(load_sites(), "pilot"), years=years, remaining_life=remaining)
+        _ = cash_budget(select_sites(load_sites(), "pilot"), years=years, remaining_life=remaining)
 
 
-def test_no_dataframe_imports_in_new_kernel():
+def test_no_dataframe_imports_in_new_kernel() -> None:
     tree = ast.parse(Path("src/pathways_v6.py").read_text(encoding="utf-8"))
     for n in ast.walk(tree):
         if isinstance(n, ast.Import):
@@ -203,7 +215,7 @@ def test_no_dataframe_imports_in_new_kernel():
             assert (n.module or "").split(".")[0] not in {"pandas", "xarray"}
 
 
-def test_aggregation_matches_separate_site_care():
+def test_aggregation_matches_separate_site_care() -> None:
     sites = [*select_sites(load_sites(), "pilot"), Site("Remote synthetic", 40, 2022, "rural_proxy", "remote")]
     p = Parameters()
     x, e = sample_v6(p, n=150, seed=976)
@@ -241,14 +253,14 @@ def test_aggregation_matches_separate_site_care():
         (np.array([[0.3, 0.65, 0.98]]), np.array([0.5]), "unknown", "unknown transfer endpoint"),
     ],
 )
-def test_bad_path_shapes_and_endpoint(t, odds, ep, message):
+def test_bad_path_shapes_and_endpoint(t: np.ndarray, odds: np.ndarray, ep: str, message: str) -> None:
     with pytest.raises(ValueError, match=message):
-        path_probabilities(t, odds, np.array([1.0]), 0.05, 0.05, endpoint=ep)
+        _ = path_probabilities(t, odds, np.array([1.0]), 0.05, 0.05, endpoint=ep)
 
 
-def test_spec_rejects_unknown_endpoint():
+def test_spec_rejects_unknown_endpoint() -> None:
     with pytest.raises(ValueError, match="endpoint must be eventual or initial"):
-        replace(PathwaySpec(), endpoint="unknown")
+        _ = replace(PathwaySpec(), endpoint="unknown")
 
 
 @pytest.mark.parametrize(
@@ -263,10 +275,10 @@ def test_spec_rejects_unknown_endpoint():
         ("structural", "unknown structural draw"),
     ],
 )
-def test_bad_comparison_contract(failure, message):
+def test_bad_comparison_contract(failure: str, message: str) -> None:
     sites = select_sites(load_sites(), "pilot")
     x = _base_arrays(Parameters(), 1)
-    kwargs = {}
+    kwargs: dict[str, object] = {}
     if failure == "empty":
         sites = []
     elif failure == "duplicate":
@@ -282,4 +294,4 @@ def test_bad_comparison_contract(failure, message):
     elif failure == "structural":
         kwargs["structural_draws"] = {"unknown": np.array([1.0])}
     with pytest.raises(ValueError, match=message):
-        compare_v6(sites, inputs=x, **kwargs)
+        _ = _compare_v6(sites, inputs=x, **kwargs)

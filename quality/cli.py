@@ -18,11 +18,19 @@ import uuid
 from dataclasses import asdict, replace
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Protocol, cast
 
 from quality.artifacts import artifact_dependency_fingerprint
 from quality.assurance import Gate, Receipt, input_fingerprint, run_gate, validate_receipts
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+class _CliArgs(Protocol):
+    """The parsed CLI attributes for the assurance runner."""
+
+    profile: str
+    evidence_version: str
 
 
 def _native(name: str) -> str:
@@ -179,20 +187,30 @@ def gates_for_profile(profile: str) -> list[Gate]:
     return gates
 
 
+def _build_parser() -> argparse.ArgumentParser:
+    """Declare the assurance runner flags once, with a typed namespace contract.
+
+    Returns:
+        argparse.ArgumentParser: The configured argument parser.
+    """
+    parser = argparse.ArgumentParser(description=__doc__)
+    _ = parser.add_argument("--profile", choices=("quick", "pr", "full"), default="quick")
+    _ = parser.add_argument(
+        "--evidence-version",
+        default="v7",
+        help="Versioned evidence directory, for example v8; older evidence is preserved.",
+    )
+    return parser
+
+
 def main() -> int:
     """Execute all declared gates and atomically checkpoint evidence after each gate.
 
     Returns:
         int: 0 when every gate passed with current inputs, otherwise 1.
     """
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--profile", choices=("quick", "pr", "full"), default="quick")
-    parser.add_argument(
-        "--evidence-version",
-        default="v7",
-        help="Versioned evidence directory, for example v8; older evidence is preserved.",
-    )
-    args = parser.parse_args()
+    parser = _build_parser()
+    args = cast("_CliArgs", cast("object", parser.parse_args()))
     if not re.fullmatch(r"v[1-9][0-9]*", args.evidence_version):
         parser.error("--evidence-version must be v followed by a positive integer")
     evidence_root = f"verification/{args.evidence_version}"
@@ -247,7 +265,7 @@ def main() -> int:
         timeout=10,
         check=False,
     ).stdout.strip()
-    report = {
+    report: dict[str, object] = {
         "generated_at": datetime.now(UTC).isoformat(),
         "run_id": str(uuid.uuid4()),
         "profile": args.profile,
@@ -279,8 +297,8 @@ def main() -> int:
         report["updated_at"] = datetime.now(UTC).isoformat()
         report["receipts"] = [asdict(receipt) for receipt in receipts]
         temporary = directory / "receipt.json.tmp"
-        temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-        temporary.replace(directory / "receipt.json")
+        _ = temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        _ = temporary.replace(directory / "receipt.json")
 
     checkpoint()
     for gate in gates:

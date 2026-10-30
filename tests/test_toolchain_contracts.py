@@ -3,15 +3,97 @@
 import json
 import tomllib
 from pathlib import Path
+from typing import NotRequired, TypedDict, cast
+
+RuffLint = TypedDict("RuffLint", {"select": list[str], "ignore": list[str], "explicit-preview-rules": bool})
+Ruff = TypedDict("Ruff", {"preview": bool, "unsafe-fixes": bool, "lint": RuffLint})
+
+
+class TyRules(TypedDict):
+    """ty rule severity contract."""
+
+    all: str
+
+
+class Ty(TypedDict):
+    """ty tool contract."""
+
+    rules: TyRules
+
+
+class Basedpyright(TypedDict):
+    """basedpyright tool contract."""
+
+    typeCheckingMode: str
+    failOnWarnings: bool
+    ignore: NotRequired[list[str]]
+
+
+class Gremlins(TypedDict):
+    """Mutation tool contract."""
+
+    operators: list[str]
+    max_pardons: int
+    cache: bool
+    paths: list[str]
+
+
+Tools = TypedDict(
+    "Tools",
+    {"ruff": Ruff, "ty": Ty, "basedpyright": Basedpyright, "pytest-gremlins": Gremlins},
+)
+
+
+Project = TypedDict("Project", {"dependencies": list[str], "optional-dependencies": dict[str, list[str]]})
+
+
+class DependencyGroups(TypedDict):
+    """The dependency groups these tests pin-check."""
+
+    test: list[str]
+    assurance: list[str | dict[str, str]]
+
+
+Config = TypedDict("Config", {"tool": Tools, "project": Project, "dependency-groups": DependencyGroups})
+
+
+class NativeBinary(TypedDict):
+    """One pinned native tool target."""
+
+    sha256: str
+    url: str
+
+
+NativeTool = TypedDict("NativeTool", {"version": str, "linux-x86_64": NativeBinary})
+
+
+class DependencyTarget(TypedDict):
+    """One declared dependency pin target."""
+
+    name: str
+    target_version: str
+
+
+class Targets(TypedDict):
+    """The recorded dependency target document."""
+
+    packages: list[DependencyTarget]
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def config():
-    return tomllib.loads((ROOT / "pyproject.toml").read_text())
+def config() -> Config:
+    """Parse the repository pyproject contract.
+
+    Returns:
+        The declared tool and dependency tables.
+    """
+    # tomllib returns a plain dict; the parsed contract is asserted by these tests.
+    return cast("Config", cast("object", tomllib.loads((ROOT / "pyproject.toml").read_text())))
 
 
-def test_ruff_all_preview_no_unsafe_fixes():
+def test_ruff_all_preview_no_unsafe_fixes() -> None:
     ruff = config()["tool"]["ruff"]
     assert ruff["preview"] is True
     assert ruff["lint"]["select"] == ["ALL"]
@@ -25,16 +107,17 @@ def test_ruff_all_preview_no_unsafe_fixes():
     assert ruff["lint"]["explicit-preview-rules"] is False
 
 
-def test_both_type_checkers_are_strict_and_unsuppressed():
+def test_both_type_checkers_are_strict_and_unsuppressed() -> None:
     tool = config()["tool"]
     assert tool["ty"]["rules"]["all"] == "error"
     assert tool["basedpyright"]["typeCheckingMode"] == "all"
     assert tool["basedpyright"]["failOnWarnings"] is True
-    assert not tool["basedpyright"].get("ignore")
+    ignore = tool["basedpyright"].get("ignore")
+    assert ignore is None or ignore == []
     assert not (ROOT / ".basedpyright/baseline.json").exists()
 
 
-def test_mutation_checks_all_operator_classes_without_pardons():
+def test_mutation_checks_all_operator_classes_without_pardons() -> None:
     mutation = config()["tool"]["pytest-gremlins"]
     assert set(mutation["operators"]) == {"comparison", "arithmetic", "boolean", "boundary", "return"}
     assert mutation["max_pardons"] == 0
@@ -42,7 +125,7 @@ def test_mutation_checks_all_operator_classes_without_pardons():
     assert "src/statewide.py" in mutation["paths"]
 
 
-def test_dataframe_policy_and_tools_are_declared():
+def test_dataframe_policy_and_tools_are_declared() -> None:
     cfg = config()
     tabular = cfg["project"]["optional-dependencies"]["tabular"]
     assert tabular == ["polars==2.1.0"]
@@ -52,10 +135,10 @@ def test_dataframe_policy_and_tools_are_declared():
     assert "hypothesis[all]" not in "\n".join(dep for dep in dependencies if isinstance(dep, str))
 
 
-def test_native_tools_have_pinned_binary_integrity():
+def test_native_tools_have_pinned_binary_integrity() -> None:
     path = ROOT / "quality/native-tools.json"
     assert path.exists()
-    manifest = json.loads(path.read_text())
+    manifest = cast("dict[str, NativeTool]", json.loads(path.read_text()))
     for tool in ["gitleaks", "vale"]:
         assert manifest[tool]["version"]
         linux = manifest[tool]["linux-x86_64"]
@@ -63,7 +146,7 @@ def test_native_tools_have_pinned_binary_integrity():
         assert linux["url"].startswith("https://github.com/")
 
 
-def test_ci_no_dynamic_resolution_or_partial_bypass():
+def test_ci_no_dynamic_resolution_or_partial_bypass() -> None:
     workflow = (ROOT / ".github/workflows/ci.yml").read_text()
     assert "uv sync --frozen" in workflow
     assert "uv lock --upgrade" not in workflow
@@ -73,37 +156,37 @@ def test_ci_no_dynamic_resolution_or_partial_bypass():
     assert "continue-on-error" not in workflow
 
 
-def test_context_has_single_authoritative_runbook():
+def test_context_has_single_authoritative_runbook() -> None:
     assert (ROOT / "GEMINI.md").exists()
     assert (ROOT / "conductor/runbook.md").exists()
     for name in ["AGENTS.md", "GEMINI.md"]:
         assert "conductor/runbook.md" in (ROOT / name).read_text()
 
 
-def test_no_fake_uv_lock_is_supplied():
+def test_no_fake_uv_lock_is_supplied() -> None:
     path = ROOT / "uv.lock"
     if path.exists():
         from quality.contracts import validate_lock  # ruff: ignore[import-outside-top-level] -- imported only when a lock is present
 
         assert validate_lock(path) == []
     else:
-        state = json.loads((ROOT / "conductor/current-state.json").read_text())
+        state = cast("dict[str, object]", json.loads((ROOT / "conductor/current-state.json").read_text()))
         assert state["release_ready"] is False
 
 
-def test_scalene_profile_keeps_cpu_and_memory_measurement():
+def test_scalene_profile_keeps_cpu_and_memory_measurement() -> None:
     from quality.cli import gates_for_profile  # ruff: ignore[import-outside-top-level] -- keeps the tool import local to this contract
 
     gate = next(item for item in gates_for_profile("full") if item.name == "scalene")
     assert "--cpu-only" not in gate.command
 
 
-def test_every_python_release_target_has_an_enforced_pin():
+def test_every_python_release_target_has_an_enforced_pin() -> None:
     cfg = config()
     declarations = cfg["project"]["dependencies"] + cfg["project"]["optional-dependencies"]["tabular"]
     declarations += cfg["dependency-groups"]["test"]
     declarations += [item for item in cfg["dependency-groups"]["assurance"] if isinstance(item, str)]
     pins = dict(item.split("==", 1) for item in declarations)
-    targets = json.loads((ROOT / "evidence/dependency_targets_v3.json").read_text())["packages"]
+    targets = cast("Targets", json.loads((ROOT / "evidence/dependency_targets_v3.json").read_text()))["packages"]
     for target in targets:
         assert pins.get(target["name"]) == target["target_version"]

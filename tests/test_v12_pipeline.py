@@ -7,29 +7,43 @@ import shutil
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- fixed local CLI argv, never shell input
 import sys
 from pathlib import Path
+from typing import TypedDict, cast
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_real_entrypoint_consumes_configuration_and_preserves_old_outputs(tmp_path):
-    def trace(stage):
+class ConfigDocument(TypedDict):
+    """The declared-input documents this test rewrites."""
+
+    run: dict[str, object]
+    equipment_cost: float
+
+
+class ResolvedInputs(TypedDict):
+    """Resolved-input record emitted by the driver."""
+
+    parameters: dict[str, float]
+
+
+def test_real_entrypoint_consumes_configuration_and_preserves_old_outputs(tmp_path: Path) -> None:
+    def trace(stage: str) -> None:
         with (tmp_path / "trace.txt").open("a") as f:
-            f.write(stage + "\n")
+            _ = f.write(stage + "\n")
 
     trace("started")
     for name in ("src", "scripts", "config", "data"):
-        shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
+        _ = shutil.copytree(ROOT / name, tmp_path / name, ignore=shutil.ignore_patterns("__pycache__"))
     p = tmp_path / "data/parameters.json"
-    d = json.loads(p.read_text())
+    d = cast("ConfigDocument", json.loads(p.read_text()))
     d["equipment_cost"] = 20000
-    p.write_text(json.dumps(d))
+    _ = p.write_text(json.dumps(d))
     f = tmp_path / "config/reference.json"
-    d = json.loads(f.read_text())
+    d = cast("ConfigDocument", json.loads(f.read_text()))
     d["run"]["draws"] = 32
     d["run"]["portfolios"] = ["pilot"]
-    f.write_text(json.dumps(d))
+    _ = f.write_text(json.dumps(d))
     trace("before first subprocess")
     result = subprocess.run(
         [sys.executable, "-m", "scripts.analyse_v7", "--config", "config/reference.json", "--output", "outputs/check"],
@@ -47,7 +61,7 @@ def test_real_entrypoint_consumes_configuration_and_preserves_old_outputs(tmp_pa
     with (target / "deterministic.csv").open() as stream:
         values = list(csv.DictReader(stream))
     assert next(r for r in values if r["strategy"] == "panda")["sites"] == "3"
-    inputs = json.loads((target / "resolved_inputs.json").read_text())
+    inputs = cast("ResolvedInputs", json.loads((target / "resolved_inputs.json").read_text()))
     assert inputs["parameters"]["equipment_cost"] == 20000
     assert json.loads((target / "results.json").read_text())["draws"] == 32
     with (target / "utility_bridge_scenarios.csv").open() as stream:

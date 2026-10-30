@@ -4,28 +4,34 @@ import csv
 import json
 import math
 import shutil
+from collections.abc import Callable
 from dataclasses import replace
 from pathlib import Path
+from typing import cast
 
 import pytest
 
-from quality.contracts import _same_value, audit_inputs, validate_lock
+from quality.contracts import _same_value, audit_inputs, validate_lock  # pyright: ignore[reportPrivateUsage] -- the private comparator is the in-repo surface under test
 from src.panda_model import ModelInputs, clinical_extension, odds_to_probability, weighted_transfer_cost
 from src.statewide import Parameters, Site, load_sites, survival_extension
+
+# Heterogeneous per-case constructors are validated by the model itself.
+_parameters = cast("Callable[..., object]", Parameters)
+_site = cast("Callable[..., object]", Site)
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def evidence_copy(tmp_path):
-    shutil.copytree(ROOT / "data", tmp_path / "data")
-    shutil.copytree(ROOT / "evidence", tmp_path / "evidence")
+def evidence_copy(tmp_path: Path):
+    _ = shutil.copytree(ROOT / "data", tmp_path / "data")
+    _ = shutil.copytree(ROOT / "evidence", tmp_path / "evidence")
     return tmp_path
 
 
-def update_csv(path, mutate):
+def update_csv(path: Path, mutate: Callable[[list[dict[str, str]]], None]) -> None:
     with path.open(newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream)
-        fields = reader.fieldnames
+        fields = reader.fieldnames or []
         rows = list(reader)
     mutate(rows)
     with path.open("w", newline="", encoding="utf-8") as stream:
@@ -38,47 +44,47 @@ def update_csv(path, mutate):
     ("field", "value"),
     [("base_value", "999"), ("uncertainty", ""), ("interpretation", ""), ("source_ids", "UNKNOWN_EVIDENCE")],
 )
-def test_parameter_register_corruption_rejected(tmp_path, field, value):
+def test_parameter_register_corruption_rejected(tmp_path: Path, field: str, value: str) -> None:
     root = evidence_copy(tmp_path)
     update_csv(root / "evidence/parameter_register.csv", lambda rows: rows[0].update({field: value}))
     assert audit_inputs(root)["errors"]
 
 
-def test_duplicate_parameter_rejected(tmp_path):
+def test_duplicate_parameter_rejected(tmp_path: Path) -> None:
     root = evidence_copy(tmp_path)
     update_csv(root / "evidence/parameter_register.csv", lambda rows: rows.append(rows[0].copy()))
     assert audit_inputs(root)["errors"]
 
 
 @pytest.mark.parametrize("field", ["url", "limitations"])
-def test_source_disclosure_cannot_be_missing(tmp_path, field):
+def test_source_disclosure_cannot_be_missing(tmp_path: Path, field: str) -> None:
     root = evidence_copy(tmp_path)
     update_csv(root / "evidence/sources.csv", lambda rows: rows[0].update({field: ""}))
     assert audit_inputs(root)["errors"]
 
 
-def test_duplicate_source_rejected(tmp_path):
+def test_duplicate_source_rejected(tmp_path: Path) -> None:
     root = evidence_copy(tmp_path)
     update_csv(root / "evidence/sources.csv", lambda rows: rows.append(rows[0].copy()))
     assert audit_inputs(root)["errors"]
 
 
 @pytest.mark.parametrize("field", ["public_births", "raw_public_rows", "total", "year"])
-def test_bad_denominator_metadata_rejected(tmp_path, field):
+def test_bad_denominator_metadata_rejected(tmp_path: Path, field: str) -> None:
     root = evidence_copy(tmp_path)
     path = root / "data/population_totals.json"
-    data = json.loads(path.read_text())
+    data = cast("dict[str, int]", json.loads(path.read_text()))
     data[field] += 1
-    path.write_text(json.dumps(data))
+    _ = path.write_text(json.dumps(data))
     assert audit_inputs(root)["errors"]
 
 
-def test_missing_parameter_not_silently_defaulted_in_audit(tmp_path):
+def test_missing_parameter_not_silently_defaulted_in_audit(tmp_path: Path) -> None:
     root = evidence_copy(tmp_path)
     path = root / "data/parameters.json"
-    data = json.loads(path.read_text())
-    data.pop("equipment_cost")
-    path.write_text(json.dumps(data))
+    data = cast("dict[str, object]", json.loads(path.read_text()))
+    _ = data.pop("equipment_cost")
+    _ = path.write_text(json.dumps(data))
     assert audit_inputs(root)["errors"]
 
 
@@ -92,19 +98,19 @@ def test_missing_parameter_not_silently_defaulted_in_audit(tmp_path):
         '[[package]]\nname="a"\nsource={registry="x"}\nwheels=[3]',
     ],
 )
-def test_malformed_lock_fail_closed(tmp_path, text):
+def test_malformed_lock_fail_closed(tmp_path: Path, text: str) -> None:
     path = tmp_path / "uv.lock"
-    path.write_text(text)
+    _ = path.write_text(text)
     assert validate_lock(path)
 
 
-def test_sdist_hash_is_supported(tmp_path):
+def test_sdist_hash_is_supported(tmp_path: Path) -> None:
     path = tmp_path / "uv.lock"
-    path.write_text('[[package]]\nname="a"\nsource={registry="x"}\nsdist={hash="sha256:' + "a" * 64 + '"}')
+    _ = path.write_text('[[package]]\nname="a"\nsource={registry="x"}\nsdist={hash="sha256:' + "a" * 64 + '"}')
     assert validate_lock(path) == []
 
 
-def test_value_comparison_distinguishes_strings_and_booleans():
+def test_value_comparison_distinguishes_strings_and_booleans() -> None:
     assert _same_value("label", "label")
     assert not _same_value(first=True, second=1)
     assert not _same_value([1], [1, 2])
@@ -121,10 +127,10 @@ def test_value_comparison_distinguishes_strings_and_booleans():
         ({"pilot": 1}, "Pilot status must be boolean"),
     ],
 )
-def test_site_boundary_validation(change, message):
+def test_site_boundary_validation(change: dict[str, object], message: str) -> None:
     values = {"name": "Test", "births": 1, "year": 2022, "group": "rural_proxy", "geography": "regional"}
     with pytest.raises(ValueError, match=message):
-        Site(**(values | change))
+        _ = _site(**(values | change))
 
 
 @pytest.mark.parametrize(
@@ -139,14 +145,14 @@ def test_site_boundary_validation(change, message):
         ({"mode_air_shift": 0.7}, "mode_air_shift outside scenario bounds"),
     ],
 )
-def test_parameter_boundary_validation(change, message):
+def test_parameter_boundary_validation(change: dict[str, object], message: str) -> None:
     with pytest.raises(ValueError, match=message):
-        Parameters(**change)
+        _ = _parameters(**change)
 
 
-def test_parameter_sequence_type_error():
+def test_parameter_sequence_type_error() -> None:
     with pytest.raises(TypeError):
-        Parameters(case_mix="bad")
+        _ = _parameters(case_mix="bad")
 
 
 @pytest.mark.parametrize(
@@ -157,38 +163,38 @@ def test_parameter_sequence_type_error():
         ("facility,births,year\nA,-1,2022\n", "negative birth count"),
     ],
 )
-def test_malformed_birth_rows_fail(tmp_path, text, message):
+def test_malformed_birth_rows_fail(tmp_path: Path, text: str, message: str) -> None:
     path = tmp_path / "births.csv"
-    path.write_text(text)
+    _ = path.write_text(text)
     with pytest.raises(ValueError, match=message):
-        load_sites(path)
+        _ = load_sites(path)
 
 
-def test_survival_cost_cannot_be_negative():
+def test_survival_cost_cannot_be_negative() -> None:
     with pytest.raises(ValueError, match="Negative annual cost"):
-        survival_extension(1, 0.1, 0.5, annual_cost_major=-1)
+        _ = survival_extension(1, 0.1, 0.5, annual_cost_major=-1)
 
 
 @pytest.mark.parametrize(
     ("probability", "odds", "message"),
     [(-0.1, 1, "p0 must be between zero and one"), (0.5, 0, "odds_ratio must be positive")],
 )
-def test_legacy_probability_error_paths(probability, odds, message):
+def test_legacy_probability_error_paths(probability: float, odds: int, message: str) -> None:
     with pytest.raises(ValueError, match=message):
-        odds_to_probability(probability, odds)
+        _ = odds_to_probability(probability, odds)
 
 
 @pytest.mark.parametrize("probability", [0, 1])
-def test_legacy_probability_endpoints(probability):
+def test_legacy_probability_endpoints(probability: int) -> None:
     assert odds_to_probability(probability, 0.5) == probability
 
 
-def test_legacy_transport_rejects_non_normalized_mix():
+def test_legacy_transport_rejects_non_normalized_mix() -> None:
     with pytest.raises(ValueError, match="transport shares must sum to one"):
-        weighted_transfer_cost(replace(ModelInputs(), road_share=1))
+        _ = weighted_transfer_cost(replace(ModelInputs(), road_share=1))
 
 
-def test_legacy_survival_arithmetic():
+def test_legacy_survival_arithmetic() -> None:
     result = clinical_extension(100, 0.01, 0.1)
     assert result["extra_survivors"] == 1
     assert math.isclose(result["incremental_qalys"], 23.3)

@@ -7,6 +7,10 @@ import hashlib
 import json
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- sealing records the local git commit
 from pathlib import Path
+from typing import TYPE_CHECKING, Protocol, TypedDict, cast
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 MANIFEST = "release_manifest.json"
 # Length of a lowercase SHA-256 hex digest.
@@ -25,6 +29,20 @@ SOURCE_FILES = (
     "assets/chhhs-powerpoint-template.pptx",
     "assets/chhhs-content-v2-background.png",
 )
+
+
+class _ArtifactArgs(Protocol):
+    """The parsed CLI attributes for the seal/verify dispatcher."""
+
+    action: str
+    output: Path | None
+
+
+class _ScopeReport(TypedDict):
+    """One verified output scope and its errors."""
+
+    scope: str
+    errors: list[str]
 
 
 def digest_file(path: Path) -> str:
@@ -47,7 +65,7 @@ def inventory(root: Path, paths: list[Path]) -> dict[str, str]:
         ValueError: If a manifest path escapes `root` or is a symlink.
     """
     root = root.resolve()
-    result = {}
+    result: dict[str, str] = {}
     for path in sorted(set(paths)):
         actual = path.resolve()
         if not actual.is_relative_to(root) or path.is_symlink():
@@ -81,11 +99,11 @@ def output_inventory(output: Path) -> dict[str, str]:
     )
 
 
-def seal(root: Path, output: Path) -> dict:
+def seal(root: Path, output: Path) -> dict[str, object]:
     """Seal a generated set; self-digest is excluded, and time does not affect bytes.
 
     Returns:
-        dict: The release manifest written beside the sealed artifacts.
+        dict[str, object]: The release manifest written beside the sealed artifacts.
 
     Raises:
         ValueError: If the output escapes `outputs` or has no artifacts.
@@ -106,7 +124,7 @@ def seal(root: Path, output: Path) -> dict:
         timeout=10,
         check=False,
     ).stdout.strip()
-    report = {
+    report: dict[str, object] = {
         "schema_version": 1,
         "source_commit_at_generation": commit or None,
         "analysis_inputs": calculation_inputs(root),
@@ -115,8 +133,8 @@ def seal(root: Path, output: Path) -> dict:
     }
     target = output / MANIFEST
     temporary = target.with_name(MANIFEST + ".tmp")
-    temporary.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    temporary.replace(target)
+    _ = temporary.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _ = temporary.replace(target)
     return report
 
 
@@ -126,12 +144,16 @@ def manifest_errors(report: object, output: Path, root: Path) -> list[str]:
     Returns:
         list[str]: Human-readable errors; empty when the manifest is consistent.
     """
-    if not isinstance(report, dict) or report.get("schema_version") != 1:
+    if not isinstance(report, dict):
         return ["Invalid release manifest"]
-    artifacts = report.get("artifacts")
+    record = cast("dict[str, object]", report)
+    if record.get("schema_version") != 1:
+        return ["Invalid release manifest"]
+    artifacts = record.get("artifacts")
     if not isinstance(artifacts, dict) or not artifacts:
         return ["Empty/invalid artifact scope"]
-    for name, digest in artifacts.items():
+    entries = cast("dict[str, object]", artifacts)
+    for name, digest in entries.items():
         target = output / name
         if (
             Path(name).is_absolute()
@@ -140,10 +162,10 @@ def manifest_errors(report: object, output: Path, root: Path) -> list[str]:
             or len(digest) != SHA256_HEX_LENGTH
         ):
             return ["Unsafe artifact path or invalid digest"]
-    errors = []
-    if artifacts != output_inventory(output):
+    errors: list[str] = []
+    if entries != output_inventory(output):
         errors.append("Artifact files or inventory changed")
-    if report.get("analysis_inputs") != calculation_inputs(root):
+    if record.get("analysis_inputs") != calculation_inputs(root):
         errors.append("Calculation dependencies changed")
     return errors
 
@@ -158,7 +180,7 @@ def verify(root: Path, output: Path) -> list[str]:
     if not output.is_relative_to(root / "outputs"):
         return ["Release output outside repository outputs"]
     try:
-        report = json.loads((output / MANIFEST).read_text(encoding="utf-8"))
+        report: object = cast("object", json.loads((output / MANIFEST).read_text(encoding="utf-8")))
         errors = manifest_errors(report, output, root)
     except (OSError, ValueError, TypeError):
         return ["Manifest unavailable or invalid; no release verification"]
@@ -178,7 +200,7 @@ def artifact_dependency_fingerprint(root: Path) -> str:
     return hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
 
 
-def configured_outputs(config: dict) -> list[str]:
+def configured_outputs(config: dict[str, object]) -> list[str]:
     """Return the unique, non-empty output scopes named by a sealed configuration.
 
     Returns:
@@ -187,11 +209,15 @@ def configured_outputs(config: dict) -> list[str]:
     Raises:
         ValueError: If scopes are missing, empty or duplicated.
     """
-    paths = [config["current_output"], *config.get("additional_outputs", [])]
-    if not paths or any(not isinstance(p, str) or not p for p in paths) or len(set(paths)) != len(paths):
+    current = config["current_output"]
+    additional = config.get("additional_outputs", [])
+    values: list[object] = [current]
+    if isinstance(additional, list):
+        values.extend(cast("list[object]", additional))
+    if not values or any(not isinstance(p, str) or not p for p in values) or len(set(values)) != len(values):
         msg = "Unique nonempty output scopes required"
         raise ValueError(msg)
-    return paths
+    return [p for p in values if isinstance(p, str)]
 
 
 def main() -> int:
@@ -201,17 +227,18 @@ def main() -> int:
         int: 0 when every requested action succeeds, otherwise 1.
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("seal", "verify"))
-    parser.add_argument("--output", type=Path, default=None)
-    args = parser.parse_args()
+    _ = parser.add_argument("action", choices=("seal", "verify"))
+    _ = parser.add_argument("--output", type=Path, default=None)
+    args = cast("_ArtifactArgs", cast("object", parser.parse_args()))
     root = Path(__file__).resolve().parents[1]
     if args.output is not None:
         paths = [args.output]
     else:
-        from src.configuration import strict_json  # ruff: ignore[import-outside-top-level] -- deferred so the module imports without src on the path
+        from src import configuration  # ruff: ignore[import-outside-top-level] -- deferred so the module imports without src on the path
 
         try:
-            config = strict_json(root / "config/assurance.json")
+            loader = cast("Callable[[Path], dict[str, object]]", configuration.strict_json)
+            config = loader(root / "config/assurance.json")
             paths = configured_outputs(config)
         except (OSError, ValueError, KeyError, TypeError) as error:
             print(json.dumps({"errors": ["Invalid current-artifact configuration", str(error)]}))  # ruff: ignore[print] -- CLI error report goes to stdout
@@ -222,7 +249,9 @@ def main() -> int:
     if args.action == "seal":
         print(json.dumps([seal(root, output) for output in outputs], indent=2))  # ruff: ignore[print] -- CLI seal report goes to stdout
         return 0
-    reports = [{"scope": str(output.relative_to(root)), "errors": verify(root, output)} for output in outputs]
+    reports: list[_ScopeReport] = [
+        {"scope": str(output.relative_to(root)), "errors": verify(root, output)} for output in outputs
+    ]
     errors = [error for report in reports for error in report["errors"]]
     print(json.dumps({"reports": reports, "errors": errors}, indent=2))  # ruff: ignore[print] -- CLI verify report goes to stdout
     return int(bool(errors))

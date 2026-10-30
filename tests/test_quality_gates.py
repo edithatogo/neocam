@@ -3,6 +3,8 @@
 import hashlib
 import io
 import tarfile
+from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -11,7 +13,9 @@ from quality.checks import mutation_errors
 from quality.cli import gates_for_profile
 
 
-def mutation_report(zapped=90, survived=10, timeout=0, error=0, pardoned=0):
+def mutation_report(
+    zapped: int = 90, survived: int = 10, timeout: int = 0, error: int = 0, pardoned: int = 0
+) -> dict[str, object]:
     total = zapped + survived + timeout + error + pardoned
     return {
         "summary": {
@@ -26,7 +30,7 @@ def mutation_report(zapped=90, survived=10, timeout=0, error=0, pardoned=0):
     }
 
 
-def test_mutation_target_met():
+def test_mutation_target_met() -> None:
     assert mutation_errors(mutation_report()) == []
 
 
@@ -43,17 +47,18 @@ def test_mutation_target_met():
         mutation_report(-1, 0),
     ],
 )
-def test_unreliable_mutation_result_cannot_pass(data):
+def test_unreliable_mutation_result_cannot_pass(data: object) -> None:
     assert mutation_errors(data)
 
 
-def test_lying_mutation_percentage_cannot_pass():
+def test_lying_mutation_percentage_cannot_pass() -> None:
     data = mutation_report(10, 90)
-    data["summary"]["percentage"] = 100
+    summary = cast("dict[str, object]", data["summary"])
+    summary["percentage"] = 100
     assert mutation_errors(data)
 
 
-def test_all_requested_tool_gates_are_mandatory():
+def test_all_requested_tool_gates_are_mandatory() -> None:
     names = {gate.name for gate in gates_for_profile("full")}
     assert {
         "ruff_lint",
@@ -82,19 +87,19 @@ def test_all_requested_tool_gates_are_mandatory():
     } <= names
 
 
-def test_quick_is_a_strict_subset_not_a_release_shortcut():
+def test_quick_is_a_strict_subset_not_a_release_shortcut() -> None:
     quick = {gate.name for gate in gates_for_profile("quick")}
     full = {gate.name for gate in gates_for_profile("full")}
     assert quick < full
     assert quick == {"pytest", "inputs", "context"}
 
 
-def test_unknown_profile_rejected():
+def test_unknown_profile_rejected() -> None:
     with pytest.raises(ValueError, match="Unknown assurance profile"):
-        gates_for_profile("ci")
+        _ = gates_for_profile("ci")
 
 
-def binary_tar(name="vale", payload=b"binary"):
+def binary_tar(name: str = "vale", payload: bytes = b"binary") -> bytes:
     stream = io.BytesIO()
     with tarfile.open(fileobj=stream, mode="w:gz") as archive:
         info = tarfile.TarInfo(name)
@@ -103,37 +108,38 @@ def binary_tar(name="vale", payload=b"binary"):
     return stream.getvalue()
 
 
-def test_pinned_binary_bytes_extract_without_executing(tmp_path):
+def test_pinned_binary_bytes_extract_without_executing(tmp_path: Path) -> None:
     payload = binary_tar()
     path = unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "vale", tmp_path)
     assert path.read_bytes() == b"binary"
 
 
-def test_checksum_mismatch_rejected(tmp_path):
+def test_checksum_mismatch_rejected(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="checksum"):
-        unpack_binary(binary_tar(), "0" * 64, "vale", tmp_path)
+        _ = unpack_binary(binary_tar(), "0" * 64, "vale", tmp_path)
 
 
-def test_archive_traversal_rejected(tmp_path):
+def test_archive_traversal_rejected(tmp_path: Path) -> None:
     payload = binary_tar("../vale")
     with pytest.raises(ValueError, match="Archive must contain one exact regular executable"):
-        unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "vale", tmp_path)
+        _ = unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "vale", tmp_path)
     assert not (tmp_path.parent / "vale").exists()
 
 
-def test_archive_missing_executable_rejected(tmp_path):
+def test_archive_missing_executable_rejected(tmp_path: Path) -> None:
     payload = binary_tar("not-vale")
     with pytest.raises(ValueError, match="Archive must contain one exact regular executable"):
-        unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "vale", tmp_path)
+        _ = unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "vale", tmp_path)
 
 
-def test_mismatched_mutation_counts_rejected():
+def test_mismatched_mutation_counts_rejected() -> None:
     data = mutation_report()
-    data["summary"]["total"] = 101
+    summary = cast("dict[str, object]", data["summary"])
+    summary["total"] = 101
     assert mutation_errors(data)
 
 
-def test_unknown_native_tool_rejected(tmp_path):
+def test_unknown_native_tool_rejected(tmp_path: Path) -> None:
     payload = binary_tar()
     with pytest.raises(ValueError, match="Unknown native tool"):
-        unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "arbitrary", tmp_path)
+        _ = unpack_binary(payload, hashlib.sha256(payload).hexdigest(), "arbitrary", tmp_path)
