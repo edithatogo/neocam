@@ -1,11 +1,4 @@
 # Technical stack and scope
-
-The active model uses Python and NumPy with standard-library CSV input. Polars is the only permitted DataFrame engine and is an optional independent reconciliation adapter. No pandas/xarray dependency is accepted.
-
-`pyproject.toml` is the direct-pin authority. `evidence/dependency_targets_v3.json` records release verification, not installation. `quality/native-tools.json` records native release digests. A real reviewed `uv.lock` is still required; none is fabricated.
-
-The single local/CI execution authority is `quality/cli.py`, operated through `conductor/runbook.md`. The profile separates fast feedback from expensive mutation/profiling/security acceptance. Tool configuration is in `pyproject.toml`, `.vale.ini`, `.gitleaks.toml` and `.github/workflows/`.
-
-The prior artifact-generation environment and supplied corporate assets are historical, separate from the model. This branch has not rebuilt them or validated their dependency closure.
-
-Conductor's gitlink remains pinned to `137c1e41ff9c1dc75ff277b9582460a0bd8c4768`; actual checkout is blocked. No Conductor CLI invocation is claimed.
+Python, NumPy and standard-library CSV/JSON remain the model stack; Polars is the only permitted DataFrame engine. No runtime dependency was added by v13. Report/plot and assurance dependencies remain separate in pyproject.toml. A genuine resolved lock and installed pinned environment remain required; target declarations are not installation evidence.
+The single executable harness remains quality.cli; no new CI or mutation framework. The v13 exact mixed-policy evaluator reuses identical site groups only inside one call and never reuses persisted acceptance evidence.
+Pinned Conductor implement/review workflows were read from edithatogo/conductor-next at137c1e41ff9c1dc75ff277b9582460a0bd8c4768. Local skill adapters and provenance are retained. Actual submodule checkout and Conductor CLI execution are not claimed. The review is the same assistant acting as reviewer, not independent clinical or software validation.

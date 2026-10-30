@@ -1,3 +1,2 @@
 # Product context
-
-A reproducible model-based economic evaluation of CHHHS Panda Vision neonatal telehealth, designed for local, Queensland and national investment decisions. It compares telephone-supported usual care with video-enabled specialist consultation at Atherton, Mareeba and Innisfail, without assuming that consultation itself is avoided.
+A reproducible early economic decision model for neonatal teleconsultation investment, using existing evidence and disclosed assumptions. The primary comparison retains five configurations and four network portfolios, with health-system, bounded societal, provider, patient and fiscal views. V13 separates clinical episodes from repeat contacts and evaluates a small eligibility-constrained mixed-policy set. Conditional hardware/site assumptions, safety/appropriateness and unestimated causal health gains remain explicit. No clinical prediction or procurement approval is implied.

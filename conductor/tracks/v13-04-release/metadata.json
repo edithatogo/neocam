@@ -1,6 +1,6 @@
 {
   "id": "v13-04-release",
-  "status": "planned",
+  "status": "implemented_local_review_final_acceptance_pending_external_delivery_blocked",
   "external_acceptance": false,
   "tasks": [
     "4.1",

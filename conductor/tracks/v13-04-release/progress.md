@@ -1,3 +1,4 @@
 # Execution ledger
-
-Not yet implemented.
+4.1: Active contact/mixed-policy Hypothesis definitions enter the mandatory gate; the package itself is unavailable, so no generative execution is claimed. Artifact inputs include new drivers/validator; current-release verification now consumes both declared primary and supplemental output paths.
+4.2: Conductor review applied the actual pinned review protocol in author mode. Findings fixed: review packets previously bound only config, current artifact CLI still hardcoded old release, duplicate policies inflated representation, falsey untyped activity silently defaulted, and avoidable repeated full-kernel evaluation. Tests reproduced these issues. Six-policy/38-array/128-draw results are bit-for-bit identical before and after ephemeral group reuse. No persisted selection cache added. Two timed-out candidate analyses are retained as incomplete; final20,000-draw run completed480policy scenarios.
+4.3: Lock/native/submodule/push commands attempted and DNS failures recorded. Connector discovery now exposes read/search actions only; no write or PR update in this session. Final local assurance and restored-package records will be appended under handoff/verification after source freeze. External acceptance remains open; no false finished-track claim for publication or full migration.

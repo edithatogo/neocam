@@ -64,12 +64,13 @@
     {
       "id": "complete-migration",
       "category": "delivery",
-      "status": "open",
-      "attempted_in_v13": false,
+      "status": "blocked",
+      "attempted_in_v13": true,
       "action": "Compare remote recursive Git tree/ancestry with complete local source manifest",
-      "evidence": null,
-      "log_sha256": null,
-      "acceptance": "All authorised code/data/artifacts/history accounted for, no omitted files silently treated as complete."
+      "evidence": "verification/v13/push-attempt.txt",
+      "log_sha256": "98628977edba7aa2ac7f9570bec42f5c12ea676a5efc0d0bd1101a446e4b102c",
+      "acceptance": "All authorised code/data/artifacts/history accounted for, no omitted files silently treated as complete.",
+      "detail": "This session exposes only 48 read/search GitHub functions; create_tree/create_commit/update_ref/PR writes not available. GitHub plugin discovery confirms installed hybrid connector/CLI workflow, not missing installation. Actual CLI push failed DNS. No GitHub write performed."
     },
     {
       "id": "hosted-assurance",

@@ -1,6 +1,6 @@
 {
   "id": "v13-02-policies",
-  "status": "planned",
+  "status": "implemented_reviewed_scoped_tests_passed",
   "external_acceptance": false,
   "tasks": [
     "2.1",
