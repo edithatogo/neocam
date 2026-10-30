@@ -29,3 +29,9 @@ htmlcov/
 .testmondata*
 outputs/v4/qa*/
 outputs/v4/slide_render/
+
+# Archive of source zips (large, should not be committed)
+archive/
+
+# macOS metadata
+.DS_Store

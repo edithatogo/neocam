@@ -26,3 +26,10 @@ repos:
         entry: uv run --frozen --no-sync python -m quality.hooks secrets
         pass_filenames: false
         always_run: true
+      - id: pushed-secrets
+        name: Gitleaks (full history at push)
+        language: system
+        entry: uv run --frozen --no-sync python -m quality.hooks secrets-history
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

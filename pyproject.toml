@@ -10,18 +10,18 @@ dependencies = ["numpy==2.5.4"]
 # an independent tabular reconciliation; Polars is the only supported engine.
 tabular = ["polars==2.1.0"]
 # Observed reporting environment, not claimed latest or transitively locked.
-reporting = ["python-docx==1.2.0", "python-pptx==1.0.2", "reportlab==4.4.9", "matplotlib==3.10.8"]
+reporting = ["python-docx==1.2.0", "python-pptx==1.0.2", "reportlab==5.1.0", "matplotlib==3.11.2"]
 # Offline explanatory sensitivity tools, not required by the exact model kernel.
 research = ["scipy==1.18.1", "scikit-learn==1.9.1"]
 
 [dependency-groups]
-test = ["pytest==9.1.1", "coverage==7.17.0"]
+test = ["pytest==9.2.0", "coverage==7.17.0"]
 assurance = [
   {include-group = "test"},
-  "ruff==0.17.3", "ty==0.0.92", "basedpyright==1.40.2",
-  "hypothesis==6.170.12", "pytest-gremlins==1.12.2", "scalene==2.4.0",
+  "ruff==0.17.3", "ty==0.0.95", "basedpyright==1.40.2",
+  "hypothesis==6.170.14", "pytest-gremlins==1.13.1", "scalene==2.4.0",
   "pip-audit==2.10.1", "uv==0.13.6",
-  "prek==0.5.7", "zizmor==1.31.1",
+  "prek==0.5.9", "zizmor==1.31.1",
 ]
 
 feedback = ["pytest-testmon==2.2.0", "pytest-xdist==3.8.0"]
