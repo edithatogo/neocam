@@ -5,3 +5,5 @@ Baseline restored from d1fd813; 541 tests passed on available host (verification
 Ruling: the user approved the four work packages; implement them sequentially without adding clinical parameters. Where external validation cannot be executed, implement its checkable protocol and retain an open acceptance status.
 
 Track1: 19 new configuration/estate failures plus the real driver entry-point failure were reproduced. Implemented strict configuration and site-owned capital accounting;32 scoped tests passed, including a temporary $20,000 input consumed by the actual CLI. CHHHS retains3 and purchases7; remaining-life2 replaces pilot units in year3. One test fixture leaked CSV handles; fixed with context managers, not warning suppression. Historical outputs unchanged.
+
+Tracks2–4: added artifact/dependency manifests, current-source output fingerprints, portable reporting, active-model property definitions and independent-review protocol. 61 new scoped checks passed. Full current reference regeneration, render checks and final covered run pending. No request to add new CI tools or empirical effect parameters.

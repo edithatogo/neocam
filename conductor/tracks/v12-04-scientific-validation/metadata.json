@@ -1,6 +1,7 @@
 {
   "id": "v12-04-scientific-validation",
-  "status": "planned",
+  "status": "implemented_pending_integrated_acceptance",
   "full_acceptance": false,
-  "independent_validation": false
+  "independent_validation": false,
+  "remaining": "Generative tool execution and independent clinical/economic/source review remain open."
 }

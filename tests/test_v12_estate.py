@@ -51,3 +51,42 @@ def test_invalid_owned_remaining_life_rejected(remaining):
 def test_duplicate_estate_records_rejected():
     m=api();x=m.OwnedAsset('Atherton','panda',2)
     with pytest.raises(ValueError):m.mixed_cash_budget(portfolio('pilot'),'panda',(x,x),Parameters(),PathwaySpec())
+
+
+def test_configured_retention_matches_existing_pilot_and_regional_semantics():
+    m=api()
+    from src.statewide import _base_arrays
+    from scripts.analyse_v7 import compare_regional
+    import numpy as np
+    for net in ('pilot','chhhs','chhhs_tchhs','spokes'):
+        sites=portfolio(net);p=Parameters();s=PathwaySpec()
+        old=compare_regional(sites,p,s,sunk=('panda',))
+        current=compare_regional(sites,p,s,sunk=('panda',),owned_assets=estate())
+        for arm in old:
+            for field in old[arm]:np.testing.assert_allclose(old[arm][field],current[arm][field],rtol=1e-12,atol=1e-7)
+        budget=m.mixed_cash_budget(sites,'panda',estate(),p,s,retain=True)
+        assert current['panda']['incremental_purchase_capital'][0]==pytest.approx(budget[0]['capital'])
+
+
+def test_expired_asset_is_not_retained_without_purchase():
+    m=api();from scripts.analyse_v7 import compare_regional
+    assets=(m.OwnedAsset('Atherton','panda',0),)
+    r=compare_regional(portfolio('pilot'),Parameters(),PathwaySpec(),sunk=('panda',),owned_assets=assets)
+    assert r['panda']['incremental_purchase_capital'][0]==30000
+
+
+@pytest.mark.parametrize('site,strategy',[('', 'panda'),('Atherton','telephone'),('Atherton','unknown')])
+def test_invalid_asset_identity(site,strategy):
+    with pytest.raises(ValueError):api().OwnedAsset(site,strategy,2)
+
+
+@pytest.mark.parametrize('years,retain,life',[ (0,True,5),(True,True,5),(7,'true',5),(7,True,2.5),(7,True,1)])
+def test_bad_budget_contract(years,retain,life):
+    with pytest.raises(ValueError):api().mixed_cash_budget(portfolio('pilot'),'panda',estate(),Parameters(life_years=life),PathwaySpec(),years=years,retain=retain)
+
+
+def test_bad_estate_and_strategy_contracts():
+    m=api()
+    with pytest.raises(ValueError):m.validate_estate(('not an asset',))
+    with pytest.raises(ValueError):m.mixed_cash_budget(portfolio('pilot'),'invalid',estate(),Parameters(),PathwaySpec())
+    with pytest.raises(ValueError):m.apply_retention({},[],(),())

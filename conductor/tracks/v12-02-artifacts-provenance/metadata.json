@@ -1,6 +1,7 @@
 {
   "id": "v12-02-artifacts-provenance",
-  "status": "planned",
+  "status": "implemented_pending_integrated_acceptance",
   "full_acceptance": false,
-  "independent_validation": false
+  "independent_validation": false,
+  "remaining": "Regeneration and visual inspection before release seal; final exact-snapshot run pending."
 }

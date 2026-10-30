@@ -69,3 +69,24 @@ def test_configuration_hash_changes_with_live_pathway(tmp_path):
     m=api();root=fixture(tmp_path);a=m.load_configuration(root)
     path=root/'config/pathways.json';d=json.loads(path.read_text());d['hub_minutes_per_call']=30;path.write_text(json.dumps(d));b=m.load_configuration(root)
     assert a.digest!=b.digest and b.pathways.hub_minutes_per_call==30
+
+
+@pytest.mark.parametrize('which,value',[('root',[]),('schema',2),('assets',None),('asset_record',{'site':'Atherton'}),('path','/absolute'),('remaining',6),('nonfinite',float('nan'))])
+def test_other_malformed_configuration_contracts(tmp_path,which,value):
+    m=api();root=fixture(tmp_path);f=root/'config/reference.json';d=json.loads(f.read_text())
+    if which=='root':f.write_text(json.dumps(value))
+    elif which=='schema':d['schema_version']=value;f.write_text(json.dumps(d))
+    elif which=='path':d['parameters']=value;f.write_text(json.dumps(d))
+    elif which=='nonfinite':
+        p=root/'data/parameters.json';v=json.loads(p.read_text());v['equipment_cost']=value;p.write_text(json.dumps(v))
+    else:
+        p=root/'config/equipment_estate.json';v=json.loads(p.read_text())
+        if which=='assets':v['owned_assets']=value
+        elif which=='asset_record':v['owned_assets']=[value]
+        else:v['owned_assets'][0]['remaining_life_years']=value
+        p.write_text(json.dumps(v))
+    with pytest.raises(ValueError):m.load_configuration(root)
+
+
+def test_run_recipe_outside_repository_rejected(tmp_path):
+    with pytest.raises(ValueError):api().load_configuration(tmp_path,tmp_path.parent/'elsewhere.json')

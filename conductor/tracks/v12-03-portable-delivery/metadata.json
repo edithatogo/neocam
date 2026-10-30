@@ -1,6 +1,7 @@
 {
   "id": "v12-03-portable-delivery",
-  "status": "planned",
+  "status": "implemented_pending_integrated_acceptance",
   "full_acceptance": false,
-  "independent_validation": false
+  "independent_validation": false,
+  "remaining": "Genuine lock, requested external tools, hosted CI and complete migration remain open."
 }
