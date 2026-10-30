@@ -55,18 +55,21 @@ target-version = "py313"
 line-length = 120
 preview = true
 unsafe-fixes = false
-extend-exclude = ["extensions", ".venv", ".tools", "outputs", "verification"]
+# Enabled prose/lint scopes stay authoritative; vendored skill payloads and
+# generated trees are excluded rather than restyled. `.agents/skills/**` ships
+# third-party and project skill scripts whose own style is not this repo's surface.
+extend-exclude = ["extensions", ".venv", ".tools", "outputs", "verification", ".agents/skills"]
 
 [tool.ruff.lint]
 select = ["ALL"]
 explicit-preview-rules = false
 # Only documented formatter conflicts are disabled globally.
-ignore = ["COM812", "ISC001"]
+ignore = ["missing-trailing-comma", "single-line-implicit-string-concatenation"]
 
 [tool.ruff.lint.per-file-ignores]
 # Assertions and literal expected values are deliberate in tests.
-"tests/*.py" = ["S101", "PLR2004"]
-"quality/hypothesis_properties.py" = ["S101", "PLR2004"]
+"tests/*.py" = ["assert", "magic-value-comparison"]
+"quality/hypothesis_properties.py" = ["assert", "magic-value-comparison"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
