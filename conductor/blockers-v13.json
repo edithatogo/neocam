@@ -85,7 +85,7 @@
       "evidence": "verification/v13/delivery-2026-10-30/hosted-ci.txt",
       "log_sha256": null,
       "acceptance": "Hosted runner allocated and all required checks execute against imported commit; runner allocation failure is not a test result.",
-      "detail": "2026-10-30: ci.yml dispatched manually on the pushed branch (run 41063979096, workflow_dispatch, attempt 1); conclusion failure with 0 executed steps for all three jobs; logs unavailable via API. Runner-side blocker persists, unchanged in signature from earlier PR #3 runs."
+      "detail": "RESOLVED RUNNER-SIDE 2026-10-31: root cause was private-repo runner allocation; repo made public (owner-authorised, after clean secret/PHI scans) and ci.yml dispatched on f8e3e96 (run 41074874950). Runner allocated; compatibility 3.14 and 3.15 jobs passed; full assurance executed all 31 gates: 25 passed, 5 failed, 1 blocked. Remaining failures are pre-existing repo-wide debt (ruff_lint, ruff_format, ty, basedpyright, mutation_score 69.78%<90%) plus locked_versions blocked on the 'reporting' extra not being synced by ci.yml; none cite this delivery's changed files. Acceptance now depends on clearing that debt, not on runner allocation."
     },
     {
       "id": "site-eligibility",

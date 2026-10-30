@@ -1,19 +1,27 @@
-GitHub dependency/secret surface — 2026-10-30
+GitHub dependency/secret surface — started 2026-10-30, updated 2026-10-31
 
-Repo: edithatogo/neocam (private)
+Repo: edithatogo/neocam
 
-Enabled this session via REST API (gh CLI, authenticated as edithatogo):
-  PUT /repos/edithatogo/neocam/vulnerability-alerts         -> 204 No Content (enabled)
-  PUT /repos/edithatogo/neocam/automated-security-fixes     -> 204 No Content (enabled)
-Meaning: Dependabot vulnerability alerts and automated security-fix PRs are on.
+While private (2026-10-30):
+  PUT /repos/edithatogo/neocam/vulnerability-alerts         -> 204 (enabled; Dependabot)
+  PUT /repos/edithatogo/neocam/automated-security-fixes     -> 204 (enabled; Dependabot security PRs)
+  Secret scanning / push protection were unavailable (GHAS licensing on private repos).
 
-Not available / not attempted further:
-  Secret scanning — GET secret-scanning/alerts returns 404 "Secret scanning is
-  disabled on this repository"; enabling it requires GitHub Advanced Security
-  licensing (not present on this free private repo).
-  Push protection — same GHAS licensing requirement.
+Owner-authorised visibility change (2026-10-31, explicit user instruction):
+  gh repo edit edithatogo/neocam --visibility public --accept-visibility-change-consequences
+  Result: repo is now PUBLIC.
+  Pre-change verification performed first: gitleaks over all 147 reachable commits
+  (local + fetched GitHub-side histories) = no leaks; working-tree scan = no leaks;
+  pushed-range scan (d82d6df..f8e3e96) = no leaks; tracked-file inventory shows no
+  secret/credential/key/pem/env filenames; data/ holds published aggregate facility
+  birth counts with cited sources and no patient identifiers. Archive zip, git bundle
+  and .opencode/ remain local-only and are not tracked.
+  Persisting consequences acknowledged per the CLI requirement (stars/watchers,
+  fork detachment, Actions history and logs become public). PR #3 and main are
+  unaffected in content and share no ancestry with the v13 branch.
 
-So the local equivalent enforcement layer is in place instead:
-  .pre-commit-config.yaml 'staged-secrets'  : gitleaks on staged changes, every commit
-  .pre-commit-config.yaml 'pushed-secrets'  : gitleaks over full history, every push
-  both passed during this session's commits and push.
+Secret protection now available and enabled on the public repo:
+  security_and_analysis.secret_scanning                    = enabled
+  security_and_analysis.secret_scanning_push_protection    = enabled
+  (push protection blocks a push that introduces a detected secret, on top of the
+  local pre-commit/pre-push gitleaks gates)

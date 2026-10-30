@@ -14,3 +14,10 @@ Review follow-up: corrected stale current-state references to v12 and a non-exec
 - Manual editable push receipts for 4.3.d/4.3.e unchanged here; frozen-fingerprint comparison and bundle restore reruns remain the next executable block before final assurance.
 Next executable command: uv sync --frozen --group assurance --extra tabular && python -m quality.cli --profile full --evidence-version v13
 
+2026-10-31 hosted-assurance resolution:
+- Root cause of all prior hosted failures (0 executed steps) was private-repo runner allocation, per owner diagnosis. Repo made public after clean secret/PHI scans; secret scanning and push protection enabled at the same time.
+- ci.yml run 41074874950 on f8e3e96 executed for real: compatibility 3.14 and 3.15 both PASSED; full assurance ran all 31 gates -> 25 passed, 5 failed, 1 blocked. Prior local receipt (ff0182d) was 8 passed/22 blocked/1 failed because tools were absent locally.
+- Remaining failures are pre-existing repo-wide debt: ruff_lint, ruff_format, ty, basedpyright (quality/analysis_checks.py and peers) and mutation_score 69.78% < 90%. locked_versions is blocked because ci.yml syncs '--extra tabular --extra research' but not '--extra reporting'.
+- Hosted artifacts retained at verification/v13/hosted-41074874950/; narrative at verification/v13/delivery-2026-10-30/hosted-ci.txt. Next executable command: either add --extra reporting to the CI sync line, or clear the lint/type/mutation debt.
+
+

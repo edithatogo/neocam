@@ -1,19 +1,40 @@
-Hosted assurance attempt — 2026-10-30
+Hosted assurance — resolved 2026-10-31
 
-Workflow: ci.yml ("Lean model and developer assurance"); also pushes an event-based
-schedule/dispatch surface. Trigger: gh workflow run ci.yml --ref conductor/neocam-v13-decision-refinements
-Run: 41063979096 (workflow_dispatch), attempt 1
-Conclusion: failure
-Executed steps reported: 0 — all three jobs (assurance, compatibility (3.14),
-compatibility (3.15)) failed before any step ran; job logs unavailable through
-the API ("log not found"). Same signature as every prior hosted run against
-PR #3's branch (all failure, 0 executed steps), so this remains a runner-side
-environment blocker, not a test result.
+Why every prior hosted run failed with 0 executed steps: the repository was
+private and the account's Actions allocation for private repos never allocated a
+runner (jobs failed pre-runner, logs empty, no annotations, no steps). Confirmed
+by the owner's diagnosis. Every run in repo history, including PR #3's branch,
+showed the same signature.
 
-Branch-level observation: a plain branch push does not trigger ci.yml
-(triggers: pull_request, push to main/master, schedule, workflow_dispatch,
-workflow_call). A future PR created through a surface that can compare the
-separate histories would also receive pull_request-triggered runs.
+Resolution (owner-authorised):
+  1. Repo made public (2026-10-31) after full secret/PHI scans came back clean.
+  2. Pipeline dispatched: ci.yml run 41074874950 (workflow_dispatch) on
+     conductor/neocam-v13-decision-refinements @ f8e3e96, ACTIONS_RUNNER_DEBUG=true.
 
-PR creation attempt (same session) was refused by GitHub because the pushed
-branch and main share no common history ('no history in common with main').
+Result (real execution, not a runner failure):
+  Python compatibility matrix (3.14): PASSED (all steps)
+  Python compatibility matrix (3.15): PASSED (all steps)
+  Full assurance suite:              FAILED on 5 of 31 gates (1 blocked)
+
+Gate ledger, hosted, 2026-10-31: 25 passed / 5 failed / 1 blocked
+  FAILED ruff_lint     — pre-existing tree-wide style debt (e.g. quality/analysis_checks.py)
+  FAILED ruff_format   — pre-existing tree-wide format debt
+  FAILED ty            — pre-existing missing type arguments (same files)
+  FAILED basedpyright  — pre-existing partially-unknown types (same files)
+  FAILED mutation_score— 69.78% mutation score vs the 90% threshold
+  BLOCKED locked_versions — reports Missing reportlab/matplotlib/python-docx/python-pptx
+    because ci.yml syncs '--group assurance --extra tabular --extra research' while the
+    check requires every declared pin installed, including the 'reporting' extra.
+
+Comparison with the prior local receipt (2026-10-30T02:53Z @ ff0182d):
+  8 passed / 22 blocked / 1 failed — i.e. most gates could not even run because the
+  pinned native/assurance tools were absent. The hosted run is the first time the
+  full gate set actually executed, so the 5 failures are new INFORMATION about
+  pre-existing debt, not new regressions. Evidence: verification/v13/full/*.txt
+  from the run artifact plus the sources above.
+
+None of the four code-quality failures cite files changed in this delivery
+(quality/hooks.py and the workflow/gitignore/config edits); ruff reports the
+pre-existing quality/analysis_checks.py and similar modules.
+
+Artifacts: assurance-f8e3e96..., compatibility-3.14-f8e3e96..., compatibility-3.15-f8e3e96...

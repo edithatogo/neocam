@@ -1,0 +1,784 @@
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/analysis_checks.py:21:75
+   |
+21 | def prefix_diagnostics(draws: np.ndarray, sizes: tuple[int, ...]) -> list[dict]:
+   |                                                                           ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/analysis_checks.py:38:41
+   |
+38 | def audit_outputs(root: Path = ROOT) -> dict:
+   |                                         ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/artifacts.py:46:39
+   |
+46 | def seal(root: Path, output: Path) -> dict:
+   |                                       ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/benchmark.py:17:26
+   |
+17 | def summarise(rows: list[dict]) -> dict:
+   |                          ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/benchmark.py:17:36
+   |
+17 | def summarise(rows: list[dict]) -> dict:
+   |                                    ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> quality/benchmark.py:34:57
+   |
+34 | def timed(commands: list[tuple[str,...]], log: Path) -> dict:
+   |                                                         ^^^^
+
+error[truthiness-test-of-none-union]: Boolean test on `str | None` does not distinguish `None` from other falsy values
+  --> quality/bootstrap.py:28:16
+   |
+28 |             or parsed.username or parsed.password or parsed.port
+   |                ^^^^^^^^^^^^^^^ `None` and the empty string are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[truthiness-test-of-none-union]: Boolean test on `str | None` does not distinguish `None` from other falsy values
+  --> quality/bootstrap.py:28:35
+   |
+28 |             or parsed.username or parsed.password or parsed.port
+   |                                   ^^^^^^^^^^^^^^^ `None` and the empty string are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[truthiness-test-of-none-union]: Boolean test on `int | None` does not distinguish `None` from other falsy values
+  --> quality/bootstrap.py:28:54
+   |
+28 |             or parsed.username or parsed.password or parsed.port
+   |                                                      ^^^^^^^^^^^ `None` and `0` are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[invalid-method-override]: Invalid override of method `redirect_request`
+   --> quality/bootstrap.py:38:9
+    |
+ 38 |       def redirect_request(self, request, response, code, message, headers, newurl):
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Definition is incompatible with `HTTPRedirectHandler.redirect_request`
+    |
+   ::: stdlib/urllib/request.pyi:420:9
+    |
+420 |       def redirect_request(
+    |  _________-
+421 | |         self, req: Request, fp: IO[bytes], code: int, msg: str, headers: HTTPMessage, newurl: str
+422 | |     ) -> Request | None:
+    | |_______________________- `HTTPRedirectHandler.redirect_request` defined here
+info: the parameter named `request` does not match `req` (and can be used as a keyword parameter)
+info: This violates the Liskov Substitution Principle
+
+error[missing-override-decorator]: Method `redirect_request` overrides `HTTPRedirectHandler.redirect_request` but is not decorated with `@override`
+  --> quality/bootstrap.py:38:9
+   |
+38 |     def redirect_request(self, request, response, code, message, headers, newurl):
+   |         ^^^^^^^^^^^^^^^^
+info: Decorate the method with `@typing.override` to make the override explicit
+
+error[redundant-condition-strict]: Condition is always false
+  --> quality/clinical_review.py:28:8
+   |
+28 |     if not isinstance(expected_snapshot, str) or not re.fullmatch(r'[a-f0-9]{64}', expected_snapshot):
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Inferred type is `Literal[False]`
+
+error[truthiness-test-of-none-union]: Boolean test on `str | None` does not distinguish `None` from other falsy values
+  --> quality/contracts.py:24:51
+   |
+24 |         elif isinstance(node, ast.ImportFrom) and node.module:
+   |                                                   ^^^^^^^^^^^ `None` and the empty string are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[truthiness-test-of-none-union]: Boolean test on `str | None` does not distinguish `None` from other falsy values
+  --> quality/feedback.py:35:20
+   |
+35 |                 if dist.metadata.get('Name')}
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^ `None` and the empty string are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/analyse_refinements.py:29:37
+   |
+29 | def load_refinements(path: Path) -> dict:
+   |                                     ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/analyse_refinements.py:62:36
+   |
+62 | def summary(values: np.ndarray) -> dict:
+   |                                    ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/analyse_refinements.py:68:51
+   |
+68 | def write_csv(output: Path, name: str, rows: list[dict]) -> None:
+   |                                                   ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/analyse_refinements.py:77:39
+   |
+77 | def pending_reviews(snapshot: str) -> dict:
+   |                                       ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/analyse_refinements.py:92:45
+   |
+92 | def snapshot_identity(root: Path, declared: dict) -> str:
+   |                                             ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> scripts/analyse_refinements.py:100:45
+    |
+100 |          output_dir: Path | None = None) -> dict:
+    |                                             ^^^^
+
+error[no-matching-overload]: No overload of bound method `MutableMapping.update` matches arguments
+   --> scripts/analyse_v5.py:157:5
+    |
+157 | /     fm.update({'balanced_accuracy':float(balanced_accuracy_score(labels_test,np.argmax(pred,axis=1))),
+158 | |         'r2_by_arm':dict(zip(KEYS,r2_score(y_test,pred,multioutput='raw_values').tolist())),
+159 | |         'mae_by_arm':dict(zip(KEYS,mean_absolute_error(y_test,pred,multioutput='raw_values').tolist())),
+160 | |         'confusion_matrix':confusion_matrix(labels_test,np.argmax(pred,axis=1),labels=np.arange(5)).tolist()})
+    | |______________________________________________________________________________________________________________^
+info: First overload defined here
+    --> stdlib/typing.pyi:1944:5
+     |
+1944 | /     @overload
+1945 | |     def update(self, m: SupportsKeysAndGetItem[_KT, _VT], /) -> None:
+1946 | |         """D.update([E, ]**F) -> None.  Update D from mapping/iterable E and F.
+1947 | |         If E present and has a .keys() method, does:
+1948 | |             for k in E.keys(): D[k] = E[k]
+1949 | |         If E present and lacks .keys() method, does:
+1950 | |             for (k, v) in E: D[k] = v
+1951 | |         In either case, this is followed by:
+1952 | |             for k, v in F.items(): D[k] = v
+1953 | |         """
+     | |___________^ First overload defined here
+info: Possible overloads for bound method `update`:
+info:   (self, m: SupportsKeysAndGetItem[_KT@MutableMapping, _VT@MutableMapping], /) -> None
+info:   (self: SupportsGetItem[str, _VT@MutableMapping], m: SupportsKeysAndGetItem[str, _VT@MutableMapping], /, **kwargs: _VT@MutableMapping) -> None
+info:   (self, m: Iterable[tuple[_KT@MutableMapping, _VT@MutableMapping]], /) -> None
+info:   (self: SupportsGetItem[str, _VT@MutableMapping], m: Iterable[tuple[str, _VT@MutableMapping]], /, **kwargs: _VT@MutableMapping) -> None
+info:   (self: SupportsGetItem[str, _VT@MutableMapping], /, **kwargs: _VT@MutableMapping) -> None
+
+error[invalid-argument-type]: Argument to function `savez_compressed` is incorrect
+  --> scripts/analyse_v6.py:74:75
+   |
+74 |                 np.savez_compressed(OUT/(portfolio+'_'+name+'_draws.npz'),**{k+'_net':a['net_saving'] for k,a in r.items()},
+   |                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Expected `bool`, found `ndarray[_AnyShape, dtype[Any]]`
+info: Function defined here
+   --> .venv/lib/python3.13/site-packages/numpy/lib/_npyio_impl.pyi:119:5
+    |
+119 | def savez_compressed(file: _FNameWriteBytes, *args: ArrayLike, allow_pickle: bool = True, **kwds: ArrayLike) -> None: ...
+    |     ^^^^^^^^^^^^^^^^                                           ------------------------- Parameter declared here
+
+error[not-subscriptable]: Cannot subscript object of type `float*` with no `__getitem__` method
+  --> scripts/analyse_v6.py:87:72
+   |
+87 |                 r=compare_v6(sites,pp,ss);winner=max(KEYS,key=lambda k:r[k]['net_saving'][0])
+   |                                                                        ^^^^^^^^^^^^^^^^^^
+
+error[not-subscriptable]: Cannot subscript object of type `int` with no `__getitem__` method
+  --> scripts/analyse_v6.py:87:72
+   |
+87 |                 r=compare_v6(sites,pp,ss);winner=max(KEYS,key=lambda k:r[k]['net_saving'][0])
+   |                                                                        ^^^^^^^^^^^^^^^^^^
+
+error[invalid-assignment]: Invalid subscript assignment with key of type `Literal["overrides"]` and value of type `dict[str, dict[str, Unknown]]` on object of type `dict[str, bool]`
+   --> scripts/analyse_v7.py:127:17
+    |
+127 |                    kwargs['overrides']={'obsbot':{'installed_cost':rng.triangular(2500,4500,10000,n)*x['equipment_cost']/10000,
+    |  __________________^                   -
+    | | _____________________________________|
+128 | ||                                   'reliability':x['reliability']*rng.triangular(.65,.95,1.,n)}}
+    | ||_______________________________________________________________________________________________^
+    |  |_______________________________________________________________________________________________|
+    |                                                                                                  Expected value of type `bool`, got `dict[str, dict[str, Unknown]]`
+info: The full type of the subscripted object is `dict[Unknown, Unknown] | dict[str, bool] | dict[str, float] | dict[str, tuple[str]]`
+
+error[invalid-assignment]: Invalid subscript assignment with key of type `Literal["overrides"]` and value of type `dict[str, dict[str, Unknown]]` on object of type `dict[str, float]`
+   --> scripts/analyse_v7.py:127:17
+    |
+127 |                    kwargs['overrides']={'obsbot':{'installed_cost':rng.triangular(2500,4500,10000,n)*x['equipment_cost']/10000,
+    |  __________________^                   -
+    | | _____________________________________|
+128 | ||                                   'reliability':x['reliability']*rng.triangular(.65,.95,1.,n)}}
+    | ||_______________________________________________________________________________________________^
+    |  |_______________________________________________________________________________________________|
+    |                                                                                                  Expected value of type `float`, got `dict[str, dict[str, Unknown]]`
+info: The full type of the subscripted object is `dict[Unknown, Unknown] | dict[str, bool] | dict[str, float] | dict[str, tuple[str]]`
+
+error[invalid-assignment]: Invalid subscript assignment with key of type `Literal["overrides"]` and value of type `dict[str, dict[str, Unknown]]` on object of type `dict[str, tuple[str]]`
+   --> scripts/analyse_v7.py:127:17
+    |
+127 |                    kwargs['overrides']={'obsbot':{'installed_cost':rng.triangular(2500,4500,10000,n)*x['equipment_cost']/10000,
+    |  __________________^                   -
+    | | _____________________________________|
+128 | ||                                   'reliability':x['reliability']*rng.triangular(.65,.95,1.,n)}}
+    | ||_______________________________________________________________________________________________^
+    |  |_______________________________________________________________________________________________|
+    |                                                                                                  Expected value of type `tuple[str]`, got `dict[str, dict[str, Unknown]]`
+info: The full type of the subscripted object is `dict[Unknown, Unknown] | dict[str, bool] | dict[str, float] | dict[str, tuple[str]]`
+
+error[invalid-argument-type]: Argument to function `savez_compressed` is incorrect
+   --> scripts/analyse_v7.py:150:81
+    |
+150 |                 np.savez_compressed(OUT/(name+'_'+scenario+'_perspectives.npz'),**values)
+    |                                                                                 ^^^^^^^^ Expected `bool`, found `NDArray[Unknown]`
+info: Function defined here
+   --> .venv/lib/python3.13/site-packages/numpy/lib/_npyio_impl.pyi:119:5
+    |
+119 | def savez_compressed(file: _FNameWriteBytes, *args: ArrayLike, allow_pickle: bool = True, **kwds: ArrayLike) -> None: ...
+    |     ^^^^^^^^^^^^^^^^                                           ------------------------- Parameter declared here
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/build_current_report.py:16:48
+   |
+16 | def read_rows(output: Path, name: str) -> list[dict]:
+   |                                                ^^^^
+
+error[unresolved-import]: Cannot resolve imported module `docx`
+  --> scripts/build_current_report.py:69:10
+   |
+69 |     from docx import Document
+   |          ^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `docx.shared`
+  --> scripts/build_current_report.py:70:10
+   |
+70 |     from docx.shared import Pt, Inches
+   |          ^^^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `docx.oxml`
+  --> scripts/build_current_report.py:71:10
+   |
+71 |     from docx.oxml import OxmlElement
+   |          ^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `pptx`
+  --> scripts/build_current_report.py:72:10
+   |
+72 |     from pptx import Presentation
+   |          ^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `pptx.util`
+  --> scripts/build_current_report.py:73:10
+   |
+73 |     from pptx.util import Inches as PInches, Pt as PPt
+   |          ^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `pptx.dml.color`
+  --> scripts/build_current_report.py:74:10
+   |
+74 |     from pptx.dml.color import RGBColor
+   |          ^^^^^^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[truthiness-test-of-none-union]: Boolean test on `str | None` does not distinguish `None` from other falsy values
+   --> scripts/build_current_report.py:153:8
+    |
+153 |     if executable:
+    |        ^^^^^^^^^^ `None` and the empty string are both falsy
+help: Use `is None` or `is not None` to check for presence of the value
+help: Use `bool(...)` if testing truthiness is intentional
+
+error[unresolved-import]: Cannot resolve imported module `matplotlib.pyplot`
+ --> scripts/plot_current.py:4:8
+  |
+4 | import matplotlib.pyplot as plt
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `matplotlib.ticker`
+ --> scripts/plot_current.py:5:6
+  |
+5 | from matplotlib.ticker import FuncFormatter
+  |      ^^^^^^^^^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[unresolved-import]: Cannot resolve imported module `matplotlib.pyplot`
+ --> scripts/plot_refinements.py:8:8
+  |
+8 | import matplotlib.pyplot as plt
+  |        ^^^^^^^^^^^^^^^^^^^^^^^^
+info: Searched in the following paths during module resolution:
+info:   1. /home/runner/work/neocam/neocam (first-party code)
+info:   2. vendored://stdlib (stdlib typeshed stubs vendored by ty)
+info:   3. /home/runner/work/neocam/neocam/.venv/lib/python3.13/site-packages (site-packages)
+info: make sure your Python environment is properly configured: https://docs.astral.sh/ty/modules/#python-environment
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/run_v2.py:17:37
+   |
+17 | def save_csv(path: Path, rows: list[dict]) -> None:
+   |                                     ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/run_v2.py:26:73
+   |
+26 | def run(outdir: Path, iterations: int = 20000, seed: int = 20261027) -> dict:
+   |                                                                         ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> scripts/verify.py:16:44
+   |
+16 | def release_assurance_complete(gates: list[dict], scope: str) -> bool:
+   |                                            ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/audit_v7.py:24:74
+   |
+24 |               seed: int=20261028,effect_mode: str='attenuated') -> tuple[dict,dict]:
+   |                                                                          ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/audit_v7.py:24:79
+   |
+24 |               seed: int=20261028,effect_mode: str='attenuated') -> tuple[dict,dict]:
+   |                                                                               ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/configuration.py:15:32
+   |
+15 | def strict_json(path: Path) -> dict:
+   |                                ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/configuration.py:32:23
+   |
+32 | def exact_keys(value: dict, expected: set[str], label: str) -> None:
+   |                       ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/configuration.py:50:27
+   |
+50 |     def snapshot(self) -> dict:
+   |                           ^^^^
+
+error[redundant-condition-strict]: Condition is always true
+  --> src/deployment.py:50:32
+   |
+50 |                     or any(not isinstance(v, str) or not v.strip() for v in row)
+   |                                ^^^^^^^^^^^^^^^^^^ Inferred type is `Literal[True]`
+
+error[redundant-condition-strict]: Condition is always true
+  --> src/deployment.py:81:16
+   |
+81 |     if any(not isinstance(e, Eligibility) or e.site not in names for e in eligibility):
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ Inferred type is `Literal[True]`
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:124:31
+    |
+124 |                       inputs: dict | None = None, structural_draws: dict | None = None,
+    |                               ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:124:69
+    |
+124 |                       inputs: dict | None = None, structural_draws: dict | None = None,
+    |                                                                     ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:126:35
+    |
+126 |                       site_calls: dict | None = None) -> dict[str, dict[str, np.ndarray]]:
+    |                                   ^^^^
+
+error[redundant-condition-strict]: Condition is always true
+   --> src/deployment.py:132:32
+    |
+132 |     if not policies or any(not isinstance(p, DeploymentPolicy) for p in policies):
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Inferred type is `Literal[True]`
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:173:29
+    |
+173 |                     inputs: dict | None = None, structural_draws: dict | None = None,
+    |                             ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:173:67
+    |
+173 |                     inputs: dict | None = None, structural_draws: dict | None = None,
+    |                                                                   ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:175:33
+    |
+175 |                     site_calls: dict | None = None) -> dict[str, np.ndarray]:
+    |                                 ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:185:36
+    |
+185 |                        site_calls: dict | None = None) -> list[dict]:
+    |                                    ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/deployment.py:185:64
+    |
+185 |                        site_calls: dict | None = None) -> list[dict]:
+    |                                                                ^^^^
+
+error[redundant-condition-strict]: Condition is always true
+  --> src/equipment.py:29:16
+   |
+29 |     if any(not isinstance(a, OwnedAsset) for a in assets):
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^ Inferred type is `Literal[True]`
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/equipment.py:66:51
+   |
+66 |                       years: int = 7, site_calls: dict | None = None, activity=None) -> list[dict]:
+   |                                                   ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/equipment.py:66:94
+   |
+66 |                       years: int = 7, site_calls: dict | None = None, activity=None) -> list[dict]:
+   |                                                                                              ^^^^
+
+error[invalid-argument-type]: Argument is incorrect
+  --> src/panda_model.py:79:22
+   |
+79 |     xx = ModelInputs(**{**asdict(x), "consultations_per_site": cps})
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Expected `int`, found `Any | float`
+info: element `float*` of union `Any | int | float*` is not assignable to `int`
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/perspectives_v7.py:25:87
+   |
+25 | def perspective_regret(choose: np.ndarray, evaluate: np.ndarray, atol: float=1e-9) -> dict:
+   |                                                                                       ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/portfolios_v7.py:11:31
+   |
+11 | def regional_roster() -> list[dict]:
+   |                               ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/portfolios_v7.py:37:54
+   |
+37 | def consultation_overrides(sites: list[Site],inputs: dict,*, reopened: bool=False,
+   |                                                      ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/sensitivity.py:81:88
+   |
+81 | def one_way(sites: list[Site], points: int = 21, *, sunk: tuple[str,...] = ()) -> list[dict]:
+   |                                                                                        ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+  --> src/sensitivity.py:95:95
+   |
+95 | def _design_rows(design: np.ndarray, outcome: np.ndarray, axes: list[str], kind: str) -> list[dict]:
+   |                                                                                               ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/sensitivity.py:107:51
+    |
+107 |             *, sunk: tuple[str,...] = ()) -> list[dict]:
+    |                                                   ^^^^
+
+error[missing-type-argument]: Missing type arguments for generic class `dict` (expected 2 type arguments)
+   --> src/sensitivity.py:120:49
+    |
+120 |           *, sunk: tuple[str,...] = ()) -> list[dict]:
+    |                                                 ^^^^
+
+error[unsound-return-statement]: Unsound return statement
+   --> src/statewide.py:406:12
+    |
+406 |     return records
+    |            ^^^^^^^ Inferred as `list[dict[str, float | Any] | dict[str, float]]`
+    |
+   ::: src/statewide.py:395:60
+    |
+395 |                   parameters: Parameters | None = None) -> list[dict[str, float]]:
+    |                                                            ---------------------- Expected a subtype of `list[dict[str, float]]` because of the return type
+info: `list[dict[str, float | Any] | dict[str, float]]` is assignable to `list[dict[str, float]]`, but not a subtype of `list[dict[str, float]]`
+info: element `dict[str, float | Any]` of union `dict[str, int | Any | float*] | dict[str, int | float*]` is not a subtype of `dict[str, float]`
+info: └── element `Any` of union `int | Any | float*` is not a subtype of `float`
+help: Consider using an `assert` to narrow the type prior to the `return` statement
+
+error[invalid-argument-type]: Argument to `DictWriter.__init__` is incorrect
+  --> tests/test_contract_adversaries.py:30:38
+   |
+30 |         writer=csv.DictWriter(stream,fieldnames=fields)
+   |                                      ^^^^^^^^^^^^^^^^^ Expected `Collection[str]`, found `Sequence[str] | None`
+info: element `None` of union `Sequence[str] | None` is not assignable to `Collection[str]`
+info: └── type `None` is not assignable to protocol `Collection[str]`
+info:     └── protocol member `__contains__` is not defined on type `None`
+info: Method defined here
+   --> stdlib/csv.pyi:213:9
+    |
+213 |     def __init__(
+    |         ^^^^^^^^
+214 |         self,
+215 |         f: SupportsWrite[str],
+216 |         fieldnames: Collection[_T],
+    |         -------------------------- Parameter declared here
+
+error[unsound-return-statement]: Unsound return statement
+  --> tests/test_native_integrity.py:22:12
+   |
+17 | def native_fixture(root: Path, url: str = 'https://github.com/vale-cli/vale/releases/download/v3.25.1/vale.tar.gz') -> bytes:
+   |                                                                                                                        ----- Expected a subtype of `bytes` because of the return type
+18 |     payload = binary_tar()
+19 |     (root / 'quality').mkdir()
+20 |     manifest = {'vale': {'version': '3.25.1', 'test-test': {'url': url, 'sha256': hashlib.sha256(payload).hexdigest()}}}
+21 |     (root / 'quality/native-tools.json').write_text(json.dumps(manifest), encoding='utf-8')
+22 |     return payload
+   |            ^^^^^^^ Inferred as `Unknown`
+info: `Unknown` is assignable to `bytes`, but not a subtype of `bytes`
+help: Consider using an `assert` to narrow the type prior to the `return` statement
+
+error[invalid-argument-type]: Argument is incorrect
+  --> tests/test_v3_regressions.py:63:20
+   |
+63 |         Parameters(include_capital='false')
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^ Expected `bool`, found `Literal["false"]`
+
+error[invalid-argument-type]: Argument is incorrect
+  --> tests/test_v3_regressions.py:68:25
+   |
+68 |     inputs = Parameters(case_mix=shares)
+   |                         ^^^^^^^^^^^^^^^ Expected `tuple[float, float, float]`, found `list[float]`
+
+error[invalid-argument-type]: Argument to function `psa` is incorrect
+  --> tests/test_v3_regressions.py:93:17
+   |
+93 |         psa([], n=2.5)
+   |                 ^^^^^ Expected `int`, found `float*`
+info: Function defined here
+   --> src/statewide.py:342:5
+    |
+342 | def psa(sites: list[Site], n: int = 20_000, seed: int = 20261027,
+    |     ^^^                    --------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `module_from_spec` is incorrect
+  --> tests/test_v4_skill.py:17:39
+   |
+17 |     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+   |                                       ^^^^ Expected `ModuleSpec`, found `ModuleSpec | None`
+info: element `None` of union `ModuleSpec | None` is not assignable to `ModuleSpec`
+info: Function defined here
+  --> stdlib/_frozen_importlib.pyi:45:5
+   |
+45 | def module_from_spec(spec: importlib.machinery.ModuleSpec) -> types.ModuleType:
+   |     ^^^^^^^^^^^^^^^^ ------------------------------------ Parameter declared here
+
+error[unresolved-attribute]: Attribute `exec_module` is not defined on `None` in union `Loader | None`
+  --> tests/test_v4_skill.py:17:45
+   |
+17 |     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+   |                                             ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[unresolved-attribute]: Attribute `loader` is not defined on `None` in union `ModuleSpec | None`
+  --> tests/test_v4_skill.py:17:45
+   |
+17 |     m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+   |                                             ^^^^^^^^^^^
+
+error[invalid-argument-type]: Argument to function `module_from_spec` is incorrect
+  --> tests/test_v5_analysis_integrity.py:12:44
+   |
+12 |     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+   |                                            ^^^^ Expected `ModuleSpec`, found `ModuleSpec | None`
+info: element `None` of union `ModuleSpec | None` is not assignable to `ModuleSpec`
+info: Function defined here
+  --> stdlib/_frozen_importlib.pyi:45:5
+   |
+45 | def module_from_spec(spec: importlib.machinery.ModuleSpec) -> types.ModuleType:
+   |     ^^^^^^^^^^^^^^^^ ------------------------------------ Parameter declared here
+
+error[unresolved-attribute]: Attribute `exec_module` is not defined on `None` in union `Loader | None`
+  --> tests/test_v5_analysis_integrity.py:12:50
+   |
+12 |     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[unresolved-attribute]: Attribute `loader` is not defined on `None` in union `ModuleSpec | None`
+  --> tests/test_v5_analysis_integrity.py:12:50
+   |
+12 |     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+   |                                                  ^^^^^^^^^^^
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `ActivitySpec | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `ActivitySpec | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+159 |                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+160 |                structural_draws: dict[str, np.ndarray] | None = None,
+161 |                site_calls: dict[str, np.ndarray] | None = None,
+162 |                activity: ActivitySpec | None = None) -> dict[str, dict[str, np.ndarray]]:
+    |                ------------------------------------ Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `Parameters | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `Parameters | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^                    ------------------------------------ Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `PathwaySpec | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `PathwaySpec | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+    |                ------------------------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `dict[str, dict[str, Any]] | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `dict[str, dict[str, Any]] | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+159 |                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+    |                                            -------------------------------------------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `dict[str, ndarray[_AnyShape, dtype[Any]]] | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `dict[str, ndarray[_AnyShape, dtype[Any]]] | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+159 |                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+160 |                structural_draws: dict[str, np.ndarray] | None = None,
+    |                ----------------------------------------------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `dict[str, ndarray[_AnyShape, dtype[Any]]] | None`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `tuple[str]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `dict[str, ndarray[_AnyShape, dtype[Any]]] | None`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+159 |                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+160 |                structural_draws: dict[str, np.ndarray] | None = None,
+161 |                site_calls: dict[str, np.ndarray] | None = None,
+    |                ----------------------------------------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `compare_v6` is incorrect
+   --> tests/test_v6_validation.py:170:62
+    |
+170 |     with pytest.raises(ValueError):compare_v6(sites,inputs=x,**kwargs)
+    |                                                              ^^^^^^^^ Expected `tuple[str, ...]`, found `tuple[str] | dict[str, NDArray[Unknown]]`
+info: element `dict[str, NDArray[Unknown]]` of union `tuple[str] | dict[str, NDArray[Unknown]]` is not assignable to `tuple[str, ...]`
+info: Function defined here
+   --> src/pathways_v6.py:157:5
+    |
+157 | def compare_v6(sites: list[Site], parameters: Parameters | None = None,
+    |     ^^^^^^^^^^
+158 |                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
+159 |                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
+    |                -------------------------- Parameter declared here
+
+error[invalid-argument-type]: Argument to function `module_from_spec` is incorrect
+  --> tests/test_v9_contracts.py:70:46
+   |
+70 |     module = importlib.util.module_from_spec(specification)
+   |                                              ^^^^^^^^^^^^^ Expected `ModuleSpec`, found `ModuleSpec | None`
+info: element `None` of union `ModuleSpec | None` is not assignable to `ModuleSpec`
+info: Function defined here
+  --> stdlib/_frozen_importlib.pyi:45:5
+   |
+45 | def module_from_spec(spec: importlib.machinery.ModuleSpec) -> types.ModuleType:
+   |     ^^^^^^^^^^^^^^^^ ------------------------------------ Parameter declared here
+
+error[unresolved-attribute]: Attribute `exec_module` is not defined on `None` in union `Loader | None`
+  --> tests/test_v9_contracts.py:71:5
+   |
+71 |     specification.loader.exec_module(module)
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[unresolved-attribute]: Attribute `loader` is not defined on `None` in union `ModuleSpec | None`
+  --> tests/test_v9_contracts.py:71:5
+   |
+71 |     specification.loader.exec_module(module)
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+Found 91 diagnostics

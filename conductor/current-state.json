@@ -20,17 +20,20 @@
     "clinical outcomes not causally quantified",
     "four critical full texts missing",
     "original public PDF/XLSX files not acquired",
-    "hosted CI executes 0 steps (runs fail before step start); branch and main histories remain separate"
+    "hosted CI now executes; 5 pre-existing code-quality gates fail (ruff_lint/ruff_format/ty/basedpyright/mutation_score) and locked_versions is blocked on the reporting extra not synced by ci.yml"
   ],
   "next_acceptance": "Read the exact final receipt; run full assurance on the refreshed lock; review transitive licences; reconcile branch/main ancestry for review delivery; independent evidence review.",
   "remote": "edithatogo/neocam",
-  "remote_visibility": "private",
+  "remote_visibility": "public",
+  "remote_visibility_decision": "Owner-authorised public visibility change made 2026-10-31 on explicit instruction, after full-history/tree/pushed-range gitleaks scans and a no-identifier data review returned clean; secret scanning and push protection enabled as part of the change. Publication of clinical/evidence claims remains a separate review decision (release_ready stays false).",
   "remote_origin": "https://github.com/edithatogo/neocam.git (rewired 2026-10-30 from unreachable restore-bundle path)",
   "remote_import": "Branch conductor/neocam-v13-decision-refinements pushed 2026-10-30 (tip 5de691259944e1f16a6e656ec784473dca207a25) with read-back verification; pushed history shares no merge-base with remote main — read-only import surfaces unchanged",
   "hosted_environment_check": {
-    "run_id": 41063979096,
+    "run_id": 41074874950,
     "conclusion": "failure",
-    "executed_steps_reported": 0
+    "executed_steps_reported": 25,
+    "detail": "Runner allocation fixed by public visibility; full gate set executed 2026-10-31; 25/31 gates passed; 5 failed on pre-existing lint/type/mutation debt; 1 blocked on reporting extra",
+    "reason_hosted_ci_previously_failed": "private-repo runner allocation never happened"
   },
   "remote_pr": 3,
   "remote_branch": "conductor/neocam-v9-track-reconciliation",
