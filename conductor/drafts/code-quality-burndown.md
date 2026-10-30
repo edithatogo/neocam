@@ -14,14 +14,66 @@ not lowered — so the debt must be cleared, not waived.
 
 ## Measured baseline (2026-10-31, this machine, pinned tools)
 
-| Gate | Measured result | Notes |
-|---|---|---|
-| `ruff_lint` | **28,597 findings** | 22,872 auto-fixable (`[*]`), 5,727 need judgement |
-| `ruff_format` | **105 files would be reformatted** (126 already formatted) | mechanical |
-| `ty` | **86 diagnostics** | |
-| `basedpyright` | **3,923 errors, 0 warnings** | strict; partially-unknown types dominate |
-| `mutation_score` | **69.78%** vs 90% required | gremlins killed/survivors |
-| `locked_versions` | fixed 2026-10-31 (`--extra reporting` synced); local exit 0 | not part of this burn-down |
+### In-scope breakdown (Option B: `quality/`, `src/`, `tests/`, `.agents/`)
+
+Catalogue from a read-only sweep of the four directories:
+
+| Directory | Findings | Auto-fixable | Residual (no `[*]`) | Files to reformat |
+|---|---|---|---|---|
+| `tests/` | 8,172 | 6,225 | 1,947 | 47 |
+| `src/` | 2,039 | 1,497 | 542 | 12 |
+| `quality/` | 1,588 | 1,301 | 287 | 14 |
+| `.agents/` | 65 | 57 | 8 | 1 |
+| `pyproject.toml` | 6 | 6 | 0 | 0 |
+| **In scope** | **11,870** | **9,086** | **2,783** | **74** |
+
+Of the 2,783 residual in-scope findings: **2,113 have no automatic fix at all**, and
+**~664 are fixable only with `--unsafe-fixes`** (the project sets `unsafe-fixes=false`),
+so those are mechanical-but-reviewed rather than manual.
+
+Top residual rules (in-scope): D103 479 · ANN201 432 (unsafe) · ANN001 321 · E702 266 ·
+TRY003 158 · E701 150 · EM101 140 (unsafe) · E501 95 · PT011 91 · CPY001 78 · DOC201 71 ·
+PLC0415 53 · DOC501 44 · PLR2004 42.
+
+### Delta since B0 (2026-10-31)
+
+- `pyproject.toml`: 6 selector findings fixed (rule codes → names, intent verified).
+- `.agents/skills/**` excluded from lint/format as vendored skill payload (rationale in
+  `extend-exclude`), replacing a per-file restyle of `audit_evidence.py`.
+- Repo-wide `ruff check .` now reports 22,808 fixable remaining / 104 files to reformat.
+
+## Real defects found during the catalogue (fix before style work)
+
+These are logic-adjacent, not style; they should be fixed and independently reviewed
+first, each with a reproducing test:
+
+- **RUF069 float equality on the model path** — `src/audit_v7.py:32-35` compares
+  reliability values with `!=`/`==` against `.95`, `.5`, etc. Use `math.isclose`
+  with an explicit tolerance.
+- **TRY004 wrong exception type** — raise `TypeError` (not `ValueError`) for type
+  checks: `src/configuration.py:28`, `src/configuration.py:82`, `src/pathways_v6.py:171`,
+  `src/statewide.py:86`, `src/strategies.py:48`.
+- **B905 `zip()` without `strict=`** — `tests/test_v10_reconciliation.py:13`,
+  `tests/test_v9_contracts.py:44`, `tests/test_v9_contracts.py:55`, `tests/test_v9_contracts.py:61`.
+- **Unused bindings** — `tests/test_v6_pathways.py:72` (B007 `key`),
+  `tests/test_v13_deployment.py:129,146` (RUF059 `p`).
+- **Unused imports (F401, auto-fixable)** — `src/portfolios_v7.py:3`,
+  `tests/test_quality_gates.py:2`, `tests/test_quality_integration.py:8,11`.
+- **Ambiguous names / stray characters** — `tests/test_v12_active_properties.py:20` (E741 `l`),
+  `src/sensitivity.py:23` (RUF001 EN DASH in a string, likely meant to be `-`).
+
+## Documented per-file ignores (genuine seams, not suppressions of defects)
+
+- `tests/*.py`: extend the existing ignore to `D103, ANN001, ANN201, ANN202, D100, D104,
+  ARG001, ARG005, SLF001, PLC2701` — tests are not a public API; annotating every
+  fixture/double is churn with no consumer (the repo already ignores `S101`,
+  `magic-value-comparison` there).
+- `src/__init__.py`, `tests/__init__.py`: `D104`.
+- `S404, S603, S607` (23 findings): assurance tooling that shells to pinned `uv`/tools —
+  keep as targeted inline ignores with a justification, not a blanket disable.
+- `CPY001` (78): a project-wide policy decision (single copyright header policy) rather
+  than 78 scattered edits.
+
 
 Ruff findings by top-level path:
 
@@ -73,20 +125,30 @@ fixed (harmless, config-only).
 - **Phase 0 — freeze and baseline (no code change).** Record `ruff check .`,
   `ruff format --check .`, `ty check`, `basedpyright`, and the gremlins report into
   `verification/v13/burndown/baseline/`. Confirm the quick profile and the two
-  parity receipts. Decide A or B.
-- **Phase 1 — mechanical, config first.** Fix `pyproject.toml` selector findings.
-  Then `ruff check --fix` + `ruff format` on the smallest-risk scope first
-  (`quality/`, `src/`), verify parity + tests, commit. Then `tests/`, then (A only)
-  `scripts/` in directory-sized batches (one file family per commit where a family
-  exceeds ~500 findings, e.g. one `build_*` script per commit).
-  Expected: removes ~22.8k findings; leaves ~5.7k.
+  parity receipts. Decide A or B. *(B chosen 2026-10-31; B0 config commit landed.)*
+  Fix the six real defects listed above, each with a reproducing test, before style work.
+- **Phase 1 — mechanical, config first.** ✅ B0 (selectors + vendored-skill exclusion).
+  Then `ruff check --fix` + `ruff format` on `quality/`, `src/`, `tests/` in
+  directory-sized batches (one revertable commit per batch, `quality/` and `src/`
+  before `tests/`), verifying after each batch:
+  `ruff check <paths>` leaves only the known residual, `ruff format --check <paths>`
+  reports 0, and the mapped scoped tests pass. Expected: removes ~9,086 in-scope
+  fixable findings; leaves ~2,783.
+  Review risk: the dominant auto-fix is Q000 (quote normalization) — semantics
+  preserving, but files asserting verbatim strings should be eyeballed
+  (`quality/cli.py`, `quality/hypothesis_properties.py`, `src/statewide.py`,
+  `tests/test_quality_integration.py`, `tests/test_contract_adversaries.py`,
+  `tests/test_v12_*.py`).
 - **Phase 2 — judgement rules in `quality/` and `src/`.** Docstrings (D103/DOC201/
-  DOC501), annotations (ANN001/ANN201), exception style (TRY003/EM101), magic values
-  (PLR2004), unused imports (F401), private access (SLF001 — review, do not blanket-
-  suppress). Each rule family as its own commit with scoped tests.
-- **Phase 3 — judgement rules in `tests/`.** PT011 (add `match=`), PLR2004 (named
-  constants), parameterise-name types, annotations. Tests may be touched freely; the
-  suite must stay green and no assertion may be weakened.
+  DOC501), annotations (ANN001/ANN201), exception style (TRY003/EM101/EM102),
+  magic values (PLR2004), unused imports (F401), private access (SLF001 — review, do not
+  blanket-suppress). Each rule family as its own commit with scoped tests. Consider a
+  reviewed per-rule `--unsafe-fixes` pass: ANN201 (~400) + EM101 (~135) is the single
+  largest mechanical lever after Phase 1.
+- **Phase 3 — judgement rules in `tests/`.** Apply the documented per-file ignores
+  first (removes ~1,300 low-value findings), then PT011/PT006 with real `match=`,
+  E702/E701 splits, E501 wraps. Tests may be touched freely; the suite must stay green
+  and no assertion may be weakened.
 - **Phase 4 — type gates.** `ty` first (86 diagnostics, small). Then `basedpyright`:
   reduce the 3.9k partially-unknown errors by adding precise annotations at module
   boundaries, starting with the modules `ty` already flagged; avoid blanket
