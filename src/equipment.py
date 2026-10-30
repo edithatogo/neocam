@@ -63,7 +63,7 @@ def apply_retention(result: dict[str, dict[str, Any]], sites: list[Site],
 
 def mixed_cash_budget(sites: list[Site], strategy: str, assets: tuple[OwnedAsset, ...],
                       parameters: Parameters, spec: PathwaySpec, *, retain: bool = True,
-                      years: int = 7, site_calls: dict | None = None) -> list[dict]:
+                      years: int = 7, site_calls: dict | None = None, activity=None) -> list[dict]:
     """Schedule new and replacement purchases, without double-counting hub costs.
 
     Year 1 is the current year; remaining life 2 means replacement at start of
@@ -80,7 +80,7 @@ def mixed_cash_budget(sites: list[Site], strategy: str, assets: tuple[OwnedAsset
         raise ValueError('Remaining life exceeds configured equipment life')
     if strategy not in KEYS:
         raise ValueError('Unknown strategy')
-    out = compare_v6(sites, parameters, spec, site_calls=site_calls)[strategy]
+    out = compare_v6(sites, parameters, spec, site_calls=site_calls, activity=activity)[strategy]
     unit_cost = float(out['full_purchase_capital'][0]) / len(sites)
     owned = {a.site: a for a in assets if a.strategy == strategy} if retain else {}
     first = {s.name: owned[s.name].remaining_life_years if s.name in owned else 0 for s in sites}

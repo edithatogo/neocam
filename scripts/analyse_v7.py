@@ -43,17 +43,17 @@ def compare_regional(sites,p,s,*,sunk=(),owned_assets=None,**kwargs):
 
 def evaluate_perspectives(sites,p,s,x,e,*,reopened=False,readiness_calls=0.,cairns_hub_only=False,
                           receiver_share=.5,retrieval_chhhs_share=1.,subsidy_fraction=.5,
-                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None,owned_assets=None):
+                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None,owned_assets=None,activity=None):
     for v in (receiver_share,retrieval_chhhs_share,subsidy_fraction,family_travel_share,funding_response):
         if isinstance(v,bool) or not np.isfinite(v) or not 0<=v<=1:raise ValueError('Invalid perspective fraction')
     calls=consultation_overrides(sites,x,reopened=reopened,readiness_calls=readiness_calls,cairns_hub_only=cairns_hub_only)
-    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides,owned_assets=owned_assets)
+    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity)
     local_sites=[z for z in sites if z.name in CHHHS]
-    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if local_sites else None
+    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity) if local_sites else None
     # Receiving resources allocated to CHHHS must come from the explicitly
     # modelled regional catchment, not every origin in a statewide portfolio.
     catchment_sites=[z for z in sites if z.name in CHHHS+TCHHS]
-    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if catchment_sites else None
+    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets,activity=activity) if catchment_sites else None
     base=r['telephone'];n=len(x['odds_ratio']);hf=e.get('hospital_fraction',np.full(n,s.hospital_marginal_fraction))
     ledgers={};components={}
     for key,a in r.items():

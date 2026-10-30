@@ -3,11 +3,11 @@
 Implementation completion is not external acceptance. Historical tracks remain unchanged under their original folders.
 
 ---
-## [ ] Track: Episode/contact semantics
+## [x] Track: Episode/contact semantics
 Link: [./tracks/v13-01-contacts/](./tracks/v13-01-contacts/)
 
 ---
-## [ ] Track: Eligible mixed deployment and shared capacity
+## [~] Track: Eligible mixed deployment and shared capacity
 Link: [./tracks/v13-02-policies/](./tracks/v13-02-policies/)
 
 ---

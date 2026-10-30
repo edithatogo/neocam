@@ -1,6 +1,6 @@
 {
   "id": "v13-01-contacts",
-  "status": "planned",
+  "status": "implementation_scoped_tests_passed",
   "external_acceptance": false,
   "tasks": [
     "1.1",

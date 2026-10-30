@@ -13,6 +13,7 @@ from typing import Any
 
 import numpy as np
 
+from src.activity import ActivitySpec
 from src.statewide import Parameters, Site, _base_arrays, _site_modes, sample_inputs
 from src.strategies import KEYS, STRATEGIES, _validate_overrides
 
@@ -157,13 +158,17 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
                spec: PathwaySpec | None = None, *, inputs: dict[str, np.ndarray] | None = None,
                sunk: tuple[str, ...] = (), overrides: dict[str, dict[str, Any]] | None = None,
                structural_draws: dict[str, np.ndarray] | None = None,
-               site_calls: dict[str, np.ndarray] | None = None) -> dict[str, dict[str, np.ndarray]]:
+               site_calls: dict[str, np.ndarray] | None = None,
+               activity: ActivitySpec | None = None) -> dict[str, dict[str, np.ndarray]]:
     """Calculate absolute pathways and paired incremental outcomes for all arms."""
     if not sites or len({s.name for s in sites}) != len(sites):
         raise ValueError("non-empty unique sites required")
     if any(k not in KEYS[1:] for k in sunk) or len(set(sunk)) != len(sunk):
         raise ValueError("invalid sunk strategies")
     p, s = parameters or Parameters(), spec or PathwaySpec()
+    activity = activity or ActivitySpec()
+    if not isinstance(activity, ActivitySpec):
+        raise ValueError("Activity requires ActivitySpec")
     x = inputs if inputs is not None else _base_arrays(p, 1)
     n = len(x["odds_ratio"])
     for name, value in x.items():
@@ -199,11 +204,14 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
     site_calls = site_calls or {}
     if set(site_calls) - {site.name for site in sites}:
         raise ValueError("Unknown site in activity override")
-    total_calls = np.zeros(n)
+    total_calls = np.zeros(n)  # Historical name; clinical episodes, not repeat contacts.
+    total_contacts = np.zeros(n)
     transport_exposure = np.zeros(n)
     for site in sites:
         calls = (_column(site_calls[site.name], n, "site calls")[:, 0]
                  if site.name in site_calls else _activity(site, x))
+        calls, contacts = activity.exposures(calls)
+        total_contacts += contacts
         transport = np.sum(_site_modes(site, x["mode_air_shift"])*np.column_stack(
             [x["road_cost"], x["air_anchor"]*1.15, x["air_anchor"]*.85]), axis=1)
         total_calls += calls
@@ -224,7 +232,9 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
                  "pre_rescue_benchmark_cost", "rescue_extra_resource_cost")
         out = {k: np.zeros(n) for k in names}
         weights = cohort_weights
-        out["consultations"] = total_calls.copy()
+        out["consultations"] = total_calls.copy()  # Compatibility alias for episodes.
+        out["episodes"] = total_calls.copy()
+        out["contacts"] = total_contacts.copy()
         out["immediate_transfers"] = (weights*im).sum(axis=1)
         out["delayed_rescues"] = (weights*re).sum(axis=1)
         out["initially_local"] = (weights*(1-im)).sum(axis=1)
@@ -249,10 +259,10 @@ def compare_v6(sites: list[Site], parameters: Parameters | None = None,
         if video:
             workflow = np.broadcast_to(np.asarray(fields.get("workflow_per_call",x["workflow_per_call"])),(n,))
             scale = workflow/75.  # Explicit split of historical staff allowance, not an extra charge.
-            hub = hub_cost(out["consultations"],scale*s.hub_minutes_per_call,s)
+            hub = hub_cost(out["contacts"],scale*s.hub_minutes_per_call,s)
             out["hub_hours"], out["hub_resource_cost"],out["hub_cash_cost"] = hub["hours"],hub["economic"],hub["cash_capacity"]
             out["hub_capacity_blocks"] = hub["capacity_blocks"]
-            out["local_workflow_cost"] = out["consultations"]*s.local_coordination_per_call*scale
+            out["local_workflow_cost"] = out["contacts"]*s.local_coordination_per_call*scale
             out["local_ready_cost"] = len(sites)*(52*x["check_minutes"]/60*x["loaded_hour"]+x["support"]+x["training"])
             capital = np.broadcast_to(np.asarray(fields.get("installed_cost",x["equipment_cost"]*strategy.installed_cost/10000)),(n,)).copy()*len(sites)
             life = np.broadcast_to(np.asarray(fields.get("life_years",x["life_years"])),(n,))

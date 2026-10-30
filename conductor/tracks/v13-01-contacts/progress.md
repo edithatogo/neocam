@@ -1,3 +1,3 @@
 # Execution ledger
-
-Not yet implemented.
+Tasks1.1/1.2 implemented.20 regressions failed before implementation;157 contact/pathway/perspective/v12 regressions now pass. Evidence verification/v13/contacts-red.txt and contacts-green.txt. Default multiplier1 matches existing values. Confirmed fixed-contact and fixed-episode behaviours, paired fiscal accounting, unchanged episode-level reliability and integrated cash workload. No incidence fitted; contacts and episodes are separate from unique infants over repeated illnesses. The full installed-tool acceptance remains open.
+Conductor review: author intent/numerical/IO review, no independent reviewer. No new dependency. Conservative same-intensity both arms assumption is explicit. Final whole-change review follows integration.
