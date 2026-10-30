@@ -1,3 +1,3 @@
 # Execution ledger
-
-Not yet implemented.
+Tasks2.1/2.2:15 policy tests failed before implementation.55 policy/contact/estate tests pass. Explicit site eligibility is checked before evaluating a policy. Conditional suitability is never an approval. Exact same draw arrays pass through groups. Global cash-capacity blocks are recomputed from total hours. Compatible existing estate alone offsets new purchases. Economic signs preserved for extra transfer. No individual provider-fiscal allocation for mixed policy claimed. Driver task2.3 remains next.
+Author review found no new clinical estimates or dependencies; policy uncertainty inherited from model, not empirical device comparison. Full comparison/contract review follows driver integration.

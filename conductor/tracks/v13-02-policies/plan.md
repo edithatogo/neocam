@@ -9,22 +9,22 @@ Files: `src/deployment.py`. Tests: `tests/test_v13_deployment.py`.
 Interface: `Eligibility(site,strategy,status,evidence); DeploymentPolicy(name,assignments,conditional); validate_policy(sites,policy,eligibility)`.
 Acceptance: Reject omission/duplicate/unknown assignments; conceptual kit disallowed in strict mode; conditional mode must disclose assumptions; reported installed sites only.
 
-- [ ] 2.1.a Write reproducing test(s) for this contract.
-- [ ] 2.1.b Run `python -m pytest tests/test_v13_deployment.py -q`; preserve expected red evidence (or documented configuration-only inspection).
-- [ ] 2.1.c Implement minimal existing-stack changes; do not modify scientific input estimates.
-- [ ] 2.1.d Run scoped tests and dependent regressions; preserve actual green output.
-- [ ] 2.1.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.
+- [x] 2.1.a Write reproducing test(s) for this contract.
+- [x] 2.1.b Run `python -m pytest tests/test_v13_deployment.py -q`; preserve expected red evidence (or documented configuration-only inspection).
+- [x] 2.1.c Implement minimal existing-stack changes; do not modify scientific input estimates.
+- [x] 2.1.d Run scoped tests and dependent regressions; preserve actual green output.
+- [x] 2.1.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.
 
 ## Phase/task 2.2: Paired exact policy accounting
 Files: `src/deployment.py`. Tests: `tests/test_v13_deployment.py`.
 Interface: `evaluate_policy(sites,policy,eligibility,p,s,assets,*,inputs,structural_draws,activity); policy_cash_budget(...,years=7)`.
 Acceptance: Uniform policy matches kernel, mixed retains only compatible owned assets, no repeated clinical cohort, global hub block once even below per-site thresholds; negative transfer benefit signed; original inputs not mutated.
 
-- [ ] 2.2.a Write reproducing test(s) for this contract.
-- [ ] 2.2.b Run `python -m pytest tests/test_v13_deployment.py -q`; preserve expected red evidence (or documented configuration-only inspection).
-- [ ] 2.2.c Implement minimal existing-stack changes; do not modify scientific input estimates.
-- [ ] 2.2.d Run scoped tests and dependent regressions; preserve actual green output.
-- [ ] 2.2.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.
+- [x] 2.2.a Write reproducing test(s) for this contract.
+- [x] 2.2.b Run `python -m pytest tests/test_v13_deployment.py -q`; preserve expected red evidence (or documented configuration-only inspection).
+- [x] 2.2.c Implement minimal existing-stack changes; do not modify scientific input estimates.
+- [x] 2.2.d Run scoped tests and dependent regressions; preserve actual green output.
+- [x] 2.2.e Review diff, apply evidenced fixes, commit and record SHA in progress.md.
 
 ## Phase/task 2.3: Explicit scenario catalogue and output driver
 Files: `config/refinements.json; scripts/analyse_refinements.py`. Tests: `tests/test_v13_pipeline.py`.
