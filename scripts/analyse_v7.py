@@ -8,10 +8,12 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from src.statewide import Parameters,_base_arrays
 from src.pathways_v6 import PathwaySpec,compare_v6,WEIGHTS,NEP26
 from src.strategies import KEYS
+from src.configuration import load_configuration
+from src.equipment import apply_retention, mixed_cash_budget
 from src.portfolios_v7 import CHHHS,TCHHS,portfolio,regional_roster,consultation_overrides
 from src.audit_v7 import sample_v7,required_health_gain,discounted_health_years
 from src.perspectives_v7 import reconcile_ledger,perspective_regret,optimal_probabilities
-OUT=ROOT/'outputs/v7';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'outputs/v12'
 PERSPECTIVES=('health_system','societal_bounded','provider_chhhs','patient_family','state','commonwealth')
 
 
@@ -21,8 +23,12 @@ def write(name,rows):
         w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
 
 
-def compare_regional(sites,p,s,*,sunk=(),**kwargs):
+def compare_regional(sites,p,s,*,sunk=(),owned_assets=None,**kwargs):
     """Retain known Panda pilot installations, not hypothetical equipment everywhere."""
+    if owned_assets is not None:
+        result=compare_v6(sites,p,s,**kwargs)
+        apply_retention(result,sites,owned_assets,sunk)
+        return result
     other_sunk=tuple(k for k in sunk if k!='panda')
     result=compare_v6(sites,p,s,sunk=other_sunk,**kwargs)
     if 'panda' in sunk:
@@ -37,17 +43,17 @@ def compare_regional(sites,p,s,*,sunk=(),**kwargs):
 
 def evaluate_perspectives(sites,p,s,x,e,*,reopened=False,readiness_calls=0.,cairns_hub_only=False,
                           receiver_share=.5,retrieval_chhhs_share=1.,subsidy_fraction=.5,
-                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None):
+                          family_travel_share=.4,funding_response=0.,sunk=(),overrides=None,owned_assets=None):
     for v in (receiver_share,retrieval_chhhs_share,subsidy_fraction,family_travel_share,funding_response):
         if isinstance(v,bool) or not np.isfinite(v) or not 0<=v<=1:raise ValueError('Invalid perspective fraction')
     calls=consultation_overrides(sites,x,reopened=reopened,readiness_calls=readiness_calls,cairns_hub_only=cairns_hub_only)
-    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides)
+    r=compare_regional(sites,p,s,inputs=x,structural_draws=e,site_calls=calls,sunk=sunk,overrides=overrides,owned_assets=owned_assets)
     local_sites=[z for z in sites if z.name in CHHHS]
-    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides) if local_sites else None
+    local=r if local_sites==sites else compare_regional(local_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if local_sites else None
     # Receiving resources allocated to CHHHS must come from the explicitly
     # modelled regional catchment, not every origin in a statewide portfolio.
     catchment_sites=[z for z in sites if z.name in CHHHS+TCHHS]
-    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides) if catchment_sites else None
+    catchment=r if catchment_sites==sites else compare_regional(catchment_sites,p,s,inputs=x,structural_draws=e,site_calls={k:v for k,v in calls.items() if k in CHHHS+TCHHS},sunk=sunk,overrides=overrides,owned_assets=owned_assets) if catchment_sites else None
     base=r['telephone'];n=len(x['odds_ratio']);hf=e.get('hospital_fraction',np.full(n,s.hospital_marginal_fraction))
     ledgers={};components={}
     for key,a in r.items():
@@ -91,14 +97,21 @@ def utility_bridge_scenarios():
     return rows
 
 
-def main():
-    p=Parameters();s=PathwaySpec();n=20000;seed=20261028
+def main(config_path=None,output_dir=None):
+    global OUT
+    config=load_configuration(ROOT,config_path)
+    p,s,n,seed=config.parameters,config.pathways,config.draws,config.seed
+    OUT=Path(output_dir or ROOT/'outputs/v12').resolve()
+    if OUT.exists() and any(OUT.iterdir()):
+        raise FileExistsError('Refusing to overwrite an existing analysis directory')
+    OUT.mkdir(parents=True,exist_ok=True)
+    (OUT/'resolved_inputs.json').write_text(json.dumps(config.snapshot(),indent=2)+'\n')
     inventories=regional_roster();write('regional_roster.csv',inventories)
-    deterministic=[];summaries=[];regrets=[];checks=[];scenarios=[];thresholds=[];vop_draws={};allocation_sensitivity=[]
-    networks={name:portfolio(name) for name in ('pilot','chhhs','chhhs_tchhs','spokes')}
+    deterministic=[];summaries=[];regrets=[];checks=[];scenarios=[];thresholds=[];vop_draws={};allocation_sensitivity=[];predictive=[];budgets=[]
+    networks={name:portfolio(name) for name in config.portfolios}
     x0=_base_arrays(p,1)
     for name,sites in networks.items():
-        raw,ledger,parts=evaluate_perspectives(sites,p,s,x0,{})
+        raw,ledger,parts=evaluate_perspectives(sites,p,s,x0,{},owned_assets=config.owned_assets)
         for key,a in raw.items():
             deterministic.append({'portfolio':name,'sites':len(sites),'strategy':key,'historical_reported_births':sum(z.births for z in sites),
               **{k:float(a[k][0]) for k in ('consultations','immediate_transfers','delayed_rescues','final_local','programme_cost','net_saving','hub_hours')},
@@ -113,7 +126,7 @@ def main():
                 rng=np.random.default_rng(62026)
                 kwargs['overrides']={'obsbot':{'installed_cost':rng.triangular(2500,4500,10000,n)*x['equipment_cost']/10000,
                                   'reliability':x['reliability']*rng.triangular(.65,.95,1.,n)}}
-            rr,ll,cc=evaluate_perspectives(sites,p,s,x,e,**kwargs)
+            rr,ll,cc=evaluate_perspectives(sites,p,s,x,e,owned_assets=config.owned_assets,**kwargs)
             values={view:np.column_stack([-ll[k][view] for k in KEYS]) for view in PERSPECTIVES}
             for view,matrix in values.items():
                 probs=optimal_probabilities(matrix)
@@ -124,6 +137,12 @@ def main():
             for src,dst in itertools.product(PERSPECTIVES,repeat=2):
                 v=perspective_regret(values[src],values[dst]);v['choose_indices']='|'.join(KEYS[i] for i in v['choose_indices']);v['target_indices']='|'.join(KEYS[i] for i in v['target_indices'])
                 regrets.append({'portfolio':name,'scenario':scenario,'choose_under':src,'evaluate_under':dst,**v})
+            if scenario=='reference':
+                for key,arm in rr.items():
+                    for metric in ('consultations','immediate_transfers','delayed_rescues','final_local',
+                                   'eventual_transfers','hub_hours','hospital_benchmark_cost'):
+                        predictive.append({'portfolio':name,'strategy':key,'metric':metric,
+                                           **summary(arm[metric]),'interpretation':'Prior predictive, not fitted local outcomes'})
             residual=max(float(np.max(np.abs(a['state']+a['commonwealth']+a['patient_family']-a['societal_bounded']))) for a in ll.values())
             mass=max(float(np.max(np.abs(a['immediate_transfers']+a['delayed_rescues']+a['final_local']-a['consultations']))) for a in rr.values())
             checks.append({'portfolio':name,'scenario':scenario,'max_perspective_reconciliation_error':residual,'max_cohort_error':mass})
@@ -143,14 +162,21 @@ def main():
                   'scenario_value_per_qaly':lam,'required_qalys_per_network_year':required,
                   'required_qaly_days_per_consultation':required*365.25/calls if calls else None,
                   'status':'threshold, not estimated video benefit; not an official Australian threshold'})
+    for name,sites in networks.items():
+        for strategy in KEYS:
+            for retain in (False,True):
+                for row in mixed_cash_budget(sites,strategy,config.owned_assets,p,s,retain=retain):
+                    budgets.append({'portfolio':name,'strategy':strategy,'retain_known_estate':retain,**row})
+    write('mixed_estate_budget.csv',budgets)
+    write('prior_predictive.csv',predictive)
     # Exact two-way allocation surface: no need to rerun clinical outcomes.
-    for name in ('pilot','chhhs','chhhs_tchhs'):
-        rr,ll,cc=evaluate_perspectives(networks[name],p,s,x0,{})
+    for name in (key for key in config.portfolios if key!='spokes'):
+        rr,ll,cc=evaluate_perspectives(networks[name],p,s,x0,{},owned_assets=config.owned_assets)
         # Receiver share changes provider accounting only; reimbursement changes
         # fiscal/patient accounts only, leaving societal resources invariant.
         for share in np.linspace(0,1,11):
             for subsidy in np.linspace(0,1,11):
-                _,l,_=evaluate_perspectives(networks[name],p,s,x0,{},receiver_share=float(share),subsidy_fraction=float(subsidy))
+                _,l,_=evaluate_perspectives(networks[name],p,s,x0,{},receiver_share=float(share),subsidy_fraction=float(subsidy),owned_assets=config.owned_assets)
                 for view in ('health_system','societal_bounded','provider_chhhs','patient_family'):
                     m=np.array([-l[k][view][0] for k in KEYS]);chosen=np.flatnonzero(np.isclose(m,m.max(),rtol=0,atol=1e-9))
                     allocation_sensitivity.append({'portfolio':name,'receiver_share':float(share),'subsidy_share_of_travel':float(subsidy),
@@ -172,13 +198,19 @@ def main():
     for name,rows in [('deterministic.csv',deterministic),('psa_perspectives.csv',summaries),('value_of_perspective.csv',regrets),
        ('reconciliation.csv',checks),('structural_scenarios.csv',scenarios),('health_thresholds.csv',thresholds),
        ('allocation_two_way.csv',allocation_sensitivity),('utility_bridge_scenarios.csv',health)]:write(name,rows)
-    metadata={'version':'7.0.0','draws':n,'seed':seed,'portfolios':{k:len(v) for k,v in networks.items()},
+    metadata={'version':'12.0.0','draws':n,'seed':seed,'portfolios':{k:len(v) for k,v in networks.items()},
        'perspectives':PERSPECTIVES,'simulated_review':'role-based author self-review, not independent agents',
        'counts':{'paired_psa_structures':len(checks),'psa_result_rows':len(summaries),'vop_directional_rows':len(regrets),
-                 'two_way_allocation_rows':len(allocation_sensitivity),'qaly_thresholds':len(thresholds),'utility_bridge_scenarios':len(health)},
+                 'two_way_allocation_rows':len(allocation_sensitivity),'qaly_thresholds':len(thresholds),'utility_bridge_scenarios':len(health),'prior_predictive_rows':len(predictive),'mixed_estate_budget_rows':len(budgets)},
        'max_mass_error':max(c['max_cohort_error'] for c in checks),'max_ledger_error':max(c['max_perspective_reconciliation_error'] for c in checks),
        'funding':'Fixed fiscal response reference; .405 is an uncapped illustrative benchmark response, not a Queensland entitlement calculator',
        'societal_scope':'Health resources plus existing family travel/time aggregate only; wider education/carer/environment effects unquantified',
        'source_vop_commit':'ad84d3090a2d97f2805a86e94a7b9614a3d1ab14','fit':'No local empirical fitting; labelled transported and researcher priors'}
-    (OUT/'results_v7.json').write_text(json.dumps(metadata,indent=2));print(json.dumps(metadata,indent=2))
-if __name__=='__main__':main()
+    (OUT/'results.json').write_text(json.dumps(metadata,indent=2));print(json.dumps(metadata,indent=2))
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config',type=Path,default=ROOT/'config/reference.json')
+    parser.add_argument('--output',type=Path,default=ROOT/'outputs/v12')
+    args=parser.parse_args()
+    main(args.config,args.output)

@@ -1,6 +1,7 @@
 {
   "id": "v12-01-execution-accounting",
-  "status": "planned",
+  "status": "implemented_scoped_tests_passed",
   "full_acceptance": false,
-  "independent_validation": false
+  "tests": 32,
+  "remaining": "Pinned environment and empirical assumptions remain unverified."
 }

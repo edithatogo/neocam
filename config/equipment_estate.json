@@ -1,0 +1,20 @@
+{
+  "owned_assets": [
+    {
+      "site": "Atherton",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    },
+    {
+      "site": "Mareeba",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    },
+    {
+      "site": "Innisfail",
+      "strategy": "panda",
+      "remaining_life_years": 2
+    }
+  ],
+  "remaining_life_basis": "Two remaining years is an explicit budget assumption, not an observed installation age."
+}
