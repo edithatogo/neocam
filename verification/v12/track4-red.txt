@@ -1,0 +1,26 @@
+F..F                                                                     [100%]
+=================================== FAILURES ===================================
+____________________ test_generative_scope_is_active_model _____________________
+
+    def test_generative_scope_is_active_model():
+        text=Path('quality/hypothesis_properties.py').read_text()
+>       assert 'compare_v6' in text and 'sample_v7' in text and 'evaluate_perspectives' in text
+E       assert ('compare_v6' in '"""Generative invariants, explicitly required by the full assurance profile.\n\nMissing Hypothesis is an unavailable ...t_saving\']\n    two = psa([SITE, other], 50, seed)[\'draws\'][\'net_saving\']\n    assert np.allclose(two, 2 * one)\n')
+
+tests/test_v12_active_properties.py:14: AssertionError
+___________ test_additional_contact_question_is_explicit_not_fitted ____________
+
+    def test_additional_contact_question_is_explicit_not_fitted():
+        path=Path('conductor/validation-v12.md')
+>       assert path.exists()
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('conductor/validation-v12.md').exists
+
+tests/test_v12_active_properties.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v12_active_properties.py::test_generative_scope_is_active_model - assert ('compare_v6' in '"""Generative invariants, explicitly required by the full assurance profile.\n\nMissing Hypothesis is an unavailable ...t_saving\']\n    two = psa([SITE, other], 50, seed)[\'draws\'][\'net_saving\']\n    assert np.allclose(two, 2 * one)\n')
+FAILED tests/test_v12_active_properties.py::test_additional_contact_question_is_explicit_not_fitted - AssertionError: assert False
+ +  where False = exists()
+ +    where exists = PosixPath('conductor/validation-v12.md').exists
+2 failed, 2 passed in 0.11s

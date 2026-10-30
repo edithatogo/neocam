@@ -1,0 +1,479 @@
+FFFFFFFFFFFFFFFFFFF                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_default_resolved_values_preserve_reference ________________
+
+    def test_default_resolved_values_preserve_reference():
+>       c=api().load_configuration(ROOT)
+          ^^^^^
+
+tests/test_v12_configuration.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+__________________ test_changed_declared_price_reaches_driver __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_changed_declared_price_re0')
+
+    def test_changed_declared_price_reaches_driver(tmp_path):
+>       m=api();root=fixture(tmp_path)
+          ^^^^^
+
+tests/test_v12_configuration.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+____________________ test_bad_run_config_rejected[change0] _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_bad_run_config_rejected_c0')
+change = {'draws': True}
+
+    @pytest.mark.parametrize('change',[{'draws':True},{'seed':-1},{'portfolios':['pilot','pilot']},{'unknown':1}])
+    def test_bad_run_config_rejected(tmp_path,change):
+>       m=api();root=fixture(tmp_path);path=root/'config/reference.json'
+          ^^^^^
+
+tests/test_v12_configuration.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+____________________ test_bad_run_config_rejected[change1] _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_bad_run_config_rejected_c1')
+change = {'seed': -1}
+
+    @pytest.mark.parametrize('change',[{'draws':True},{'seed':-1},{'portfolios':['pilot','pilot']},{'unknown':1}])
+    def test_bad_run_config_rejected(tmp_path,change):
+>       m=api();root=fixture(tmp_path);path=root/'config/reference.json'
+          ^^^^^
+
+tests/test_v12_configuration.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+____________________ test_bad_run_config_rejected[change2] _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_bad_run_config_rejected_c2')
+change = {'portfolios': ['pilot', 'pilot']}
+
+    @pytest.mark.parametrize('change',[{'draws':True},{'seed':-1},{'portfolios':['pilot','pilot']},{'unknown':1}])
+    def test_bad_run_config_rejected(tmp_path,change):
+>       m=api();root=fixture(tmp_path);path=root/'config/reference.json'
+          ^^^^^
+
+tests/test_v12_configuration.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+____________________ test_bad_run_config_rejected[change3] _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_bad_run_config_rejected_c3')
+change = {'unknown': 1}
+
+    @pytest.mark.parametrize('change',[{'draws':True},{'seed':-1},{'portfolios':['pilot','pilot']},{'unknown':1}])
+    def test_bad_run_config_rejected(tmp_path,change):
+>       m=api();root=fixture(tmp_path);path=root/'config/reference.json'
+          ^^^^^
+
+tests/test_v12_configuration.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+______________________ test_duplicate_json_keys_rejected _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_duplicate_json_keys_rejec0')
+
+    def test_duplicate_json_keys_rejected(tmp_path):
+>       m=api();root=fixture(tmp_path);(root/'config/pathways.json').write_text('{"endpoint":"eventual","endpoint":"initial"}')
+          ^^^^^
+
+tests/test_v12_configuration.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+____________ test_partial_pathway_document_cannot_silently_default _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_partial_pathway_document_0')
+
+    def test_partial_pathway_document_cannot_silently_default(tmp_path):
+>       m=api();root=fixture(tmp_path);(root/'config/pathways.json').write_text('{"endpoint":"initial"}')
+          ^^^^^
+
+tests/test_v12_configuration.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+_________________________ test_source_escape_rejected __________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_source_escape_rejected0')
+
+    def test_source_escape_rejected(tmp_path):
+>       m=api();root=fixture(tmp_path);path=root/'config/reference.json';d=json.loads(path.read_text());d['parameters']='../escape.json';path.write_text(json.dumps(d))
+          ^^^^^
+
+tests/test_v12_configuration.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+______________ test_configuration_hash_changes_with_live_pathway _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-1/test_configuration_hash_change0')
+
+    def test_configuration_hash_changes_with_live_pathway(tmp_path):
+>       m=api();root=fixture(tmp_path);a=m.load_configuration(root)
+          ^^^^^
+
+tests/test_v12_configuration.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.configuration'), 'Missing resolved configuration interface'
+E       AssertionError: Missing resolved configuration interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_configuration.py:16: AssertionError
+_________________ test_mixed_chhhs_initial_purchase_reconciles _________________
+
+    def test_mixed_chhhs_initial_purchase_reconciles():
+>       m=api();s=portfolio('chhhs');rows=m.mixed_cash_budget(s,'panda',estate(),Parameters(),PathwaySpec(),retain=True)
+          ^^^^^
+
+tests/test_v12_estate.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+__________________ test_new_purchase_does_not_use_sunk_estate __________________
+
+    def test_new_purchase_does_not_use_sunk_estate():
+>       m=api();rows=m.mixed_cash_budget(portfolio('chhhs'),'panda',estate(),Parameters(),PathwaySpec(),retain=False)
+          ^^^^^
+
+tests/test_v12_estate.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+_________________ test_obsbot_does_not_inherit_panda_ownership _________________
+
+    def test_obsbot_does_not_inherit_panda_ownership():
+>       m=api();rows=m.mixed_cash_budget(portfolio('pilot'),'obsbot',estate(),Parameters(),PathwaySpec(),retain=True)
+          ^^^^^
+
+tests/test_v12_estate.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+__________________ test_cash_hub_capacity_not_double_counted ___________________
+
+    def test_cash_hub_capacity_not_double_counted():
+>       m=api();rows=m.mixed_cash_budget(portfolio('spokes'),'panda',estate(),Parameters(),PathwaySpec(),retain=True)
+          ^^^^^
+
+tests/test_v12_estate.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+________________ test_invalid_owned_remaining_life_rejected[-1] ________________
+
+remaining = -1
+
+    @pytest.mark.parametrize('remaining',[-1,True,1.5,100])
+    def test_invalid_owned_remaining_life_rejected(remaining):
+>       m=api()
+          ^^^^^
+
+tests/test_v12_estate.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+_______________ test_invalid_owned_remaining_life_rejected[True] _______________
+
+remaining = True
+
+    @pytest.mark.parametrize('remaining',[-1,True,1.5,100])
+    def test_invalid_owned_remaining_life_rejected(remaining):
+>       m=api()
+          ^^^^^
+
+tests/test_v12_estate.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+_______________ test_invalid_owned_remaining_life_rejected[1.5] ________________
+
+remaining = 1.5
+
+    @pytest.mark.parametrize('remaining',[-1,True,1.5,100])
+    def test_invalid_owned_remaining_life_rejected(remaining):
+>       m=api()
+          ^^^^^
+
+tests/test_v12_estate.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+_______________ test_invalid_owned_remaining_life_rejected[100] ________________
+
+remaining = 100
+
+    @pytest.mark.parametrize('remaining',[-1,True,1.5,100])
+    def test_invalid_owned_remaining_life_rejected(remaining):
+>       m=api()
+          ^^^^^
+
+tests/test_v12_estate.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+____________________ test_duplicate_estate_records_rejected ____________________
+
+    def test_duplicate_estate_records_rejected():
+>       m=api();x=m.OwnedAsset('Atherton','panda',2)
+          ^^^^^
+
+tests/test_v12_estate.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def api():
+>       assert importlib.util.find_spec('src.equipment'), 'Missing mixed-estate budget interface'
+E       AssertionError: Missing mixed-estate budget interface
+E       assert None
+E        +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+E        +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_estate.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v12_configuration.py::test_default_resolved_values_preserve_reference - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_changed_declared_price_reaches_driver - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_bad_run_config_rejected[change0] - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_bad_run_config_rejected[change1] - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_bad_run_config_rejected[change2] - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_bad_run_config_rejected[change3] - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_duplicate_json_keys_rejected - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_partial_pathway_document_cannot_silently_default - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_source_escape_rejected - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_configuration.py::test_configuration_hash_changes_with_live_pathway - AssertionError: Missing resolved configuration interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.configuration')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_mixed_chhhs_initial_purchase_reconciles - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_new_purchase_does_not_use_sunk_estate - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_obsbot_does_not_inherit_panda_ownership - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_cash_hub_capacity_not_double_counted - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_invalid_owned_remaining_life_rejected[-1] - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_invalid_owned_remaining_life_rejected[True] - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_invalid_owned_remaining_life_rejected[1.5] - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_invalid_owned_remaining_life_rejected[100] - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_estate.py::test_duplicate_estate_records_rejected - AssertionError: Missing mixed-estate budget interface
+assert None
+ +  where None = <function find_spec at 0x7f8f98343b00>('src.equipment')
+ +    where <function find_spec at 0x7f8f98343b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+19 failed in 0.16s

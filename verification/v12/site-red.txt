@@ -1,0 +1,16 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_____________ test_misspelled_owned_site_cannot_silently_disappear _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-11/test_misspelled_owned_site_can0')
+
+    def test_misspelled_owned_site_cannot_silently_disappear(tmp_path):
+        m=api();root=fixture(tmp_path);f=root/'config/equipment_estate.json';d=json.loads(f.read_text());d['owned_assets'][0]['site']='Athertonn';f.write_text(json.dumps(d))
+>       with pytest.raises(ValueError):m.load_configuration(root)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_v12_configuration.py:97: Failed
+=========================== short test summary info ============================
+FAILED tests/test_v12_configuration.py::test_misspelled_owned_site_cannot_silently_disappear - Failed: DID NOT RAISE <class 'ValueError'>
+1 failed in 0.11s

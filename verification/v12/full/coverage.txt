@@ -1,0 +1,1 @@
+Wrote JSON report to verification/v12/coverage.json

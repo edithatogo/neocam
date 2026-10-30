@@ -1,0 +1,33 @@
+{
+  "deterministic.csv": {
+    "rows_old": 20,
+    "rows_current": 20,
+    "material_differences": 0,
+    "examples": []
+  },
+  "psa_perspectives.csv": {
+    "rows_old": 1320,
+    "rows_current": 1320,
+    "material_differences": 0,
+    "examples": []
+  },
+  "structural_scenarios.csv": {
+    "rows_old": 220,
+    "rows_current": 220,
+    "material_differences": 0,
+    "examples": []
+  },
+  "value_of_perspective.csv": {
+    "rows_old": 1584,
+    "rows_current": 1584,
+    "material_differences": 0,
+    "examples": []
+  },
+  "health_thresholds.csv": {
+    "rows_old": 48,
+    "rows_current": 48,
+    "material_differences": 0,
+    "examples": []
+  },
+  "utility_rows_corrected": 36
+}

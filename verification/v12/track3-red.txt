@@ -1,0 +1,149 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_current_report_builder_is_portable ____________________
+
+    def test_current_report_builder_is_portable():
+>       assert importlib.util.find_spec('scripts.build_current_report'), 'Missing portable current-report builder'
+E       AssertionError: Missing portable current-report builder
+E       assert None
+E        +  where None = <function find_spec at 0x7f8d54ba3b00>('scripts.build_current_report')
+E        +    where <function find_spec at 0x7f8d54ba3b00> = <module 'importlib.util' (frozen)>.find_spec
+E        +      where <module 'importlib.util' (frozen)> = importlib.util
+
+tests/test_v12_report.py:10: AssertionError
+__________________ test_current_ci_uses_one_evidence_version ___________________
+
+    def test_current_ci_uses_one_evidence_version():
+        text=(ROOT/'.github/workflows/ci.yml').read_text()
+>       assert '--evidence-version v8' not in text
+E       AssertionError: assert '--evidence-version v8' not in 'name: Lean ...n-days: 14\n'
+E         
+E         '--evidence-version v8' is contained here:
+E           rofile pr --evidence-version v8
+E                 - name: Full fresh acceptance (trusted push, scheduled, manual or reusable)
+E                   if: github.event_name != 'pull_request'
+E                   run: uv run --frozen --no-sync python -m quality.cli --profile full --evidence-version v8
+E                 - name: Retain only verification evidence, not corporate templates
+E                   if: always()
+E                   uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+E                   with:
+E                     name: assurance-${{ github.sha }}
+E                     path: |
+E                       verification/v8/pr/
+E                       verification/v8/full/
+E                       verification/v8/coverage.json
+E                       verification/v8/scalene.json
+E                       verification/v8/gitleaks-*.json
+E                       verification/v8/pip-audit.json
+E                       verification/v8/sbom.json
+E                       coverage/gremlins/
+E                     if-no-files-found: error
+E                     retention-days: 14
+E             compatibility:
+E               if: github.event_name != 'pull_request'
+E               strategy:
+E                 fail-fast: false
+E                 matrix:
+E                   python: ['3.14', '3.15']
+E               runs-on: ubuntu-24.04
+E               timeout-minutes: 15
+E               steps:
+E                 - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+E                   with:
+E                     persist-credentials: false
+E                     fetch-depth: 0
+E                 - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+E                   with:
+E                     version: '0.13.6'
+E                     python-version: ${{ matrix.python }}
+E                     enable-cache: true
+E                     cache-dependency-glob: uv.lock
+E                 - name: Frozen compatibility environment
+E                   run: |
+E                     test -f uv.lock
+E                     uv lock --check
+E                     uv sync --frozen --group test --extra research
+E                 - name: Ordinary suite and input/context contracts
+E                   run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version v8
+E                 - if: always()
+E                   uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+E                   with:
+E                     name: compatibility-${{ matrix.python }}-${{ github.sha }}
+E                     path: verification/v8/quick/
+E                     if-no-files-found: error
+E                     retention-days: 14
+
+tests/test_v12_report.py:19: AssertionError
+___________ test_reporting_is_separate_from_exact_model_dependencies ___________
+
+    def test_reporting_is_separate_from_exact_model_dependencies():
+        import tomllib
+        cfg=tomllib.loads((ROOT/'pyproject.toml').read_text())
+>       assert 'reporting' in cfg['project']['optional-dependencies']
+E       AssertionError: assert 'reporting' in {'research': ['scipy==1.18.1', 'scikit-learn==1.9.1'], 'tabular': ['polars==2.1.0']}
+
+tests/test_v12_report.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v12_report.py::test_current_report_builder_is_portable - AssertionError: Missing portable current-report builder
+assert None
+ +  where None = <function find_spec at 0x7f8d54ba3b00>('scripts.build_current_report')
+ +    where <function find_spec at 0x7f8d54ba3b00> = <module 'importlib.util' (frozen)>.find_spec
+ +      where <module 'importlib.util' (frozen)> = importlib.util
+FAILED tests/test_v12_report.py::test_current_ci_uses_one_evidence_version - AssertionError: assert '--evidence-version v8' not in 'name: Lean ...n-days: 14\n'
+  
+  '--evidence-version v8' is contained here:
+    rofile pr --evidence-version v8
+          - name: Full fresh acceptance (trusted push, scheduled, manual or reusable)
+            if: github.event_name != 'pull_request'
+            run: uv run --frozen --no-sync python -m quality.cli --profile full --evidence-version v8
+          - name: Retain only verification evidence, not corporate templates
+            if: always()
+            uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+            with:
+              name: assurance-${{ github.sha }}
+              path: |
+                verification/v8/pr/
+                verification/v8/full/
+                verification/v8/coverage.json
+                verification/v8/scalene.json
+                verification/v8/gitleaks-*.json
+                verification/v8/pip-audit.json
+                verification/v8/sbom.json
+                coverage/gremlins/
+              if-no-files-found: error
+              retention-days: 14
+      compatibility:
+        if: github.event_name != 'pull_request'
+        strategy:
+          fail-fast: false
+          matrix:
+            python: ['3.14', '3.15']
+        runs-on: ubuntu-24.04
+        timeout-minutes: 15
+        steps:
+          - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+            with:
+              persist-credentials: false
+              fetch-depth: 0
+          - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+            with:
+              version: '0.13.6'
+              python-version: ${{ matrix.python }}
+              enable-cache: true
+              cache-dependency-glob: uv.lock
+          - name: Frozen compatibility environment
+            run: |
+              test -f uv.lock
+              uv lock --check
+              uv sync --frozen --group test --extra research
+          - name: Ordinary suite and input/context contracts
+            run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version v8
+          - if: always()
+            uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+            with:
+              name: compatibility-${{ matrix.python }}-${{ github.sha }}
+              path: verification/v8/quick/
+              if-no-files-found: error
+              retention-days: 14
+FAILED tests/test_v12_report.py::test_reporting_is_separate_from_exact_model_dependencies - AssertionError: assert 'reporting' in {'research': ['scipy==1.18.1', 'scikit-learn==1.9.1'], 'tabular': ['polars==2.1.0']}
+3 failed in 0.05s

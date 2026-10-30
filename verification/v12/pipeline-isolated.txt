@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+rootdir: /mnt/data/neocam-v12
+configfile: pyproject.toml
+collecting ... collected 1 item
+
+tests/test_v12_pipeline.py::test_real_entrypoint_consumes_configuration_and_preserves_old_outputs PASSED
+
+============================== 1 passed in 2.72s ===============================

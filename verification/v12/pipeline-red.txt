@@ -1,0 +1,55 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_real_entrypoint_consumes_configuration_and_preserves_old_outputs _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0')
+
+    def test_real_entrypoint_consumes_configuration_and_preserves_old_outputs(tmp_path):
+        for name in ('src','scripts','config','data'):
+            shutil.copytree(ROOT/name,tmp_path/name,ignore=shutil.ignore_patterns('__pycache__'))
+        p=tmp_path/'data/parameters.json';d=json.loads(p.read_text());d['equipment_cost']=20000;p.write_text(json.dumps(d))
+        f=tmp_path/'config/reference.json';d=json.loads(f.read_text());d['run']['draws']=32;d['run']['portfolios']=['pilot'];f.write_text(json.dumps(d))
+        result=subprocess.run([sys.executable,'-m','scripts.analyse_v7','--config','config/reference.json','--output','outputs/check'],cwd=tmp_path,capture_output=True,text=True,timeout=90,env=os.environ.copy())
+>       assert result.returncode==0,result.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<frozen runpy>", line 198, in _run_module_as_main
+E           File "<frozen runpy>", line 88, in _run_code
+E           File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 190, in <module>
+E             if __name__=='__main__':main()
+E                                     ~~~~^^
+E           File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 102, in main
+E             inventories=regional_roster();write('regional_roster.csv',inventories)
+E                                           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 22, in write
+E             with (OUT/name).open('w',newline='') as f:
+E                  ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+E           File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+E             return io.open(self, mode, buffering, encoding, errors, newline)
+E                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E         FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/outputs/v12/regional_roster.csv'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/pyvenv/bin/python', '-m', 'scripts.analyse_v7', '--config', 'config/reference.json', '--o...file or directory: \'/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/outputs/v12/regional_roster.csv\'\n').returncode
+
+tests/test_v12_pipeline.py:19: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_v12_pipeline.py::test_real_entrypoint_consumes_configuration_and_preserves_old_outputs - AssertionError: Traceback (most recent call last):
+    File "<frozen runpy>", line 198, in _run_module_as_main
+    File "<frozen runpy>", line 88, in _run_code
+    File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 190, in <module>
+      if __name__=='__main__':main()
+                              ~~~~^^
+    File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 102, in main
+      inventories=regional_roster();write('regional_roster.csv',inventories)
+                                    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/scripts/analyse_v7.py", line 22, in write
+      with (OUT/name).open('w',newline='') as f:
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+    File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+      return io.open(self, mode, buffering, encoding, errors, newline)
+             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/outputs/v12/regional_roster.csv'
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/pyvenv/bin/python', '-m', 'scripts.analyse_v7', '--config', 'config/reference.json', '--o...file or directory: \'/tmp/pytest-of-root/pytest-3/test_real_entrypoint_consumes_0/outputs/v12/regional_roster.csv\'\n').returncode
+1 failed in 1.08s

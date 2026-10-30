@@ -1,0 +1,34 @@
+Using CPython 3.13.5 interpreter at: /opt/pyvenv/bin/python
+WARN Retry attempt #0. Sleeping 573.502905ms before the next attempt
+WARN Retry attempt #0. Sleeping 103.629766ms before the next attempt
+WARN Retry attempt #0. Sleeping 217.227203ms before the next attempt
+WARN Retry attempt #0. Sleeping 578.698153ms before the next attempt
+WARN Retry attempt #0. Sleeping 484.121887ms before the next attempt
+WARN Retry attempt #0. Sleeping 96.139841ms before the next attempt
+WARN Retry attempt #0. Sleeping 962.174437ms before the next attempt
+WARN Retry attempt #0. Sleeping 193.839175ms before the next attempt
+WARN Retry attempt #0. Sleeping 883.24173ms before the next attempt
+WARN Retry attempt #0. Sleeping 778.972798ms before the next attempt
+WARN Retry attempt #0. Sleeping 319.246967ms before the next attempt
+WARN Retry attempt #0. Sleeping 645.593704ms before the next attempt
+WARN Retry attempt #0. Sleeping 353.023817ms before the next attempt
+WARN Retry attempt #0. Sleeping 724.598215ms before the next attempt
+WARN Retry attempt #0. Sleeping 703.161068ms before the next attempt
+WARN Retry attempt #0. Sleeping 665.373304ms before the next attempt
+WARN Retry attempt #0. Sleeping 411.4781ms before the next attempt
+WARN Retry attempt #0. Sleeping 374.718865ms before the next attempt
+WARN Retry attempt #0. Sleeping 657.000767ms before the next attempt
+WARN Retry attempt #0. Sleeping 722.994372ms before the next attempt
+WARN Retry attempt #0. Sleeping 185.293551ms before the next attempt
+WARN Retry attempt #0. Sleeping 687.547526ms before the next attempt
+WARN Retry attempt #1. Sleeping 130.880653ms before the next attempt
+WARN Retry attempt #1. Sleeping 446.257999ms before the next attempt
+WARN Retry attempt #1. Sleeping 1.172681615s before the next attempt
+WARN Retry attempt #1. Sleeping 569.751438ms before the next attempt
+WARN Retry attempt #1. Sleeping 84.316335ms before the next attempt
+WARN Retry attempt #1. Sleeping 1.468882255s before the next attempt
+WARN Retry attempt #1. Sleeping 444.581012ms before the next attempt
+WARN Retry attempt #1. Sleeping 427.427984ms before the next attempt
+WARN Retry attempt #2. Sleeping 3.340436791s before the next attempt
+
+exit=124

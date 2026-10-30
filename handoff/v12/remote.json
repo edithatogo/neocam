@@ -1,0 +1,13 @@
+{
+  "verified_remote_commit": "dad20644185156090d642cb9d01470adb2813138",
+  "pr": 3,
+  "complete_migration": false,
+  "source_directories": {
+    "src": "d7b0cf262d1b5e82183fe7ddd8a831de0cb7dd1a",
+    "data": "2530ae6e70fb2ff9c5d517014b85378764e5085e",
+    "tests": "44632f6e45b831c23dc08c2e773f56448199d755",
+    "quality": "f30951c6cf14416cadb9fa5804a8859e4fefcd40",
+    "config": "68f3612c6d3128314bf0fd683e3ac127d2adfac6"
+  },
+  "note": "Core/config subtrees and current reporting scripts compared against returned GitHub object IDs; artifacts/history still partially migrated."
+}

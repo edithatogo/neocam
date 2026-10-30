@@ -1,0 +1,4 @@
+{
+  "errors": [],
+  "scope": "outputs/v12"
+}
