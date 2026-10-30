@@ -1,0 +1,32 @@
+{
+  "errors": [
+    "External reviewer attestation is not recorded",
+    "Review 0 lacks identity",
+    "Review 0 lacks conflicts",
+    "Review 0 lacks finding_summary",
+    "Review 0 has no independent completed attestation",
+    "Review 0 lacks a valid date",
+    "Review 0 lacks supporting report evidence",
+    "Review 1 lacks identity",
+    "Review 1 lacks conflicts",
+    "Review 1 lacks finding_summary",
+    "Review 1 has no independent completed attestation",
+    "Review 1 lacks a valid date",
+    "Review 1 lacks supporting report evidence",
+    "Review 2 lacks identity",
+    "Review 2 lacks conflicts",
+    "Review 2 lacks finding_summary",
+    "Review 2 has no independent completed attestation",
+    "Review 2 lacks a valid date",
+    "Review 2 lacks supporting report evidence",
+    "Review 3 lacks identity",
+    "Review 3 lacks conflicts",
+    "Review 3 lacks finding_summary",
+    "Review 3 has no independent completed attestation",
+    "Review 3 lacks a valid date",
+    "Review 3 lacks supporting report evidence"
+  ],
+  "record_contract_passed": false,
+  "identity_authenticated": false,
+  "scope": "Attestation schema only; cannot certify reviewer independence or clinical validity"
+}

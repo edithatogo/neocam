@@ -10,7 +10,7 @@ Implemented analytical and evidence-contract scope is technically reviewable wit
 - [x] Platform Guide Compliance: NA — no local platform/style-guide directory exists; workflow and product guidelines read.
 - [x] New Tests: yes — TDD failure evidence and green runs retained by phase.
 - [x] Test Coverage: scoped available-host coverage measured; dedicated Hypothesis and mutation execution remains unavailable.
-- [ ] Test Results: final full unified result appended in handoff/v13/status.json; no prediction of a pass.
+- [x] Ordinary Test Results:676 passed on final committed source ff0182d; full unified acceptance remains unsuccessful (8passed,22blocked,1failed). Exact receipt/fingerprints are in handoff/v13/status.json.
 
 ## Findings and resolutions
 ### High — review identity did not include calculation source
@@ -49,3 +49,10 @@ Keep local analytical changes with their explicit assumptions. Do not claim full
 
 ## Review provenance
 Same assistant reviewed the implementation using the pinned conductor-review command protocol after conductor-implement execution. No independent subagent or external reviewer was invoked. Upstream source hashes are in conductor/skill-provenance-v13.json. The Conductor CLI and actual submodule checkout were not executed successfully.
+
+### Medium — stale context and non-executable task placeholder
+- Files: conductor/current-state.json; conductor/tracks/v13-04-release/plan.md.
+- Resolution: current artifact and remote fields now refer to the actual v13 outputs and last observed PR head; the final delivery phase uses real shell commands rather than a placeholder pytest command. The complete final snapshot is rerun after this repair; no analytical inputs changed.
+
+## Final exact-snapshot verification
+Source `ff0182de3933348565ef06e7799aa3c34c827760`:676 ordinary tests passed;31 gates reached,8 passed,22 blocked,1 failed. Coverage93.43%, active core96.53%; activity/configuration/equipment/pathway modules100%. Both final fingerprints and all gate log digests match. Current primary and refinement artifact manifests pass. All12 shared primary CSV files match v12 byte-for-byte. Four external reviewer requests remain pending and their validation command correctly returns nonzero. Final evidence-only appendices are excluded from calculation/verification input scopes; no complete-release, independent-validation or remote-push claim.

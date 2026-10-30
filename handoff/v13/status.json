@@ -1,0 +1,57 @@
+{
+  "source_commit": "ff0182de3933348565ef06e7799aa3c34c827760",
+  "run_finished": true,
+  "ordinary_tests": 676,
+  "gates": {
+    "passed": 8,
+    "blocked": 22,
+    "failed": 1
+  },
+  "input_fingerprint": "22e3b7875e8b051b91cc57043a38ae7581c96bca6db77ee66b5eb44fb437c4db",
+  "artifact_fingerprint": "ea689b83dacb7afbdaedc7ad93cf9d58270268ee2b9dd5e446f64d46a728a251",
+  "all_log_hashes_match": true,
+  "final_source_matches": true,
+  "final_artifacts_match": true,
+  "full_assurance": false,
+  "receipt_sha256": "473a2077658bfc0ba5d9fbe237310219d4866d0c874e474915fdab65cedcb78c",
+  "remote_written": false,
+  "remote_observed_head": "dad20644185156090d642cb9d01470adb2813138",
+  "review": "pinned conductor-review protocol, author review, not independent clinical validation",
+  "coverage": 93.43159243832105,
+  "core_coverage_percent": 96.53,
+  "tracks": {
+    "v13-01-contacts": "implemented_and_author_reviewed",
+    "v13-02-policies": "implemented_and_author_reviewed",
+    "v13-03-review": "review_packet_and_contract_implemented_external_review_pending",
+    "v13-04-release": "local_assurance_executed_unsuccessful_external_delivery_blocked"
+  },
+  "final_task_reconciliation": {
+    "4.3.a": "completed",
+    "4.3.b": "completed",
+    "4.3.c": "completed_attempts_with_external_blockers",
+    "4.3.d": "completed_frozen_run_hashes_verified",
+    "4.3.e": "packaging_and_restoration_pending",
+    "4.3.f": "blocked_no_remote_write"
+  },
+  "analysis": {
+    "primary_csv_byte_parity_count": 12,
+    "paired_policy_scenarios": 480,
+    "draws_each": 20000,
+    "policy_psa_rows": 960,
+    "ranking_rows": 1344,
+    "predictive_rows": 3840,
+    "budget_rows": 840,
+    "snapshot_sha256": "94cc30ead515b49b3b34ee2e35d387c570b3a266201b47be9e06abd0047753b9"
+  },
+  "implementation_commits": [
+    "ff0182de3933348565ef06e7799aa3c34c827760 docs(conductor): correct current output pointers and executable final acceptance steps",
+    "84ade4bf6ddd0f6ea42a1ef022f4753715d41927 analysis: seal exact reference and refinement outputs with Conductor review evidence",
+    "4b2f8825d67709bc837a087631d9f40ce1aaa351 conductor: reconcile implemented phases and retain actual delivery and validation blockers",
+    "1743ab48b8e17f5f7f54e03b2691a021801a8a81 fix: review active invariants and reuse paired policy groups without repeated computation",
+    "00482e16edd26ea6810b36eeada5e740188a20a5 feat: bind pending clinical review to source and validate current artifact scopes",
+    "6b27823d8d46bdfc7d2545cf250cd55e6b2ed5e5 feat: execute declared paired contact and mixed-deployment scenarios",
+    "66c32fabd180cf845886d4e1aef2efc8f9395d22 feat: evaluate explicitly eligible mixed deployment with shared hub capacity",
+    "4d0cf87d3854408e2cdd6fe61ae8626341dadf47 feat: separate neonatal episodes from repeat consultation workload",
+    "6e0cd4b3562b28b7690ce8deb1cd6fa4d28160f0 conductor: specify four executable refinement tracks and pinned implement/review protocols"
+  ]
+}
