@@ -1,0 +1,19 @@
+Hosted assurance attempt — 2026-10-30
+
+Workflow: ci.yml ("Lean model and developer assurance"); also pushes an event-based
+schedule/dispatch surface. Trigger: gh workflow run ci.yml --ref conductor/neocam-v13-decision-refinements
+Run: 41063979096 (workflow_dispatch), attempt 1
+Conclusion: failure
+Executed steps reported: 0 — all three jobs (assurance, compatibility (3.14),
+compatibility (3.15)) failed before any step ran; job logs unavailable through
+the API ("log not found"). Same signature as every prior hosted run against
+PR #3's branch (all failure, 0 executed steps), so this remains a runner-side
+environment blocker, not a test result.
+
+Branch-level observation: a plain branch push does not trigger ci.yml
+(triggers: pull_request, push to main/master, schedule, workflow_dispatch,
+workflow_call). A future PR created through a surface that can compare the
+separate histories would also receive pull_request-triggered runs.
+
+PR creation attempt (same session) was refused by GitHub because the pushed
+branch and main share no common history ('no history in common with main').

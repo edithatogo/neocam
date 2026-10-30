@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-30T13:27:39Z",
+  "remote": "https://github.com/edithatogo/neocam.git",
+  "local_branch": "conductor/neocam-v13-decision-refinements",
+  "local_tip": "8ec6a5cbaf1ded872c6e1da9d6f5b76a743be638",
+  "remote_tips_before_push": {
+    "main": "d7e438a098a5c8b5f4c8a86bd68836228c1efa5b",
+    "conductor/neocam-v9-track-reconciliation": "dad20644185156090d642cb9d01470adb2813138"
+  },
+  "ancestry": "no common merge-base between local branch and remote branches; new-branch push only, no force",
+  "expected_head_check": "remote tips re-verified immediately before push; push refused if any unexpected ref update is attempted (no force)"
+}

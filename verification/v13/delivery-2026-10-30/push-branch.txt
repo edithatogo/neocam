@@ -1,0 +1,36 @@
+Delivery evidence — 2026-10-30 (branch rewiring to GitHub)
+
+Context: local v13 branch was restored from Neocam_complete_v13.bundle; the
+previous `origin` still pointed at the unreachable bundle path. This session
+rewired the remote to GitHub and pushed an authorised review branch.
+
+Remote: https://github.com/edithatogo/neocam.git (private, user edithatogo via gh CLI)
+Old bundle remote retained as: bundle (/mnt/data/Neocam_complete_v13.bundle)
+
+Local commits (this session, newest last):
+  2771fd2 build(deps): refresh pins to latest releases and add genuine uv.lock
+  8ec6a5c receipt(quick): record green quick-profile receipts after dependency refresh
+  5de6912 chore(hooks): pin commit hooks to pre-commit stage; pre-push runs gitleaks only
+
+Push:
+  git push origin conductor/neocam-v13-decision-refinements:conductor/neocam-v13-decision-refinements
+  Result: new remote branch created; no force push; main untouched; visibility unchanged.
+  Pre-push gitleaks gate (full history, --log-opts=--all): PASSED at push time.
+  Local tip at push: 5de691259944e1f16a6e656ec784473dca207a25
+  ls-remote read-back: refs/heads/conductor/neocam-v13-decision-refinements = 5de691259944e1f16a6e656ec784473dca207a25 (matches)
+  Expected-head check: main = d7e438a098a5c8b5f4c8a86bd68836228c1efa5b and
+  conductor/neocam-v9-track-reconciliation = dad20644185156090d642cb9d01470adb2813138
+  unchanged before and after push (see ../push.json for pre-check record).
+  git fsck --full after fetch-back: ok (dangling objects only, from local stash cleanup).
+
+Pull request:
+  gh pr create --base main --head conductor/neocam-v13-decision-refinements
+  Result: REFUSED by GitHub — "The conductor/neocam-v13-decision-refinements branch
+  has no history in common with main". Cause is structural: the local v13 history was
+  reconstructed from the restored bundle and shares no merge-base with the remote's
+  v9-era history (reconciled remote updates were re-committed locally as new SHAs).
+  PR #3 was deliberately NOT modified. A shared-ancestor merge strategy is a later
+  governance decision, not something to force through.
+
+Outcome: branch delivered and verified read-back; independent PR delivery remains
+open until a review surface can compare the two histories.

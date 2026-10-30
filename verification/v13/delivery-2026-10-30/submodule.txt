@@ -1,0 +1,9 @@
+Conductor submodule checkout — 2026-10-30
+
+Command: git submodule update --init --recursive
+Result: exit 0; 'extensions/conductor' (https://github.com/edithatogo/conductor-next.git)
+checked out at the pinned SHA 137c1e41ff9c1dc75ff277b9582460a0bd8c4768 (heads/main).
+git submodule status: ' 137c1e41ff9c1dc75ff277b9582460a0bd8c4768 extensions/conductor (heads/main)'
+
+This was previously blocked by network/DNS in an earlier session. Actual pinned
+checkout now exists on disk (not a workflow-adapter simulation).

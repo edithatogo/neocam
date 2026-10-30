@@ -1,0 +1,19 @@
+GitHub dependency/secret surface — 2026-10-30
+
+Repo: edithatogo/neocam (private)
+
+Enabled this session via REST API (gh CLI, authenticated as edithatogo):
+  PUT /repos/edithatogo/neocam/vulnerability-alerts         -> 204 No Content (enabled)
+  PUT /repos/edithatogo/neocam/automated-security-fixes     -> 204 No Content (enabled)
+Meaning: Dependabot vulnerability alerts and automated security-fix PRs are on.
+
+Not available / not attempted further:
+  Secret scanning — GET secret-scanning/alerts returns 404 "Secret scanning is
+  disabled on this repository"; enabling it requires GitHub Advanced Security
+  licensing (not present on this free private repo).
+  Push protection — same GHAS licensing requirement.
+
+So the local equivalent enforcement layer is in place instead:
+  .pre-commit-config.yaml 'staged-secrets'  : gitleaks on staged changes, every commit
+  .pre-commit-config.yaml 'pushed-secrets'  : gitleaks over full history, every push
+  both passed during this session's commits and push.

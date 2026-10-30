@@ -20,14 +20,15 @@
     "clinical outcomes not causally quantified",
     "four critical full texts missing",
     "original public PDF/XLSX files not acquired",
-    "Gitleaks/latest stack/real lock/hosted CI/Conductor checkout unverified"
+    "hosted CI executes 0 steps (runs fail before step start); branch and main histories remain separate"
   ],
-  "next_acceptance": "Read the exact final receipt; complete genuine lock/tool execution, remote inventory and independent evidence review.",
+  "next_acceptance": "Read the exact final receipt; run full assurance on the refreshed lock; review transitive licences; reconcile branch/main ancestry for review delivery; independent evidence review.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "private",
-  "remote_import": "Partial at last verified PR head dad20644185156090d642cb9d01470adb2813138; no v13 remote write",
+  "remote_origin": "https://github.com/edithatogo/neocam.git (rewired 2026-10-30 from unreachable restore-bundle path)",
+  "remote_import": "Branch conductor/neocam-v13-decision-refinements pushed 2026-10-30 (tip 5de691259944e1f16a6e656ec784473dca207a25) with read-back verification; pushed history shares no merge-base with remote main — read-only import surfaces unchanged",
   "hosted_environment_check": {
-    "run_id": 40721279349,
+    "run_id": 41063979096,
     "conclusion": "failure",
     "executed_steps_reported": 0
   },
@@ -44,8 +45,8 @@
     "outputs/v13-primary",
     "outputs/v13-refinements"
   ],
-  "remote_written_in_this_turn": false,
-  "remote_write_blocker": "No write actions exposed; CLI push failed DNS",
+  "remote_written_in_this_turn": true,
+  "remote_write_blocker": "Branch push succeeded via gh-authenticated HTTPS; PR creation refused by GitHub on unrelated histories; main merge and PR #3 update remain unacceptable force-push surfaces",
   "primary_results_change": "Reference default unchanged; new conditional contact/policy scenarios added",
   "refinement_analysis": "outputs/v13-refinements/results.json"
 }

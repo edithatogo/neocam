@@ -1,0 +1,24 @@
+Native tools bootstrap — 2026-10-30
+
+Command: uv run --frozen --no-sync python -m quality.bootstrap
+Result: exit 0.
+  Installed checksum-verified gitleaks 8.30.1 (pinned exactly by quality/native-tools.json;
+  matches the Homebrew installation and the v8.30.1 upstream latest release)
+  Installed checksum-verified vale 3.25.1
+  Installed checksum-verified actionlint 1.7.12 (upstream latest release as of 2026-10-30)
+
+Location: .tools/bin/{gitleaks,vale,actionlint}; quality.cli/_native resolves these first.
+
+Direct privacy-scan executions this session (gitleaks 8.30.1):
+  gitleaks detect --log-opts=--all  (109 commits, 33MB): no leaks found
+  gitleaks dir .                    (tree incl. untracked): no leaks found
+  quality.hooks secrets-history at push: PASSED
+
+Workflow/config gates actually executed (via quality.hooks):
+  Vale (prose, README/AGENTS/GEMINI/conductor/runbook.md): 0 errors, 0 warnings, 0 suggestions
+  Actionlint (ci.yml, release-gate.yml): no findings
+  zizmor pedantic (release-gate.yml): 'No findings to report' after resolving
+    the self-repository finding. Note: zizmor 1.31.1 rewrites './...' to '$/...'
+    (a newer GitHub shorthand); pinned actionlint 1.7.12 — the latest upstream
+    release — does not parse that form, so the conventional './...' call is kept
+    with an inline 'zizmor: ignore[self-repository]' justification comment.

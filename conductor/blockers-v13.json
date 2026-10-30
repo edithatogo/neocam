@@ -9,27 +9,30 @@
       "action": "UV_HTTP_TIMEOUT=8 UV_HTTP_RETRIES=0 uv lock",
       "evidence": "verification/v13/lock-attempt.txt",
       "log_sha256": "e6fdecdc4c33c3317208ec16f34a02d59ee224e23eaa7fe5df5262d565c07c02",
-      "acceptance": "Resolve a genuine lock, review transitive licences and banned dataframe engines, then uv sync --frozen; no fake lock."
+      "acceptance": "Resolve a genuine lock, review transitive licences and banned dataframe engines, then uv sync --frozen; no fake lock.",
+      "detail": "2026-10-30: genuine uv.lock resolved with uv 0.13.6 network resolution (213 package records), quality.contracts.validate_lock clean, no pandas/xarray; uv sync --locked executed for execution environment (commit 2771fd2; reviewed register evidence/dependency_targets_v3.json). Remaining acceptance: transitive licence review."
     },
     {
       "id": "native-tools",
       "category": "security",
-      "status": "blocked",
+      "status": "complete",
       "attempted_in_v13": true,
       "action": "python -m quality.bootstrap",
-      "evidence": "verification/v13/native-attempt.txt",
+      "evidence": "verification/v13/delivery-2026-10-30/native-tools.txt",
       "log_sha256": "c4c54d8cc985f91f4e12d6eb8133e515f75faaca892d1e7bd040eb0d398634ae",
-      "acceptance": "Verified native downloads, pinned versions, Gitleaks history/tree and Vale/actionlint must actually pass."
+      "acceptance": "Verified native downloads, pinned versions, Gitleaks history/tree and Vale/actionlint must actually pass.",
+      "detail": "2026-10-30: bootstrap installed checksum-verified gitleaks 8.30.1 (= manifest pin, = upstream latest), vale 3.25.1, actionlint 1.7.12 (= upstream latest). Gitleaks full history (109 commits) and tree scans clean; Vale 0 findings on sanctioned prose; actionlint and pedantic zizmor pass on both workflows. Original failed-attempt log retained at verification/v13/native-attempt.txt."
     },
     {
       "id": "conductor-checkout",
       "category": "environment",
-      "status": "blocked",
+      "status": "complete",
       "attempted_in_v13": true,
       "action": "git submodule update --init --recursive",
-      "evidence": "verification/v13/submodule-attempt.txt",
+      "evidence": "verification/v13/delivery-2026-10-30/submodule.txt",
       "log_sha256": "b3fa27811b30e7337aff3fa5d1c92315fdee0144f3bab06607e33f1d9e91d057",
-      "acceptance": "Actual pinned checkout exists; workflow adapters do not count as a checkout."
+      "acceptance": "Actual pinned checkout exists; workflow adapters do not count as a checkout.",
+      "detail": "2026-10-30: extensions/conductor checked out at pinned 137c1e41ff9c1dc75ff277b9582460a0bd8c4768 (heads/main) from https://github.com/edithatogo/conductor-next.git."
     },
     {
       "id": "core-fulltexts",
@@ -70,17 +73,19 @@
       "evidence": "verification/v13/push-attempt.txt",
       "log_sha256": "98628977edba7aa2ac7f9570bec42f5c12ea676a5efc0d0bd1101a446e4b102c",
       "acceptance": "All authorised code/data/artifacts/history accounted for, no omitted files silently treated as complete.",
-      "detail": "This session exposes only 48 read/search GitHub functions; create_tree/create_commit/update_ref/PR writes not available. GitHub plugin discovery confirms installed hybrid connector/CLI workflow, not missing installation. Actual CLI push failed DNS. No GitHub write performed."
+      "detail": "2026-10-30 part 1 (this session): remote rewired from unreachable restore-bundle origin to https://github.com/edithatogo/neocam.git; conductor/neocam-v13-decision-refinements pushed (tip 5de691259944e1f16a6e656ec784473dca207a25) with expected-head check, read-back verification and git fsck clean. Branch and remote main share no merge-base, so GitHub refused PR creation ('no history in common with main'); PR #3 untouched. Complete-migration acceptance (full ancestry/tree accounting across both histories) still open — evidence: verification/v13/delivery-2026-10-30/push-branch.txt.",
+      "earlier_detail": "This session exposes only 48 read/search GitHub functions; create_tree/create_commit/update_ref/PR writes not available. GitHub plugin discovery confirms installed hybrid connector/CLI workflow, not missing installation. Actual CLI push failed DNS. No GitHub write performed."
     },
     {
       "id": "hosted-assurance",
       "category": "delivery",
       "status": "open",
-      "attempted_in_v13": false,
+      "attempted_in_v13": true,
       "action": "Run existing PR #3 workflow; inspect actual job steps/logs",
-      "evidence": null,
+      "evidence": "verification/v13/delivery-2026-10-30/hosted-ci.txt",
       "log_sha256": null,
-      "acceptance": "Hosted runner allocated and all required checks execute against imported commit; runner allocation failure is not a test result."
+      "acceptance": "Hosted runner allocated and all required checks execute against imported commit; runner allocation failure is not a test result.",
+      "detail": "2026-10-30: ci.yml dispatched manually on the pushed branch (run 41063979096, workflow_dispatch, attempt 1); conclusion failure with 0 executed steps for all three jobs; logs unavailable via API. Runner-side blocker persists, unchanged in signature from earlier PR #3 runs."
     },
     {
       "id": "site-eligibility",

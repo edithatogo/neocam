@@ -1,12 +1,17 @@
 name: Manual release-candidate evidence only
 on:
   workflow_dispatch:
+concurrency:
+  group: panda-release-gate
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
   verified-candidate:
-    uses: ./.github/workflows/ci.yml
+    name: Reusable full assurance
+    uses: ./.github/workflows/ci.yml  # zizmor: ignore[self-repository] -- pinned actionlint 1.7.12 (latest release) does not yet parse '$/...'
   review-boundary:
+    name: Review boundary record
     needs: verified-candidate
     runs-on: ubuntu-24.04
     steps:
