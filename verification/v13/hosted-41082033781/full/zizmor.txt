@@ -1,0 +1,4 @@
+[32mNo findings to report. Good job![39m ([1m[93m1[39m ignored[0m)
+[32m INFO[0m [2mzizmor[0m[2m:[0m 🌈 zizmor v1.31.1
+[32m INFO[0m [1maudit[0m[2m:[0m [2mzizmor[0m[2m:[0m 🌈 completed .github/workflows/ci.yml
+[32m INFO[0m [1maudit[0m[2m:[0m [2mzizmor[0m[2m:[0m 🌈 completed .github/workflows/release-gate.yml

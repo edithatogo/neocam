@@ -1,0 +1,24 @@
+# Hosted gate output summary — basedpyright
+# Full raw log: CI run 41082033781 artifact (assurance-4bdb86be). Truncated locally to keep the repo light.
+# total lines in hosted output:     9620
+
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:21:5 - error: Return type, "list[dict[Unknown, Unknown]]", is partially unknown (reportUnknownParameterType)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=21,col=5::Return type, "list[dict[Unknown, Unknown]]", is partially unknown (reportUnknownParameterType)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:21:75 - error: Expected type arguments for generic class "dict" (reportMissingTypeArgument)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=21,col=75::Expected type arguments for generic class "dict" (reportMissingTypeArgument)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:31:9 - error: Type of "append" is partially unknown
+  Type of "append" is "(object: Unknown, /) -> None" (reportUnknownMemberType)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=31,col=9::Type of "append" is partially unknown%0A  Type of "append" is "(object: Unknown, /) -> None" (reportUnknownMemberType)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:32:50 - error: Argument type is Any
+  Argument corresponds to parameter "x" in function "__new__" (reportAny)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=32,col=50::Argument type is Any%0A  Argument corresponds to parameter "x" in function "__new__" (reportAny)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:34:43 - error: Argument type is Any
+  Argument corresponds to parameter "x" in function "__new__" (reportAny)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=34,col=43::Argument type is Any%0A  Argument corresponds to parameter "x" in function "__new__" (reportAny)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:35:12 - error: Return type, "list[Unknown]", is partially unknown (reportUnknownVariableType)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=35,col=12::Return type, "list[Unknown]", is partially unknown (reportUnknownVariableType)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:38:5 - error: Return type, "dict[Unknown, Unknown]", is partially unknown (reportUnknownParameterType)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=38,col=5::Return type, "dict[Unknown, Unknown]", is partially unknown (reportUnknownParameterType)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:38:41 - error: Expected type arguments for generic class "dict" (reportMissingTypeArgument)
+::error file=/home/runner/work/neocam/neocam/quality/analysis_checks.py,line=38,col=41::Expected type arguments for generic class "dict" (reportMissingTypeArgument)
+/home/runner/work/neocam/neocam/quality/analysis_checks.py:40:5 - error: Type of "now" is Any (reportAny)

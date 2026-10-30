@@ -1,0 +1,4 @@
+{
+  "check": "scalene_output",
+  "errors": []
+}

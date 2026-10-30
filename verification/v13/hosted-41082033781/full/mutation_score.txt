@@ -1,0 +1,6 @@
+{
+  "check": "mutation",
+  "errors": [
+    "Mutation score below 90%: 69.78%"
+  ]
+}

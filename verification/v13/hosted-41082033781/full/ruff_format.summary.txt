@@ -1,0 +1,24 @@
+# Hosted gate output summary — ruff_format
+# Full raw log: CI run 41082033781 artifact (assurance-4bdb86be). Truncated locally to keep the repo light.
+# total lines in hosted output:    22346
+
+unformatted: File would be reformatted
+  --> quality/analysis_checks.py:2:1
+   |
+1  | """Audit generated analysis and quantify simulation error without changing the model."""
+2  +
+3  | from __future__ import annotations
+--------------------------------------------------------------------------------
+13 | PROTECTED = (
+   -     'data/parameters.json', 'data/births_queensland_2022.csv',
+   -     'data/site_classification.json', 'data/population_totals.json',
+   -     'evidence/sources.csv', 'evidence/parameter_register.csv',
+   -     'evidence/literature_parameter_map.csv', 'evidence/search_log.md',
+   -     'evidence/transport_mode_comparison.csv',
+14 +     "data/parameters.json",
+15 +     "data/births_queensland_2022.csv",
+16 +     "data/site_classification.json",
+17 +     "data/population_totals.json",
+18 +     "evidence/sources.csv",
+19 +     "evidence/parameter_register.csv",
+20 +     "evidence/literature_parameter_map.csv",

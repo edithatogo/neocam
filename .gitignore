@@ -39,3 +39,6 @@ archive/
 # Local build artifacts
 build/
 *.egg-info/
+
+# Local agent/runtime scratch (not project source)
+.opencode/

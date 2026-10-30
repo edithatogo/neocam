@@ -1,0 +1,37 @@
+# Hosted gate output summary — ruff_lint
+# Full raw log: CI run 41082033781 artifact (assurance-4bdb86be). Truncated locally to keep the repo light.
+# total lines in hosted output:   464793
+
+4083	Q000   	[*] bad-quotes-inline-string
+3041	E231   	[*] missing-whitespace
+1133	E225   	[*] missing-whitespace-around-operator
+ 550	E226   	[*] missing-whitespace-around-arithmetic-operator
+ 478	D103   	[ ] undocumented-public-function
+ 432	ANN201 	[ ] missing-return-type-undocumented-public-function
+ 321	ANN001 	[ ] missing-type-function-argument
+ 266	E702   	[ ] multiple-statements-on-one-line-semicolon
+ 158	TRY003 	[ ] raise-vanilla-args
+ 150	E701   	[ ] multiple-statements-on-one-line-colon
+ 140	EM101  	[ ] raw-string-in-exception
+  95	E501   	[ ] line-too-long
+  91	PT011  	[ ] pytest-raises-too-broad
+  77	CPY001 	[ ] missing-copyright-notice
+  70	DOC201 	[ ] docstring-missing-returns
+  70	I001   	[-] unsorted-imports
+  53	PLC0415	[ ] import-outside-top-level
+  44	DOC501 	[ ] docstring-missing-exception
+  42	PLR2004	[ ] magic-value-comparison
+  39	E302   	[*] blank-lines-top-level
+
+missing-copyright-notice: Missing copyright notice at top of file
+--> quality/__init__.py:1:1
+
+missing-copyright-notice: Missing copyright notice at top of file
+--> quality/analysis_checks.py:1:1
+
+bad-quotes-inline-string: [*] Single quotes found but double quotes preferred
+  --> quality/analysis_checks.py:13:5
+   |
+11 | ROOT = Path(__file__).resolve().parents[1]
+12 | PROTECTED = (
+13 |     'data/parameters.json', 'data/births_queensland_2022.csv',

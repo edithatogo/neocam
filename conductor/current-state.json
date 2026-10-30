@@ -20,7 +20,7 @@
     "clinical outcomes not causally quantified",
     "four critical full texts missing",
     "original public PDF/XLSX files not acquired",
-    "hosted CI now executes; 5 pre-existing code-quality gates fail (ruff_lint/ruff_format/ty/basedpyright/mutation_score) and locked_versions is blocked on the reporting extra not synced by ci.yml"
+    "hosted CI now executes; 26/31 gates pass on commit 4bdb86b; the five failures are pre-existing ruff_lint/ruff_format/ty/basedpyright/mutation_score debt (see conductor/drafts/code-quality-burndown.md)"
   ],
   "next_acceptance": "Read the exact final receipt; run full assurance on the refreshed lock; review transitive licences; reconcile branch/main ancestry for review delivery; independent evidence review.",
   "remote": "edithatogo/neocam",

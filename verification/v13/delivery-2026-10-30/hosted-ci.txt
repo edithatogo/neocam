@@ -38,3 +38,12 @@ None of the four code-quality failures cite files changed in this delivery
 pre-existing quality/analysis_checks.py and similar modules.
 
 Artifacts: assurance-f8e3e96..., compatibility-3.14-f8e3e96..., compatibility-3.15-f8e3e96...
+
+Follow-up run — 41082033781 (commit 4bdb86b, 2026-10-31), after syncing --extra reporting:
+  Ledger: 26 passed / 5 failed / 0 blocked (was 25/5/1).
+  locked_versions: PASSED ({"check": "versions", "errors": []}) — confirmed the fix.
+  Remaining failures are exactly the five pre-existing debt gates:
+  ruff_lint, ruff_format, ty, basedpyright, mutation_score (69.78% < 90%).
+  Compatibility 3.14 and 3.15 still pass. No new failure introduced by this delivery.
+  Hosted receipts retained at verification/v13/hosted-41082033781/full/ (compact
+  summaries for the two large lint logs; full raw logs remain in the CI artifact).
