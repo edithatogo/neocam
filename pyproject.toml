@@ -68,8 +68,27 @@ ignore = ["missing-trailing-comma", "single-line-implicit-string-concatenation"]
 
 [tool.ruff.lint.per-file-ignores]
 # Assertions and literal expected values are deliberate in tests.
-"tests/*.py" = ["assert", "magic-value-comparison"]
+"tests/*.py" = [
+  "assert",
+  "magic-value-comparison",
+  # Tests are not a public API. Documenting and annotating every test, fixture
+  # and double is churn with no consumer; behaviour is covered by the suite itself.
+  "undocumented-public-function",
+  "undocumented-public-module",
+  "undocumented-public-package",
+  "missing-type-function-argument",
+  "missing-return-type-undocumented-public-function",
+  "missing-return-type-private-function",
+  "unused-function-argument",
+  "unused-lambda-argument",
+  "private-member-access",
+  "import-private-name",
+  "implicit-namespace-package",
+]
 "quality/hypothesis_properties.py" = ["assert", "magic-value-comparison"]
+# Ownership/licensing is a repository-level statement; this repository deliberately
+# ships no per-file copyright headers and has no LICENSE file to reference.
+"**/*.py" = ["missing-copyright-notice"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
