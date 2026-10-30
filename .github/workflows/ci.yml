@@ -36,7 +36,7 @@ jobs:
         run: |
           test -f uv.lock
           uv lock --check
-          uv sync --frozen --group assurance --extra tabular --extra research
+          uv sync --frozen --group assurance --extra tabular --extra research --extra reporting
           uv run --frozen --no-sync python -m quality.bootstrap
       - name: PR assurance (one covered suite)
         if: github.event_name == 'pull_request'
