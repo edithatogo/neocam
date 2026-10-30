@@ -1,0 +1,26 @@
+{
+  "track": "v3-01-input-and-numerical-integrity",
+  "order": 3,
+  "checked_at_utc": "2026-10-29T17:36:58.671171+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "02857707766c7a926f5be71e4faa6ff6b9006b9d",
+  "plan_spec_sha256": {
+    "spec.md": "1facd516527aea6d7773b77365a76a0e645875412081af19a7653ed16fdbe9bc",
+    "plan.md": "434bcc72339c7c32fec679b3cb639060f483d4835dba305bf4627aef438df9fa"
+  },
+  "historical_status": "complete_within_scope",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v3_regressions.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 15,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "No further defect found within this numerical-integrity scope.",
+  "log": "verification/v10/tracks/03-v3-01-input-and-numerical-integrity.txt",
+  "log_sha256": "854be6b5f038a885da628bd4b089fcd4e10a1c1288488c7b13fd5363f0ce3251"
+}

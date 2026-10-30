@@ -1,0 +1,14 @@
+{
+  "scope": "Actually available reporting packages; not claimed latest or transitively locked",
+  "versions": {
+    "python-docx": "1.2.0",
+    "python-pptx": "1.0.2",
+    "reportlab": "4.4.9",
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0"
+  },
+  "pandas_xarray": "Not imported by project; not certified absent from shared host",
+  "lock_resolved": false
+}

@@ -1,0 +1,26 @@
+{
+  "track": "v5-02-sensitivity",
+  "order": 13,
+  "checked_at_utc": "2026-10-29T17:37:47.696790+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "c06afc73c15186f4b75d9622bed5d2a3ab53f836",
+  "plan_spec_sha256": {
+    "spec.md": "fdbe1f1daea9c19e6ba73f78459b2a4a7a071a0a5ad2a4e32f69c83cb4aa65c2",
+    "plan.md": "b05d54a0493d7b6ff13e9658dd28fd164415173aaa386448736914ff921f7c68"
+  },
+  "historical_status": "implemented_with_acceptance_boundaries",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v5_sensitivity.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 19,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Historical outputs not certified on a resolved pinned environment.",
+  "log": "verification/v10/tracks/13-v5-02-sensitivity.txt",
+  "log_sha256": "fd6da8997275e3065b2a4edb61bb9649a1d5e7450b196d4f42bd7f8a759f2ebe"
+}

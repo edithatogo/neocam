@@ -1,0 +1,56 @@
+"""Regional hospital/emergency scenarios; not a census of all community clinics."""
+from __future__ import annotations
+from dataclasses import replace
+import numpy as np
+from src.statewide import Site,load_sites,select_sites
+from src.pathways_v6 import _activity
+
+CHHHS=('Cairns','Atherton','Mareeba','Innisfail','Tully','Mossman','Babinda','Gordonvale','Herberton','Yarrabah Emergency Service')
+TCHHS=('Cooktown','Weipa','Thursday Island','Bamaga')
+
+def regional_roster() -> list[dict]:
+    old={s.name:s for s in load_sites()};rows=[]
+    for name in CHHHS+TCHHS:
+        s=old.get(name)
+        role=('birth/referral' if name=='Cairns' else 'birthing' if name in ('Atherton','Mareeba','Innisfail','Thursday Island')
+              else 'reopened birthing' if name in ('Cooktown','Weipa') else 'readiness scenario')
+        status=('birthing resumed September 2026' if name=='Cooktown' else 'birthing resumed May 2024' if name=='Weipa'
+                else 'not asserted to have planned birthing' if role=='readiness scenario' else 'current service directory')
+        rows.append({'name':name,'hhs':'CHHHS' if name in CHHHS else 'TCHHS','role':role,
+                     'births_2022':None if s is None else s.births,'current_status':status,
+                     'births_status':'missing from retained table; NOT observed zero' if s is None else '2022 historical count',
+                     'source_id':'CHHHS_DIR' if name in CHHHS else 'TCHHS_DIR',
+                     'scope':'hospital/emergency network only; community/primary health centres excluded'})
+    return rows
+
+
+def portfolio(name: str) -> list[Site]:
+    old={s.name:s for s in load_sites()}
+    if name in ('pilot','spokes'):return select_sites(list(old.values()),name)
+    names=CHHHS if name=='chhhs' else CHHHS+TCHHS if name=='chhhs_tchhs' else None
+    if names is None:raise ValueError('Unknown portfolio')
+    # A zero in this computational record is an inactive-exposure placeholder;
+    # the public roster retains None and does not report it as zero births.
+    return [old[n] if n in old else Site(n,0,2022,'readiness','remote' if n in TCHHS else 'regional') for n in names]
+
+
+def consultation_overrides(sites: list[Site],inputs: dict,*, reopened: bool=False,
+                           readiness_calls: float=0.,cairns_hub_only: bool=False,
+                           cooktown_annual_births: float=50.) -> dict[str,np.ndarray]:
+    """Expose uncertain activity without manufacturing birth observations.
+
+    Reopened uses published Weipa32 births in2025, and Cooktown50/year assumed
+    (not observed). No new 2026 denominator is asserted. Readiness calls are
+    separate incident scenarios; a zero-benefit reference still incurs readiness.
+    """
+    if not np.isfinite(readiness_calls) or readiness_calls<0 or not np.isfinite(cooktown_annual_births) or cooktown_annual_births<0:
+        raise ValueError('Nonnegative finite activity required')
+    n=len(inputs['odds_ratio']);out={}
+    for s in sites:
+        if s.name=='Cairns' and cairns_hub_only:out[s.name]=np.zeros(n)
+        elif reopened and s.name in ('Cooktown','Weipa'):
+            births=32. if s.name=='Weipa' else cooktown_annual_births
+            out[s.name]=births*(3*inputs['calls_per_pilot_site']/486)*1.25*inputs['state_uptake']
+        elif s.group=='readiness':
+            out[s.name]=_activity(s,inputs)+readiness_calls*(inputs['calls_per_pilot_site']/12.5)
+    return out

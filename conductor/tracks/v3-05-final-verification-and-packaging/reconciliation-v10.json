@@ -1,0 +1,27 @@
+{
+  "track": "v3-05-final-verification-and-packaging",
+  "order": 7,
+  "checked_at_utc": "2026-10-29T17:37:38.832422+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "5fd018876329ae95d93a0f8af6a480087283d571",
+  "plan_spec_sha256": {
+    "spec.md": "c84df7440d261321c275a4aee98ef9e31b85f20b56bd5eed795860733b99e9cf",
+    "plan.md": "377683ec230c300afdaee122dacb12a34f312738c26bff9d19c0e2bea1b45092"
+  },
+  "historical_status": "implementation_recorded_acceptance_incomplete",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_quality_gates.py",
+    "tests/test_assurance_scope.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 22,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Full external assurance remains unsuccessful.",
+  "log": "verification/v10/tracks/07-v3-05-final-verification-and-packaging.txt",
+  "log_sha256": "8cd449065033f435536d0367c1b8f789e79da23ab030f35a7ba6049dad06e2cf"
+}

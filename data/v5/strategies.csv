@@ -1,0 +1,6 @@
+key,label,installed_cost,source,locally_validated
+telephone,Telephone advice,0,Common existing care; incremental zero,True
+mobile,Mobile teleconference,45000,"ELC 21 Oct 2026, printed p210; indicative",False
+panda,Panda Vision,10000,ELC printed p209-210 and user; invoices unverified,True
+fixed,Ceiling/wall PTZ,47000,ELC printed p210; indicative,False
+obsbot,Tablet + OBSBOT kit,4500,Analyst complete-kit assumption; no supplier quote,False

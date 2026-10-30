@@ -1,0 +1,36 @@
+{
+  "version": "12.0.0",
+  "draws": 20000,
+  "seed": 20261028,
+  "portfolios": {
+    "pilot": 3,
+    "chhhs": 10,
+    "chhhs_tchhs": 14,
+    "spokes": 33
+  },
+  "perspectives": [
+    "health_system",
+    "societal_bounded",
+    "provider_chhhs",
+    "patient_family",
+    "state",
+    "commonwealth"
+  ],
+  "simulated_review": "role-based author self-review, not independent agents",
+  "counts": {
+    "paired_psa_structures": 44,
+    "psa_result_rows": 1320,
+    "vop_directional_rows": 1584,
+    "two_way_allocation_rows": 1452,
+    "qaly_thresholds": 48,
+    "utility_bridge_scenarios": 54,
+    "prior_predictive_rows": 140,
+    "mixed_estate_budget_rows": 280
+  },
+  "max_mass_error": 6.821210263296962e-13,
+  "max_ledger_error": 9.313225746154785e-10,
+  "funding": "Fixed fiscal response reference; .405 is an uncapped illustrative benchmark response, not a Queensland entitlement calculator",
+  "societal_scope": "Health resources plus existing family travel/time aggregate only; wider education/carer/environment effects unquantified",
+  "source_vop_commit": "ad84d3090a2d97f2805a86e94a7b9614a3d1ab14",
+  "fit": "No local empirical fitting; labelled transported and researcher priors"
+}

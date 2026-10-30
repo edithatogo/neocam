@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "parameters": "data/parameters.json",
+  "pathways": "config/pathways.json",
+  "equipment_estate": "config/equipment_estate.json",
+  "run": {
+    "draws": 20000,
+    "seed": 20261028,
+    "portfolios": [
+      "pilot",
+      "chhhs",
+      "chhhs_tchhs",
+      "spokes"
+    ]
+  }
+}

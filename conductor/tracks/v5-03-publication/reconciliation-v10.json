@@ -1,0 +1,27 @@
+{
+  "track": "v5-03-publication",
+  "order": 14,
+  "checked_at_utc": "2026-10-29T17:37:55.916996+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "6d0f0b2066a7e1cee87a4d320a2ce76d60b652e0",
+  "plan_spec_sha256": {
+    "spec.md": "b258094835cd164ed9d9bad328ab8215244af56862325146285658e4fbbb1523",
+    "plan.md": "177d0a25a0af971ccdd0943195be1952be0cf19a726352b9aee8d860f0f26051"
+  },
+  "historical_status": "implemented_with_acceptance_boundaries",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v5_analysis_integrity.py",
+    "tests/test_v5_assurance_scope.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 9,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Four critical full texts and independent review missing.",
+  "log": "verification/v10/tracks/14-v5-03-publication.txt",
+  "log_sha256": "e45be053ce2b0b4919c09cf65ab4c43793d6c53be59d06c06af9c1360414e1f6"
+}

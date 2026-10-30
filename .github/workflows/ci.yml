@@ -1,0 +1,96 @@
+name: Lean model and developer assurance
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: '0 20 * * 0'
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: panda-assurance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  assurance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          submodules: true
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: '0.13.6'
+          python-version: '3.13'
+          # Package cache only on trusted non-PR events; never cache a virtualenv or acceptance receipt.
+          enable-cache: ${{ github.event_name != 'pull_request' }}
+          cache-dependency-glob: uv.lock
+      - name: Select declared evidence version
+        run: echo "EVIDENCE_VERSION=$(python3 -c 'import json; print(json.load(open("config/assurance.json"))["evidence_version"])')" >> "$GITHUB_ENV"
+      - name: Require reviewed, current lock and install frozen dependencies
+        run: |
+          test -f uv.lock
+          uv lock --check
+          uv sync --frozen --group assurance --extra tabular --extra research
+          uv run --frozen --no-sync python -m quality.bootstrap
+      - name: PR assurance (one covered suite)
+        if: github.event_name == 'pull_request'
+        run: uv run --frozen --no-sync python -m quality.cli --profile pr --evidence-version "$EVIDENCE_VERSION"
+      - name: Full fresh acceptance (trusted push, scheduled, manual or reusable)
+        if: github.event_name != 'pull_request'
+        run: uv run --frozen --no-sync python -m quality.cli --profile full --evidence-version "$EVIDENCE_VERSION"
+      - name: Retain only verification evidence, not corporate templates
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: assurance-${{ github.sha }}
+          path: |
+            verification/${{ env.EVIDENCE_VERSION }}/pr/
+            verification/${{ env.EVIDENCE_VERSION }}/full/
+            verification/${{ env.EVIDENCE_VERSION }}/coverage.json
+            verification/${{ env.EVIDENCE_VERSION }}/scalene.json
+            verification/${{ env.EVIDENCE_VERSION }}/gitleaks-*.json
+            verification/${{ env.EVIDENCE_VERSION }}/pip-audit.json
+            verification/${{ env.EVIDENCE_VERSION }}/sbom.json
+            coverage/gremlins/
+          if-no-files-found: error
+          retention-days: 14
+  compatibility:
+    if: github.event_name != 'pull_request'
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.14', '3.15']
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version: '0.13.6'
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Select declared evidence version
+        run: echo "EVIDENCE_VERSION=$(python3 -c 'import json; print(json.load(open("config/assurance.json"))["evidence_version"])')" >> "$GITHUB_ENV"
+      - name: Frozen compatibility environment
+        run: |
+          test -f uv.lock
+          uv lock --check
+          uv sync --frozen --group test --extra research
+      - name: Ordinary suite and input/context contracts
+        run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version "$EVIDENCE_VERSION"
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: compatibility-${{ matrix.python }}-${{ github.sha }}
+          path: verification/${{ env.EVIDENCE_VERSION }}/quick/
+          if-no-files-found: error
+          retention-days: 14

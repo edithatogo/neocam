@@ -1,0 +1,46 @@
+{
+  "version": 12,
+  "date": "2026-10-30",
+  "active_tracks": [
+    "v12-01-execution-accounting",
+    "v12-02-artifacts-provenance",
+    "v12-03-portable-delivery",
+    "v12-04-scientific-validation"
+  ],
+  "branch": "conductor/neocam-v12-consistency",
+  "parent_commit": "d1fd81342ec2561fa5a01f744a8d312e47f31e49",
+  "release_ready": false,
+  "independent_validation": false,
+  "review": "four simulated author roles; not independent agents",
+  "analysis": "outputs/v12/results.json",
+  "receipt": "verification/v12/full/receipt.json",
+  "source_manifest": "sources/manifest.json",
+  "public_original_archival_complete": false,
+  "known_limitations": [
+    "historical/missing denominators and current capability/routing",
+    "one clinical episode per forecast consultation assumption",
+    "bounded societal/family costing and unknown provider contracts",
+    "clinical outcomes not causally quantified",
+    "four critical full texts missing",
+    "original public PDF/XLSX files not acquired",
+    "Gitleaks/latest stack/real lock/hosted CI/Conductor checkout unverified"
+  ],
+  "next_acceptance": "Read the exact final receipt; complete genuine lock/tool execution, remote inventory and independent evidence review.",
+  "remote": "edithatogo/neocam",
+  "remote_visibility": "private",
+  "remote_import": "partial at the observed PR head; current v12 text upload pending readback; supporting artifacts and original ancestry remain open",
+  "hosted_environment_check": {
+    "run_id": 40721279349,
+    "conclusion": "failure",
+    "executed_steps_reported": 0
+  },
+  "remote_pr": 3,
+  "remote_branch": "conductor/neocam-v9-track-reconciliation",
+  "tracks_reconciled": 22,
+  "reconciled_remote_source_commit": "afd6c96456326f77f1f0f50a899c7495b632d609",
+  "reconciled_remote_updates": [
+    "cb01184fafe688c8a1cdfbbece60cff35f2eb90c",
+    "3021017be5349faa4ea2cdcbdef89a4e37865b6d"
+  ],
+  "remote_verified_incremental_commit": "0b87cdb38e8ea0aba444ffa4512f05cebf1af734"
+}

@@ -1,0 +1,38 @@
+{
+  "scope": "Complete local recovered project, not complete remote checkout",
+  "source_commit": "a489f2d610510b822919165a6e3d47f02dfbcde1",
+  "input_fingerprint": "b5217d2603a1022908c225ca5d9a2dc1316b58c67028644a99b8c1b8b60f7fd2",
+  "run_id": "895a68e3-fa5e-4032-b1ee-48d673a4161e",
+  "run_finished": true,
+  "ordinary_tests_passed": 541,
+  "counts": {"passed": 7, "blocked": 22, "failed": 1},
+  "full_local_assurance": false,
+  "release_ready": false,
+  "coverage_percent": 93.26446280991736,
+  "core_coverage_percent": 96.4,
+  "receipt_sha256": "7831402e95237b210148eb40e9b6b0bbca9a14aa69c381ea64e586ce114e0d8b",
+  "independent_validation": false,
+  "remote_code_commit": "44cc6578d481d9bccf9c9b27e2d9eb057dfe1708",
+  "subtrees": {
+    "src": "cc0bbb89ece22b08f498937595d3f5c10846b0fd",
+    "data": "2530ae6e70fb2ff9c5d517014b85378764e5085e",
+    "tests": "beb69bc39b68d0260362210a7283044f8b98f926",
+    "quality": "6880fa6bf9c1c05c7f96a274a08f0a24b88218c2"
+  },
+  "prior_tracks_reconciled": 22,
+  "remote_import_complete": false,
+  "restoration_tests_passed": 541,
+  "restoration_source_commit": "a489f2d610510b822919165a6e3d47f02dfbcde1",
+  "gate_status": {
+    "pytest": "passed", "inputs": "passed", "context": "passed",
+    "source_integrity": "passed", "coverage": "passed", "coverage_threshold": "passed",
+    "core_coverage": "passed", "ruff_lint": "blocked", "ruff_format": "blocked",
+    "ty": "blocked", "basedpyright": "blocked", "hypothesis": "blocked",
+    "gremlins": "blocked", "mutation_score": "blocked", "scalene": "blocked",
+    "scalene_output": "blocked", "gitleaks_history": "blocked", "gitleaks_tree": "blocked",
+    "vale": "blocked", "dependency_consistency": "failed", "dependency_lock": "blocked",
+    "native_versions": "blocked", "locked_versions": "blocked", "pip_audit": "blocked",
+    "sbom": "blocked", "conductor_checkout": "blocked", "polars_consistency": "blocked",
+    "actionlint": "blocked", "zizmor": "blocked", "prek_config": "blocked"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "nep": 7418.0,
+  "weights": {
+    "P68D": 0.6454,
+    "P68B": 1.4581,
+    "P60B": 0.8224,
+    "P60A": 1.653,
+    "P06B": 7.1826
+  },
+  "origin": [
+    "P60B",
+    "P60B",
+    "P60A"
+  ],
+  "receiving": [
+    "P68D",
+    "P68B",
+    "P06B"
+  ],
+  "local": [
+    "P68D",
+    "P68B",
+    "P06B"
+  ],
+  "mapping": "Hypothetical price prototypes, not observed DRG allocation",
+  "resource_fraction": 0.5,
+  "qep": null,
+  "qwau_adjustments": null
+}

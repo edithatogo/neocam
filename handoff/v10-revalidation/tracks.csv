@@ -1,0 +1,20 @@
+order,track,scoped_tests_passed,log_sha256,remaining_acceptance
+1,panda-vision-model-v1,5,ef0e7ef49e71fa999842be0cb8d22ec1058d3a384ed5c0a2ec6efb8f434975ac,Historical baseline; populated Conductor checkout remains open.
+2,panda-vision-v2-statewide-assurance,67,38ba2a5ad05bb5a2365e321f9df36267e205e9c5191717af5b05985de351c935,"Locked environment, current QEP/capability and extended regional structures remain conditional."
+3,v3-01-input-and-numerical-integrity,59,bda5442c0dd9a1630d0f691fdb48f9d42d582d3e5eb2a7e220acec51f75e7777,Scoped integrity verified; this is not clinical validation.
+4,v3-02-dependencies-and-dataframe-policy,54,50b6cbbfc8f3f2803acf44fbc5148f8c91b3dad675ee34dea103d1c567319af5,"Real transitive lock, isolated target installation and Polars/native execution remain open."
+5,v3-03-solo-assurance-harness,95,18c01f08408b59255be111cda89ca8e1c6696452bbf2be6707686f4623e685e8,External lint/type/property/mutation/profiling/security tools remain unexecuted.
+6,v3-04-context-and-ci,32,b371a2882001dfb8f06bcbf3b3dccd73477a02f757dfdf7c0c3aa04c753b457b,"Hosted CI, complete remote import and populated submodule remain open."
+7,v3-05-final-verification-and-packaging,32,464acd784e130ce0e333eda932f37879607d6762b46db5074d0b1c6dca12c9cd,A current-host regression run is not full target-toolchain acceptance.
+8,v4-01-fast-feedback,23,1ce171b82a4488765d25787c5b3e4ffd3cfc97e8d66272e142c6b5e5da4e9fa8,Real prek/actionlint/zizmor execution and repeated xdist benchmarks remain open.
+9,v4-02-cached-development,19,c0d1680563c3b44ed950e6c5ba65832bf8fce6acf687994915e6a96b357a2ea9,Corrected testmon plugin module; actual plugin/mutation cache integration remains open.
+10,v4-03-reusable-skill,16,d7bdabb3e3edbfb67ad5bec5f31715a2491c085d687c3885395e58b8c2dc44be,Author/contract validation only; independent fresh-agent skill evaluation not performed.
+11,v4-04-analysis-delivery,8,3e581f92c5a63354a9091ee51e37e73e779045ac4069a73a069db9dd6f0cfef2,Historical artifacts retained. Discounted health bridge superseded by v9/v10 correction; no new visual QA claimed.
+12,v5-01-comparators,34,3a2dc5b6ebd1855b7a929d27021d2670ce5796c886d77cd1cbaa0dc3b56396ea,"Installed prices, device equivalence and technical eligibility remain conditional."
+13,v5-02-sensitivity,22,d55b9edecbfab5daacbd85aebb56380fc75911788e01a69d3528633c333b06b6,Historical sensitivity outputs retained; no new pinned-environment full rerun claimed.
+14,v5-03-publication,9,45abebc3866c7aaabc61d13e6cb2a483a865d3aaa6de60480622f0f782e9cac2,Four critical full texts and independent clinical/economic validation remain open.
+15,v6-01-pathways,18,ea7ed0516efe6736a8eaee426685e40a2393fbf3ae84104a743f394204c2ec33,"Pathways are verified arithmetically, not empirically/externally validated."
+16,v6-02-evidence-validation,52,4db261dbc0c002bdfa9c02e0886a033d0bd14c30c250115b6e0a9bf4a3779b10,User-approved simulated panel recorded in v7; not an independent panel. Core full-text gaps remain.
+17,v6-03-delivery-assurance,2,fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e,Target-toolchain/hosted acceptance remains open; historical render evidence not newly repeated.
+18,v7-perspectives,37,3e62137b8331e5093c598c5984f07ba7ebd335dbd23ed78b8568e911f7ffd001,"Original public files, funding/capability assumptions, causal health effects and Gitleaks remain open."
+19,v8-assurance-publish,22,14ce38f755c5d198b8eb21cdcf81a93920b72c71c8e962ee016146c55441c8b0,"Source evidence now version-isolated; full migration, lock/security/submodule/hosted execution remain open."

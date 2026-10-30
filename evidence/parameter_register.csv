@@ -1,0 +1,28 @@
+parameter,base_value,source_ids,uncertainty,interpretation
+equipment_cost,10000.0,ELC2026;USER2026,Triangular8000/10000/15000,Per-installation price needs invoices
+life_years,5.0,ASSUMPTION,Triangular3/5/7,"Useful life, not observed reliability"
+discount,0.05,ASSUMPTION,Scenarios0/3/5%,Economic annuity; budget expenditure undiscounted
+check_minutes,10.0,ELC2026;ASSUMPTION,Triangular5/10/20,Weekly checks reported; duration assumed
+loaded_hour,85.0,ASSUMPTION,Fixed85; scenario editable,No asserted QH award-derived rate
+support,300.0,ASSUMPTION,Triangular0/300/1000,Annual/site
+training,400.0,ASSUMPTION;SANDHU2026,Triangular100/400/1200,Annual readiness/refresher effort
+workflow_per_call,75.0,ASSUMPTION,Triangular0/75/175,Only added video effort; phone consultation exists in both arms
+calls_per_pilot_site,12.5,USER2026,Triangular10/12.5/15,Forecast per site; NOT four-case event-rate estimator
+birth_growth,1.0,QH2022;ASSUMPTION,Triangular0.8/1/1.2,Only state projections; historical count uncertainty explicit
+state_uptake,0.8,ASSUMPTION,Base80%; scenarios40/80/100%,Not applied again to user pilot call forecasts
+reliability,0.95,ASSUMPTION,Beta19/1 mean95%,Failures revert to telephone
+odds_ratio,0.6928203230275509,HAY2020;LIETZ2026,Published logOR-.734 SE.317;50%attenuation plus analystSD.35,Null/published/skeptical structures; not fitted local effect
+case_mix,"[0.35, 0.5, 0.15]",ASSUMPTION;ANZNN2023,Dirichlet7/10/3,"Low/moderate/critical shares are scenarios, NOT network incidence"
+baseline_transfer,"[0.3, 0.65, 0.98]",ASSUMPTION;HAY2020,Beta6/14 low;Beta13/7 moderate;critical.98,External82% baseline is comparator only; no local observed p
+rescue_rate,0.05,ASSUMPTION,Beta1/19,"Delayed rescue applies to apparently avoided transfers, not every retained infant"
+rescue_premium,10000.0,ASSUMPTION,Triangular0/10000/30000,Additional urgent resource/harm cost; no proven local effect
+road_cost,4000.0,ASSUMPTION,Triangular2000/4000/8000,Illustrative2staff*10h*150 +400km*.9+400coordination+240equipment=4000
+air_multiplier,1.0,AIR2019;CPI2019;CPIBASE;CPI2026,Lognormal anchored to indexed air cost;logSD.35;mode multipliers1.2/.9,"Mixed all-age air anchor, not neonatal tariff; source year2019 assumed"
+marginal_fraction,0.5,ASSUMPTION,Beta2/2;25/50/100%scenarios,"Avoidable resources, not full fixed-service budget"
+downstream_delta,2000.0,ASSUMPTION;NEP26,Triangular-4000/2000/10000,Local added care can offset receiving-hospital saving; no double counting
+family_delta,1500.0,ASSUMPTION,Triangular0/1500/4000,"Travel/time effects, not monetised cultural harm"
+hub_annual_cost,60000.0,ASSUMPTION,Base60000;0/150000scenarios,"Added network coordination/readiness, not existing telephone on-call service"
+capacity_threshold,500.0,ASSUMPTION,500 consultations,Capacity step testing; not observed capacity
+capacity_step_cost,30000.0,ASSUMPTION,30000 peradditional500calls,Resource growth avoids assuming infinite free specialist capacity
+mode_air_shift,0.0,ASSUMPTION,Normal0/.1 clipped;±.25scenarios,Geographic priors metro.85/.10/.05;regional.60/.25/.15;remote.15/.35/.50
+include_capital,true,DECISION,Full economic vs continuation cash,Sunk capital excluded only in continuation scenario

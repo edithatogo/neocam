@@ -1,0 +1,13 @@
+{
+  "reason": "Generator default start_year=1 contradicted the documented age11 interpretation",
+  "source_file": "scripts/analyse_v7.py",
+  "generator": "utility_bridge_scenarios",
+  "rows": 54,
+  "changed_discounted_rows": 36,
+  "unchanged_undiscounted_rows": 18,
+  "new_to_old_ratio_by_discount_rate": {"0": 1.0, "0.03": 0.744093914897, "0.05": 0.613913253541},
+  "primary_financial_results_changed": false,
+  "historical_artifacts_regenerated": false,
+  "corrected_local_table": "outputs/v9/utility_bridge_corrected.csv",
+  "regression_test": "tests/test_v9_contracts.py::test_utility_bridge_driver_starts_at_evidence_age_eleven"
+}

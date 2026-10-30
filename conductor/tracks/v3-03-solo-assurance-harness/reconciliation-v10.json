@@ -1,0 +1,28 @@
+{
+  "track": "v3-03-solo-assurance-harness",
+  "order": 5,
+  "checked_at_utc": "2026-10-29T17:37:13.752423+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "4f0842d527aa0104da2b9a654947e4b582bbec0d",
+  "plan_spec_sha256": {
+    "spec.md": "f3bd723a1573a5fcfb3f3b99979acc395b019706463512c2d08b00ecec9fad95",
+    "plan.md": "472c406db10710b4c4a89715095178d206c204f6b74944abb6571debfb137c8a"
+  },
+  "historical_status": "implementation_recorded_acceptance_incomplete",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_assurance_v3.py",
+    "tests/test_contract_adversaries.py",
+    "tests/test_assurance_scope.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 91,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Required external tools unexecuted.",
+  "log": "verification/v10/tracks/05-v3-03-solo-assurance-harness.txt",
+  "log_sha256": "d79ca2bc7705691b2e3155d6fab3f1a152d07ff49c9f03c965777611dcfda3cf"
+}

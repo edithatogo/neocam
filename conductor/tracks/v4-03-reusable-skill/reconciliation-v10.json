@@ -1,0 +1,26 @@
+{
+  "track": "v4-03-reusable-skill",
+  "order": 10,
+  "checked_at_utc": "2026-10-29T17:37:42.879931+00:00",
+  "review": "author reconciliation; not independent validation",
+  "source_commit": "74c8654db0c17379b96578453ea7a17cefa2be98",
+  "plan_spec_sha256": {
+    "spec.md": "a5bf3d37be1f325413e94b4e9a8c9ea766d5290f2dd5732862d46db801f4322d",
+    "plan.md": "fa03648077485efb86835ce962d75771e278d46fde9d72bb5cf53c1fd17bb8d5"
+  },
+  "historical_status": "in_progress",
+  "command": [
+    "/opt/pyvenv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_v4_skill.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "passed_tests": 16,
+  "scope_result": "passed",
+  "full_acceptance": false,
+  "remaining_acceptance": "Contract tests are not independent fresh-agent validation.",
+  "log": "verification/v10/tracks/10-v4-03-reusable-skill.txt",
+  "log_sha256": "d7bdabb3e3edbfb67ad5bec5f31715a2491c085d687c3885395e58b8c2dc44be"
+}

@@ -1,0 +1,65 @@
+{
+  "aliases": {
+    "Cairns Hospital Birthing Centre": "Cairns",
+    "Gold Coast University Birthing Centre": "Gold Coast University",
+    "Mackay Base Hospital Birthing Centre": "Mackay Base",
+    "RBWH Birthing Centre": "Royal Brisbane & Women's",
+    "Sunshine Coast Uni Birthing Centre": "Sunshine Coast University",
+    "Toowoomba Hospital Birth Centre": "Toowoomba",
+    "Townsville Hospital Birth Centre": "Townsville University"
+  },
+  "nicu_anznn_2023": [
+    "Gold Coast University",
+    "Mater Mothers' Hospital",
+    "Royal Brisbane & Women's",
+    "Townsville University"
+  ],
+  "scn_anznn_2023": [
+    "Bundaberg Base",
+    "Cairns",
+    "Logan",
+    "Mackay Base",
+    "Redcliffe",
+    "Redland",
+    "Sunshine Coast University"
+  ],
+  "geographic_remote_proxy": [
+    "Bamaga",
+    "Charleville",
+    "Cloncurry",
+    "Cooktown",
+    "Doomadgee",
+    "Joyce Palmer HS",
+    "Longreach",
+    "Mornington Island",
+    "Mount Isa",
+    "Richmond",
+    "Thursday Island",
+    "Woorabinda"
+  ],
+  "geographic_metro_proxy": [
+    "Beaudesert",
+    "Caboolture",
+    "Gold Coast University",
+    "Ipswich",
+    "Logan",
+    "Mater Mothers' Hospital",
+    "Princess Alexandra",
+    "Redcliffe",
+    "Redland",
+    "Royal Brisbane & Women's",
+    "Sunshine Coast University",
+    "Gatton",
+    "Boonah"
+  ],
+  "pilot_sites": [
+    "Atherton",
+    "Mareeba",
+    "Innisfail"
+  ],
+  "assumption_note": "ANZNN 2023 membership is historical and not a complete current CSCF inventory. Other sites assigned scenario capability by volume only. Geographic categories are analyst priors, not routes or measured mode shares. Sites <20 births are a readiness cohort, not asserted active birthing services.",
+  "weipa_2025_scenario": {
+    "births": 32,
+    "source_url": "https://www.torres-cape.health.qld.gov.au/about-us/news/weipa-maternity-service-celebrates-50th-baby-birth"
+  }
+}
