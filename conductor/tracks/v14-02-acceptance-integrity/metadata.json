@@ -1,0 +1,9 @@
+{
+  "id": "v14-02-acceptance-integrity",
+  "status": "in_progress_source_register_reconciled_artifact_reseal_pending_last",
+  "external_acceptance": false,
+  "tasks": [
+    "2.1",
+    "2.2"
+  ]
+}

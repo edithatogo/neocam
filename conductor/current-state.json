@@ -1,8 +1,11 @@
 {
-  "version": 13,
-  "date": "2026-10-30",
+  "version": 14,
+  "date": "2026-10-31",
   "active_tracks": [
-    "v13-04-release"
+    "v13-04-release",
+    "v14-01-engineering-rigour",
+    "v14-02-acceptance-integrity",
+    "v14-03-ecosystem-integration"
   ],
   "branch": "conductor/neocam-v13-decision-refinements",
   "parent_commit": "8933d4dcdd7df01ed4b70adb8367c9c6eb9ddd4a",
@@ -20,19 +23,20 @@
     "clinical outcomes not causally quantified",
     "four critical full texts missing",
     "original public PDF/XLSX files not acquired",
-    "hosted CI now executes; 26/31 gates pass on commit 4bdb86b; the five failures are pre-existing ruff_lint/ruff_format/ty/basedpyright/mutation_score debt (see conductor/drafts/code-quality-burndown.md)"
+    "artifact manifests and the source register pin calculation inputs, so any source edit invalidates a previous seal; the re-seal must be the last mutation before acceptance",
+    "hosted CI runs on 3.15 and must be re-verified on the final frozen commit; the branch and main still share no merge-base, so merge is a governance decision"
   ],
-  "next_acceptance": "Read the exact final receipt; run full assurance on the refreshed lock; review transitive licences; reconcile branch/main ancestry for review delivery; independent evidence review.",
+  "next_acceptance": "Freeze sources, re-seal both artifact scopes, run the full 31-gate profile immediately afterwards, push the frozen commit and read back hosted CI; then the open clinical/evidence/publication gates.",
   "remote": "edithatogo/neocam",
   "remote_visibility": "public",
-  "remote_visibility_decision": "Owner-authorised public visibility change made 2026-10-31 on explicit instruction, after full-history/tree/pushed-range gitleaks scans and a no-identifier data review returned clean; secret scanning and push protection enabled as part of the change. Publication of clinical/evidence claims remains a separate review decision (release_ready stays false).",
+  "remote_visibility_decision": "Owner-authorised public visibility change 2026-10-31 after clean full-history/tree/pushed-range gitleaks scans and a no-identifier data review; secret scanning and push protection enabled at the same time. Publication of clinical/evidence claims remains a separate review decision, so release_ready stays false.",
   "remote_origin": "https://github.com/edithatogo/neocam.git (rewired 2026-10-30 from unreachable restore-bundle path)",
-  "remote_import": "Branch conductor/neocam-v13-decision-refinements pushed 2026-10-30 (tip 5de691259944e1f16a6e656ec784473dca207a25) with read-back verification; pushed history shares no merge-base with remote main — read-only import surfaces unchanged",
+  "remote_import": "Branch conductor/neocam-v13-decision-refinements pushed 2026-10-30 (tip 5de691259944e1f16a6e656ec784473dca207a25) with read-back verification; pushed history shares no merge-base with remote main \u2014 read-only import surfaces unchanged",
   "hosted_environment_check": {
     "run_id": 41074874950,
     "conclusion": "failure",
-    "executed_steps_reported": 25,
-    "detail": "Runner allocation fixed by public visibility; full gate set executed 2026-10-31; 25/31 gates passed; 5 failed on pre-existing lint/type/mutation debt; 1 blocked on reporting extra",
+    "executed_steps_reported": 26,
+    "detail": "Runner allocation fixed by public visibility; the full gate set executed on 2026-10-31. Since then ruff/format/ty/basedpyright were cleared and the mutation score rose to 99.52%; a fresh hosted run on the final frozen commit is still required.",
     "reason_hosted_ci_previously_failed": "private-repo runner allocation never happened"
   },
   "remote_pr": 3,
@@ -51,5 +55,15 @@
   "remote_written_in_this_turn": true,
   "remote_write_blocker": "Branch push succeeded via gh-authenticated HTTPS; PR creation refused by GitHub on unrelated histories; main merge and PR #3 update remain unacceptable force-push surfaces",
   "primary_results_change": "Reference default unchanged; new conditional contact/policy scenarios added",
-  "refinement_analysis": "outputs/v13-refinements/results.json"
+  "refinement_analysis": "outputs/v13-refinements/results.json",
+  "design_authority": "conductor/v14-design.md",
+  "mutation_score": {
+    "value": 99.52,
+    "zapped": 1244,
+    "total": 1250,
+    "survived": 6,
+    "timeout": 0,
+    "error": 0,
+    "pardoned": 0
+  }
 }

@@ -96,8 +96,8 @@
     },
     {
       "path": "sources/retrieve_originals.py",
-      "sha256": "9b4debafee201ae459c905b9978482e77e602749b75ec0972ca9b6d4df13dc8c",
-      "bytes": 2464,
+      "sha256": "8360a6b6d6cd788b2c41f8eb58476b820a09425f64e95e4cf1aa47427a18306d",
+      "bytes": 5425,
       "representation": "abstraction/extract/registry",
       "redistribution": "check underlying rights; original source attribution retained"
     },

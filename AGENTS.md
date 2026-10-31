@@ -2,6 +2,8 @@
 
 Read `conductor/runbook.md` first. It is the authoritative workflow; do not copy it into agent-specific files.
 
+Current work: `conductor/v14-design.md` (design authority) and `conductor/tracks.md` (register). One interpreter only: Python 3.15.
+
 The numerical model is intentionally small. Do not add clinical effects, parameters, services, dashboards or frameworks during assurance work. Existing uncertainty is not a reason to manufacture observations.
 
 Use NumPy for numerics, the standard library for small files, and only Polars when a DataFrame is useful. Pandas and xarray are prohibited in project imports and the resolved project environment.
