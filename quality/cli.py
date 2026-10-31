@@ -102,7 +102,15 @@ def gates_for_profile(profile: str) -> list[Gate]:
                 "tests",
                 "quality/hypothesis_properties.py",
                 "--gremlins",
-                "--gremlin-workers=2",
+                # One worker: mutants are applied by rewriting the source file, so two
+                # workers mutating the same file race on it. The full run measured
+                # 1,240 zapped / 5 survived / 5 Error at two workers, then 1 Error after
+                # an explicit basetemp removed the tmpdir race; the survivor was an
+                # identity mutant (`<= to <=`) with no failing test and no killing test,
+                # while the same identity mutant elsewhere was classified as survived.
+                # The mutation gate requires zero errors, timeouts and pardons, and the
+                # sequential run stays well inside the gate's budget.
+                "--gremlin-workers=1",
                 "--gremlin-clear-cache",
                 "--gremlin-report=json",
                 "--gremlin-report=html",
