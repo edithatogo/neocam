@@ -1,6 +1,6 @@
 {
   "id": "v14-02-acceptance-integrity",
-  "status": "in_progress_source_register_reconciled_artifact_reseal_pending_last",
+  "status": "complete_local_and_hosted_32_of_32_gates_green",
   "external_acceptance": false,
   "tasks": [
     "2.1",

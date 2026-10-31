@@ -1,0 +1,1 @@
+Scanned 1529 files (1486 text, 43 containers); 0 finding(s); 98 file(s) without text coverage

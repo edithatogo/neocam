@@ -17,10 +17,24 @@
   edit — which is exactly what happened when the strictness and mutation work landed
   after the earlier re-seal.
 
-2.2 Full-profile green and hosted evidence — PENDING. Last measured full profile:
-29 passed / 2 failed (`current_release` stale seal, `source_integrity` register
-mismatch). `source_integrity` is now fixed; `current_release` requires the final re-seal
-immediately before the acceptance run.
+2.2 Full-profile green and hosted evidence — **DONE (2026-10-31)**.
+- Local: 32 of 32 gates passed in one run after the final re-seal, `full_local_assurance`
+  true, `problems` empty. Mutation 1244/1250 = 99.52% with 0 timeouts, 0 errors, 0 pardons.
+- **Hosted: run 41185481015 on commit 87eba8f succeeded with the same 32/32 ledger** —
+  the first green hosted assurance run for this repository. Receipt and gate logs retained in
+  `verification/v13/hosted-41185481015/`.
+- The hosted run was decisive: it exposed two defect classes the local tree concealed.
+  (a) `calculation_inputs` pinned derived build artefacts from `src/` (egg-info, pycache) that
+  a fresh clone lacks, so the seal depended on local build junk; derived artefacts are now
+  excluded and the manifest dropped from 43 to 38 entries. (b) The gremlins
+  `--basetemp` pointed inside the repository, and pytest creates a basetemp with a
+  non-recursive `mkdir`, so on a clean clone every test errored at setup; the basetemp now
+  lives in the system temp root.
+- Both fixes are recorded in the commit `87eba8f` message; neither weakens a gate
+  (`filterwarnings` unchanged, no allowlist added, no threshold lowered).
+- Provenance note: the on-disk local receipt predates those two harness fixes, so the hosted
+  receipt above is the authoritative full-profile evidence for the frozen commit.
+
 
 ## Additional gate-stability work landed in this track's window (2026-10-31)
 

@@ -1,0 +1,636 @@
+{
+  "generated_at": "2026-10-31T08:39:57.099887+00:00",
+  "run_id": "d930f975-38dc-4e30-ad6c-ebaaeb6cff00",
+  "profile": "full",
+  "source_commit_at_execution": "87eba8f5dab5716381b2de69ca514e1c4ac0e568",
+  "input_fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+  "artifact_dependency_fingerprint": "30f7cbd7adb8d1dc25a308440beb2a49e3a0b0f2a5fa30caa34b815e79b29431",
+  "run_finished": true,
+  "active_gate": null,
+  "complete_within_profile": true,
+  "full_local_assurance": true,
+  "release_ready": false,
+  "hosted_assurance": "Not independently verified by this local runner",
+  "environment": {
+    "python": "3.15.2 (main, Oct 26 2026, 14:06:56) [Clang 23.1.3 ]",
+    "executable": "/home/runner/work/neocam/neocam/.venv/bin/python",
+    "packages": {
+      "numpy": "2.5.4",
+      "polars": "2.1.0",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "pytest": "9.2.0",
+      "coverage": "7.17.0",
+      "ruff": "0.17.3",
+      "ty": "0.0.95",
+      "basedpyright": "1.40.2",
+      "hypothesis": "6.170.14",
+      "pytest-gremlins": "1.13.1",
+      "scalene": "2.4.0",
+      "pip-audit": "2.10.1",
+      "uv": "0.13.6",
+      "prek": "0.5.9",
+      "zizmor": "1.31.1",
+      "pytest-xdist": null,
+      "pytest-testmon": null
+    },
+    "pytest_plugin_autoload": null,
+    "notebook_startup_flag": null
+  },
+  "receipts": [
+    {
+      "gate": "pytest",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "coverage",
+        "run",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "duration_seconds": 15.530194224999995,
+      "log": "verification/v13/full/pytest.txt",
+      "log_sha256": "9bb4423203e37ed5fb7fe8a27e2b6f27fa7e64f5f08a22c00b3d86f3c3ba4a4e",
+      "reason": ""
+    },
+    {
+      "gate": "inputs",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "inputs"
+      ],
+      "duration_seconds": 0.24735873800000263,
+      "log": "verification/v13/full/inputs.txt",
+      "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
+      "reason": ""
+    },
+    {
+      "gate": "context",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "context"
+      ],
+      "duration_seconds": 0.038337401999996246,
+      "log": "verification/v13/full/context.txt",
+      "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
+      "reason": ""
+    },
+    {
+      "gate": "current_release",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.artifacts",
+        "verify"
+      ],
+      "duration_seconds": 0.13942393000000664,
+      "log": "verification/v13/full/current_release.txt",
+      "log_sha256": "922b661bb11520d79c17899d4fb4f16052c904e9be18021624d513616d68fb25",
+      "reason": ""
+    },
+    {
+      "gate": "source_integrity",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.source_archive",
+        "--output",
+        "verification/v13/source_archive.json"
+      ],
+      "duration_seconds": 0.03922724799998889,
+      "log": "verification/v13/full/source_integrity.txt",
+      "log_sha256": "03899e3236b97e0a14f9ecd238bbe5ee08de26886bd512f8aa7f870133099748",
+      "reason": ""
+    },
+    {
+      "gate": "coverage",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "coverage",
+        "json",
+        "-o",
+        "verification/v13/coverage.json"
+      ],
+      "duration_seconds": 0.30888844999999776,
+      "log": "verification/v13/full/coverage.txt",
+      "log_sha256": "e16b46426d263b6df5d2dbd49f3c92a2623d1084c18504a1057fbe0abdeb5069",
+      "reason": ""
+    },
+    {
+      "gate": "coverage_threshold",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "coverage",
+        "report",
+        "--fail-under=90"
+      ],
+      "duration_seconds": 0.24864343699999836,
+      "log": "verification/v13/full/coverage_threshold.txt",
+      "log_sha256": "b01f32bb26887c2db4603c7216079c9aacd4570c4a21e85c1137cf0c738e4076",
+      "reason": ""
+    },
+    {
+      "gate": "core_coverage",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "coverage",
+        "report",
+        "--include=src/activity.py,src/deployment.py,src/configuration.py,src/equipment.py,src/pathways_v6.py,src/perspectives_v7.py,src/portfolios_v7.py,src/audit_v7.py",
+        "--fail-under=95"
+      ],
+      "duration_seconds": 0.12591049399999577,
+      "log": "verification/v13/full/core_coverage.txt",
+      "log_sha256": "e3030ba3108f33c7f10da34f872df5fb09ef175146905ab02d460e04d3108008",
+      "reason": ""
+    },
+    {
+      "gate": "ruff_lint",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "scripts",
+        "quality",
+        "tests"
+      ],
+      "duration_seconds": 0.07618268000000228,
+      "log": "verification/v13/full/ruff_lint.txt",
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "reason": ""
+    },
+    {
+      "gate": "ruff_format",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "scripts",
+        "quality",
+        "tests"
+      ],
+      "duration_seconds": 0.04752050800000518,
+      "log": "verification/v13/full/ruff_format.txt",
+      "log_sha256": "0e25936f296d6783c9ed43fd68bade26a8911c0a0482012f92297f6a797443ff",
+      "reason": ""
+    },
+    {
+      "gate": "ty",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "ty",
+        "check",
+        "--error-on-warning"
+      ],
+      "duration_seconds": 1.089039549000006,
+      "log": "verification/v13/full/ty.txt",
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "reason": ""
+    },
+    {
+      "gate": "basedpyright",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "basedpyright"
+      ],
+      "duration_seconds": 8.759735495000001,
+      "log": "verification/v13/full/basedpyright.txt",
+      "log_sha256": "56882e01cb80173ef053c4096e4ee43e3123a15f5c0a06715f96988d48fbd91c",
+      "reason": ""
+    },
+    {
+      "gate": "hypothesis",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "pytest",
+        "quality/hypothesis_properties.py",
+        "-q"
+      ],
+      "duration_seconds": 1.9966690969999945,
+      "log": "verification/v13/full/hypothesis.txt",
+      "log_sha256": "66bb38573d11261d43e9fe4816067177e6fec185affeae143f1019dcfa018179",
+      "reason": ""
+    },
+    {
+      "gate": "gremlins",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "gremlins",
+        "tests",
+        "quality/hypothesis_properties.py",
+        "--gremlins",
+        "--gremlin-workers=1",
+        "--gremlin-clear-cache",
+        "--gremlin-report=json",
+        "--gremlin-report=html",
+        "--strict-pardons",
+        "--basetemp=/tmp/neocam-gremlins-basetemp"
+      ],
+      "duration_seconds": 1126.61148987,
+      "log": "verification/v13/full/gremlins.txt",
+      "log_sha256": "2e8e2e9bfe3cfeea2e5634d3c455ea7d6705d836e0d382f86243b649d071dbcd",
+      "reason": ""
+    },
+    {
+      "gate": "mutation_score",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "mutation"
+      ],
+      "duration_seconds": 0.07266588800007412,
+      "log": "verification/v13/full/mutation_score.txt",
+      "log_sha256": "c96561d5c3ddde8887b7266c8436adea01f492344e8b95aa1c41152d533336ae",
+      "reason": ""
+    },
+    {
+      "gate": "scalene",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "scalene",
+        "run",
+        "-o",
+        "verification/v13/scalene.json",
+        "quality/profile_workload.py"
+      ],
+      "duration_seconds": 2.7184131710000656,
+      "log": "verification/v13/full/scalene.txt",
+      "log_sha256": "1ddc2f55b47801683227cee7a577d748b651e590d7d77065ec453f57d4c34b6d",
+      "reason": ""
+    },
+    {
+      "gate": "scalene_output",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "scalene_output",
+        "--evidence-version",
+        "v13"
+      ],
+      "duration_seconds": 0.05027714600009858,
+      "log": "verification/v13/full/scalene_output.txt",
+      "log_sha256": "c6f3d28a57b613955d9a5efdaea11e2d47463b7eea23a92cd00de46db7586f48",
+      "reason": ""
+    },
+    {
+      "gate": "gitleaks_history",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.tools/bin/gitleaks",
+        "git",
+        "--log-opts=--all",
+        "--redact=100",
+        "--report-format=json",
+        "--report-path=verification/v13/gitleaks-history.json",
+        "."
+      ],
+      "duration_seconds": 8.16346198400015,
+      "log": "verification/v13/full/gitleaks_history.txt",
+      "log_sha256": "e40ce5440eb9362e435a966b5df86c10ea2090571a60a3ec49549d566b479909",
+      "reason": ""
+    },
+    {
+      "gate": "gitleaks_tree",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.tools/bin/gitleaks",
+        "dir",
+        "--redact=100",
+        "--report-format=json",
+        "--report-path=verification/v13/gitleaks-tree.json",
+        "."
+      ],
+      "duration_seconds": 2.6778999539999404,
+      "log": "verification/v13/full/gitleaks_tree.txt",
+      "log_sha256": "abef7065189f784bd79464910dffa8f28accd3d8640f6efe9c011875fdb76214",
+      "reason": ""
+    },
+    {
+      "gate": "vale",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.tools/bin/vale",
+        "--minAlertLevel=warning",
+        "README.md",
+        "AGENTS.md",
+        "GEMINI.md",
+        "conductor/runbook.md",
+        "conductor/decisions-v3.md"
+      ],
+      "duration_seconds": 0.016144525000072463,
+      "log": "verification/v13/full/vale.txt",
+      "log_sha256": "b7d72907e11d2374257bd6b7525ac5f940284c376fa4e7a61836b43061093ae3",
+      "reason": ""
+    },
+    {
+      "gate": "privacy",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.privacy",
+        "--output",
+        "verification/v13/privacy.json"
+      ],
+      "duration_seconds": 6.0172225660001,
+      "log": "verification/v13/full/privacy.txt",
+      "log_sha256": "17a0bfd46185019ec303151bd7c50d3e8ee745d02f5d62e9634fcf28649fe50b",
+      "reason": ""
+    },
+    {
+      "gate": "dependency_consistency",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "uv",
+        "lock",
+        "--check",
+        "--offline"
+      ],
+      "duration_seconds": 0.009627087999888317,
+      "log": "verification/v13/full/dependency_consistency.txt",
+      "log_sha256": "8e86888fbbbe47d0d9237d65d936edcb63a31c2bcdfa487851c60b7699eb9954",
+      "reason": ""
+    },
+    {
+      "gate": "dependency_lock",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "lock"
+      ],
+      "duration_seconds": 0.05505937099997027,
+      "log": "verification/v13/full/dependency_lock.txt",
+      "log_sha256": "117857fc0396f3a3d750b2c5c0214340cfb20f2f8d8e1edefeef7c3bc8425007",
+      "reason": ""
+    },
+    {
+      "gate": "native_versions",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "native_versions"
+      ],
+      "duration_seconds": 0.2735090300000138,
+      "log": "verification/v13/full/native_versions.txt",
+      "log_sha256": "56ba3aefb985513ff01ce13a5632ef306ddd09810c07f3aa609c0c9ba4bfd3da",
+      "reason": ""
+    },
+    {
+      "gate": "locked_versions",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "versions"
+      ],
+      "duration_seconds": 0.10025132999999187,
+      "log": "verification/v13/full/locked_versions.txt",
+      "log_sha256": "a54bebfe0188025acca120f0365009cfafed498c327e5fa742dea039f56dc8c8",
+      "reason": ""
+    },
+    {
+      "gate": "pip_audit",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "pip_audit",
+        "--local",
+        "--format=json",
+        "--output=verification/v13/pip-audit.json"
+      ],
+      "duration_seconds": 1.3996740640000098,
+      "log": "verification/v13/full/pip_audit.txt",
+      "log_sha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955",
+      "reason": ""
+    },
+    {
+      "gate": "sbom",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "pip_audit",
+        "--local",
+        "--format=cyclonedx-json",
+        "--output=verification/v13/sbom.json"
+      ],
+      "duration_seconds": 0.5360737599999084,
+      "log": "verification/v13/full/sbom.txt",
+      "log_sha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955",
+      "reason": ""
+    },
+    {
+      "gate": "conductor_checkout",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.checks",
+        "submodule"
+      ],
+      "duration_seconds": 0.06754770899988216,
+      "log": "verification/v13/full/conductor_checkout.txt",
+      "log_sha256": "f0af860236a8971865aa38f229114f5ff76148031751be5eb307f0bd38111f71",
+      "reason": ""
+    },
+    {
+      "gate": "polars_consistency",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/python",
+        "-m",
+        "quality.polars_probe"
+      ],
+      "duration_seconds": 0.41964362099997743,
+      "log": "verification/v13/full/polars_consistency.txt",
+      "log_sha256": "16a27d1401b95186733bc388b5f59a095931afd8486c4758177b8c9c2873f684",
+      "reason": ""
+    },
+    {
+      "gate": "actionlint",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.tools/bin/actionlint",
+        "-color"
+      ],
+      "duration_seconds": 0.3737165479999476,
+      "log": "verification/v13/full/actionlint.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": ""
+    },
+    {
+      "gate": "zizmor",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/zizmor",
+        "--offline",
+        "--persona=pedantic",
+        ".github/workflows"
+      ],
+      "duration_seconds": 0.051504629000191926,
+      "log": "verification/v13/full/zizmor.txt",
+      "log_sha256": "f8c288c247456024da44741454de74fc62911646a235d83e2a166674fb0fa91c",
+      "reason": ""
+    },
+    {
+      "gate": "prek_config",
+      "status": "passed",
+      "returncode": 0,
+      "fingerprint": "d70583eda2464873fce58b16bb0cec93af6df9e579cbd121d706ceba72b5e3ac",
+      "command": [
+        "/home/runner/work/neocam/neocam/.venv/bin/prek",
+        "validate-config",
+        ".pre-commit-config.yaml"
+      ],
+      "duration_seconds": 0.004058009000118545,
+      "log": "verification/v13/full/prek_config.txt",
+      "log_sha256": "9bb71d01e1853ddf1f1f6cf678a14e0be7438b44656de75074d23ef4bd11d8d1",
+      "reason": ""
+    }
+  ],
+  "problems": [],
+  "review": "Author review; not an independent review",
+  "evidence_reuse": "pytest and coverage derive from one covered suite in PR/full profiles",
+  "required_gates": [
+    "pytest",
+    "inputs",
+    "context",
+    "current_release",
+    "source_integrity",
+    "coverage",
+    "coverage_threshold",
+    "core_coverage",
+    "ruff_lint",
+    "ruff_format",
+    "ty",
+    "basedpyright",
+    "hypothesis",
+    "gremlins",
+    "mutation_score",
+    "scalene",
+    "scalene_output",
+    "gitleaks_history",
+    "gitleaks_tree",
+    "vale",
+    "privacy",
+    "dependency_consistency",
+    "dependency_lock",
+    "native_versions",
+    "locked_versions",
+    "pip_audit",
+    "sbom",
+    "conductor_checkout",
+    "polars_consistency",
+    "actionlint",
+    "zizmor",
+    "prek_config"
+  ],
+  "updated_at": "2026-10-31T08:59:35.560478+00:00",
+  "artifact_dependency_fingerprint_end": "30f7cbd7adb8d1dc25a308440beb2a49e3a0b0f2a5fa30caa34b815e79b29431"
+}
