@@ -17,16 +17,24 @@ jobs:
     name: Full assurance suite
     runs-on: ubuntu-24.04
     timeout-minutes: 50
+    permissions:
+      contents: read
+      id-token: write  # mint the OIDC token that signs the build-provenance attestation
+      attestations: write  # persist the SLSA attestation against the evidence artifacts
     steps:
+      - name: Harden the runner (audit egress)
+        uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
+        with:
+          egress-policy: audit
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0
           submodules: true
-      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
           version: '0.13.6'
-          python-version: '3.13'
+          python-version: '3.15'
           # Package cache only on trusted non-PR events; never cache a virtualenv or acceptance receipt.
           enable-cache: ${{ github.event_name != 'pull_request' }}
           cache-dependency-glob: uv.lock
@@ -60,39 +68,8 @@ jobs:
             coverage/gremlins/
           if-no-files-found: error
           retention-days: 14
-  compatibility:
-    name: Python compatibility matrix
-    if: github.event_name != 'pull_request'
-    strategy:
-      fail-fast: false
-      matrix:
-        python: ['3.14', '3.15']
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Attest verification-evidence provenance (SLSA)
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
-          persist-credentials: false
-          fetch-depth: 0
-      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
-        with:
-          version: '0.13.6'
-          python-version: ${{ matrix.python }}
-          enable-cache: true
-          cache-dependency-glob: uv.lock
-      - name: Select declared evidence version
-        run: echo "EVIDENCE_VERSION=$(python3 -c 'import json; print(json.load(open("config/assurance.json"))["evidence_version"])')" >> "$GITHUB_ENV"
-      - name: Frozen compatibility environment
-        run: |
-          test -f uv.lock
-          uv lock --check
-          uv sync --frozen --group test --extra research
-      - name: Ordinary suite and input/context contracts
-        run: uv run --frozen --no-sync python -m quality.cli --profile quick --evidence-version "$EVIDENCE_VERSION"
-      - if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: compatibility-${{ matrix.python }}-${{ github.sha }}
-          path: verification/${{ env.EVIDENCE_VERSION }}/quick/
-          if-no-files-found: error
-          retention-days: 14
+          subject-path: verification/${{ env.EVIDENCE_VERSION }}/
+

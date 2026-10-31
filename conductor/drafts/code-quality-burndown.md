@@ -175,6 +175,15 @@ last, always re-running the parity checks after `src/` edits.
   strategies, sensitivity first — highest decision value). Re-run `gremlins` +
   `mutation_score` per group. This is the slowest phase; do it last so earlier
   phases are already banked.
+  Progress 2026-10-31: `deployment.py` 23→0, `portfolios_v7.py` 24→0,
+  `strategies.py` 16→0, `pathways_v6.py` 56→1, `sensitivity.py` 24→1;
+  `statewide.py` (163) and the audit/harness group (82) in progress. Two equivalent
+  mutants reported and left alone: `pathways_v6.py:_array(copy=False)` is unobservable
+  (no public path aliases the buffer) and `sensitivity.py` has a bytecode-identical
+  no-op comparison mutant. Tests live in dedicated `tests/test_mutation_*.py` files, one
+  per group, so parallel authoring cannot collide; the authoritative score is measured by
+  one full run (`pytest -p gremlins ... --gremlins`) followed by
+  `python -m quality.checks mutation`, never by summing scoped runs.
 - **Phase 6 — flip acceptance.** Confirm all 31 gates green locally
   (`--profile full --evidence-version v13`), then confirm hosted on the same commit.
   Only then may `full_local_assurance`/`release_ready` flags be reconsidered —

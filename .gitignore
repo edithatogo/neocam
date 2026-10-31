@@ -42,3 +42,34 @@ build/
 
 # Local agent/runtime scratch (not project source)
 .opencode/
+
+# Local secrets and credentials (never commit; defaults are intentionally broad)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+*credential*
+*secret*
+*token*
+id_rsa*
+id_ed25519*
+.aws/
+.netrc
+
+# Editor and OS scratch
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Tooling caches (local only; evidence/verification/outputs stay tracked)
+.mypy_cache/
+.pytype/
+.tox/
+.nox/
+.ipynb_checkpoints/

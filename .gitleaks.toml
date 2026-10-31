@@ -2,3 +2,8 @@ title = "Panda Vision secret scanning"
 [extend]
 useDefault = true
 # No project-wide allowlists. Both the working tree and all Git history are scanned.
+# Review conclusion: the default ruleset already covers this repository's credential
+# shapes (GitHub/GitLab tokens, PEM private keys, cloud keys, generic high-entropy
+# keys). The project defines no bespoke credential format, so no custom rules are added.
+# A confirmed false positive is suppressed with an inline `gitleaks:allow` on the
+# finding itself, never by widening a path or pattern allowlist here.

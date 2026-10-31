@@ -1,0 +1,20 @@
+{
+  "reports": [
+    {
+      "scope": "outputs/v13-primary",
+      "errors": [
+        "Calculation dependencies changed"
+      ]
+    },
+    {
+      "scope": "outputs/v13-refinements",
+      "errors": [
+        "Calculation dependencies changed"
+      ]
+    }
+  ],
+  "errors": [
+    "Calculation dependencies changed",
+    "Calculation dependencies changed"
+  ]
+}

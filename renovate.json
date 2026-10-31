@@ -3,10 +3,23 @@
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
   "automerge": false,
   "dependencyDashboard": true,
+  "pinDigests": true,
+  "rangeStrategy": "pin",
   "prConcurrentLimit": 3,
   "schedule": ["before 8am on monday"],
   "timezone": "Australia/Brisbane",
+  "minimumReleaseAge": "3 days",
+  "vulnerabilityAlerts": {"enabled": true},
+  "osvVulnerabilityAlerts": true,
   "packageRules": [
+    {
+      "description": "Security advisories surface first, out of the weekly window, and are never automerged.",
+      "matchCategories": ["security"],
+      "automerge": false,
+      "prPriority": 10,
+      "labels": ["security", "dependencies"],
+      "schedule": ["at any time"]
+    },
     {"matchPackageNames": ["numpy", "polars", "polars-runtime-32"], "groupName": "numerical and tabular dependencies"},
     {"matchPackageNames": ["ruff", "ty", "basedpyright", "pytest*", "coverage", "hypothesis", "scalene", "prek", "zizmor", "pip-audit", "uv"], "groupName": "developer assurance tools"}
   ],
