@@ -1,6 +1,4 @@
 {
   "check": "mutation",
-  "errors": [
-    "Mutation timeouts/errors/pardons require investigation"
-  ]
+  "errors": []
 }

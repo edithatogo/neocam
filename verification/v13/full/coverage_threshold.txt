@@ -7,7 +7,7 @@ quality/assurance.py           125      0     38      0 100.00%
 quality/benchmark.py            99     32     24      4  64.23%   69-70, 108-110, 118-119, 121, 136-168, 172
 quality/bootstrap.py            98     10     24      4  88.52%   57-58, 89-91, 119-120, 124-125, 181
 quality/checks.py              168     10     74      5  92.98%   39, 60, 162-163, 214, 233-236, 275
-quality/cli.py                  95      4     22      2  94.87%   270-271, 329, 344
+quality/cli.py                  95      4     22      2  94.87%   278-279, 337, 352
 quality/clinical_review.py      92     14     38      3  86.92%   43, 102, 147-167, 171
 quality/contracts.py           142      0     60      0 100.00%
 quality/feedback.py            104     24     32      1  78.68%   70-77, 214-231, 235

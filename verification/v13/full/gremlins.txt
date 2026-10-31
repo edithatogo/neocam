@@ -1,6 +1,6 @@
 ============================= test session starts ==============================
 platform darwin -- Python 3.15.2, pytest-9.2.0, pluggy-1.7.0
-Using --randomly-seed=4074997609
+Using --randomly-seed=1363639884
 rootdir: /Users/doughnut/Documents/neocam
 configfile: pyproject.toml
 plugins: gremlins-1.13.1, randomly-5.0.0, socket-0.8.1, xdist-3.8.0, hypothesis-6.170.14, timeout-2.4.0, testmon-2.2.0, platformdirs-4.14.0, time-machine-3.6.0
@@ -9,75 +9,75 @@ timeout method: signal
 timeout func_only: False
 collected 1094 items
 
-tests/test_mutation_deployment_portfolios_strategies.py ................ [  1%]
-................................................                         [  5%]
-tests/test_v4_profiles.py ....                                           [  6%]
-tests/test_v4_hooks.py ..........                                        [  7%]
-quality/hypothesis_properties.py .......                                 [  7%]
-tests/test_v7_source_archive.py ......                                   [  8%]
-tests/test_v11_feedback.py .......                                       [  8%]
-tests/test_toolchain_contracts.py ...........                            [  9%]
-tests/test_v4_analysis_checks.py ........                                [ 10%]
-tests/test_native_integrity.py ...............                           [ 12%]
-tests/test_v12_active_properties.py ....                                 [ 12%]
-tests/test_v5_assurance_scope.py ......                                  [ 12%]
-tests/test_v10_source_evidence.py ......                                 [ 13%]
-tests/test_quality_gates.py ...................                          [ 15%]
-tests/test_v4_skill.py ................                                  [ 16%]
-tests/test_doctest_examples.py ...........                               [ 17%]
-tests/test_v6_validation.py ............................................ [ 21%]
-......                                                                   [ 22%]
-tests/test_v5_strategies.py ..................................           [ 25%]
-tests/test_v7_review_repairs.py .....                                    [ 25%]
-tests/test_v4_feedback.py ................                               [ 27%]
-tests/test_document_metadata.py .....                                    [ 27%]
-tests/test_assurance_v3.py ............................................  [ 31%]
+tests/test_v13_review.py .......................                         [  2%]
+tests/test_v3_regressions.py ...............                             [  3%]
+tests/test_receipt_clock.py .                                            [  3%]
+tests/test_v12_estate.py ....................                            [  5%]
+tests/test_v12_artifacts.py ...............                              [  6%]
+tests/test_v11_native_security.py ......                                 [  7%]
+tests/test_v13_deployment.py .................                           [  8%]
+tests/test_assurance_scope.py ...                                        [  9%]
+tests/test_quality_integration.py ................................       [ 12%]
+tests/test_v7_regional.py ...                                            [ 12%]
+tests/test_v4_benchmark.py .....                                         [ 12%]
+tests/test_v6_documentation_contract.py ..                               [ 12%]
+tests/test_v10_reconciliation.py ...                                     [ 13%]
+tests/test_mutation_statewide.py ....................................... [ 16%]
+............................                                             [ 19%]
+tests/test_v9_contracts.py ..........                                    [ 20%]
+tests/test_v6_pathways.py ..................                             [ 21%]
+tests/test_v5_analysis_integrity.py ...                                  [ 22%]
+tests/test_reportlab_document.py .....                                   [ 22%]
+tests/test_incremental_feedback.py ..                                    [ 22%]
+tests/test_v12_report.py ...                                             [ 23%]
+tests/test_v13_pipeline.py .......                                       [ 23%]
+tests/test_v10_source_evidence.py ......                                 [ 24%]
+tests/test_toolchain_contracts.py ...........                            [ 25%]
+tests/test_assurance_v3.py ............................................  [ 29%]
+tests/test_v12_configuration.py ...................                      [ 31%]
+tests/test_v4_hooks.py ..........                                        [ 31%]
+tests/test_v12_pipeline.py .                                             [ 32%]
 tests/test_privacy_scan.py ..............................                [ 34%]
-tests/test_v12_pipeline.py .                                             [ 34%]
-tests/test_v12_configuration.py ...................                      [ 36%]
-tests/test_mutation_audit_harness.py ................................... [ 39%]
-........................................................................ [ 46%]
-........................................................................ [ 52%]
-.                                                                        [ 52%]
-tests/test_v13_activity.py ..........................                    [ 55%]
-tests/test_v6_assurance_scope.py ..                                      [ 55%]
-tests/test_v2.py ....................................................... [ 60%]
-............                                                             [ 61%]
-tests/test_quality_integration.py ................................       [ 64%]
-tests/test_v11_manifest.py ............                                  [ 65%]
-tests/test_v8_assurance.py .........                                     [ 66%]
-tests/test_assurance_scope.py ...                                        [ 66%]
-tests/test_v7_sampling_health.py ...........                             [ 67%]
-tests/test_contract_adversaries.py ..................................... [ 71%]
-.......                                                                  [ 71%]
-tests/test_v7_analysis_contracts.py .......                              [ 72%]
-tests/test_v11_native_security.py ......                                 [ 72%]
-tests/test_v5_sensitivity.py ...................                         [ 74%]
-tests/test_v10_reconciliation.py ...                                     [ 74%]
-tests/test_mutation_statewide.py ....................................... [ 78%]
-............................                                             [ 80%]
-tests/test_v6_documentation_contract.py ..                               [ 81%]
-tests/test_reportlab_document.py .....                                   [ 81%]
-tests/test_v9_contracts.py ..........                                    [ 82%]
-tests/test_v12_report.py ...                                             [ 82%]
-tests/test_v13_pipeline.py .......                                       [ 83%]
-tests/test_v7_regional.py ...                                            [ 83%]
-tests/test_v6_pathways.py ..................                             [ 85%]
-tests/test_v4_config.py ....                                             [ 85%]
-tests/test_v3_regressions.py ...............                             [ 87%]
-tests/test_model.py .....                                                [ 87%]
-tests/test_v12_artifacts.py ...............                              [ 88%]
-tests/test_v7_perspectives.py .......                                    [ 89%]
-tests/test_v13_review.py .......................                         [ 91%]
-tests/test_receipt_clock.py .                                            [ 91%]
-tests/test_mutation_pathways_sensitivity.py ............................ [ 94%]
-...............                                                          [ 95%]
-tests/test_v13_deployment.py .................                           [ 97%]
-tests/test_v12_estate.py ....................                            [ 99%]
-tests/test_v4_benchmark.py .....                                         [ 99%]
-tests/test_v5_analysis_integrity.py ...                                  [ 99%]
-tests/test_incremental_feedback.py ..                                    [100%]
-pytest-gremlins: Starting parallel execution with 2 workers
+tests/test_v4_profiles.py ....                                           [ 35%]
+tests/test_v12_active_properties.py ....                                 [ 35%]
+tests/test_native_integrity.py ...............                           [ 36%]
+tests/test_v7_perspectives.py .......                                    [ 37%]
+tests/test_v6_assurance_scope.py ..                                      [ 37%]
+tests/test_mutation_audit_harness.py ................................... [ 40%]
+........................................................................ [ 47%]
+........................................................................ [ 54%]
+.                                                                        [ 54%]
+tests/test_v7_review_repairs.py .....                                    [ 54%]
+tests/test_document_metadata.py .....                                    [ 55%]
+tests/test_mutation_deployment_portfolios_strategies.py ................ [ 56%]
+................................................                         [ 60%]
+tests/test_v13_activity.py ..........................                    [ 63%]
+tests/test_v5_sensitivity.py ...................                         [ 65%]
+tests/test_v5_strategies.py ..................................           [ 68%]
+tests/test_v6_validation.py ............................................ [ 72%]
+......                                                                   [ 72%]
+tests/test_v8_assurance.py .........                                     [ 73%]
+tests/test_v7_sampling_health.py ...........                             [ 74%]
+tests/test_v11_manifest.py ............                                  [ 75%]
+tests/test_quality_gates.py ...................                          [ 77%]
+tests/test_v11_feedback.py .......                                       [ 78%]
+tests/test_v4_feedback.py ................                               [ 79%]
+tests/test_v7_analysis_contracts.py .......                              [ 80%]
+tests/test_v4_skill.py ................                                  [ 81%]
+quality/hypothesis_properties.py .......                                 [ 82%]
+tests/test_contract_adversaries.py ..................................... [ 85%]
+.......                                                                  [ 86%]
+tests/test_v4_analysis_checks.py ........                                [ 87%]
+tests/test_v2.py ....................................................... [ 92%]
+............                                                             [ 93%]
+tests/test_mutation_pathways_sensitivity.py ............................ [ 95%]
+...............                                                          [ 97%]
+tests/test_v5_assurance_scope.py ......                                  [ 97%]
+tests/test_doctest_examples.py ...........                               [ 98%]
+tests/test_v7_source_archive.py ......                                   [ 99%]
+tests/test_model.py .....                                                [ 99%]
+tests/test_v4_config.py ....                                             [100%]
+pytest-gremlins: Starting parallel execution with 1 workers
 
 pytest-gremlins: Progress 1/1250
 pytest-gremlins: Progress 2/1250
@@ -1336,10 +1336,10 @@ JSON report written to: /Users/doughnut/Documents/neocam/coverage/gremlins/greml
 ======================= pytest-gremlins mutation report ========================
 
 Zapped: 1244 gremlins (100%)
-Survived: 5 gremlins (0%)
-Error: 1 gremlins (0%)
+Survived: 6 gremlins (0%)
 
 Top surviving gremlins:
+  /Users/doughnut/Documents/neocam/quality/assurance.py:114 True to False        (boolean)
   /Users/doughnut/Documents/neocam/quality/contracts.py:171 True to False        (boolean)
   /Users/doughnut/Documents/neocam/src/pathways_v6.py:92 False to True        (boolean)
   /Users/doughnut/Documents/neocam/src/sensitivity.py:196 <= to <=             (comparison)
@@ -1347,4 +1347,4 @@ Top surviving gremlins:
   /Users/doughnut/Documents/neocam/src/statewide.py:500 boundary shift +/-1  (boundary)
 
 =======================================  =======================================
-======================= 1094 passed in 503.68s (0:08:23) =======================
+====================== 1094 passed in 1045.61s (0:17:25) =======================
