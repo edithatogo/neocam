@@ -14,6 +14,7 @@ import re
 import shutil
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- records the local commit for the receipt
 import sys
+import tempfile
 import uuid
 from dataclasses import asdict, replace
 from datetime import UTC, datetime
@@ -116,12 +117,14 @@ def gates_for_profile(profile: str) -> list[Gate]:
                 "--gremlin-report=html",
                 "--strict-pardons",
                 # An explicit basetemp stops pytest pruning its numbered temporary
-                # directories. That pruning is what raced between the two mutation
-                # workers on Python 3.15 (an unclosed-scandir ResourceWarning escalated
-                # by filterwarnings=error, plus an rm_rf race), and the mutation gate
-                # treats any error as a failure regardless of score: 5 of 1,250 mutants
-                # reported Error with no failing test and no killing test before this.
-                "--basetemp=coverage/gremlins/tmp",
+                # directories. That pruning is what raced between the mutation workers on
+                # Python 3.15 (an unclosed-scandir ResourceWarning escalated by
+                # filterwarnings=error, plus an rm_rf race), and the mutation gate treats
+                # any error as a failure regardless of score. The directory lives outside
+                # the repository, in the system temp root, because pytest creates it with
+                # a non-recursive mkdir: a repo-relative path failed every test on a fresh
+                # clone where the parent directory did not yet exist.
+                f"--basetemp={tempfile.gettempdir()}/neocam-gremlins-basetemp",
             ),
             1800,
             "pytest_gremlins",

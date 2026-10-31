@@ -76,8 +76,26 @@ def inventory(root: Path, paths: list[Path]) -> dict[str, str]:
     return result
 
 
+def _generated(path: Path) -> bool:
+    """True for local build artefacts, which a fresh clone does not contain.
+
+    Returns:
+        bool: Whether the path is ignored/derived rather than a calculation input.
+    """
+    return (
+        any(part in {"__pycache__", ".mypy_cache", ".ruff_cache", ".pytest_cache"} for part in path.parts)
+        or any(part.endswith(".egg-info") for part in path.parts)
+        or path.suffix in {".pyc", ".pyo"}
+    )
+
+
 def calculation_inputs(root: Path) -> dict[str, str]:
     """Digest every source, data, config and script file feeding calculations.
+
+    Derived local artefacts (byte-compiled caches, egg-info metadata) are excluded: they
+    are not calculation inputs, and pinning them made the sealed digest depend on whatever
+    build junk happened to sit in the working tree, so the same commit failed this gate on
+    a fresh clone.
 
     Returns:
         dict[str, str]: Root-relative paths mapped to digests for existing inputs.
@@ -85,7 +103,7 @@ def calculation_inputs(root: Path) -> dict[str, str]:
     paths = [root / name for name in SOURCE_FILES if (root / name).is_file()]
     for name in SOURCE_DIRECTORIES:
         paths.extend((root / name).rglob("*"))
-    return inventory(root, [p for p in paths if p.is_file()])
+    return inventory(root, [p for p in paths if p.is_file() and not _generated(p)])
 
 
 def output_inventory(output: Path) -> dict[str, str]:

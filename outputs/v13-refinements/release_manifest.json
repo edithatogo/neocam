@@ -17,7 +17,7 @@
     "data/v6/hospital_prototypes.json": "31f6c4d463ae2471bd2bee45414e24151340b9972a19c8c01222aff28e05789e",
     "data/v6/spec.json": "b0625409296c0120b3d74d6a7019df4967d82ff26f09eacabe7b42bdea502feb",
     "data/v6/structural_assumptions.csv": "fdedfd454247e7abdebfe516ed9c2249f0321a2a7aea97a7b26bd13094967863",
-    "quality/artifacts.py": "c8129dac33f13836e149720e027c4bb4e32bf0dc1ee73056aabaf72abf1dde08",
+    "quality/artifacts.py": "917a3362b4a601830294d37bce04b1f21894814017004007ab5845630ec7e801",
     "quality/clinical_review.py": "fc1837cf25ef591fd48f654aa9a7acb9f61669635a6b7819a2142dc633cd483e",
     "scripts/analyse_refinements.py": "fddf1e7a9fc69d7824dd9247849260e294c78258aeb3869d09bb6512c838e54d",
     "scripts/analyse_v7.py": "6e9e8ddfcc9b349108e2185a61467ae884d07db6273a6358b83bd99bf5b1abf5",
@@ -32,11 +32,6 @@
     "src/deployment.py": "24f000fbc8ae5c5c650ca596db679d8fc6affa619841ae49e0d620213fde73dd",
     "src/equipment.py": "155c0d1c6bfd055df9497cb299a574cf79c23a01805af0d2a83f676e57a36538",
     "src/panda_model.py": "4e5c5835a2e31a3c1fea776c7c2af3fb50470e83e11ac0d7837af2cb5de431d6",
-    "src/panda_vision_evaluation.egg-info/PKG-INFO": "e4f5047238374863342a17d43268ece72479f1491f89d3c85f63db8b7160319b",
-    "src/panda_vision_evaluation.egg-info/SOURCES.txt": "4a2e98020b81365d2ca5c99f7356f04abbfb6c7d303bd92a9b7b60eec4d2dd18",
-    "src/panda_vision_evaluation.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-    "src/panda_vision_evaluation.egg-info/requires.txt": "ae12f185568b9abdd0de1db8cf774dee065c06fc933a2554dedcf0006754180e",
-    "src/panda_vision_evaluation.egg-info/top_level.txt": "7b1f989e46ca772ebb73e802d1bbf2eef129f74fb9042369fc83ce2eae992e5e",
     "src/pathways_v6.py": "1e9c5cef180a0b587e67e1efb3587882711e2d9a766951386313c97ce0c57bc8",
     "src/perspectives_v7.py": "b50d523c799b3a53c5360d28221889bbf6bf618c5ea7b0e24f4164395bdeaea2",
     "src/portfolios_v7.py": "1b3abb78733e17d55d74a510acd0659d80d219cd4298604653a6e4134a8bfdf1",
@@ -66,5 +61,5 @@
   },
   "interpretation": "Byte/provenance check, not clinical or independent validation",
   "schema_version": 1,
-  "source_commit_at_generation": "570f6c2b19cf77125c9df0b40fa27ab0065562a7"
+  "source_commit_at_generation": "5910168286638bb774b997bb3447fa6d85c3e692"
 }
