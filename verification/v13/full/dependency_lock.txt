@@ -1,1 +1,4 @@
-Dependency lock unavailable; resolve and review uv.lock before full acceptance
+{
+  "check": "lock",
+  "errors": []
+}

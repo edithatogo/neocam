@@ -2,12 +2,19 @@
   "reports": [
     {
       "scope": "outputs/v13-primary",
-      "errors": []
+      "errors": [
+        "Calculation dependencies changed"
+      ]
     },
     {
       "scope": "outputs/v13-refinements",
-      "errors": []
+      "errors": [
+        "Calculation dependencies changed"
+      ]
     }
   ],
-  "errors": []
+  "errors": [
+    "Calculation dependencies changed",
+    "Calculation dependencies changed"
+  ]
 }

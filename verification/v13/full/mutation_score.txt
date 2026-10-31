@@ -1,1 +1,4 @@
-No fresh Gremlins report; execution gate must pass first
+{
+  "check": "mutation",
+  "errors": []
+}

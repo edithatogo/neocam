@@ -3,7 +3,7 @@
 Design authority: `conductor/v14-design.md`. Track register: `conductor/tracks.md`. This runbook remains the authoritative workflow.
 
 ## Numerical scope
-One interpreter: Python 3.15 (`requires-python >=3.15,<3.16`). The model is numpy-only. scipy and scikit-learn exist solely for the historical `scripts/analyse_v5.py`; polars exists solely for the independent source-table reconciliation. No new clinical parameter, learned model, orchestrator or output path.
+One interpreter: Python 3.15 (`requires-python >=3.15,<3.16`). The model is numpy-only. scipy and scikit-learn exist solely for the historical `scripts/analyse_v5.py`; polars exists solely for the independent source-table reconciliation. Declared inputs flow through `src.configuration.load_configuration`; `data/v6/spec.json` is a reference snapshot, not a live configuration input. No new clinical parameter, learned model, orchestrator or output path.
 
 ## Strictness and quality settings
 ruff `select = ["ALL"]` with preview rules; ty `all = "error"` plus `--error-on-warning`; basedpyright `all` with experimental features, blanket `# type: ignore` banned, ignore comments must name their rule; pytest strict markers/config, warnings-as-errors and `xfail_strict`. No global lint ignore beyond the two documented formatter conflicts, no type-checker baseline file, no lowered threshold. The mutation floor is 90% and currently measures 99.52% (1,244/1,250).

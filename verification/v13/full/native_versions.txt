@@ -1,3 +1,4 @@
-gitleaks: unavailable: [Errno 2] No such file or directory: 'gitleaks'
-vale: unavailable: [Errno 2] No such file or directory: 'vale'
-actionlint: unavailable: [Errno 2] No such file or directory: 'actionlint'
+{
+  "check": "native_versions",
+  "errors": []
+}

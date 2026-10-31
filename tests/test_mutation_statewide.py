@@ -648,6 +648,90 @@ def test_sample_inputs_sampled_stratum_at_probability_one() -> None:
     )
 
 
+def test_sample_inputs_case_mix_share_at_zero_boundary_is_inactive() -> None:
+    # `active = shares > 0`: a share of exactly zero switches that stratum off,
+    # so the Dirichlet draw runs over the two positive shares only (in order)
+    # and the zero column stays at exactly 0.0.
+    p = dataclasses.replace(_BIG, case_mix=(0.0, 0.5, 0.5))
+    case_mix = np.asarray(statewide.sample_inputs(p, n=6, seed=12345)["case_mix"], dtype=float)
+    assert np.array_equal(case_mix[:, 0], np.zeros(6))
+    assert np.allclose(
+        case_mix[:, 1],
+        [
+            0.5283391413512206,
+            0.3113376193230714,
+            0.6246351087908592,
+            0.5905683090307297,
+            0.6803885246147651,
+            0.6384648259255596,
+        ],
+        rtol=_REL,
+        atol=0.0,
+    )
+    assert np.allclose(
+        case_mix[:, 2],
+        [
+            0.4716608586487792,
+            0.6886623806769285,
+            0.3753648912091408,
+            0.4094316909692704,
+            0.3196114753852348,
+            0.3615351740744403,
+        ],
+        rtol=_REL,
+        atol=0.0,
+    )
+
+
+def test_sample_inputs_case_mix_share_just_above_zero_is_active() -> None:
+    # The adjacent side of the same boundary: a share just above zero is
+    # active, so its gamma draw is consumed and shifts the following draws; its
+    # own normalised share underflows to exactly 0.0.
+    p = dataclasses.replace(_BIG, case_mix=(1e-6, 0.5 - 5e-7, 0.5 - 5e-7))
+    case_mix = np.asarray(statewide.sample_inputs(p, n=6, seed=12345)["case_mix"], dtype=float)
+    assert np.array_equal(case_mix[:, 0], np.zeros(6))
+    assert np.allclose(
+        case_mix[:, 1],
+        [
+            0.6091632866884996,
+            0.6246351717165288,
+            0.30048464295856464,
+            0.63846490252475,
+            0.3555763872716424,
+            0.5435789577164709,
+        ],
+        rtol=_REL,
+        atol=0.0,
+    )
+    assert np.allclose(
+        case_mix[:, 2],
+        [
+            0.3908367133115005,
+            0.37536482828347123,
+            0.6995153570414352,
+            0.36153509747525,
+            0.6444236127283577,
+            0.45642104228352903,
+        ],
+        rtol=_REL,
+        atol=0.0,
+    )
+
+
+@pytest.mark.parametrize("active_index", [0, 1, 2])
+def test_sample_inputs_case_mix_share_at_one_leaves_other_strata_empty(active_index: int) -> None:
+    # A share of exactly one is the other boundary value: the active stratum
+    # takes all the mass and every other column is exactly 0.0.
+    case_mix_args = [0.0, 0.0, 0.0]
+    case_mix_args[active_index] = 1.0
+    p = dataclasses.replace(_BIG, case_mix=tuple(case_mix_args))
+    case_mix = np.asarray(statewide.sample_inputs(p, n=4, seed=12345)["case_mix"], dtype=float)
+    assert np.allclose(case_mix[:, active_index], np.ones(4), rtol=_REL, atol=0.0)
+    for column in range(3):
+        if column != active_index:
+            assert np.array_equal(case_mix[:, column], np.zeros(4))
+
+
 def test_sample_inputs_defaults_and_draw_guard() -> None:
     assert set(statewide.sample_inputs()) == _BASE_KEYS
     monkeypatch = pytest.MonkeyPatch()

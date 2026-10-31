@@ -77,6 +77,7 @@ def test_all_requested_tool_gates_are_mandatory() -> None:
         "gitleaks_history",
         "gitleaks_tree",
         "vale",
+        "privacy",
         "dependency_lock",
         "locked_versions",
         "pip_audit",

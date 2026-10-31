@@ -1,1 +1,5 @@
-Required Python tool is unavailable: polars
+{
+  "engine": "polars",
+  "version": "2.1.0",
+  "errors": []
+}

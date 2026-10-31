@@ -1,1 +1,7 @@
-Executable unavailable: /mnt/data/neocam-v13/.tools/bin/zizmor
+No findings to report. Good job! (1 ignored)
+ INFO zizmor: 🌈 zizmor v1.31.1
+ INFO audit: zizmor: 🌈 completed .github/workflows/ci.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/codeql.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/dependency-review.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/release-gate.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/scorecard.yml

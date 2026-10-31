@@ -39,7 +39,13 @@ Link: [./tracks/v14-02-acceptance-integrity/](./tracks/v14-02-acceptance-integri
 Status: source register reconciled; artifact re-seal and full-profile/hosted evidence pending.
 
 ---
-## [ ] Track: Ecosystem integration — sibling repositories, provenance and privacy patterns
+## [~] Track: Ecosystem integration — sibling repositories, provenance and privacy patterns
 Link: [./tracks/v14-03-ecosystem-integration/](./tracks/v14-03-ecosystem-integration/)
 
-Status: planned; needs the owner's incorporation-form decision per repository. The VoI alignment task is gated on decision-utility credibility.
+Status: inventory complete (11 direct siblings with resolved commits recorded in the design authority). Owner confirmed the `careops-rims` pattern for 3.2; `sourceright` deferred to the roadmap; the VoI alignment task was promoted to its own track.
+
+---
+## [~] Track: VoI integration with voiage
+Link: [./tracks/v14-04-voi-voiage-integration/](./tracks/v14-04-voi-voiage-integration/)
+
+Status: owner-prioritised. `voiage` becomes the VoI engine; capabilities unique to `vop_poc_nz` are ported into `voiage` (never a dependency here); a voiage release that installs on Python 3.15 gates the downstream integration. Corrected finding: voiage `main` is already 3.15-ready and allows pyarrow 26 — the published 2.2.0 tag lags — so the blocker is a release, not a code change.

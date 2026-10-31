@@ -7,6 +7,7 @@ import argparse
 import csv
 import html
 import json
+import re
 import shutil
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- optional soffice conversion of fixed local files
 import tempfile
@@ -15,6 +16,9 @@ from typing import TYPE_CHECKING, Protocol, TypedDict, cast
 
 if TYPE_CHECKING:
     from pptx.util import Length
+    from reportlab.lib.styles import ParagraphStyle
+    from reportlab.pdfgen.canvas import Canvas
+    from reportlab.platypus import Flowable, Table
 
 
 class _InputParameters(TypedDict):
@@ -62,6 +66,15 @@ class _SldId(Protocol):
     rId: str  # ruff: ignore[mixed-case-variable-in-class-scope] -- python-pptx exposes the attribute as rId
 
 
+class _PdfDocument(Protocol):
+    """Minimal typed surface of the reportlab document template used for furniture."""
+
+    page: int
+    pagesize: tuple[float, float]
+    leftMargin: float  # ruff: ignore[mixed-case-variable-in-class-scope] -- reportlab exposes leftMargin
+    rightMargin: float  # ruff: ignore[mixed-case-variable-in-class-scope] -- reportlab exposes rightMargin
+
+
 ROOT = Path(__file__).resolve().parents[1]
 LABELS = {
     "pilot": "Pilot: 3 sites",
@@ -72,6 +85,11 @@ LABELS = {
 UTILITY_DIFFERENCE = 0.13
 DISCOUNT_RATE = 0.05
 IMPROVED_FRACTION = 0.001
+PDF_NAME = "current_report.pdf"
+PDF_TITLE = "Neocam: current decision-model release v12"
+PDF_FOOTER = "Neocam current release; conditional economic analysis, not independent clinical validation"
+# Each authored markdown table opens with a header row and a rule row.
+_TABLE_HEADER_ROWS = 2
 
 
 def read_rows(output: Path, name: str) -> list[dict[str, str]]:
@@ -92,6 +110,154 @@ def money(value: str | float) -> str:
     """
     value = float(value)
     return ("-$" if value < 0 else "$") + f"{abs(value):,.0f}"
+
+
+def _pdf_page_furniture(canvas: Canvas, document: object) -> None:
+    """Draw the invariant running rule, footer and page number on every page.
+
+    The text contains no clock reading, so repeated builds of the same input stay
+    byte-identical.
+    """
+    from reportlab.lib import colors  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+    from reportlab.lib.units import cm  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+
+    page = cast("_PdfDocument", document)
+    content_right = page.pagesize[0] - page.rightMargin
+    canvas.saveState()
+    canvas.setStrokeColor(colors.HexColor("#bbbbbb"))
+    canvas.setFillColor(colors.HexColor("#444444"))
+    canvas.setFont("Helvetica", 8)
+    canvas.line(page.leftMargin, 1.35 * cm, content_right, 1.35 * cm)
+    canvas.drawString(page.leftMargin, 1.1 * cm, PDF_FOOTER)
+    canvas.drawRightString(content_right, 1.1 * cm, f"Page {page.page}")
+    canvas.restoreState()
+
+
+def _markdown_cells(line: str) -> list[str]:
+    """Split one authored markdown table row into stripped cell values.
+
+    Returns:
+        list[str]: Cell values in column order.
+    """
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def _inline_markup(text: str) -> str:
+    """Escape authored text for reportlab's mini-XML and restore ``**bold**`` spans.
+
+    Returns:
+        str: Escaped paragraph markup safe for a reportlab ``Paragraph``.
+    """
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(text, quote=False))
+
+
+def _pdf_table(block: list[str], cell: ParagraphStyle) -> Table:
+    """Render one authored markdown table block as a reportlab table.
+
+    The header row repeats across page breaks and columns marked ``---:`` in the
+    rule row are right-aligned.
+
+    Returns:
+        Table: The styled reportlab table flowable.
+    """
+    from reportlab.lib import colors  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+    from reportlab.platypus import Paragraph, Table, TableStyle  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+
+    rows = [_markdown_cells(line) for line in block]
+    data: list[list[Paragraph]] = [
+        [Paragraph(_inline_markup(value), cell) for value in row] for row in rows[:_TABLE_HEADER_ROWS]
+    ]
+    data.extend([Paragraph(_inline_markup(value), cell) for value in row] for row in rows[_TABLE_HEADER_ROWS:])
+    table = Table(data, hAlign="LEFT", repeatRows=1)
+    # Columns marked ``---:`` in the authored rule row are numeric and right-aligned.
+    alignments = tuple(
+        ("ALIGN", (column, 1), (column, -1), "RIGHT") for column, spec in enumerate(rows[1]) if spec.endswith(":")
+    )
+    table.setStyle(
+        TableStyle((
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#eeeeee")),
+            ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#bbbbbb")),
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 4),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+            ("TOPPADDING", (0, 0), (-1, -1), 3),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+            *alignments,
+        ))
+    )
+    return table
+
+
+def _pdf_flowables(lines: list[str]) -> list[Flowable]:
+    """Transcribe the authored report lines into reportlab document flowables.
+
+    Markdown headings become real headings, ``|`` blocks become reportlab tables,
+    and every other line becomes a body paragraph. Content is neither added nor
+    dropped relative to the markdown sibling.
+
+    Returns:
+        list[Flowable]: Flowables in document order.
+    """
+    from reportlab.lib.styles import ParagraphStyle  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+    from reportlab.platypus import Paragraph  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+
+    body = ParagraphStyle("Body", fontName="Helvetica", fontSize=10.5, leading=14, spaceAfter=6)
+    heading = ParagraphStyle("Heading", parent=body, fontName="Helvetica-Bold", fontSize=15, leading=19, spaceAfter=8)
+    subheading = ParagraphStyle(
+        "Subheading", parent=body, fontName="Helvetica-Bold", fontSize=11.5, leading=15, spaceBefore=8, spaceAfter=4
+    )
+    cell = ParagraphStyle("Cell", parent=body, fontSize=9.5, leading=12, spaceAfter=0)
+    flowables: list[Flowable] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index]
+        if line.startswith("|"):
+            block: list[str] = []
+            while index < len(lines) and lines[index].startswith("|"):
+                block.append(lines[index])
+                index += 1
+            flowables.append(_pdf_table(block, cell))
+            continue
+        if line.startswith("## "):
+            flowables.append(Paragraph(_inline_markup(line[3:]), subheading))
+        elif line.startswith("# "):
+            flowables.append(Paragraph(_inline_markup(line[2:]), heading))
+        elif line:
+            flowables.append(Paragraph(_inline_markup(line), body))
+        index += 1
+    return flowables
+
+
+def build_pdf(output: Path, lines: list[str]) -> Path:
+    """Write the paginated reportlab document beside its markdown and HTML siblings.
+
+    The document transcribes exactly the authored `lines` used by the markdown
+    sibling; no figure raster or new content is added. reportlab is used in
+    invariant mode because it otherwise embeds creation/modification dates and a
+    file fingerprint, which would make repeated builds differ.
+
+    Returns:
+        Path: The written ``current_report.pdf`` path.
+    """
+    from reportlab.lib.pagesizes import A4  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+    from reportlab.lib.units import cm  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+    from reportlab.platypus import SimpleDocTemplate  # ruff: ignore[import-outside-top-level] -- optional reportlab dependency
+
+    target = output / PDF_NAME
+    document = SimpleDocTemplate(
+        str(target),
+        pagesize=A4,
+        title=PDF_TITLE,
+        author="Neocam evaluation",
+        subject="Conditional economic analysis; not independent clinical validation",
+        invariant=True,
+        leftMargin=2 * cm,
+        rightMargin=2 * cm,
+        topMargin=2 * cm,
+        bottomMargin=1.8 * cm,
+    )
+    document.build(_pdf_flowables(lines), onFirstPage=_pdf_page_furniture, onLaterPages=_pdf_page_furniture)
+    return target
 
 
 def build(output: Path, *, office: bool = False) -> None:
@@ -207,6 +373,7 @@ def build(output: Path, *, office: bool = False) -> None:
         + "</pre>",
         encoding="utf-8",
     )
+    _ = build_pdf(output, lines)
     if office:
         build_office(output, budgets, inputs)
 

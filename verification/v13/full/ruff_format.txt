@@ -1,1 +1,1 @@
-Required Python tool is unavailable: ruff
+112 files already formatted

@@ -157,6 +157,11 @@ def gates_for_profile(profile: str) -> list[Gate]:
             ),
             120,
         ),
+        Gate(
+            "privacy",
+            (python, "-m", "quality.privacy", "--output", "verification/v7/privacy.json"),
+            120,
+        ),
         Gate("dependency_consistency", ("uv", "lock", "--check", "--offline"), 30),
         Gate("dependency_lock", (python, "-m", "quality.checks", "lock"), allow_unavailable=True),
         Gate("native_versions", (python, "-m", "quality.checks", "native_versions"), allow_unavailable=True),

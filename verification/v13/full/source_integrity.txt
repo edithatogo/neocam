@@ -1,6 +1,9 @@
 {
-  "stored_file_integrity_passed": true,
-  "errors": [],
+  "stored_file_integrity_passed": false,
+  "errors": [
+    "Source size mismatch: sources/retrieve_originals.py",
+    "Source digest mismatch: sources/retrieve_originals.py"
+  ],
   "public_original_archival_completeness": false,
   "stored_files": 15
 }

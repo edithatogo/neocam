@@ -1,0 +1,66 @@
+{
+  "passed": false,
+  "scanned_files": 3,
+  "text_files": 3,
+  "container_files": 0,
+  "findings_count": 9,
+  "findings": [
+    {
+      "rule": "identifier_key",
+      "path": "export.json",
+      "line": 1,
+      "detail": "tfn"
+    },
+    {
+      "rule": "tfn",
+      "path": "export.json",
+      "line": 1,
+      "detail": ""
+    },
+    {
+      "rule": "au_phone",
+      "path": "note.md",
+      "line": 1,
+      "detail": ""
+    },
+    {
+      "rule": "email",
+      "path": "note.md",
+      "line": 1,
+      "detail": ""
+    },
+    {
+      "rule": "medicare_number",
+      "path": "note.md",
+      "line": 2,
+      "detail": ""
+    },
+    {
+      "rule": "card_number",
+      "path": "note.md",
+      "line": 3,
+      "detail": ""
+    },
+    {
+      "rule": "tfn",
+      "path": "note.md",
+      "line": 4,
+      "detail": ""
+    },
+    {
+      "rule": "identifier_column",
+      "path": "roster.csv",
+      "line": 1,
+      "detail": "patient_id"
+    },
+    {
+      "rule": "identifier_column",
+      "path": "roster.csv",
+      "line": 1,
+      "detail": "medicare"
+    }
+  ],
+  "exemptions": [],
+  "unused_exemptions": [],
+  "not_scanned": {}
+}

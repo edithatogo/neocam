@@ -1,3 +1,6 @@
--137c1e41ff9c1dc75ff277b9582460a0bd8c4768 extensions/conductor
+ 137c1e41ff9c1dc75ff277b9582460a0bd8c4768 extensions/conductor (heads/main)
  
-Conductor checkout unavailable; a gitlink alone is not a checkout
+{
+  "check": "submodule",
+  "errors": []
+}

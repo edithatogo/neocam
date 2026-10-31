@@ -38,9 +38,29 @@ class Gremlins(TypedDict):
     paths: list[str]
 
 
+class PytestIniOptions(TypedDict):
+    """The offline/timeout guard contract in the pytest configuration."""
+
+    addopts: str
+    timeout: float
+    timeout_method: str
+
+
+class PytestTool(TypedDict):
+    """pytest tool contract."""
+
+    ini_options: PytestIniOptions
+
+
 Tools = TypedDict(
     "Tools",
-    {"ruff": Ruff, "ty": Ty, "basedpyright": Basedpyright, "pytest-gremlins": Gremlins},
+    {
+        "ruff": Ruff,
+        "ty": Ty,
+        "basedpyright": Basedpyright,
+        "pytest-gremlins": Gremlins,
+        "pytest": PytestTool,
+    },
 )
 
 
@@ -133,6 +153,17 @@ def test_dataframe_policy_and_tools_are_declared() -> None:
     for tool in ["ruff", "ty", "basedpyright", "pytest-gremlins", "scalene", "hypothesis", "pip-audit"]:
         assert any(isinstance(dep, str) and dep.startswith(tool + "==") for dep in dependencies)
     assert "hypothesis[all]" not in "\n".join(dep for dep in dependencies if isinstance(dep, str))
+
+
+def test_offline_and_timeout_guards_are_configured_and_pinned() -> None:
+    """The network guard and per-test bound are config, not convention, and pinned."""
+    ini = config()["tool"]["pytest"]["ini_options"]
+    assert "--disable-socket" in ini["addopts"]
+    assert ini["timeout"] > 0
+    assert ini["timeout_method"] in {"signal", "thread"}
+    dependencies = config()["dependency-groups"]["assurance"]
+    for tool in ["pytest-socket", "pytest-timeout", "pytest-randomly", "time-machine"]:
+        assert any(isinstance(dep, str) and dep.startswith(tool + "==") for dep in dependencies)
 
 
 def test_native_tools_have_pinned_binary_integrity() -> None:

@@ -40,13 +40,12 @@ Acceptance: each adopted pattern is justified with the difference it makes; noth
 - [ ] 3.3.d Verify workflow gates (actionlint/zizmor) and the context check.
 - [ ] 3.3.e Review, commit and record SHA in progress.md.
 
-## Phase/task 3.4: Canonical VoI alignment with `voiage` and `vop_poc_nz` (gated)
-Files: `src/perspectives_v7.py`, `src/strategies.py`, `src/statewide.py`; `docs/library-integration.md`.
+## Phase/task 3.4: Canonical VoI alignment with `voiage` and `vop_poc_nz` — PROMOTED
+Files: see the promoted track.
 Interface: this repository reimplements the inspected `vop_poc_nz` contract and computes cost-only EVPI; `voiage` is the owner's VoI engine and has a canonical sync with `vop_poc_nz`.
-Acceptance: **not started** until the owner confirms decision utility is credible. If it proceeds, it is a model track with its own parity suite: results may legitimately change, and the change must be separately reviewed and disclosed, never folded into engineering work.
+Acceptance: **this task is promoted to its own track, `v14-04-voi-voiage-integration`, by owner direction (2026-10-31: including voiage is the priority, `vop_poc_nz` must not be a dependency, and anything only it has must be integrated into voiage).** Work continues there; do not duplicate it here.
 
-- [ ] 3.4.a Obtain the owner's decision on decision-utility credibility.
-- [ ] 3.4.b If approved, pin the sibling engine at a checked commit and write a parity suite.
-- [ ] 3.4.c Record any result change explicitly, with the parity evidence.
-- [ ] 3.4.d Do not merge into an engineering commit; open a model track instead.
-- [ ] 3.4.e Record the outcome (proceed or deferred) in progress.md.
+- [x] 3.4.a Owner decision obtained: voiage integration is prioritised; `vop_poc_nz` is not a dependency.
+- [x] 3.4.b The engine-capability gap was enumerated and recorded in the promoted track's ledger.
+- [ ] 3.4.c–e Superseded by `v14-04` tasks 4.1–4.5; record the outcome there.
+

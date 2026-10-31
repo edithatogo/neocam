@@ -18,10 +18,21 @@ research = ["scipy==1.18.1", "scikit-learn==1.9.1"]
 test = ["pytest==9.2.0", "coverage==7.17.0"]
 assurance = [
   {include-group = "test"},
-  "ruff==0.17.3", "ty==0.0.95", "basedpyright==1.40.2",
-  "hypothesis==6.170.14", "pytest-gremlins==1.13.1", "scalene==2.4.0",
-  "pip-audit==2.10.1", "uv==0.13.6",
-  "prek==0.5.9", "zizmor==1.31.1",
+  "ruff==0.17.3",
+  "ty==0.0.95",
+  "basedpyright==1.40.2",
+  "hypothesis==6.170.14",
+  "pytest-gremlins==1.13.1",
+  "scalene==2.4.0",
+  "pip-audit==2.10.1",
+  "uv==0.13.6",
+  "prek==0.5.9",
+  "zizmor==1.31.1",
+  "pytest-socket==0.8.1",
+  "pydantic==2.14.2",
+  "pytest-timeout==2.4.0",
+  "pytest-randomly==5.0.0",
+  "time-machine==3.6.0",
 ]
 
 feedback = ["pytest-testmon==2.2.0", "pytest-xdist==3.8.0"]
@@ -34,12 +45,43 @@ default-groups = ["test"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--strict-markers --strict-config"
+# No test may reach the network (pytest-socket); the ordinary suite, the
+# hypothesis gate, gremlins and testmon all inherit this through addopts.
+# The guards load through normal pytest plugin autoload. NOTE: the historical
+# ordinary-suite control PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 is now incompatible with
+# this addopts (it turns --disable-socket into an unrecognised argument and pytest
+# exits non-zero) -- a loud failure, never a silent loss of the guard. Naming the
+# plugins with -p instead was tested and is not usable: "-p socket" collides with
+# coverage's own stdlib `socket` import under `coverage run`, and "-p pytest_socket"
+# double-registers when autoload also loads the same plugin.
+# pytest-randomly shuffles test order and reseeds random/numpy/faker per test; the
+# printed --randomly-seed replays any failing order exactly.
+addopts = "--strict-markers --strict-config --disable-socket"
+# Every test is bounded (pytest-timeout). Re-measured with --durations=20 after the
+# concurrent additions: the slowest real test is 13.80 s
+# (tests/test_privacy_scan.py::test_the_real_repository_tree_passes_without_exemptions);
+# the next slowest is 1.01 s. 120 s is ~8.7x headroom for a loaded CI runner while a
+# genuine hang is still caught far inside the 50-minute CI budget and inside gremlins'
+# own 1800 s gate. The signal method raises a KeyboardInterrupt-shaped failure so
+# teardown stays clean.
+timeout = 120
+timeout_method = "signal"
 filterwarnings = ["error"]
 # No expected-failure marks may silently rot: an XPASS is a failure.
 xfail_strict = true
 
 [tool.coverage.run]
+# Coverage 7.17.0 ALREADY selects the experimental sys.monitoring core by default
+# on Python 3.12+ here (verified: with `core` unset, Core tracer_class=SysMonitor),
+# so this line makes the effective core explicit rather than switching it: sysmon
+# and ctrace produced byte-identical coverage (identical per-file
+# covered/missing/branch summaries), so the measured "default vs sysmon" times were
+# the same core twice. Kept explicit because sysmon disables DYNAMIC CONTEXTS:
+# pytest-testmon's switch_context() raises CoverageWarning(no-sysmon-context), and
+# with filterwarnings=error that aborts `python -m quality.feedback --mode tests`.
+# testmon builds its Coverage with config_file=False, so only an environment
+# override reaches it: COVERAGE_CORE=ctrace restores the incremental path.
+core = "sysmon"
 branch = true
 source = ["src", "quality"]
 # The optional tools are executed by their dedicated full gates, not asserted

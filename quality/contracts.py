@@ -33,7 +33,15 @@ class _PopulationTotals(TypedDict):
 
 
 def forbidden_imports(source: str) -> list[str]:
-    """Detect prohibited imports, including literal dynamic imports, not prose.
+    r"""Detect prohibited imports, including literal dynamic imports, not prose.
+
+    Examples:
+        >>> forbidden_imports("import numpy\nfrom pandas import DataFrame\n")
+        ['pandas']
+        >>> forbidden_imports('import importlib; importlib.import_module("xarray")\n')
+        ['xarray']
+        >>> forbidden_imports("# pandas and xarray are only mentioned as prose\nimport numpy\n")
+        []
 
     Returns:
         list[str]: Sorted root package names of prohibited imports.
@@ -60,6 +68,12 @@ def forbidden_imports(source: str) -> list[str]:
 
 def forbidden_packages(names: list[str]) -> list[str]:
     """Check canonical package names in direct or resolved dependency records.
+
+    Examples:
+        >>> forbidden_packages(["Pandas", "numpy"])
+        ['pandas']
+        >>> forbidden_packages(["pandas_stubs", "polars"])
+        ['pandas-stubs']
 
     Returns:
         list[str]: Sorted canonical names that are prohibited.
