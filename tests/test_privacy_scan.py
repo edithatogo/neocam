@@ -124,6 +124,24 @@ def test_reserved_domains_and_url_userinfo_are_not_mailboxes(tmp_path: Path) -> 
     assert report.passed is True
 
 
+def test_mailboxes_are_found_at_the_local_part_boundary_only(tmp_path: Path) -> None:
+    valid = "a" * 64 + AT + "exampleclinic.net.au"
+    too_long = "a" * 65 + AT + "exampleclinic.net.au"
+    pair = "one" + AT + "alpha.net" + " " + "two" + AT + "beta.net"
+    _ = (tmp_path / "addresses.txt").write_text(f"{valid}\n{too_long}\nStray {AT} sign\n{pair}\n", encoding="utf-8")
+    report = privacy.scan_repository(tmp_path)
+    emails = [finding for finding in report.findings if finding.rule == "email"]
+    assert len(emails) == 3
+    assert sorted(finding.line for finding in emails) == [1, 4, 4]
+
+
+def test_line_numbers_survive_non_newline_breaks(tmp_path: Path) -> None:
+    text = "clean first line\rsecond line with " + FAKE_EMAIL + "\n"
+    _ = (tmp_path / "breaks.txt").write_text(text, encoding="utf-8")
+    report = privacy.scan_repository(tmp_path)
+    assert [(finding.rule, finding.line) for finding in report.findings] == [("email", 2)]
+
+
 def test_bare_digit_runs_and_decimal_fractions_are_not_identifiers(tmp_path: Path) -> None:
     text = "0123456789\n" + "9012345679\n" + "17041.049382716046\n" + "22972.9012345679\n"
     text += "digest 8560351941732 and 2837737991474 and 2245706871922\n"

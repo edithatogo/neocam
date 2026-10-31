@@ -7,6 +7,11 @@ from pathlib import Path
 
 from artifact_tool import SpreadsheetFile, Workbook
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import neutralise_archive_metadata
+except ModuleNotFoundError:  # run directly as ``python scripts/build_workbook_v4.py``
+    from document_metadata import neutralise_archive_metadata
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v4"
 result = json.loads((OUT / "results_v2.json").read_text())
@@ -324,6 +329,7 @@ chart.title_text = "Cost-saving probability depends on assumed effect"
 chart.set_position("F4", "O20")
 chart.has_legend = True
 SpreadsheetFile.export_xlsx(wb).save(str(OUT / "Panda_Vision_analysis_v4.xlsx"))
+neutralise_archive_metadata(OUT / "Panda_Vision_analysis_v4.xlsx")
 print(  # ruff: ignore[print] -- CLI workbook inspection report goes to stdout
     wb.inspect({
         "kind": "region",

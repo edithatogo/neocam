@@ -10,6 +10,11 @@ sys.path.insert(0, str(Path.cwd()))
 
 from artifact_tool import SpreadsheetFile, Workbook
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import neutralise_archive_metadata
+except ModuleNotFoundError:  # run directly as ``python scripts/build_workbook.py``
+    from document_metadata import neutralise_archive_metadata
+
 from src.panda_model import (
     ModelInputs,
     annual_programme_cost,
@@ -875,6 +880,7 @@ for i in range(10):
 
 Path("outputs").mkdir(exist_ok=True, parents=True)
 SpreadsheetFile.export_xlsx(wb).save(OUT)
+neutralise_archive_metadata(Path(OUT))
 print(OUT)  # ruff: ignore[print] -- build script reports the workbook path to stdout
 print(  # ruff: ignore[print] -- build script reports formula diagnostics to stdout
     wb.inspect({

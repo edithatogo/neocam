@@ -9,6 +9,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_documents_v7.py``
+    from document_metadata import save_neutralised
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v7"
 FIG = OUT / "figures"
@@ -201,7 +206,7 @@ for table in d.tables:
 for run in d.paragraphs[1].runs:
     run.font.size = Pt(15)
     run.bold = True
-d.save(OUT / "Panda_Vision_two_page_plan_v7.docx")
+save_neutralised(d, OUT / "Panda_Vision_two_page_plan_v7.docx")
 # Supplement: deliberately bounded, question-led sections rather than a technical catalogue.
 d = Document()
 sec = d.sections[0]
@@ -719,5 +724,5 @@ p(
     " scripts/build_documents_v7.py. The workbook is a results export; its formulas reconcile totals but do not rerun"
     " PSA. Conductor identifies active files, assumptions, executed checks and unresolved gates."
 )
-d.save(OUT / "Panda_Vision_perspectives_audit_supplement_v7.docx")
+save_neutralised(d, OUT / "Panda_Vision_perspectives_audit_supplement_v7.docx")
 print("Created two-page-plan source and ten-section supplement.")  # ruff: ignore[print] -- build script reports completion to stdout

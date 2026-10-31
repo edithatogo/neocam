@@ -15,7 +15,9 @@ files are decoded as UTF-8. The XML parts of OOXML containers (``.docx``, ``.xls
 ``.pptx``) are read with :mod:`zipfile`, and the FlateDecode streams of PDF files are
 inflated with :mod:`zlib`, so document bodies are scanned with the standard library
 alone. Opaque or compressed payloads cannot be read as text; they are listed in the
-receipt instead of being skipped silently.
+receipt instead of being skipped silently. Reads are bounded (32 MB per text file,
+64 MB per container, 2 MB per container part and per inflated stream); a file above its
+bound is reported as ``oversize`` rather than read.
 
 What is detected
 ----------------
@@ -175,6 +177,43 @@ TFN_PATTERN = re.compile(r"(?i)\b(?:tfn|tax file number)\b[^\d\n]{0,30}?(\d[\d \
 CARD_KEYWORDS_PATTERN = r"(?i)\b(?:card[ _\-]?(?:number|no)|credit[ _\-]?card|debit[ _\-]?card|cardholder)\b"
 CARD_VALUE_PATTERN = r"[^\d\n]{0,30}?(\d[\d \-]{11,17}\d)"
 CARD_PATTERN = re.compile(CARD_KEYWORDS_PATTERN + CARD_VALUE_PATTERN)
+
+# Cheap shape predicates for whole-blob scanning. A blob that fails one of these cannot
+# hold a match that the corresponding validator would accept, so its whole-blob scan is
+# skipped. Each predicate is a strict superset of the accepted matches, so no finding is
+# lost: an email needs "@"; a phone that passes ``_is_australian_phone`` starts with "+61",
+# with a "0" whose next digit is 2/3/4/7/8, or with "61"; and every numeric context rule
+# needs one of the keywords below.
+PHONE_SHAPE_PATTERN = re.compile(r"0[23478]|61")
+CONTEXT_KEYWORDS = (
+    "medicare",
+    "ihi",
+    "healthcare identifier",
+    "tfn",
+    "tax file",
+)
+CARD_KEYWORDS = (
+    "cardnumber",
+    "card number",
+    "card_number",
+    "card-number",
+    "cardno",
+    "card no",
+    "card_no",
+    "card-no",
+    "cardholder",
+    "creditcard",
+    "credit card",
+    "credit_card",
+    "credit-card",
+    "debitcard",
+    "debit card",
+    "debit_card",
+    "debit-card",
+)
+# Every character that ``str.splitlines`` treats as a line break other than "\n". A
+# single-character membership test is far cheaper than a pattern scan over a large blob.
+ALT_LINE_BREAKS = ("\r", "\v", "\f", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029")
 
 # Exact, normalised column and key names, grouped by the value shape each one requires.
 NAME_FIELDS = (
@@ -368,9 +407,13 @@ def _is_reserved_email(value: str) -> bool:
     return any(domain == reserved or domain.endswith("." + reserved) for reserved in RESERVED_EMAIL_DOMAINS)
 
 
-def _is_url_userinfo(line: str, start: int) -> bool:
-    """Return whether a match is credential material in a URL, not a mailbox."""
-    return URL_USERINFO_PATTERN.search(line[:start]) is not None
+def _is_url_userinfo(text: str, start: int) -> bool:
+    """Return whether a match is credential material in a URL, not a mailbox.
+
+    The userinfo pattern cannot cross whitespace, so only the current line of ``text``
+    before ``start`` can take part; passing the whole text is equivalent to a line slice.
+    """
+    return URL_USERINFO_PATTERN.search(text[:start]) is not None
 
 
 def _is_australian_phone(value: str) -> bool:
@@ -504,21 +547,133 @@ def _line_of_key(text: str, name: str) -> int:
     return text.count("\n", 0, match.start()) + 1 if match else 1
 
 
-def _inspect_line(scan: _Scan, relative: str, number: int, line: str) -> None:
-    """Record every value match on one line of text."""
-    for match in EMAIL_PATTERN.finditer(line):
-        value = match.group(0)
-        if not _is_reserved_email(value) and not _is_url_userinfo(line, match.start()):
-            scan.record("email", relative, number, value)
-    for match in PHONE_PATTERN.finditer(line):
+def _iter_located_matches(pattern: re.Pattern[str], text: str) -> Iterator[tuple[re.Match[str], int]]:
+    """Yield each match of one pattern together with the line it starts on.
+
+    Args:
+        pattern: Compiled pattern scanned once over a whole text blob.
+        text: Decoded text whose line breaks are single newlines.
+
+    Yields:
+        tuple[re.Match[str], int]: Each match, and its one-based line number.
+    """
+    line = 1
+    searched = 0
+    for match in pattern.finditer(text):
+        line += text.count("\n", searched, match.start())
+        searched = match.start()
+        yield match, line
+
+
+def _has_context_keyword(text: str) -> bool:
+    """Return whether a blob names any identifier the context rules look for.
+
+    Args:
+        text: Decoded text to test.
+
+    Returns:
+        bool: True when one of the keyword literals appears, ignoring case.
+    """
+    lowered = text.lower()
+    if any(keyword in lowered for keyword in CONTEXT_KEYWORDS):
+        return True
+    return "card" in lowered and any(keyword in lowered for keyword in CARD_KEYWORDS)
+
+
+def _email_match(text: str, at: int) -> re.Match[str] | None:
+    """Return the mailbox match whose "@" sits at one offset, if any.
+
+    Every mailbox has exactly one "@", so a match is recovered by anchoring at the local
+    part that ends at this offset. The local part is at most 64 characters, so only the 64
+    positions before the "@" are tried; the first one whose match reaches past the "@" is
+    the match, because an interior start is rejected by the pattern's lookbehind.
+
+    Args:
+        text: Decoded text with its line breaks normalised to single newlines.
+        at: Offset of an "@" in ``text``.
+
+    Returns:
+        re.Match[str] | None: The matching mailbox, or None when no mailbox uses this "@".
+    """
+    for start in range(at, max(0, at - 64) - 1, -1):
+        match = EMAIL_PATTERN.match(text, start)
+        if match is not None and match.end() > at:
+            return match
+    return None
+
+
+def _inspect_email(scan: _Scan, relative: str, text: str) -> None:
+    """Record every mailbox match in one text blob.
+
+    Args:
+        scan: Mutable accumulator for the walk.
+        relative: Repository-relative POSIX path.
+        text: Decoded text with its line breaks normalised to single newlines.
+    """
+    line = 1
+    searched = 0
+    at = text.find("@")
+    while at != -1:
+        match = _email_match(text, at)
+        if match is not None:
+            value = match.group(0)
+            line += text.count("\n", searched, match.start())
+            searched = match.start()
+            if not _is_reserved_email(value) and not _is_url_userinfo(text, match.start()):
+                scan.record("email", relative, line, value)
+        at = text.find("@", at + 1)
+
+
+def _inspect_phone(scan: _Scan, relative: str, text: str) -> None:
+    """Record every Australian telephone match in one text blob.
+
+    Args:
+        scan: Mutable accumulator for the walk.
+        relative: Repository-relative POSIX path.
+        text: Decoded text with its line breaks normalised to single newlines.
+    """
+    if PHONE_SHAPE_PATTERN.search(text) is None:
+        return
+    for match, line in _iter_located_matches(PHONE_PATTERN, text):
         value = match.group(0)
         if _is_australian_phone(value):
-            scan.record("au_phone", relative, number, value)
+            scan.record("au_phone", relative, line, value)
+
+
+def _inspect_context(scan: _Scan, relative: str, text: str) -> None:
+    """Record every Medicare, tax-file and card-number match in one text blob.
+
+    Args:
+        scan: Mutable accumulator for the walk.
+        relative: Repository-relative POSIX path.
+        text: Decoded text with its line breaks normalised to single newlines.
+    """
+    if not _has_context_keyword(text):
+        return
     for rule, pattern, validator in CONTEXT_RULES:
-        for match in pattern.finditer(line):
+        for match, line in _iter_located_matches(pattern, text):
             value = match.group(1)
             if validator(value):
-                scan.record(rule, relative, number, value)
+                scan.record(rule, relative, line, value)
+
+
+def _inspect_values(scan: _Scan, relative: str, text: str) -> None:
+    """Record every value match in one text blob across whole-blob pattern passes.
+
+    Each pattern is scanned once over the whole blob rather than once per line, and every
+    match offset is mapped back to its line. Line-local patterns cannot match across a
+    single newline, so this recognises exactly the matches the per-line walk recognised.
+    A cheap shape predicate precedes each pass and skips a pattern whose validator could
+    not accept anything in the blob.
+
+    Args:
+        scan: Mutable accumulator for the walk.
+        relative: Repository-relative POSIX path.
+        text: Decoded text with its line breaks normalised to single newlines.
+    """
+    _inspect_email(scan, relative, text)
+    _inspect_phone(scan, relative, text)
+    _inspect_context(scan, relative, text)
 
 
 def _inspect_fields(scan: _Scan, relative: str, text: str, delimiter: str) -> None:
@@ -534,9 +689,16 @@ def _inspect_fields(scan: _Scan, relative: str, text: str, delimiter: str) -> No
 
 
 def _inspect_text(scan: _Scan, relative: str, text: str, delimiter: str = ",") -> None:
-    """Record every value match in decoded text, plus named-field findings when applicable."""
-    for number, line in enumerate(text.splitlines(), 1):
-        _inspect_line(scan, relative, number, line)
+    r"""Record every value match in decoded text, plus named-field findings when applicable.
+
+    Line breaks other than "\n" are first normalised so that whole-blob scanning sees the
+    same line-local text that a per-line walk saw; a blob with only "\n" breaks is used
+    as-is. The tabular and JSON field checks still run on the original text.
+    """
+    body = text
+    if any(line_break in text for line_break in ALT_LINE_BREAKS):
+        body = "\n".join(text.splitlines())
+    _inspect_values(scan, relative, body)
     suffix = Path(relative).suffix.lower()
     if suffix in TABULAR_SUFFIXES or suffix in JSON_SUFFIXES:
         _inspect_fields(scan, relative, text, delimiter)

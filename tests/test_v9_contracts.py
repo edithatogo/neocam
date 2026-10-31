@@ -80,8 +80,16 @@ def test_ci_exercises_the_optional_extras() -> None:
 
 
 def test_incremental_testmon_loads_plugin_explicitly(tmp_path: Path) -> None:
+    """pytest-testmon registers its ``pytest11`` entry point as ``pytest-testmon``.
+
+    The module path ``testmon.pytest_testmon`` collides with that registration: ``-p``
+    registers the module object under the dotted name while autoload registers the same
+    object under the entry-point name, so pytest aborts with "Plugin already registered
+    under a different name" (exit 3). Name the entry point instead.
+    """
     plan = prepare(tmp_path, "tests", available=True, environment={})
-    assert ("-p", "testmon.pytest_testmon") in tuple(itertools.pairwise(plan.command))
+    assert ("-p", "pytest-testmon") in tuple(itertools.pairwise(plan.command))
+    assert ("-p", "testmon.pytest_testmon") not in tuple(itertools.pairwise(plan.command))
 
 
 def test_incremental_mutation_loads_plugin_explicitly(tmp_path: Path) -> None:

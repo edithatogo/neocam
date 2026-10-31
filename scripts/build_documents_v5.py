@@ -10,6 +10,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_documents_v5.py``
+    from document_metadata import save_neutralised
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v5"
 FIG = OUT / "figures"
@@ -170,7 +175,7 @@ def brief() -> None:  # ruff: ignore[complex-structure, too-many-branches] -- on
         run.font.size = Pt(15)
         run.bold = True
     d.tables[3].cell(0, 0).paragraphs[0].paragraph_format.page_break_before = True
-    d.save(OUT / "Panda_Vision_two_page_plan_v5.docx")
+    save_neutralised(d, OUT / "Panda_Vision_two_page_plan_v5.docx")
 
 
 brief()
@@ -516,5 +521,5 @@ p(
     " verification receipts are included in the repository. This supplement reports v5 model outputs [M5]; retained"
     " v2/v4 material is denoted [M2]."
 )
-s.save(OUT / "Panda_Vision_comparative_supplement_v5.docx")
+save_neutralised(s, OUT / "Panda_Vision_comparative_supplement_v5.docx")
 print("Created plan and supplement")  # ruff: ignore[print] -- build script reports completion to stdout

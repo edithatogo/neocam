@@ -7,6 +7,7 @@ import hashlib
 import importlib.metadata
 import importlib.util
 import json
+import os
 import platform
 import subprocess  # ruff: ignore[suspicious-subprocess-import] -- runs the guarded local feedback plan
 import sys
@@ -32,6 +33,13 @@ EXCLUDED = {
     "extensions",
     ".uv-cache",
 }
+# pytest-testmon builds its own ``Coverage(config_file=False)``, so the project's
+# ``[tool.coverage.run] core = "sysmon"`` never reaches it. sysmon disables the
+# dynamic contexts testmon needs, and CoverageWarning(no-sysmon-context) aborts the
+# run under ``filterwarnings = ["error"]``. Only the incremental test path overrides
+# the core, and only through the child environment, because no config file setting
+# can reach testmon's private coverage instance.
+INCREMENTAL_CORE_OVERRIDE = {"COVERAGE_CORE": "ctrace"}
 
 
 @dataclass(frozen=True)
@@ -100,6 +108,22 @@ def cache_key(root: Path, mode: str, environment: dict[str, str]) -> str:
     return digest.hexdigest()
 
 
+def child_environment(plan: FeedbackPlan) -> dict[str, str] | None:
+    """Return the child environment for a guarded command, or None to inherit.
+
+    The incremental test path is the only consumer that overrides the coverage core:
+    testmon's private ``Coverage`` ignores the project config file, so the override
+    must travel in the child environment. Every other mode inherits the ambient
+    environment unchanged.
+
+    Returns:
+        dict[str, str] | None: The environment for the child, or None to inherit.
+    """
+    if plan.mode == "tests" and plan.can_seal:
+        return {**os.environ, **INCREMENTAL_CORE_OVERRIDE}
+    return None
+
+
 def prepare(root: Path, mode: str, *, available: bool, environment: dict[str, str]) -> FeedbackPlan:
     """Invalidate unknown/stale local state before an optional plugin is run.
 
@@ -132,7 +156,7 @@ def prepare(root: Path, mode: str, *, available: bool, environment: dict[str, st
         if not reused:
             for name in (".testmondata", ".testmondata-wal", ".testmondata-shm"):
                 (root / name).unlink(missing_ok=True)
-        command = (sys.executable, "-m", "pytest", "-p", "testmon.pytest_testmon", "-q", "--testmon")
+        command = (sys.executable, "-m", "pytest", "-p", "pytest-testmon", "-q", "--testmon")
     else:
         if not available:
             msg = "pytest-gremlins unavailable; mutation feedback is blocked"
@@ -192,7 +216,9 @@ def main() -> int:
         print(f"BLOCKED: {error}")  # ruff: ignore[print] -- CLI blocked notice goes to stdout
         return 69
     print(json.dumps(asdict(plan), indent=2), flush=True)  # ruff: ignore[print] -- CLI plan report goes to stdout
-    result = subprocess.run(plan.command, cwd=ROOT, check=False)  # ruff: ignore[subprocess-without-shell-equals-true] -- fixed plan command, no shell
+    result = subprocess.run(  # ruff: ignore[subprocess-without-shell-equals-true] -- fixed plan command, no shell
+        plan.command, cwd=ROOT, check=False, env=child_environment(plan)
+    )
     # A file/environment change during the run invalidates the seal too.
     stable = cache_key(ROOT, args.mode, environment_versions()) == plan.key
     complete(ROOT, plan, result.returncode if stable else 1)

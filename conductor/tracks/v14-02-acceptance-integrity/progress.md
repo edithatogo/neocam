@@ -21,3 +21,27 @@
 29 passed / 2 failed (`current_release` stale seal, `source_integrity` register
 mismatch). `source_integrity` is now fixed; `current_release` requires the final re-seal
 immediately before the acceptance run.
+
+## Additional gate-stability work landed in this track's window (2026-10-31)
+
+- `tmp_path_retention_policy = "none"` in `[tool.pytest.ini_options]`. Reason: pytest's
+  numbered tmp directories are swept on exit, and under the mutation gate's two workers
+  that cleanup raced (an unclosed-scandir ResourceWarning escalated by
+  `filterwarnings = ["error"]`, plus an `rm_rf` race), producing spurious `Error` mutants.
+  The mutation gate treats **any** error as a failure regardless of score, so this was a
+  real gate-fragility risk rather than cosmetics. Nothing in the suite inspects a previous
+  run's tmp directories. Verified: scoped gremlins run at `error: 0`, `timeout: 0`.
+- `quality.feedback` incremental path repaired: the plugin was invoked as
+  `-p testmon.pytest_testmon`, which collides with pytest-testmon's own entry-point name
+  (exit 3), and the sys.monitoring core aborts testmon's `switch_context()` under
+  `filterwarnings = ["error"]`. Fixed to `-p pytest-testmon` with a scoped
+  `COVERAGE_CORE=ctrace` override for that path only. Two contract tests that had enshrined
+  the broken invocation were corrected (not weakened).
+- Privacy gate performance: `quality/privacy.py` scanned the tree in ~15 s with
+  `_inspect_line` called 1.22 million times (five regex passes per line). Because gremlins
+  runs the suite once per mutant, an optimisation is required and is in progress with an
+  equivalence proof (identical findings and skip semantics).
+
+These three items are prerequisites for a full-profile run that is genuinely green, not
+merely green because a gate happened not to exercise them.
+

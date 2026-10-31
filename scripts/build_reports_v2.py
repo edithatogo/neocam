@@ -15,6 +15,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_reports_v2.py``
+    from document_metadata import save_neutralised
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v2"
 FIG = OUT / "figures"
@@ -207,7 +212,7 @@ doc.tables[3].cell(0, 0).paragraphs[0].paragraph_format.page_break_before = True
 for para in list(doc.paragraphs):
     if not para.text.strip() and para._p.xpath(".//w:sdt"):  # ruff: ignore[private-member-access] -- python-docx XML internals inspected deliberately
         para._p.getparent().remove(para._p)  # ruff: ignore[private-member-access] -- python-docx XML internals removed deliberately
-doc.save(OUT / "Panda_Vision_CHHHS_brief_v2.docx")
+save_neutralised(doc, OUT / "Panda_Vision_CHHHS_brief_v2.docx")
 # Standalone methods/evidence supplement. Page breaks provide predictable reading sections.
 s = Document()
 sec = s.sections[0]
@@ -455,5 +460,5 @@ for item in rows("evidence/literature_parameter_map.csv"):
 s.add_paragraph(
     "[M1] Panda Vision v2 analysis: outputs/v2/results_v2.json; source, parameter and scenario CSVs; fixed seed 20261027. Reproducible source and verification receipts accompany the project."  # ruff: ignore[line-too-long] -- authored report text kept verbatim
 )
-s.save(OUT / "Panda_Vision_methods_evidence_v2.docx")
+save_neutralised(s, OUT / "Panda_Vision_methods_evidence_v2.docx")
 print("Figures and DOCX authored:", OUT)  # ruff: ignore[print] -- script status line goes to stdout

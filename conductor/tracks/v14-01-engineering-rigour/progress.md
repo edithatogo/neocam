@@ -71,3 +71,25 @@ Context from the preceding engineering wave (already landed, see
 strictness; SHA-pinned hardened CI with CodeQL, dependency-review, Scorecard and
 attestation; mutation score raised from 69.78% to 99.52% (gate green); 1,027+ tests.
 
+1.6 Incremental-feedback defects fixed (local feedback path only). Both reproduced with
+`python -m quality.feedback --mode tests`, each exit 3: (a) the plan invoked
+`-p testmon.pytest_testmon`, which registers the plugin module under the dotted name
+while autoload registers the same object under its `pytest11` entry point
+`pytest-testmon` → `ValueError: Plugin already registered under a different name`;
+(b) on Python 3.15 / coverage 7.17 the sysmon core disables dynamic contexts, so
+testmon's `switch_context()` raised `CoverageWarning(no-sysmon-context)` and
+`filterwarnings = ["error"]` aborted the run. Fixes: name the entry point
+(`("-p", "pytest-testmon")`) and pass `COVERAGE_CORE=ctrace` through the child
+environment only, via a new pure `child_environment(plan)` helper that returns `None`
+(inherit) for the mutation path and the testmon-unavailable fallback. `pyproject.toml`'s
+coverage configuration is unchanged and the sysmon default still applies to every other
+run. Updated the affected contract test `test_incremental_testmon_loads_plugin_explicitly`
+to assert the working invocation (and the absence of the dotted name), corrected the
+stale duplicate assertion/docstring in `tests/test_v10_reconciliation.py`, and added
+`tests/test_incremental_feedback.py` to pin the child-environment override. Evidence:
+`--mode tests` cold run `1080 passed` exit 0, warm run `no tests ran` exit 0; full suite
+green (1085 passed at handoff, count moving with a concurrent agent); `ruff check .`,
+ruff format, and my files' ty/basedpyright clean. Left untouched: the concurrent agent's
+in-flight `scripts/document_metadata.py` + `tests/test_document_metadata.py`, which carry
+their own ty/basedpyright diagnostics.
+

@@ -10,6 +10,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_documents_v6.py``
+    from document_metadata import save_neutralised
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v6"
 FIG = OUT / "figures"
@@ -180,7 +185,7 @@ last_table = d.tables[-1]._element  # ruff: ignore[private-member-access] -- pyt
 for child in list(d._element.body)[list(d._element.body).index(last_table) + 1 :]:  # ruff: ignore[private-member-access] -- python-docx exposes no public element handle
     if child.tag != qn("w:sectPr"):
         d._element.body.remove(child)  # ruff: ignore[private-member-access] -- python-docx exposes no public element handle
-d.save(OUT / "Panda_Vision_two_page_plan_v6.docx")
+save_neutralised(d, OUT / "Panda_Vision_two_page_plan_v6.docx")
 # Methods supplement: deliberately no machine-learning headline.
 s = Document()
 sec = s.sections[0]
@@ -551,5 +556,5 @@ p(
     " with invented numbers. The public price prototypes are scenario inputs; original-source verification is distinct"
     " from empirical validity. Fixed-seed simulation reduces numerical noise, not structural uncertainty."
 )
-s.save(OUT / "Panda_Vision_pathway_validation_supplement_v6.docx")
+save_neutralised(s, OUT / "Panda_Vision_pathway_validation_supplement_v6.docx")
 print("Created plan and methods supplement DOCX.")  # ruff: ignore[print] -- build script reports completion to stdout

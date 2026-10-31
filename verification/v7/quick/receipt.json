@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-31T06:11:08.966003+00:00",
-  "run_id": "234baec7-9234-4db7-8ef2-c7801fe418ce",
+  "generated_at": "2026-10-31T07:00:55.963736+00:00",
+  "run_id": "4e1feb1d-7ddb-4acb-9a54-50ed6c4c0bc3",
   "profile": "quick",
-  "source_commit_at_execution": "729cd34b28a6ae0c1791ce66ed62b4ee54c80fa6",
-  "input_fingerprint": "6755448633c59ecd27f0b86158358b23d994d4b85624d85c35d0411ff2f7e707",
+  "source_commit_at_execution": "5089e20bf65805f7aff0bee6e461a8fbcf3cb5ef",
+  "input_fingerprint": "89f9a15e527c01cbadc5b508ad5c0b042bece3441e3ea5d4b23597c16904f431",
   "artifact_dependency_fingerprint": "523c1c22fe9aeacca85cd381509322ec5392707bdcf0cfd0677bdac39874c00b",
   "run_finished": true,
   "active_gate": null,
-  "complete_within_profile": false,
+  "complete_within_profile": true,
   "full_local_assurance": false,
   "release_ready": false,
   "hosted_assurance": "Not independently verified by this local runner",
@@ -31,8 +31,8 @@
       "uv": "0.13.6",
       "prek": "0.5.9",
       "zizmor": "1.31.1",
-      "pytest-xdist": null,
-      "pytest-testmon": null
+      "pytest-xdist": "3.8.0",
+      "pytest-testmon": "2.2.0"
     },
     "pytest_plugin_autoload": null,
     "notebook_startup_flag": null
@@ -42,30 +42,30 @@
       "gate": "pytest",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "6755448633c59ecd27f0b86158358b23d994d4b85624d85c35d0411ff2f7e707",
+      "fingerprint": "89f9a15e527c01cbadc5b508ad5c0b042bece3441e3ea5d4b23597c16904f431",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "pytest",
         "-q"
       ],
-      "duration_seconds": 20.969714959000157,
+      "duration_seconds": 11.883849708000525,
       "log": "verification/v7/quick/pytest.txt",
-      "log_sha256": "b4e68ef4f89d644f4287d14b1ddfd8e0c1b394ff698b4e3f2b58f9c6e31dd9b2",
+      "log_sha256": "f3eefddfe6e4fd841b5ef4128fa98619afa066aa9b424eb019bfa668f3a2c3c6",
       "reason": ""
     },
     {
       "gate": "inputs",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "6755448633c59ecd27f0b86158358b23d994d4b85624d85c35d0411ff2f7e707",
+      "fingerprint": "89f9a15e527c01cbadc5b508ad5c0b042bece3441e3ea5d4b23597c16904f431",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "quality.checks",
         "inputs"
       ],
-      "duration_seconds": 0.200369082999714,
+      "duration_seconds": 0.19547637499999837,
       "log": "verification/v7/quick/inputs.txt",
       "log_sha256": "faecf7754d32dfe4941ad1df10f55bede50b8d05a53e3f704a06fa1436af01a3",
       "reason": ""
@@ -74,25 +74,20 @@
       "gate": "context",
       "status": "passed",
       "returncode": 0,
-      "fingerprint": "6755448633c59ecd27f0b86158358b23d994d4b85624d85c35d0411ff2f7e707",
+      "fingerprint": "89f9a15e527c01cbadc5b508ad5c0b042bece3441e3ea5d4b23597c16904f431",
       "command": [
         "/Users/doughnut/Documents/neocam/.venv/bin/python",
         "-m",
         "quality.checks",
         "context"
       ],
-      "duration_seconds": 0.03593566700010342,
+      "duration_seconds": 0.03514499999982945,
       "log": "verification/v7/quick/context.txt",
       "log_sha256": "684958ffdc1670c8df671c8203ae820f72799f9588864e97975964da3063b41e",
       "reason": ""
     }
   ],
-  "problems": [
-    "Stale inputs: pytest",
-    "Stale inputs: inputs",
-    "Stale inputs: context",
-    "Inputs changed during verification"
-  ],
+  "problems": [],
   "review": "Author review; not an independent review",
   "evidence_reuse": "pytest and coverage derive from one covered suite in PR/full profiles",
   "required_gates": [
@@ -100,6 +95,6 @@
     "inputs",
     "context"
   ],
-  "updated_at": "2026-10-31T06:11:30.365582+00:00",
+  "updated_at": "2026-10-31T07:01:08.207389+00:00",
   "artifact_dependency_fingerprint_end": "523c1c22fe9aeacca85cd381509322ec5392707bdcf0cfd0677bdac39874c00b"
 }

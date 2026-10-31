@@ -1,6 +1,6 @@
 {
-  "checked_on": "2026-10-30",
-  "policy": "Latest located non-yanked releases; Ruff preview enabled; ty and gremlins maturity retained explicitly; no unreviewed resolver upgrades in CI",
+  "checked_on": "2026-10-31",
+  "policy": "Latest located non-yanked releases; Ruff preview enabled; ty and gremlins maturity retained explicitly; no unreviewed resolver upgrades in CI. Test-depth guard pins added 2026-10-31 (network isolation, per-test timeout, order randomisation, deterministic clock, harness validation); pydantic is a direct pin because it otherwise arrives only transitively via scalene.",
   "packages": [
     {
       "name": "numpy",
@@ -84,6 +84,41 @@
       "target_version": "0.13.6",
       "source": "https://pypi.org/project/uv/0.13.6/",
       "checked_on": "2026-10-30",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pytest-socket",
+      "target_version": "0.8.1",
+      "source": "https://pypi.org/project/pytest-socket/0.8.1/",
+      "checked_on": "2026-10-31",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pytest-timeout",
+      "target_version": "2.4.0",
+      "source": "https://pypi.org/project/pytest-timeout/2.4.0/",
+      "checked_on": "2026-10-31",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pytest-randomly",
+      "target_version": "5.0.0",
+      "source": "https://pypi.org/project/pytest-randomly/5.0.0/",
+      "checked_on": "2026-10-31",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "time-machine",
+      "target_version": "3.6.0",
+      "source": "https://pypi.org/project/time-machine/3.6.0/",
+      "checked_on": "2026-10-31",
+      "installation": "not certified; see execution receipt"
+    },
+    {
+      "name": "pydantic",
+      "target_version": "2.14.2",
+      "source": "https://pypi.org/project/pydantic/2.14.2/",
+      "checked_on": "2026-10-31",
       "installation": "not certified; see execution receipt"
     }
   ],

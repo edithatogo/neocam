@@ -1,0 +1,3 @@
+ERROR tests/test_quality_gates.py::test_unknown_native_tool_rejected - FileNo...
+ERROR tests/test_quality_gates.py::test_archive_missing_executable_rejected
+924 passed, 163 errors in 21.71s

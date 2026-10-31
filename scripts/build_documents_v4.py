@@ -11,6 +11,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_documents_v4.py``
+    from document_metadata import save_neutralised
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v4"
 FIG = OUT / "figures"
@@ -189,7 +194,7 @@ for run in doc.paragraphs[1].runs:
     run.font.size = Pt(16)
     run.bold = True
 doc.tables[3].cell(0, 0).paragraphs[0].paragraph_format.page_break_before = True
-doc.save(OUT / "Panda_Vision_two_page_plan_v4.docx")
+save_neutralised(doc, OUT / "Panda_Vision_two_page_plan_v4.docx")
 
 # Companion analysis report, with explicit pages to keep charts next to interpretations.
 s = Document()
@@ -524,5 +529,5 @@ para(
     " Use the reviewed locked environment for full acceptance. The delivered host versions and incomplete gates are"
     " recorded separately from target dependency pins."
 )
-s.save(OUT / "Panda_Vision_analysis_supplement_v4.docx")
+save_neutralised(s, OUT / "Panda_Vision_analysis_supplement_v4.docx")
 print("Saved two-page plan and 12-section supplement")  # ruff: ignore[print] -- build script reports completion to stdout

@@ -6,6 +6,11 @@ from pathlib import Path
 from docx import Document
 from docx.shared import Pt
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_memo.py``
+    from document_metadata import save_neutralised
+
 SRC = "assets/Briefing_note.docx"
 OUT = "outputs/Panda_Vision_economic_evaluation_briefing_note.docx"
 doc = Document(SRC)
@@ -114,5 +119,5 @@ for t in doc.tables:
                     r.font.size = Pt(8.5)
 # retain header styling; make body cells readable
 Path("outputs").mkdir(exist_ok=True)
-doc.save(OUT)
+save_neutralised(doc, Path(OUT))
 print(OUT)  # ruff: ignore[print] -- script status line goes to stdout

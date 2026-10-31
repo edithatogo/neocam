@@ -10,9 +10,9 @@ from quality.feedback import prepare
 
 
 def test_testmon_loads_actual_upstream_plugin_module(tmp_path: Path) -> None:
-    """pytest-testmon 2.2.0 declares testmon.pytest_testmon, not testmon."""
+    """pytest-testmon 2.2.0 registers its pytest11 entry point as ``pytest-testmon``."""
     plan = prepare(tmp_path, "tests", available=True, environment={})
-    assert ("-p", "testmon.pytest_testmon") in tuple(itertools.pairwise(plan.command))
+    assert ("-p", "pytest-testmon") in tuple(itertools.pairwise(plan.command))
 
 
 def test_source_integrity_accepts_evidence_version_and_preserves_history(tmp_path: Path) -> None:

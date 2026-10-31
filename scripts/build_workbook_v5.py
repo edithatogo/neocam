@@ -7,6 +7,11 @@ from pathlib import Path
 
 from artifact_tool import SpreadsheetFile, Workbook
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import neutralise_archive_metadata
+except ModuleNotFoundError:  # run directly as ``python scripts/build_workbook_v5.py``
+    from document_metadata import neutralise_archive_metadata
+
 root = Path(__file__).resolve().parents[1]
 out = root / "outputs/v5"
 results = json.loads((out / "results_v5.json").read_text())
@@ -325,6 +330,7 @@ wb.render({"sheet_name": "Decision summary", "range": "A1:H9", "scale": 1.6}).sa
     str(out / "Panda_Vision_workbook_preview_v5.png")
 )
 SpreadsheetFile.export_xlsx(wb).save(str(out / "Panda_Vision_comparative_analysis_v5.xlsx"))
+neutralise_archive_metadata(out / "Panda_Vision_comparative_analysis_v5.xlsx")
 print("Exported comparative workbook.")  # ruff: ignore[print] -- CLI build progress goes to stdout
 
 history = get_ipython().history_manager.input_hist_raw  # ruff: ignore[undefined-name] -- IPython kernel builtin used when this cell is replayed

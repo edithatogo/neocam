@@ -1,0 +1,15 @@
+== after scan wall (3 runs) ==
+elapsed=5.193s scanned=1527 findings=0 gaps=98
+elapsed=5.175s scanned=1527 findings=0 gaps=98
+elapsed=5.167s scanned=1527 findings=0 gaps=98
+
+== same-process original-vs-new ==
+original per-line 14.609s -> new whole-blob 5.173s (2.8x)
+equivalence: True
+
+== equivalence (module vs reference) ==
+tree stable during comparison: True
+report bodies identical: True
+findings:: True 0
+not_scanned:: True 98
+counts:: (1527, 1484, 43) (1527, 1484, 43)

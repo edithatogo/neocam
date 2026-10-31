@@ -14,6 +14,11 @@ import tempfile
 from pathlib import Path
 from typing import TYPE_CHECKING, Protocol, TypedDict, cast
 
+try:  # imported as ``scripts.document_metadata`` when the repo root is on sys.path
+    from scripts.document_metadata import save_neutralised
+except ModuleNotFoundError:  # run directly as ``python scripts/build_current_report.py``
+    from document_metadata import save_neutralised  # pyright: ignore[reportImplicitRelativeImport] -- standalone-script fallback
+
 if TYPE_CHECKING:
     from pptx.util import Length
     from reportlab.lib.styles import ParagraphStyle
@@ -471,7 +476,7 @@ def build_office(output: Path, budgets: list[dict[str, str]], inputs: _Inputs) -
     for run in doc.paragraphs[1].runs:
         run.font.size = Pt(15)
         run.bold = True
-    doc.save(str(output / "Neocam_current_plan.docx"))
+    save_neutralised(doc, output / "Neocam_current_plan.docx")
     # A minimal portable deck uses the supplied template theme and background assets.
     deck = Presentation(str(ROOT / "assets/chhhs-powerpoint-template.pptx"))
     deck_width = cast("Length", deck.slide_width)
@@ -545,7 +550,7 @@ def build_office(output: Path, budgets: list[dict[str, str]], inputs: _Inputs) -
             "Finish private repository/history transfer and reproduce from a fresh clone. No public release is authorised.",  # ruff: ignore[line-too-long] -- authored report text kept verbatim
         ],
     )
-    deck.save(str(output / "Neocam_current_presentation.pptx"))
+    save_neutralised(deck, output / "Neocam_current_presentation.pptx")
     executable = shutil.which("soffice")
     if executable is not None:
         with tempfile.TemporaryDirectory(prefix="neocam-office-") as temp:

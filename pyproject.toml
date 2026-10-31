@@ -69,6 +69,12 @@ timeout_method = "signal"
 filterwarnings = ["error"]
 # No expected-failure marks may silently rot: an XPASS is a failure.
 xfail_strict = true
+# pytest's numbered tmp directories are swept on exit; under the mutation gate's two
+# workers that cleanup raced (an unclosed-scandir ResourceWarning escalated by
+# filterwarnings=error, plus an rm_rf race) and produced spurious `Error` mutants, which
+# the mutation gate treats as failures regardless of score. Nothing here inspects a
+# previous run's tmp directories, so retaining none removes the race and the warning.
+tmp_path_retention_policy = "none"
 
 [tool.coverage.run]
 # Coverage 7.17.0 ALREADY selects the experimental sys.monitoring core by default

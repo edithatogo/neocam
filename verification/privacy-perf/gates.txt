@@ -1,0 +1,15 @@
+== ruff check . ==
+All checks passed!
+exit=0
+
+== ruff format --check src scripts quality tests sources ==
+126 files already formatted
+exit=0
+
+== ty check --error-on-warning ==
+All checks passed!
+exit=0
+
+== basedpyright ==
+0 errors, 0 warnings, 0 notes
+exit=0

@@ -7,6 +7,11 @@ from pathlib import Path
 
 from artifact_tool import SpreadsheetFile, Workbook
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import neutralise_archive_metadata
+except ModuleNotFoundError:  # run directly as ``python scripts/build_workbook_v7.py``
+    from document_metadata import neutralise_archive_metadata
+
 root = Path(__file__).resolve().parents[1]
 out = root / "outputs/v7"
 results = json.loads((out / "results_v7.json").read_text())
@@ -302,4 +307,5 @@ csvsheet(
 print("Sheets:", len(sheets), "rows:", sum(n for _, n, _ in sheets))  # ruff: ignore[print] -- script status line goes to stdout
 print(wb.inspect({"kind": "region", "sheet_id": "Accounting checks", "range": "G4:L8", "max_chars": 1800}).ndjson)  # ruff: ignore[print] -- CLI inspection report goes to stdout
 SpreadsheetFile.export_xlsx(wb).save(str(out / "Panda_Vision_analysis_v7.xlsx"))
+neutralise_archive_metadata(out / "Panda_Vision_analysis_v7.xlsx")
 wb.render({"sheet_name": "Regional summary", "range": "A1:G10", "scale": 1.4}).save(str(out / "workbook_preview.png"))

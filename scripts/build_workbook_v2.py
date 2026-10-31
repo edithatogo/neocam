@@ -8,6 +8,11 @@ from pathlib import Path
 
 from artifact_tool import SpreadsheetFile, Workbook
 
+try:  # imported as ``scripts.document_metadata`` when the repository root is on sys.path
+    from scripts.document_metadata import neutralise_archive_metadata
+except ModuleNotFoundError:  # run directly as ``python scripts/build_workbook_v2.py``
+    from document_metadata import neutralise_archive_metadata
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs/v2"
 r = json.loads((OUT / "results_v2.json").read_text())
@@ -352,4 +357,5 @@ print(  # ruff: ignore[print] -- build script reports formula diagnostics to std
 )
 wb.render({"sheet_name": "Decision summary", "range": "A1:C20", "scale": 1.5}).save(str(OUT / "workbook_preview.png"))
 SpreadsheetFile.export_xlsx(wb).save(str(OUT / "Panda_Vision_economic_model_v2.xlsx"))
+neutralise_archive_metadata(OUT / "Panda_Vision_economic_model_v2.xlsx")
 print("EXPORTED", OUT / "Panda_Vision_economic_model_v2.xlsx")  # ruff: ignore[print] -- build script reports the output path to stdout

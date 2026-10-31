@@ -1,0 +1,69 @@
+{
+  "task": "privacy-scan-performance",
+  "date": "2026-10-31",
+  "module": "quality/privacy.py",
+  "tests": "tests/test_privacy_scan.py",
+  "interpreter": "3.15.2",
+  "change_summary": "scan_repository now runs each value pattern once over a whole decoded blob (matching offsets mapped back to line numbers) instead of five finditer passes per line, with a cheap boolean shape predicate ahead of each pattern and an offset-anchored email scan. Bounded-work, OOXML/PDF and skip bookkeeping are unchanged.",
+  "before": {
+    "scan_seconds_parent_measured": 15.2,
+    "scan_seconds_same_process_original_per_line": 14.609,
+    "privacy_test_seconds_parent_measured": 12.5
+  },
+  "after": {
+    "scan_seconds_repeated": [5.193, 5.175, 5.167],
+    "scan_seconds_same_process": 5.173,
+    "speedup_same_process": 2.8,
+    "privacy_test_seconds": 5.54,
+    "full_suite_seconds": 11.35,
+    "full_suite_result": "1087 passed"
+  },
+  "equivalence": {
+    "method": "In one process the exact pre-change per-line algorithm is injected over the module's _inspect_text and both scans run over the same tree; reports are compared field by field and by report body.",
+    "tree_stable_during_comparison": true,
+    "report_bodies_identical": true,
+    "findings_identical": true,
+    "not_scanned_identical": true,
+    "counts_identical": true,
+    "findings_count": 0,
+    "not_scanned_count": 98,
+    "scanned_files": 1527,
+    "text_files": 1484,
+    "container_files": 43,
+    "email_boundary_checks": "64-character local part found, 65-character local part not found, stray '@' not found, two mailboxes on one line both found"
+  },
+  "sensitivity": {
+    "test": "tests/test_privacy_scan.py",
+    "result": "30 passed",
+    "rules_detected_on_fixture": [
+      "email",
+      "au_phone",
+      "medicare_number",
+      "tfn",
+      "card_number",
+      "identifier_column",
+      "identifier_key"
+    ]
+  },
+  "corpus": {
+    "decoded_text_bytes": 185490823,
+    "blobs": 3272,
+    "largest_text": "verification/v13/hosted-41074874950/full/ruff_lint.txt (29 MB)",
+    "container_inflation": "two PDF supplements inflate to ~21-23 MB of stream text each"
+  },
+  "gates": {
+    "ruff_check": "All checks passed (0 findings)",
+    "ruff_format_check": "126 files already formatted",
+    "ty_check_error_on_warning": "All checks passed",
+    "basedpyright": "0 errors, 0 warnings, 0 notes",
+    "pytest_privacy": "30 passed",
+    "pytest_full": "1087 passed"
+  },
+  "not_reached": "The 2 s target is not reached: the floor is set by full coverage of ~185 MB of decoded text (a 29 MB generated lint log plus ~70 MB of inflated PDF stream text), whose classification requires at least one pattern scan each. Reported rather than traded away; no exemption or scope change was made.",
+  "unchanged_by_design": [
+    "MAX_TEXT_BYTES, MAX_CONTAINER_BYTES, MAX_CONTAINER_PART_BYTES, MAX_INFLATED_BYTES",
+    "OOXML/PDF extraction and the opaque/oversize/unreadable skip reasons",
+    "CSV/JSON field and column-header checks",
+    "ALLOWANCES remains empty"
+  ]
+}
