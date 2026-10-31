@@ -193,8 +193,14 @@ def complete(root: Path, plan: FeedbackPlan, returncode: int) -> None:
     state_file.unlink(missing_ok=True)
     if returncode == 0 and plan.can_seal:
         state_file.parent.mkdir(parents=True, exist_ok=True)
+        # The inline `gitleaks:allow` marker shares the finding's own line, per the
+        # documented policy in .gitleaks.toml (a confirmed false positive is marked on
+        # the finding, never by widening a path or pattern allowlist). The only
+        # high-entropy string here is the SHA-256 cache key this repository computes over
+        # its own tracked inputs, which the generic-api-key rule reads as a credential.
         _ = state_file.write_text(
-            json.dumps({"key": plan.key, "returncode": 0, "scope": "local-only; not acceptance"}) + "\n",
+            json.dumps({"key": plan.key, "returncode": 0, "scope": "local-only; not acceptance; gitleaks:allow"})
+            + "\n",
             encoding="utf-8",
         )
 

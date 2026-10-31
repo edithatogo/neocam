@@ -3,5 +3,6 @@ No findings to report. Good job! (1 ignored)
  INFO audit: zizmor: 🌈 completed .github/workflows/ci.yml
  INFO audit: zizmor: 🌈 completed .github/workflows/codeql.yml
  INFO audit: zizmor: 🌈 completed .github/workflows/dependency-review.yml
+ INFO audit: zizmor: 🌈 completed .github/workflows/privacy.yml
  INFO audit: zizmor: 🌈 completed .github/workflows/release-gate.yml
  INFO audit: zizmor: 🌈 completed .github/workflows/scorecard.yml

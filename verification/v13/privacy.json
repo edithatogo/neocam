@@ -1,8 +1,8 @@
 {
   "passed": true,
-  "scanned_files": 1516,
-  "text_files": 1475,
-  "container_files": 41,
+  "scanned_files": 1533,
+  "text_files": 1490,
+  "container_files": 43,
   "findings_count": 0,
   "findings": [],
   "exemptions": [],
@@ -107,11 +107,6 @@
       "outputs/v7/spokes_reference_perspectives.npz",
       "outputs/v7/workbook_preview.png",
       "verification/v11/full-on-3140ed3.zip"
-    ],
-    "oversize": [
-      "assets/chhhs-powerpoint-template.pptx",
-      "sources/original/chhhs-powerpoint-template.pptx",
-      "verification/v13/hosted-41074874950/full/ruff_lint.txt"
     ]
   }
 }
