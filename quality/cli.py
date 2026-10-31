@@ -107,6 +107,13 @@ def gates_for_profile(profile: str) -> list[Gate]:
                 "--gremlin-report=json",
                 "--gremlin-report=html",
                 "--strict-pardons",
+                # An explicit basetemp stops pytest pruning its numbered temporary
+                # directories. That pruning is what raced between the two mutation
+                # workers on Python 3.15 (an unclosed-scandir ResourceWarning escalated
+                # by filterwarnings=error, plus an rm_rf race), and the mutation gate
+                # treats any error as a failure regardless of score: 5 of 1,250 mutants
+                # reported Error with no failing test and no killing test before this.
+                "--basetemp=coverage/gremlins/tmp",
             ),
             1800,
             "pytest_gremlins",
