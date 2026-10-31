@@ -1,17 +1,21 @@
 """Regression tests for complete, interruption-resilient assurance evidence."""
 
+from __future__ import annotations
+
 import errno
 import hashlib
 import json
 import shutil
 import sys
-from pathlib import Path
-from typing import TypedDict, cast
+from typing import TYPE_CHECKING, TypedDict, cast
 
 import pytest
 
 from quality import cli
 from quality.assurance import Gate, Receipt, run_gate
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 class Report(TypedDict):

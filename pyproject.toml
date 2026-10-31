@@ -2,7 +2,7 @@
 name = "panda-vision-evaluation"
 version = "7.0.0"
 description = "Preliminary neonatal economic model with explicit evidence and developer assurance"
-requires-python = ">=3.13,<3.16"
+requires-python = ">=3.15,<3.16"
 dependencies = ["numpy==2.5.4"]
 
 [project.optional-dependencies]
@@ -36,6 +36,8 @@ default-groups = ["test"]
 testpaths = ["tests"]
 addopts = "--strict-markers --strict-config"
 filterwarnings = ["error"]
+# No expected-failure marks may silently rot: an XPASS is a failure.
+xfail_strict = true
 
 [tool.coverage.run]
 branch = true
@@ -51,7 +53,7 @@ precision = 2
 
 [tool.ruff]
 required-version = "==0.17.3"
-target-version = "py313"
+target-version = "py315"
 line-length = 120
 preview = true
 unsafe-fixes = false
@@ -99,7 +101,7 @@ docstring-code-format = true
 quote-style = "double"
 
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.15"
 
 [tool.ty.src]
 include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py", "scripts/analyse_v5.py", "scripts/analyse_v6.py", "scripts/analyse_v7.py", "scripts/build_current_report.py", "scripts/plot_current.py", "scripts/analyse_refinements.py", "scripts/plot_refinements.py"]
@@ -109,7 +111,7 @@ all = "error"
 
 [tool.basedpyright]
 include = ["src", "quality", "tests", "scripts/run_v2.py", "scripts/verify.py", "scripts/analyse_v5.py", "scripts/analyse_v6.py", "scripts/analyse_v7.py", "scripts/build_current_report.py", "scripts/plot_current.py", "scripts/analyse_refinements.py", "scripts/plot_refinements.py"]
-pythonVersion = "3.13"
+pythonVersion = "3.15"
 pythonPlatform = "All"
 typeCheckingMode = "all"
 failOnWarnings = true
@@ -117,8 +119,14 @@ strictListInference = true
 strictDictionaryInference = true
 strictSetInference = true
 strictGenericNarrowing = true
-# Experimental language semantics are not needed for this numerical model.
-enableExperimentalFeatures = false
+# Experimental language semantics are enabled deliberately: this repository tracks the
+# newest interpreter and wants the newest checks, not a conservative default.
+enableExperimentalFeatures = true
+# A blanket `# type: ignore` is never acceptable; suppressions must name their rule.
+enableTypeIgnoreComments = false
+reportIgnoreCommentWithoutRule = true
+reportUnnecessaryTypeIgnoreComment = true
+deprecateTypingAliases = true
 
 [tool.pytest-gremlins]
 paths = ["src/activity.py", "src/deployment.py", "src/configuration.py", "src/equipment.py", "src/audit_v7.py", "src/perspectives_v7.py", "src/portfolios_v7.py", "src/pathways_v6.py", "src/statewide.py", "src/strategies.py", "src/sensitivity.py", "quality/contracts.py", "quality/assurance.py"]

@@ -1,10 +1,15 @@
 """Cached development must not silently reuse evidence for changed inputs."""
 
-from pathlib import Path
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 import pytest
 
 from quality import feedback
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def sample(root: Path) -> None:

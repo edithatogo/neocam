@@ -113,7 +113,7 @@ def prepare(root: Path, mode: str, *, available: bool, environment: dict[str, st
     state_file = root / ".feedback-cache" / f"{mode}.json"
     try:
         previous: object = cast("object", json.loads(state_file.read_text(encoding="utf-8")))
-    except (OSError, ValueError):
+    except OSError, ValueError:
         previous = {}
     state = cast("dict[str, object]", previous) if isinstance(previous, dict) else {}
     reused = state.get("key") == key and state.get("returncode") == 0

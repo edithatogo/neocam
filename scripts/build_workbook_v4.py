@@ -38,7 +38,7 @@ def numeric(value: object) -> object:
     try:
         x = float(value)
         return int(x) if x.is_integer() else x
-    except (ValueError, TypeError):
+    except ValueError, TypeError:
         return str(value)
 
 

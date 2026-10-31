@@ -1,11 +1,16 @@
 """Source-byte claims must follow hashes, paths and actual representations."""
 
+from __future__ import annotations
+
 import hashlib
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from quality import source_archive
 from quality.assurance import input_fingerprint
 from quality.cli import gates_for_profile
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def test_hash_mismatch_is_not_an_original_file(tmp_path: Path) -> None:

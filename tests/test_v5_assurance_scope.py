@@ -1,14 +1,17 @@
 """New scientific modules and receipts must enter the existing assurance scope."""
 
+from __future__ import annotations
+
 import importlib.metadata
 import tomllib
 from pathlib import Path
-from typing import cast
-
-import pytest
+from typing import TYPE_CHECKING, cast
 
 from quality import checks
 from quality.cli import gates_for_profile
+
+if TYPE_CHECKING:
+    import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 

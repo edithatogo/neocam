@@ -144,7 +144,7 @@ def run_gate(gate: Gate, root: Path, fingerprint: str, log_dir: Path) -> Receipt
     if gate.module is not None:
         try:
             missing = importlib.util.find_spec(gate.module) is None
-        except (ImportError, ValueError, AttributeError):
+        except ImportError, ValueError, AttributeError:
             missing = True
     if missing:
         status, reason = "blocked", f"Required Python tool is unavailable: {gate.module}"

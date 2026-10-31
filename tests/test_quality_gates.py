@@ -1,16 +1,20 @@
 """Reject false-positive mutation reports and preserve complete tool coverage."""
 
+from __future__ import annotations
+
 import hashlib
 import io
 import tarfile
-from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
 from quality.bootstrap import unpack_binary
 from quality.checks import mutation_errors
 from quality.cli import gates_for_profile
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def mutation_report(

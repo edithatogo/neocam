@@ -70,9 +70,13 @@ def test_mutation_loads_required_plugin_explicitly() -> None:
     assert ("-p", "gremlins") in tuple(itertools.pairwise(cmd))
 
 
-def test_compatibility_installs_research_dependencies() -> None:
-    text = Path(".github/workflows/ci.yml").read_text(encoding="utf-8").split("  compatibility:", 1)[1]
-    assert "uv sync --frozen --group test --extra research" in text
+def test_ci_exercises_the_optional_extras() -> None:
+    """The gated job must install the optional extras, not just the core group."""
+    text = Path(".github/workflows/ci.yml").read_text(encoding="utf-8")
+    sync = next(line for line in text.splitlines() if "uv sync --frozen" in line)
+    assert "--group assurance" in sync
+    for extra in ("--extra tabular", "--extra research", "--extra reporting"):
+        assert extra in sync
 
 
 def test_incremental_testmon_loads_plugin_explicitly(tmp_path: Path) -> None:

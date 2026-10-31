@@ -5,9 +5,14 @@ The legacy status predicate is retained for regression tests only. It cannot
 validate fingerprints or logs and is not a release-authorisation interface.
 """
 
+from __future__ import annotations
+
 import sys
-from collections.abc import Mapping, Sequence
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping, Sequence
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))

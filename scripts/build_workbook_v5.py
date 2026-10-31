@@ -41,7 +41,7 @@ def scalar(x: object) -> object:
     try:
         v = float(x)
         return int(v) if v.is_integer() and abs(v) < MAX_EXACT_FLOAT else v
-    except (ValueError, OverflowError):
+    except ValueError, OverflowError:
         return x
 
 

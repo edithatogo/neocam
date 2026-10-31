@@ -1,8 +1,9 @@
 """Reproduce model-integrity defects without changing economic assumptions."""
 
+from __future__ import annotations
+
 import csv
 import math
-from pathlib import Path
 from typing import TYPE_CHECKING, TypedDict, cast
 
 import numpy as np
@@ -13,6 +14,7 @@ from src.statewide import Parameters, Site, annuity, evaluate, load_sites, psa
 
 if TYPE_CHECKING:
     from collections.abc import Callable
+    from pathlib import Path
 
 # Deliberately invalid values must be validated by the model itself.
 _parameters = cast("Callable[..., object]", Parameters)

@@ -93,7 +93,7 @@ def _record_errors(index: int, record: object, expected_snapshot: str) -> tuple[
     recorded_date = fields.get("date", "")
     try:
         _ = date.fromisoformat(recorded_date if isinstance(recorded_date, str) else "")
-    except (TypeError, ValueError):
+    except TypeError, ValueError:
         errors.append(f"Review {index} lacks a valid date")
     if not _evidence(fields.get("evidence")):
         errors.append(f"Review {index} lacks supporting report evidence")
@@ -150,7 +150,7 @@ def main() -> int:
     args = cast("_ReviewArgs", cast("object", parser.parse_args()))
     try:
         packet: object = cast("object", json.loads(args.packet.read_text(encoding="utf-8")))
-    except (ValueError, OSError):
+    except ValueError, OSError:
         packet = None
     errors = review_errors(packet, args.snapshot)
     print(  # ruff: ignore[print] -- CLI review report goes to stdout

@@ -97,7 +97,7 @@ def _record_errors(root: Path, index: int, item: object, seen: set[Path], origin
         return [f"Invalid source path type: {index}"]
     try:
         path = (root / name).resolve()
-    except (OSError, ValueError, RuntimeError):
+    except OSError, ValueError, RuntimeError:
         return [f"Invalid source path: {index}"]
     if not name or Path(name).is_absolute() or path == root or root not in path.parents or path in seen:
         return [f"Unsafe or duplicate source path: {name}"]
@@ -161,7 +161,7 @@ def main() -> int:
     manifest: object
     try:
         manifest = cast("object", json.loads((root / "sources/manifest.json").read_text(encoding="utf-8")))
-    except (OSError, ValueError):
+    except OSError, ValueError:
         manifest = None
         errors = ["Source manifest unavailable or invalid JSON"]
     else:

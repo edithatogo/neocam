@@ -9,7 +9,8 @@ import math
 import re
 import tomllib
 from dataclasses import asdict
-from itertools import starmap
+
+# starmap removed: RUF058 requires map() for pairwise application
 from typing import TYPE_CHECKING, TypedDict, cast
 
 if TYPE_CHECKING:
@@ -112,7 +113,7 @@ def validate_lock(path: Path) -> list[str]:
         return ["Dependency lock unavailable; resolve and review uv.lock before full acceptance"]
     try:
         content = cast("dict[str, object]", tomllib.loads(path.read_text(encoding="utf-8")))
-    except (tomllib.TOMLDecodeError, UnicodeError):
+    except tomllib.TOMLDecodeError, UnicodeError:
         return ["Invalid dependency lock"]
     packages = content.get("package", [])
     if not isinstance(packages, list) or not packages:
@@ -151,7 +152,9 @@ def _as_sequence(value: object) -> Sequence[object] | None:
 def _same_value(first: object, second: object) -> bool:
     left, right = _as_sequence(first), _as_sequence(second)
     if left is not None and right is not None:
-        return len(left) == len(right) and all(starmap(_same_value, zip(left, right, strict=True)))
+        # RUF058 requires map() instead of starmap over zip, and RUF... requires explicit
+        # strict=; Python 3.14+ map supports strict, so pairwise application stays checked.
+        return len(left) == len(right) and all(map(_same_value, left, right, strict=True))
     if isinstance(first, bool) or isinstance(second, bool):
         return type(first) is type(second) and first == second
     if isinstance(first, (int, float)) and isinstance(second, (int, float)):

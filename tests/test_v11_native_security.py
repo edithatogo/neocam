@@ -1,16 +1,20 @@
 """Exercise installer trust boundaries without claiming a live download."""
 
+from __future__ import annotations
+
 import hashlib
 import io
 import urllib.request
 from http.client import HTTPMessage
-from pathlib import Path
-from typing import Protocol, cast
+from typing import TYPE_CHECKING, Protocol, cast
 
 import pytest
 
 from quality import bootstrap
 from tests.test_quality_gates import binary_tar
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 class TrustedRedirect(Protocol):

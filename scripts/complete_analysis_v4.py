@@ -1,16 +1,20 @@
 # ruff: ignore[implicit-namespace-package] -- scripts/ is a namespace package run via python -m
 """Complete diagnostics and figures from unchanged economic inputs and verified draws."""
 
+from __future__ import annotations
+
 import csv
 import json
 import sys
 from dataclasses import replace
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import matplotlib as mpl
 import numpy as np
-from matplotlib.figure import Figure
+
+if TYPE_CHECKING:
+    from matplotlib.figure import Figure
 
 mpl.use("Agg")
 import matplotlib.pyplot as plt

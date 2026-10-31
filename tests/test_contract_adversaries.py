@@ -1,19 +1,23 @@
 """Exercise malformed evidence and boundary cases rather than only happy paths."""
 
+from __future__ import annotations
+
 import csv
 import json
 import math
 import shutil
-from collections.abc import Callable
 from dataclasses import replace
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
 from quality.contracts import _same_value, audit_inputs, validate_lock  # pyright: ignore[reportPrivateUsage] -- the private comparator is the in-repo surface under test
 from src.panda_model import ModelInputs, clinical_extension, odds_to_probability, weighted_transfer_cost
 from src.statewide import Parameters, Site, load_sites, survival_extension
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 # Heterogeneous per-case constructors are validated by the model itself.
 _parameters = cast("Callable[..., object]", Parameters)

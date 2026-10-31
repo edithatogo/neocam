@@ -182,7 +182,7 @@ def verify(root: Path, output: Path) -> list[str]:
     try:
         report: object = cast("object", json.loads((output / MANIFEST).read_text(encoding="utf-8")))
         errors = manifest_errors(report, output, root)
-    except (OSError, ValueError, TypeError):
+    except OSError, ValueError, TypeError:
         return ["Manifest unavailable or invalid; no release verification"]
     return errors
 

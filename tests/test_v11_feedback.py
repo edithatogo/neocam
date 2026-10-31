@@ -1,11 +1,16 @@
 """An interrupted second execution must not retain the first run's success seal."""
 
+from __future__ import annotations
+
 import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
 from quality import feedback
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 @pytest.mark.parametrize("mode", ["tests", "mutation"])

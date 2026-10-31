@@ -32,9 +32,31 @@ def test_thin_hooks_no_expensive_acceptance_work() -> None:
     assert "quality.cli --profile full" not in text
 
 
-def test_primary_ci_is_not_duplicated_in_compatibility_matrix() -> None:
+def _nested_str(config: dict[str, object], *keys: str) -> str:
+    """Return a nested string from a parsed document, failing if the shape is wrong."""
+    section: dict[str, object] = config
+    for key in keys[:-1]:
+        child = section[key]
+        assert isinstance(child, dict)
+        section = cast("dict[str, object]", child)
+    result = section[keys[-1]]
+    assert isinstance(result, str)
+    return result
+
+
+def test_ci_pins_the_single_supported_interpreter() -> None:
+    """One bleeding-edge interpreter (3.15) is declared, typed and run in CI."""
     text = (ROOT / ".github/workflows/ci.yml").read_text()
-    assert "python: ['3.14', '3.15']" in text
+    cfg = cast("dict[str, object]", tomllib.loads((ROOT / "pyproject.toml").read_text()))
+    minor = _nested_str(cfg, "project", "requires-python").removeprefix(">=").split(",")[0]
+    assert minor == "3.15"
+    assert _nested_str(cfg, "tool", "ty", "environment", "python-version") == minor
+    assert _nested_str(cfg, "tool", "basedpyright", "pythonVersion") == minor
+    assert f"python-version: '{minor}'" in text
+    # No legacy interpreters remain, and a one-version project needs no version matrix.
+    assert "matrix:" not in text
+    for legacy in ("'3.13'", "'3.14'"):
+        assert legacy not in text
     assert "cancel-in-progress: ${{ github.event_name == 'pull_request' }}" in text
     assert "quality.cli --profile pr" in text
     assert "uv lock --check" in text

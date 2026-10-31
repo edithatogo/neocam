@@ -88,7 +88,7 @@ def gates_for_profile(profile: str) -> list[Gate]:
             180,
             "ruff",
         ),
-        Gate("ty", (python, "-m", "ty", "check"), 180, "ty"),
+        Gate("ty", (python, "-m", "ty", "check", "--error-on-warning"), 180, "ty"),
         Gate("basedpyright", (python, "-m", "basedpyright"), 180, "basedpyright"),
         Gate("hypothesis", (python, "-m", "pytest", "quality/hypothesis_properties.py", "-q"), 180, "hypothesis"),
         Gate(
