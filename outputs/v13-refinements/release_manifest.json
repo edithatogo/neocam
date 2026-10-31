@@ -17,11 +17,11 @@
     "data/v6/hospital_prototypes.json": "31f6c4d463ae2471bd2bee45414e24151340b9972a19c8c01222aff28e05789e",
     "data/v6/spec.json": "b0625409296c0120b3d74d6a7019df4967d82ff26f09eacabe7b42bdea502feb",
     "data/v6/structural_assumptions.csv": "fdedfd454247e7abdebfe516ed9c2249f0321a2a7aea97a7b26bd13094967863",
-    "quality/artifacts.py": "dd4642afa26f82f55e1b51b91d795e17969e29aa680e0b862ca270ac77c03b55",
-    "quality/clinical_review.py": "2f08300ed87194fe120a31cf1ec103edf6f4e29612e392f6764c66e3cd7e235a",
+    "quality/artifacts.py": "c8129dac33f13836e149720e027c4bb4e32bf0dc1ee73056aabaf72abf1dde08",
+    "quality/clinical_review.py": "fc1837cf25ef591fd48f654aa9a7acb9f61669635a6b7819a2142dc633cd483e",
     "scripts/analyse_refinements.py": "fddf1e7a9fc69d7824dd9247849260e294c78258aeb3869d09bb6512c838e54d",
     "scripts/analyse_v7.py": "6e9e8ddfcc9b349108e2185a61467ae884d07db6273a6358b83bd99bf5b1abf5",
-    "scripts/build_current_report.py": "ed416055bfee12188e1e06f8823e27d0162cc963c2a2176fcb7e5327638baa0a",
+    "scripts/build_current_report.py": "2d01ed4ea57a5fde0ceb739c1c49da1b35e4d2e08e414d0ac2c9a4d482ea8fb7",
     "scripts/plot_current.py": "d1a88a827651cc7ea89e0337c2d14bb104059785d5d15ba62e3148c0f3fe15b6",
     "scripts/plot_refinements.py": "a28cddfaafa0b063099e81261807e75958fc016677b451fc0a4145615ad6cf31",
     "scripts/reproduce.py": "ae96a102225f271ccebc18b29635df94b868415109bda96f05710930e1c5876d",
@@ -66,5 +66,5 @@
   },
   "interpretation": "Byte/provenance check, not clinical or independent validation",
   "schema_version": 1,
-  "source_commit_at_generation": "4369f040147d0b566f637fdc44696853cbcb4536"
+  "source_commit_at_generation": "570f6c2b19cf77125c9df0b40fa27ab0065562a7"
 }
